@@ -107,7 +107,7 @@ var ListaServiciosPage = (function () {
         }, function (error) {
             console.log('some err');
             console.log(error);
-        });
+        }, { enableHighAccuracy: true, timeout: 30000 });
     };
     ListaServiciosPage.prototype.openBusqueda = function () {
         this.presentProfileModal();
