@@ -31811,6 +31811,34 @@ page-addservicios .content-ios {
   background-color: #f7f8f9;
 }
 
+page-ajustes .claseItem {
+  background-color: white !important;
+  border-bottom: solid 0.5px;
+  color: #3d3f4a;
+  padding: 8px;
+  padding-left: 16px;
+  font-size: 16px;
+  border-color: rgba(175, 175, 175, 0.8);
+}
+
+page-ajustes .toggle-ios.toggle-checked .toggle-icon {
+  background-color: #2FD99B !important;
+}
+
+page-ajustes .list-ios > .item-block:last-child, page-ajustes .list-ios > .item-wrapper:last-child .item-block {
+  border-bottom: solid 0.5px;
+  border-color: rgba(175, 175, 175, 0.8);
+}
+
+page-ayuda .faqRespuesta {
+  color: #444;
+  margin: 0px !important;
+  padding: 20px;
+  font-size: 16px;
+  font-weight: normal;
+  white-space: normal;
+}
+
 page-buscar-modal .content-ios {
   background-color: #f7f8f9;
 }
@@ -31863,8 +31891,82 @@ page-confirmar-reserva .item-ios.item-block .item-inner {
   border-bottom: none !important;
 }
 
+page-cuenta .claseItem {
+  background-color: #fafafa !important;
+  border-bottom: solid 0.5px;
+  color: #3d3f4a;
+  padding: 8px;
+  padding-left: 16px;
+  font-size: 16px;
+  border-color: rgba(175, 175, 175, 0.8);
+}
+
+page-cuenta .list-ios > .item-block:last-child, page-cuenta .list-ios > .item-wrapper:last-child .item-block {
+  border-bottom: solid 0.5px;
+  border-color: rgba(175, 175, 175, 0.8);
+}
+
 page-cupones .content-ios {
   background-color: #f7f8f9;
+}
+
+page-demo .scroll-content {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}
+
+page-demo .scroll-content ion-slides {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+page-demo .swiper-slide img {
+  height: 300px !important;
+}
+
+page-demo .imgDemo {
+  height: 300px !important;
+}
+
+page-demo .swiper-pagination-fraction, page-demo .swiper-pagination-custom, page-demo .swiper-container-horizontal > .swiper-pagination-bullets {
+  left: 0;
+  width: 100%;
+}
+
+page-demo .textoDemo {
+  color: white;
+  margin-bottom: 50px;
+}
+
+page-demo .tituloDemo {
+  margin-bottom: 30px;
+  color: white;
+  margin-top: -14px;
+  width: 100%;
+}
+
+page-demo .swiper-pagination-bullet {
+  border-radius: 100%;
+  display: inline-block;
+  width: 15px;
+  height: 15px;
+  background: white;
+  opacity: 0.9;
+  pointer-events: auto;
+}
+
+page-demo .swiper-pagination-bullet-active {
+  background: #EC527E !important;
+  opacity: 1;
 }
 
 page-detalle-reserva .content-ios {

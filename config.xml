@@ -91,7 +91,7 @@
 <gap:plugin name="cordova-plugin-network-information" source="npm" version="1.0.1" />
 <gap:plugin name="cordova-plugin-inappbrowser" source="npm"  />
 
-
+   <gap:plugin name="cordova-plugin-geolocation"  source="npm" />
 
        <access origin="*" />
 <allow-intent href="*" />
