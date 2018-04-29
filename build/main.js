@@ -1173,15 +1173,18 @@ var MyApp = (function () {
         var _this = this;
         //this.menuActivo = true;
         facebookConnectPlugin.getLoginStatus(function (success) {
+            console.log(success);
             if (success.status === 'connected') {
                 _this.apiProvider.verificarFBLog({ userId: success.authResponse.userID })
                     .then(function (data) {
                     console.log(data);
-                    if (data) {
-                        _this.storage.set("usr_tok_by", events.data.info);
+                    if (data.length > 0) {
+                        console.log('mas0len');
+                        _this.storage.set("usr_tok_by", data.data[0]);
                         _this.menuActivo = true;
                     }
                     else {
+                        console.log('menos0len');
                         _this.addUserFb(success.authResponse);
                         console.log('Ha ocurrido un error');
                     }
