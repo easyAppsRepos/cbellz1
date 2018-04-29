@@ -961,14 +961,13 @@ var MyApp = (function () {
             _this.getFacebookProfileInfo(authResponse)
                 .then(function (profileInfo) {
                 // For the purpose of this example I will store user data on local storage
-                var _this = this;
                 var usuario = {
                     fbId: profileInfo.id,
                     nombre: profileInfo.name,
                     email: profileInfo.email,
                     imagenFB: "http://graph.facebook.com/" + authResponse.userID + "/picture?type=large"
                 };
-                this.apiProvider.addUserFb(usuario).then(function (events) {
+                _this.apiProvider.addUserFb(usuario).then(function (events) {
                     if (events.insertId > 0) {
                         _this.apiProvider.verificarFBLog({ userId: authResponse.userID })
                             .then(function (data) {
