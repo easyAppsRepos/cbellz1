@@ -85,7 +85,13 @@
 -->
   <plugin name="ionic-plugin-keyboard" version="2.2.1" src="https://github.com/driftyco/ionic-plugin-keyboard" />
 
+<platform name="android">
+    <config-file parent="/resources" target="./res/values/strings.xml">
+        <string name="fb_app_id">1983888255255595</string>
+        <string name="fb_app_name">BeYou</string>
+    </config-file>
 
+  </platform>
     <plugin name="cordova-plugin-facebook4" source="npm" spec="1.7.4">
             <param name="APP_ID" value="1983888255255595" />
             <param name="APP_NAME" value="BeYou" />
