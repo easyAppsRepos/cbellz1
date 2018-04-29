@@ -1002,7 +1002,7 @@ var MyApp = (function () {
             });
         };
         this.addUserFb = function (data) {
-            _this.apiProvider.addUserFb(usuario).then(function (events) {
+            _this.apiProvider.addUserFb(data).then(function (events) {
                 if (events.insertId > 0) {
                     _this.apiProvider.verificarFBLog({ userId: data.userID })
                         .then(function (data) {
