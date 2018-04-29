@@ -1178,7 +1178,7 @@ var MyApp = (function () {
                 _this.apiProvider.verificarFBLog({ userId: success.authResponse.userID })
                     .then(function (data) {
                     console.log(data);
-                    if (data.length > 0) {
+                    if (data.data.length > 0) {
                         console.log('mas0len');
                         _this.storage.set("usr_tok_by", data.data[0]);
                         _this.menuActivo = true;
