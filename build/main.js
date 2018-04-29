@@ -929,6 +929,98 @@ var MyApp = (function () {
         this.apiProvider = apiProvider;
         this.rootPage = '';
         this.menuActivo = false;
+        this.getFacebookProfileInfo = function (authResponse) {
+            return new Promise(function (resolve) {
+                facebookConnectPlugin.api('/me?fields=email,name&access_token=' + authResponse.accessToken, null, function (response) {
+                    console.log(response);
+                    resolve(response);
+                }, function (response) {
+                    console.log(response);
+                    resolve(response);
+                });
+            });
+            //var info = $q.defer();
+        };
+        // This is the success callback from the login method
+        this.fbLoginSuccess = function (response) {
+            if (!response.authResponse) {
+                fbLoginError("Cannot find the authResponse");
+                return;
+            }
+            var authResponse = response.authResponse;
+            _this.getFacebookProfileInfo(authResponse)
+                .then(function (profileInfo) {
+                // For the purpose of this example I will store user data on local storage
+                var _this = this;
+                var usuario = {
+                    fbId: profileInfo.id,
+                    nombre: profileInfo.name,
+                    email: profileInfo.email,
+                    imagenFB: "http://graph.facebook.com/" + authResponse.userID + "/picture?type=large"
+                };
+                this.apiProvider.addUserFb(usuario).then(function (events) {
+                    if (events.insertId > 0) {
+                        _this.apiProvider.verificarFBLog({ userId: authResponse.userID })
+                            .then(function (data) {
+                            console.log(data);
+                            if (data) {
+                                _this.storage.set("usr_tok_by", events.data.info);
+                                _this.menuActivo = true;
+                            }
+                            else {
+                                console.log('Ha ocurrido un error');
+                            }
+                        });
+                    }
+                    else {
+                        _this.apiProvider.verificarFBLog({ userId: authResponse.userID })
+                            .then(function (data) {
+                            console.log(data);
+                            if (data) {
+                                _this.storage.set("usr_tok_by", events.data.info);
+                                _this.menuActivo = true;
+                            }
+                            else {
+                                console.log('Ha ocurrido un error');
+                            }
+                        });
+                    }
+                });
+            }, function (fail) {
+                // Fail get profile info
+                console.log('profile info fail', fail);
+            });
+        };
+        this.addUserFb = function (data) {
+            _this.apiProvider.addUserFb(usuario).then(function (events) {
+                if (events.insertId > 0) {
+                    _this.apiProvider.verificarFBLog({ userId: data.userID })
+                        .then(function (data) {
+                        console.log(data);
+                        if (data) {
+                            _this.storage.set("usr_tok_by", events.data.info);
+                            _this.menuActivo = true;
+                        }
+                        else {
+                            console.log('Ha ocurrido un error');
+                        }
+                    });
+                }
+                else {
+                    _this.apiProvider.verificarFBLog({ userId: data.userID })
+                        .then(function (data) {
+                        console.log(data);
+                        if (data) {
+                            _this.storage.set("usr_tok_by", events.data.info);
+                            _this.menuActivo = true;
+                        }
+                        else {
+                            console.log('Ha ocurrido un error');
+                        }
+                    });
+                }
+            });
+        };
         this.presentLoading();
         events.subscribe('userCreated', function (user) {
             _this.userDataProfile = user;
@@ -1097,101 +1189,6 @@ var MyApp = (function () {
         //$ionicLoading.hide();
     };
     ;
-    MyApp.prototype.getFacebookProfileInfo = function (authResponse) {
-        return new Promise(function (resolve) {
-            facebookConnectPlugin.api('/me?fields=email,name&access_token=' + authResponse.accessToken, null, function (response) {
-                console.log(response);
-                resolve(response);
-            }, function (response) {
-                console.log(response);
-                resolve(response);
-            });
-        });
-        //var info = $q.defer();
-    };
-    ;
-    // This is the success callback from the login method
-    MyApp.prototype.fbLoginSuccess = function (response) {
-        if (!response.authResponse) {
-            fbLoginError("Cannot find the authResponse");
-            return;
-        }
-        var authResponse = response.authResponse;
-        this.getFacebookProfileInfo(authResponse)
-            .then(function (profileInfo) {
-            // For the purpose of this example I will store user data on local storage
-            var _this = this;
-            var usuario = {
-                fbId: profileInfo.id,
-                nombre: profileInfo.name,
-                email: profileInfo.email,
-                imagenFB: "http://graph.facebook.com/" + authResponse.userID + "/picture?type=large"
-            };
-            this.apiProvider.addUserFb(usuario).then(function (events) {
-                if (events.insertId > 0) {
-                    _this.apiProvider.verificarFBLog({ userId: authResponse.userID })
-                        .then(function (data) {
-                        console.log(data);
-                        if (data) {
-                            _this.storage.set("usr_tok_by", events.data.info);
-                            _this.menuActivo = true;
-                        }
-                        else {
-                            console.log('Ha ocurrido un error');
-                        }
-                    });
-                }
-                else {
-                    _this.apiProvider.verificarFBLog({ userId: authResponse.userID })
-                        .then(function (data) {
-                        console.log(data);
-                        if (data) {
-                            _this.storage.set("usr_tok_by", events.data.info);
-                            _this.menuActivo = true;
-                        }
-                        else {
-                            console.log('Ha ocurrido un error');
-                        }
-                    });
-                }
-            });
-        }, function (fail) {
-            // Fail get profile info
-            console.log('profile info fail', fail);
-        });
-    };
-    ;
-    MyApp.prototype.addUserFb = function (data) {
-        var _this = this;
-        this.apiProvider.addUserFb(usuario).then(function (events) {
-            if (events.insertId > 0) {
-                _this.apiProvider.verificarFBLog({ userId: data.userID })
-                    .then(function (data) {
-                    console.log(data);
-                    if (data) {
-                        _this.storage.set("usr_tok_by", events.data.info);
-                        _this.menuActivo = true;
-                    }
-                    else {
-                        console.log('Ha ocurrido un error');
-                    }
-                });
-            }
-            else {
-                _this.apiProvider.verificarFBLog({ userId: data.userID })
-                    .then(function (data) {
-                    console.log(data);
-                    if (data) {
-                        _this.storage.set("usr_tok_by", events.data.info);
-                        _this.menuActivo = true;
-                    }
-                    else {
-                        console.log('Ha ocurrido un error');
-                    }
-                });
-            }
-        });
-    };
     MyApp.prototype.goPagina = function (pagina) {
         console.log(pagina);
         if ('logout' == pagina) {
