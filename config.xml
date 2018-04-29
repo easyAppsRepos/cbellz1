@@ -85,6 +85,8 @@
 -->
   <plugin name="ionic-plugin-keyboard" version="2.2.1" src="https://github.com/driftyco/ionic-plugin-keyboard" />
 
+<platform name="ios" />
+
 <platform name="android">
     <config-file parent="/resources" target="./res/values/strings.xml">
         <string name="fb_app_id">1983888255255595</string>
