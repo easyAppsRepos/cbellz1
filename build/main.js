@@ -1009,7 +1009,7 @@ var MyApp = (function () {
                     fbId: profileInfo.id,
                     nombre: profileInfo.name,
                     email: profileInfo.email,
-                    imagenFB: "http://graph.facebook.com/" + authResponse.userID + "/picture?type=large"
+                    imagenFB: "http://graph.facebook.com/" + profileInfo.id + "/picture?type=large"
                 };
                 _this.apiProvider.addUserFb(usuario).then(function (events) {
                     if (events.insertId > 0) {
