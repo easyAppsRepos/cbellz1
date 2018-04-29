@@ -973,8 +973,9 @@ var MyApp = (function () {
                         _this.apiProvider.verificarFBLog({ userId: authResponse.userID })
                             .then(function (data) {
                             console.log(data);
-                            if (data) {
-                                _this.storage.set("usr_tok_by", events.data.info);
+                            if (data.data.length > 0) {
+                                _this.storage.set("usr_tok_by", data.data[0]);
+                                _this.userDataProfile = data.data[0];
                                 _this.menuActivo = true;
                             }
                             else {
@@ -986,8 +987,9 @@ var MyApp = (function () {
                         _this.apiProvider.verificarFBLog({ userId: authResponse.userID })
                             .then(function (data) {
                             console.log(data);
-                            if (data) {
-                                _this.storage.set("usr_tok_by", events.data.info);
+                            if (data.data.length > 0) {
+                                _this.storage.set("usr_tok_by", data.data[0]);
+                                _this.userDataProfile = data.data[0];
                                 _this.menuActivo = true;
                             }
                             else {
@@ -1019,6 +1021,7 @@ var MyApp = (function () {
                             if (data.data.length > 0) {
                                 console.log('addUserFbinsertplus0');
                                 _this.storage.set("usr_tok_by", data.data[0]);
+                                _this.userDataProfile = data.data[0];
                                 _this.menuActivo = true;
                             }
                             else {
@@ -1033,6 +1036,7 @@ var MyApp = (function () {
                             if (data.data.length > 0) {
                                 console.log('addUserFbinsertmenos0');
                                 _this.storage.set("usr_tok_by", data.data[0]);
+                                _this.userDataProfile = data.data[0];
                                 _this.menuActivo = true;
                             }
                             else {
@@ -1193,6 +1197,7 @@ var MyApp = (function () {
                     if (data.data.length > 0) {
                         console.log('mas0len');
                         _this.storage.set("usr_tok_by", data.data[0]);
+                        _this.userDataProfile = data.data[0];
                         _this.menuActivo = true;
                     }
                     else {
