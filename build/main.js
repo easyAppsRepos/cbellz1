@@ -1231,11 +1231,9 @@ var MyApp = (function () {
         console.log(pagina);
         if ('logout' == pagina) {
             console.log('cerrarsesion');
-            facebookConnectPlugin.logout()
-                .then(function (res) {
+            facebookConnectPlugin.logout(function (res) {
                 _this.events.publish('userLogout');
-            })
-                .catch(function (e) {
+            }, function (e) {
                 console.log('Error logout from Facebook', e);
                 _this.events.publish('userLogout');
             });
