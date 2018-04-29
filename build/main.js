@@ -235,6 +235,16 @@ var ApiProvider = (function () {
             });
         });
     };
+    ApiProvider.prototype.verificarFBLog = function (filtro) {
+        var _this = this;
+        return new Promise(function (resolve) {
+            _this.http.post(_this.api2 + '/verificarFBLog', JSON.stringify(filtro), { headers: { 'Content-Type': 'application/json' } }).subscribe(function (data) {
+                resolve(data);
+            }, function (err) {
+                console.log(err);
+            });
+        });
+    };
     ApiProvider.prototype.getCupones = function (filtro) {
         var _this = this;
         return new Promise(function (resolve) {
