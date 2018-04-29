@@ -977,6 +977,7 @@ var MyApp = (function () {
                                 _this.storage.set("usr_tok_by", data.data[0]);
                                 _this.userDataProfile = data.data[0];
                                 _this.menuActivo = true;
+                                _this.loading2.dismissAll();
                             }
                             else {
                                 console.log('Ha ocurrido un error');
@@ -991,6 +992,7 @@ var MyApp = (function () {
                                 _this.storage.set("usr_tok_by", data.data[0]);
                                 _this.userDataProfile = data.data[0];
                                 _this.menuActivo = true;
+                                _this.loading2.dismissAll();
                             }
                             else {
                                 console.log('Ha ocurrido un error');
@@ -1023,6 +1025,7 @@ var MyApp = (function () {
                                 _this.storage.set("usr_tok_by", data.data[0]);
                                 _this.userDataProfile = data.data[0];
                                 _this.menuActivo = true;
+                                _this.loading2.dismissAll();
                             }
                             else {
                                 console.log('Ha ocurrido un error');
@@ -1038,6 +1041,7 @@ var MyApp = (function () {
                                 _this.storage.set("usr_tok_by", data.data[0]);
                                 _this.userDataProfile = data.data[0];
                                 _this.menuActivo = true;
+                                _this.loading2.dismissAll();
                             }
                             else {
                                 console.log('Ha ocurrido un error');
@@ -1048,6 +1052,7 @@ var MyApp = (function () {
             });
         };
         this.presentLoading();
+        this.loading2 = this.loadingCtrl.create({ content: "Ingresando" });
         events.subscribe('userCreated', function (user) {
             _this.userDataProfile = user;
         });
@@ -1185,8 +1190,9 @@ var MyApp = (function () {
         nombre == "Salir" ? this.menuActivo = false : this.nav.setRoot('InicioPage');
     };
     MyApp.prototype.facebookLogin = function () {
-        //faceLogin
         var _this = this;
+        this.loading2.present();
+        //faceLogin
         //this.menuActivo = true;
         facebookConnectPlugin.getLoginStatus(function (success) {
             console.log(success);
@@ -1199,6 +1205,7 @@ var MyApp = (function () {
                         _this.storage.set("usr_tok_by", data.data[0]);
                         _this.userDataProfile = data.data[0];
                         _this.menuActivo = true;
+                        _this.loading2.dismissAll();
                     }
                     else {
                         console.log('menos0len');
@@ -1220,10 +1227,18 @@ var MyApp = (function () {
     };
     ;
     MyApp.prototype.goPagina = function (pagina) {
+        var _this = this;
         console.log(pagina);
         if ('logout' == pagina) {
             console.log('cerrarsesion');
-            this.events.publish('userLogout');
+            facebookConnectPlugin.logout()
+                .then(function (res) {
+                _this.events.publish('userLogout');
+            })
+                .catch(function (e) {
+                console.log('Error logout from Facebook', e);
+                _this.events.publish('userLogout');
+            });
         }
         else {
             this.nav.setRoot(pagina);
