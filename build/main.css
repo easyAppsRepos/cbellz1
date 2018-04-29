@@ -31477,6 +31477,21 @@ ion-navbar.toolbar {
   min-height: calc(46px + env(safe-area-inset-bottom));
 }
 
+.redem {
+  vertical-align: middle;
+  font-size: 17px;
+  color: #333;
+  background-color: #2FD99B;
+  margin-left: 12px;
+  margin-top: 12px;
+  display: inline-block;
+  width: auto;
+}
+
+.button-ios.activated {
+  background-color: #25b580 !important;
+}
+
 .botonVerdeFulls {
   width: 100%;
   padding-top: 15px;
@@ -31485,6 +31500,13 @@ ion-navbar.toolbar {
   font-size: 16px;
   color: white;
   border-radius: 30px;
+}
+
+.noResultado {
+  font-size: 16px;
+  text-align: center;
+  margin: 30px;
+  color: #999;
 }
 
 .item-ios.item-block .item-inner {
@@ -32008,6 +32030,10 @@ page-detalle-reserva .separator {
 
 page-lista-servicios .content-ios {
   background-color: #f7f8f9;
+}
+
+page-lista-servicios .colorGris {
+  color: lightgray !important;
 }
 
 page-lista-servicios ion-select {

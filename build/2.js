@@ -1,16 +1,15 @@
 webpackJsonp([2],{
 
-/***/ 439:
+/***/ 430:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ReservaPageModule", function() { return ReservaPageModule; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ListaServiciosPageModule", function() { return ListaServiciosPageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(19);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__reserva__ = __webpack_require__(461);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_ion2_calendar__ = __webpack_require__(331);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_ion2_calendar___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_ion2_calendar__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(15);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__lista_servicios__ = __webpack_require__(454);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__pipes_pipes_module__ = __webpack_require__(440);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -20,37 +19,107 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
-
-var ReservaPageModule = (function () {
-    function ReservaPageModule() {
+ //<--- here
+var ListaServiciosPageModule = (function () {
+    function ListaServiciosPageModule() {
     }
-    ReservaPageModule = __decorate([
+    ListaServiciosPageModule = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["NgModule"])({
             declarations: [
-                __WEBPACK_IMPORTED_MODULE_2__reserva__["a" /* ReservaPage */],
+                __WEBPACK_IMPORTED_MODULE_2__lista_servicios__["a" /* ListaServiciosPage */],
             ],
             imports: [
-                __WEBPACK_IMPORTED_MODULE_3_ion2_calendar__["CalendarModule"],
-                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["IonicPageModule"].forChild(__WEBPACK_IMPORTED_MODULE_2__reserva__["a" /* ReservaPage */])
+                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["IonicPageModule"].forChild(__WEBPACK_IMPORTED_MODULE_2__lista_servicios__["a" /* ListaServiciosPage */]),
+                __WEBPACK_IMPORTED_MODULE_3__pipes_pipes_module__["a" /* PipesModule */]
             ],
         })
-    ], ReservaPageModule);
-    return ReservaPageModule;
+    ], ListaServiciosPageModule);
+    return ListaServiciosPageModule;
 }());
 
-//# sourceMappingURL=reserva.module.js.map
+//# sourceMappingURL=lista-servicios.module.js.map
 
 /***/ }),
 
-/***/ 461:
+/***/ 440:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ReservaPage; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return PipesModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(19);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ion2_calendar__ = __webpack_require__(331);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ion2_calendar___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_ion2_calendar__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__filtrofav_filtrofav__ = __webpack_require__(441);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+
+
+var PipesModule = (function () {
+    function PipesModule() {
+    }
+    PipesModule = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["NgModule"])({
+            declarations: [__WEBPACK_IMPORTED_MODULE_1__filtrofav_filtrofav__["a" /* FiltrofavPipe */]],
+            imports: [],
+            exports: [__WEBPACK_IMPORTED_MODULE_1__filtrofav_filtrofav__["a" /* FiltrofavPipe */]]
+        })
+    ], PipesModule);
+    return PipesModule;
+}());
+
+//# sourceMappingURL=pipes.module.js.map
+
+/***/ }),
+
+/***/ 441:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return FiltrofavPipe; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+
+/**
+ * Generated class for the FiltrofavPipe pipe.
+ *
+ * See https://angular.io/api/core/Pipe for more info on Angular Pipes.
+ */
+var FiltrofavPipe = (function () {
+    function FiltrofavPipe() {
+    }
+    FiltrofavPipe.prototype.transform = function (items, callback) {
+        if (!items || !callback) {
+            return items;
+        }
+        return items.filter(function (item) { return callback(item); });
+    };
+    FiltrofavPipe = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Pipe"])({
+            name: 'filtrofav',
+        })
+    ], FiltrofavPipe);
+    return FiltrofavPipe;
+}());
+
+//# sourceMappingURL=filtrofav.js.map
+
+/***/ }),
+
+/***/ 454:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ListaServiciosPage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(15);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_api_api__ = __webpack_require__(105);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -67,95 +136,124 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 /**
- * Generated class for the ReservaPage page.
+ * Generated class for the ListaServiciosPage page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
  */
-var ReservaPage = (function () {
-    function ReservaPage(navCtrl, navParams, modalCtrl, loadingCtrl, events) {
-        var _this = this;
+var ListaServiciosPage = (function () {
+    function ListaServiciosPage(navCtrl, navParams, modalCtrl, apiProvider, loadingController, events) {
         this.navCtrl = navCtrl;
         this.navParams = navParams;
         this.modalCtrl = modalCtrl;
-        this.loadingCtrl = loadingCtrl;
+        this.apiProvider = apiProvider;
+        this.loadingController = loadingController;
         this.events = events;
-        this.date = new Date();
-        this.options = {
-            from: Date.now(),
-            defaultDate: this.date,
-            weekdays: ['D', 'L', 'M', 'K', 'J', 'V', 'S'],
-            monthPickerFormat: ['ENE', 'FEB', 'MAR', 'ABR', 'MAY', 'JUN', 'JUL', 'AGO', 'SEP', 'OCT', 'NOV', 'DIC'],
-        };
-        this.loading = this.loadingCtrl.create({
-            cssClass: "my-loading"
-        });
-        events.subscribe('modalServices', function () {
-            // user and time are the same arguments passed in `events.publish(user, time)`
-            console.log('recargarServicios');
-            _this.loading.dismiss();
-            _this.loading = _this.loadingCtrl.create({
-                cssClass: "my-loading"
-            });
-        });
-        this.information = [{ nombre: 'Seleccionar Fecha', id: 1 },
-            { nombre: 'Seleccionar Hora', id: 2 },
-            { nombre: 'Seleccionar Personal', id: 3 }];
-        //this.fechaSeleccionada = new Date(Date.now());
+        this.categorias = [];
+        this.latitudePerson = 0;
+        this.longitudePerson = 0;
+        this.categoriaSeleccionada = 0;
+        this.cargaData = false;
     }
-    ReservaPage.prototype.openServices = function () {
-        var profileModal = this.modalCtrl.create('ModalServicesPage', { serviceId: 1 });
+    ListaServiciosPage.prototype.presentProfileModal = function () {
+        var profileModal = this.modalCtrl.create('BuscarModalPage');
         profileModal.present();
-        //  this.presentLoadingDefault();
     };
-    ReservaPage.prototype.ionViewDidLoad = function () {
-        console.log('ioiewidLoadeservaPage');
-        // this.openCa lendar();
-        //new Date( Date.now());
+    ListaServiciosPage.prototype.ionViewWillEnter = function () {
+        console.log('ionViewDidLoad ListaServiciosPage');
+        console.log(this.categoriaSeleccionada);
     };
-    ReservaPage.prototype.presentLoadingDefault = function () {
-        this.loading.present();
+    ListaServiciosPage.prototype.ionViewDidLoad = function () {
+        var _this = this;
+        this.section = "one";
+        this.getServiciosGPS();
+        this.categoriaSeleccionada = this.navParams.get('nombre');
+        this.apiProvider.categoriasActivas()
+            .then(function (data) {
+            console.log(data);
+            if (data) {
+                _this.categorias = data || [];
+            }
+            else {
+                console.log('Ha ocurrido un error');
+            }
+        });
     };
-    ReservaPage.prototype.goAddServicios = function () {
-        //this.navCtrl.push('AddserviciosPage');
-        this.openServices();
+    ListaServiciosPage.prototype.cambiarSeleccion = function (id) {
+        console.log(id);
+        //this.categoriaSeleccionada = id.idCategoria;
     };
-    ReservaPage.prototype.goReserva = function () {
-        this.navCtrl.push('ConfirmarReservaPage');
-        //this.openServices();
+    ListaServiciosPage.prototype.filterFav = function (user) {
+        console.log(user);
+        return user.idCentro == 1;
     };
-    ReservaPage.prototype.openCalendar = function () {
-        var options = {
-            title: 'BASIC',
+    ListaServiciosPage.prototype.buscarServicios = function (id) {
+        var _this = this;
+        this.cargaData = false;
+        console.log(this.latitudePerson);
+        console.log(this.longitudePerson);
+        this.categoriaSeleccionada = id;
+        console.log(this.categoriaSeleccionada);
+        var filtro = {
+            lat: this.latitudePerson,
+            lon: this.longitudePerson,
+            idCategoria: id
         };
-        var myCalendar = this.modalCtrl.create(__WEBPACK_IMPORTED_MODULE_2_ion2_calendar__["CalendarModal"], {
-            options: options
+        this.apiProvider.buscarServicios(filtro)
+            .then(function (data) {
+            console.log(data);
+            _this.cargaData = true;
+            if (data) {
+                _this.resultados = data || [];
+            }
+            else {
+                console.log('Ha ocurrido un error');
+            }
         });
-        myCalendar.present();
-        myCalendar.onDidDismiss(function (date, type) {
-            console.log(date);
-        });
     };
-    ReservaPage.prototype.onChange = function ($event) {
-        console.log($event);
-        this.fechaSeleccionada = $event;
+    ListaServiciosPage.prototype.goCentro = function (idCentro) {
+        // this.navCtrl.push('PerfilCentroPage');  
+        this.navCtrl.push('PerfilCentroPage', { 'idCentro': idCentro, 'idServicioSeleccionado': this.categoriaSeleccionada });
     };
-    ReservaPage.prototype.toggleSection = function (i) {
-        this.information[i].open = !this.information[i].open;
+    ListaServiciosPage.prototype.getServiciosGPS = function () {
+        this.latitudePerson = 9.9931605;
+        this.longitudePerson = -84.2307427;
+        /*
+       
+           let loading = this.loadingController.create({content : "Obteniendo ubicacion"});
+           loading.present();
+       
+             console.log('gps');
+               navigator.geolocation.getCurrentPosition((pos) => {
+       
+                 console.log(pos.coords.latitude+' Long: '+ pos.coords.longitude);
+                 this.latitudePerson = pos.coords.latitude;
+                 this.longitudePerson = pos.coords.longitude;
+                 loading.dismissAll();
+            
+       
+       
+               }, function(error) {
+                 console.log('some err');
+                 console.log(error);
+                 loading.dismissAll();
+               },{ enableHighAccuracy: true, timeout: 30000 });
+       
+           */
     };
-    ReservaPage.prototype.toggleItem = function (i, j) {
-        this.information[i].children[j].open = !this.information[i].children[j].open;
+    ListaServiciosPage.prototype.openBusqueda = function () {
+        this.presentProfileModal();
     };
-    ReservaPage = __decorate([
+    ListaServiciosPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-            selector: 'page-reserva',template:/*ion-inline-start:"/Users/jose/Documents/beyouApp/beYou/src/pages/reserva/reserva.html"*/'<!--\n  Generated template for the ReservaPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  	<ion-navbar  >\n    <ion-title>Reserva</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content >\n<div>\n\n\n<div class="itemReserva" >\n	<img src="assets/imgs/tijeras.png" >\n	<div style="\n    display: inline-block;\n    width: 70%;\n    margin-top: 10px;\n    margin-bottom: 10px;\n">\n		<span style="    font-size: 17px;\n    color: #444;">Hair Cut</span>\n		<p style="\n    margin-top:  1px;\n    margin-bottom: 1px;    color: #777;\n">Lorem ipsum dolor sit amet, lectus voluptas ipsum felis nec massa vel.</p>\n		<span style="    color: #EC527E;\n    margin-top: 8px;\n    display: block;">$60.00</span>\n\n    <button ion-button style="    position: absolute;\n    top: 0;\n    right: 0px;\n    margin-right: 13px;\n    margin-top: 5px;\n    font-size: 27px;\n    width: 30px;\n    background: none;height: 30px;padding: 6px;\n    color: #888;"><ion-icon ios="ios-close"></ion-icon></button>\n	</div>\n\n</div>\n\n<div class="itemReserva" >\n	<img src="assets/imgs/tijeras.png" >\n	<div style="\n    display: inline-block;\n    width: 70%;\n    margin-top: 10px;\n    margin-bottom: 10px;\n">\n		<span style="    font-size: 17px;\n    color: #444;">Hair Cut</span>\n		<p style="\n    margin-top:  1px;\n    margin-bottom: 1px;    color: #777;\n">Lorem ipsum dolor sit amet, lectus voluptas ipsum felis nec massa vel.</p>\n		<span style="    color: #EC527E;\n    margin-top: 8px;\n    display: block;">$60.00</span>\n\n    <button ion-button style="    position: absolute;\n    top: 0;\n    right: 0px;\n    margin-right: 13px;\n    margin-top: 5px;\n    font-size: 27px;\n    width: 30px;\n    background: none;height: 30px;padding: 6px;\n    color: #888;"><ion-icon ios="ios-close"></ion-icon></button>\n	</div>\n\n</div>\n\n\n    <button (click)=\'goAddServicios()\' ion-button class="botonVerdeFull">Agregar mas servicios </button>\n\n\n</div>\n<div style="margin-top:20px;width:90%; margin-left:5%">\n\n\n\n		<ion-list class="accordion-list">\n			<!-- First Level -->\n			<ion-list-header  [ngClass]="{\'borderSelected\': item.open, \'borderSelected2\': item.open && item.id==1}" *ngFor="let item of information; let i = index" no-lines no-padding>\n			<!-- Toggle Button -->\n			<button style=\'    background: white !important;\n    border-bottom: solid 1px #d3d3d352\'  ion-item (click)="toggleSection(i)" detail-none [ngClass]="{\'section-active\': item.open, \'section\': !item.open}">\n			<ion-icon class=\'btnList\' item-right  name="ios-add" *ngIf="!item.open"></ion-icon>\n			<ion-icon class=\'btnList\' item-right name="ios-remove" *ngIf="item.open"></ion-icon>\n\n			{{ item.id == 1 ? (fechaSeleccionada || item.nombre) : \n			   item.id == 2 ? (horaSeleccionada  || item.nombre) : \n			   item.id == 3 ? (staffSeleccionado  || item.nombre) : item.nombre }}\n\n			</button>\n\n			<ion-list style=\'margin:0px !important\' *ngIf="item.open && item.id == 1" no-lines >\n			<!-- Second Level -->\n			\n				 <ion-calendar [(ngModel)]="date"\n	                  (onChange)="onChange($event)"\n	                  [options]="options"\n	                  type="string"\n\n	                  format="MMM DD YYYY">\n	   			 </ion-calendar>\n			</ion-list>\n\n\n			<ion-list class=\'backItem\' style=\'width: 100%;\n    display: table;\n    white-space: normal;\'  *ngIf="item.open && item.id == 2 "  radio-group [(ngModel)]="horaSeleccionada">\n				<ion-item class=\'itemHora\'>\n				<ion-label>11:25am</ion-label>\n				<ion-radio mode=\'wp\' value="11:25am" checked></ion-radio>\n				</ion-item>\n				<ion-item class=\'itemHora\' >\n				<ion-label>11:35am</ion-label>\n				<ion-radio mode=\'wp\' value="11:35am"></ion-radio>\n				</ion-item>\n				<ion-item class=\'itemHora\'>\n				<ion-label>11:55am</ion-label>\n				<ion-radio mode=\'wp\' value="11:55am" [disabled]="isDisabled"></ion-radio>\n				</ion-item>\n\n\n\n\n\n\n			</ion-list>\n\n\n\n						<ion-list class=\'backItem\' style=\'width: 100%;\n    display: table;\n    white-space: normal;\'  *ngIf="item.open && item.id == 3 "  radio-group [(ngModel)]="staffSeleccionado">\n\n\n\n				<ion-item class=\'avatarSelect\'>\n				<ion-label>\n				<ion-avatar item-start>\n				<img src="assets/imgs/ben.png"  style="display: inline-block;">\n				<div style="    width: 100%;display: inline-block;margin-left: 7px;">\n				<h2  style="margin-bottom: 4px;">Carl Smith</h2>\n				<p style="    white-space: normal;\n    width: calc(100% - 50px);">Especialista en tintes</p>\n				</div>\n				</ion-avatar>\n				</ion-label>\n				\n				<ion-radio mode=\'wp\' value="Carl Smith" ></ion-radio>\n				</ion-item>\n\n\n\n				<ion-item class=\'avatarSelect\'>\n				<ion-label>\n				<ion-avatar item-start>\n				<img src="assets/imgs/ben.png"  style="display: inline-block;">\n				<div style="    width: 100%;display: inline-block;margin-left: 7px;">\n				<h2 style="margin-bottom: 4px;">Lilian Gen</h2>\n				<p style="    white-space: normal;\n    width: calc(100% - 50px);">Recomendado en el servicio</p>\n				</div>\n				</ion-avatar>\n				</ion-label>\n				\n				<ion-radio mode=\'wp\' value="Lilian Gen" ></ion-radio>\n				</ion-item>\n\n\n\n\n				<ion-item class=\'avatarSelect\'>\n				<ion-label>\n				<ion-avatar item-start>\n				<img src="assets/imgs/ben.png"  style="display: inline-block;">\n				<div style="    width: 100%;display: inline-block;margin-left: 7px;">\n				<h2  style="margin-bottom: 4px;">Marty McFly</h2>\n				<p style="    white-space: normal;\n    width: calc(100% - 50px);">Especialista en tintes</p>\n				</div>\n				</ion-avatar>\n				</ion-label>\n				\n				<ion-radio mode=\'wp\' value="Marty McFly" ></ion-radio>\n				</ion-item>\n\n\n\n			</ion-list>\n\n\n\n\n\n\n\n			</ion-list-header>\n		</ion-list>\n\n\n<div style="    width: 100%;\n    margin-top: 30px;\n    margin-bottom: 30px;">\n	\n	    <button  *ngIf="fechaSeleccionada && horaSeleccionada" (click)=\'goReserva()\' ion-button class="botonVerdeFulls">Confirmar {{fechaSeleccionada}},{{horaSeleccionada}}</button>\n\n</div>\n\n</div>\n\n\n\n\n\n</ion-content>\n\n\n<!-- <ion-footer style=\'    background-color: #f7f8f9 !important;\'>\n  <ion-toolbar >\n\n\n    <button (click)=\'goReserva()\' ion-button class="botonVerdeFull">Agendar Cita<ion-icon style=\'    margin-left: 10px !important;\' name="md-arrow-forward"></ion-icon> </button>\n\n  </ion-toolbar>\n</ion-footer>\n\n\n -->\n\n'/*ion-inline-end:"/Users/jose/Documents/beyouApp/beYou/src/pages/reserva/reserva.html"*/,
+            selector: 'page-lista-servicios',template:/*ion-inline-start:"/Users/jose/Documents/beyouApp/beYou/src/pages/lista-servicios/lista-servicios.html"*/'<!--\n  Generated template for the ListaServiciosPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar>\n\n  \n    <ion-title>\n<ion-item style=\'background-color: transparent !important;\'>\n  <ion-label style=\'display:none\'>Servicio</ion-label>\n      <ion-select style=\'\n    width: 100%;\n    text-align: center;\n    color: white !important;\' [(ngModel)]="categoriaSeleccionada" (ionChange)="buscarServicios($event)">\n\n\n\n <ion-option  *ngFor="let n of categorias" [value]="n.idCategoria" \n    >{{n.nombre}}</ion-option>\n\n     \n<!-- \n    <ion-option  *ngFor="let n of categorias" [value]="n.idCategoria" \n    (ionSelect)="cambiarSeleccion($event, n)">{{n.nombre}}</ion-option>\n    <ion-option   value=\'Peluqueria\'>Peluqueria</ion-option>\n    <ion-option value=\'Rostro y Cuerpo\' >Rostro y Cuerpo</ion-option>\n\n    <ion-option value=\'Uñas\'>Uñas</ion-option>\n    <ion-option value=\'Masaje\' >Masaje</ion-option>\n\n    <ion-option value=\'Depilacion\'>Depilacion</ion-option>\n    <ion-option value=\'Bienestar\' >Bienestar</ion-option>\n    <ion-option value=\'Paquetes\'>Paquetes</ion-option>\n    <ion-option value=\'Ofertas\' >Ofertas</ion-option> -->\n\n  </ion-select>\n</ion-item>\n  </ion-title>\n\n\n\n          <ion-buttons end>\n      <button (click)=\'openBusqueda()\' ion-button icon-only>\n        <ion-icon name="ios-options"></ion-icon>\n      </button>\n\n\n       \n\n      </ion-buttons>\n\n\n\n\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content >\n\n\n\n\n\n\n\n\n<ion-segment mode="md" [(ngModel)]="section">\n    <ion-segment-button   style=\'font-size: 15px;text-transform: none !important;\' value="one" >\n	       <span> \n	       <img  *ngIf=\'section=="one"\' style=\'vertical-align: middle;margin-right: 10px;\' src="assets/imgs/nearBlanco.png">\n	       <img  *ngIf=\'!(section=="one")\' style=\'vertical-align: middle;margin-right: 10px;\' src="assets/imgs/nearGris.png">\n	        Cerca de ti</span>\n	    </ion-segment-button>\n\n\n\n	    <ion-segment-button  value="two" style=\'\n    	font-size: 15px;text-transform: none !important;\' >\n    	<span>\n	      <img  *ngIf=\'section=="two"\' style=\'vertical-align: middle;margin-right: 10px;\' src="assets/imgs/corazonBlanco.png"> \n	      <img  *ngIf=\'!(section=="two")\'  style=\'vertical-align: middle;margin-right: 10px;\' src="assets/imgs/corazonGris.png"> \n\n	      \n\n	      Favoritos\n	       </span>\n	    </ion-segment-button>\n</ion-segment>\n\n\n\n\n<div [ngSwitch]="section" *ngIf=\'cargaData\'>\n\n    <ion-list mode="md" *ngSwitchCase="\'one\'">\n\n\n\n\n\n    	<div *ngIf="!(resultados?.length > 0)" style="    text-align: center;">\n    		\n    		<img  style=\'    margin: 30px;\' src="assets/imgs/busquedaNula.png">\n    		<p style="    text-align: center;\n    font-size: 16px;\n    margin: 34px;\n    line-height: 23px;"> <span style="    font-size: 22px !important;\n    color: #333 !important;\n    line-height: 2;">Lo sentimos </span><br>  <b style="color:#666"> Tu busqueda no trae ningun resultado. Prueba otra vez con filtros de busqueda diferentes o explora en las diferentes categorias</b></p>\n    	</div>\n		<ion-card *ngFor="let n of resultados" (click)=\'goCentro(n.idCentro)\' >\n		<ion-card-content>\n				<div style="\n				display: inline-block;    width: 100%;\n				">\n				<img src="assets/imgs/fotoComercio.png" style="\n				display: inline-block;\n				height: 90px;\n				width: 90px !important;\n				vertical-align: top;\n				">\n				<div style="    display: inline-block;\n    width: calc(100% - 105px);\n    margin-left: 10px;\n				">\n				<span style="margin: 2px 0px 0px 0px;\n				font-size: 19px;\n				color: #333;">{{n.nombre}}</span>\n				<span style="    display: block;\n    font-size: 16px;\n    margin: 10px 0px;\n    font-weight: 800;\n    color: #EC527E;">${{n.pMin}} <span [hidden]=\'n.pMin == n.pMax\'>- ${{n.pMax}}</span></span>\n\n				<span class="itemComercio" >\n\n					<span style="  margin-right: 21px;  color: #888;\n    font-size: 15px;"><ion-icon [ngClass]="{\'colorGris\': n.cantRate==0}"  style=\'    margin-right: 8px;\n    color: rgb(249,199,53);\n    font-size: 21px;\n    vertical-align: middle;\' name="md-star"></ion-icon>{{n.rate  | number:\'1.1-2\'}} ({{n.cantRate\n}})</span>\n\n					<span style="     color: #888;\n    font-size: 15px;  "><ion-icon style=\'  margin-right: 8px;      vertical-align: middle;   font-size: 21px;color:#2FD99B;\' name="ios-pin"></ion-icon>{{n.distance | number:\'1.1-2\'}} Km</span>\n\n				</span>\n\n				</div>\n				</div>\n\n		</ion-card-content>\n		</ion-card>\n\n\n    </ion-list>\n\n    <ion-list  mode="md" *ngSwitchCase="\'two\'">\n<!-- \n<div *ngIf="(list | search: searchTerm).length === 0">\n  "No matches"\n</div>\n<div *ngFor="#item in list | search: searchTerm">{{ item }}</div> \n\n<div *ngIf="(resultados | filtrofav:  {favorito: 1}).length === 0">\n  No matches\n</div>-->\n\n<div style=\'margin: 30px;\n    text-align: center;\n    color: #9998;\n    font-size: 17px;\'  *ngIf="(resultados | filtrofav: filterFav).length === 0">\n  No has agregado ningun favorito en esta categoria\n</div>\n\n\n		<ion-card *ngFor="let n of resultados | filtrofav: filterFav" (click)=\'goCentro(n.idCentro)\' >\n		<ion-card-content>\n				<div style="\n				display: inline-block;    width: 100%;\n				">\n				<img src="assets/imgs/fotoComercio.png" style="\n				display: inline-block;\n				height: 90px;\n				width: 90px !important;\n				vertical-align: top;\n				">\n				<div style="    display: inline-block;\n    width: calc(100% - 105px);\n    margin-left: 10px;\n				">\n				<span style="margin: 2px 0px 0px 0px;\n				font-size: 19px;\n				color: #333;">{{n.nombre}}</span>\n				<span style="    display: block;\n    font-size: 16px;\n    margin: 10px 0px;\n    font-weight: 800;\n    color: #EC527E;">${{n.pMin}} <span [hidden]=\'n.pMin == n.pMax\'>- ${{n.pMax}}</span></span>\n\n				<span class="itemComercio" >\n\n					<span style="  margin-right: 21px;  color: #888;\n    font-size: 15px;"><ion-icon [ngClass]="{\'colorGris\': n.cantRate==0}"  style=\'    margin-right: 8px;\n    color: rgb(249,199,53);\n    font-size: 21px;\n    vertical-align: middle;\' name="md-star"></ion-icon>{{n.rate  | number:\'1.1-2\'}} ({{n.cantRate\n}})</span>\n\n					<span style="     color: #888;\n    font-size: 15px;  "><ion-icon style=\'  margin-right: 8px;      vertical-align: middle;   font-size: 21px;color:#2FD99B;\' name="ios-pin"></ion-icon>{{n.distance | number:\'1.1-2\'}} Km</span>\n\n				</span>\n\n				</div>\n				</div>\n\n		</ion-card-content>\n		</ion-card>\n\n\n\n\n\n\n\n\n\n\n    </ion-list>\n\n</div>\n\n\n\n\n\n\n    	<div *ngIf=\'!cargaData\' style="text-align: center;padding-top: 25%;">\n    		<ion-spinner name="bubbles"></ion-spinner>\n    	</div>\n\n\n\n</ion-content>\n'/*ion-inline-end:"/Users/jose/Documents/beyouApp/beYou/src/pages/lista-servicios/lista-servicios.html"*/,
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["NavController"], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["NavParams"], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["ModalController"], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["LoadingController"], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["Events"]])
-    ], ReservaPage);
-    return ReservaPage;
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["NavController"], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["NavParams"], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["ModalController"], __WEBPACK_IMPORTED_MODULE_2__providers_api_api__["a" /* ApiProvider */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["LoadingController"], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["Events"]])
+    ], ListaServiciosPage);
+    return ListaServiciosPage;
 }());
 
-//# sourceMappingURL=reserva.js.map
+//# sourceMappingURL=lista-servicios.js.map
 
 /***/ })
 

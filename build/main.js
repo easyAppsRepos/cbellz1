@@ -1,6 +1,293 @@
 webpackJsonp([20],{
 
-/***/ 116:
+/***/ 105:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ApiProvider; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_common_http__ = __webpack_require__(286);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_storage__ = __webpack_require__(82);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+/*
+  Generated class for the ApiProvider provider.
+
+  See https://angular.io/guide/dependency-injection for more info on providers
+  and Angular DI.
+*/
+var ApiProvider = (function () {
+    function ApiProvider(http, storage) {
+        this.http = http;
+        this.storage = storage;
+        this.api2 = 'http://50.116.17.150:3000';
+        // console.log('Hello ApiProvider Provider');
+    }
+    ApiProvider.prototype.verificarLogin = function () {
+        var _this = this;
+        return new Promise(function (resolve) {
+            _this.storage.get('usr_tok_by').then(function (value) {
+                // console.log(value);
+                value ? resolve(value) : resolve(false);
+            }).catch(function () { return resolve(false); });
+        });
+    };
+    ApiProvider.prototype.getCarrito = function () {
+        var _this = this;
+        return new Promise(function (resolve) {
+            _this.storage.get("carrito").then(function (value) {
+                // console.log(value);
+                value ? resolve(value) : resolve([]);
+            }).catch(function () { return resolve(false); });
+        });
+    };
+    ApiProvider.prototype.getTotal = function () {
+        var _this = this;
+        return new Promise(function (resolve) {
+            _this.storage.get("carrito").then(function (value) {
+                // console.log(value);
+                var total = 0;
+                value.forEach(function (elementw, index) {
+                    total += elementw.precio;
+                });
+                resolve(total);
+            }).catch(function () { return resolve(false); });
+        });
+    };
+    ApiProvider.prototype.addProducto = function (producto) {
+        var _this = this;
+        return new Promise(function (resolve) {
+            _this.storage.get('carrito').then(function (value) {
+                if (value) {
+                    value.push(producto);
+                    _this.storage.set("carrito", value);
+                    resolve(value);
+                }
+                else {
+                    var carrito = [];
+                    carrito.push(producto);
+                    _this.storage.set("carrito", carrito);
+                    resolve(carrito);
+                }
+            }).catch(function () { return resolve(false); });
+        });
+    };
+    ApiProvider.prototype.sacarProducto = function (servicio) {
+        var _this = this;
+        return new Promise(function (resolve) {
+            _this.storage.get("carrito").then(function (value) {
+                if (value) {
+                    //let index = value.indexOf(idServicio);
+                    var index = value.findIndex(function (i) { return i.idServicio === servicio; });
+                    if (index > -1) {
+                        value.splice(index, 1);
+                    }
+                    console.log(value);
+                    _this.storage.set("carrito", value);
+                    resolve(value);
+                }
+                else {
+                    resolve([]);
+                }
+            }).catch(function () { return resolve(false); });
+        });
+    };
+    ApiProvider.prototype.vaciarCarrito = function () {
+        var _this = this;
+        return new Promise(function (resolve) {
+            var carrito = [];
+            _this.storage.set("carrito", carrito);
+            resolve(carrito);
+        });
+    };
+    //this.storage.set(`usr_tok_datagym`, data.data[0]);
+    ApiProvider.prototype.categoriasHome = function () {
+        var _this = this;
+        return new Promise(function (resolve) {
+            _this.http.get(_this.api2 + '/categoriasHome').subscribe(function (data) {
+                console.log('d');
+                resolve(data);
+            }, function (err) {
+                console.log(err);
+                resolve(false);
+            });
+        });
+    };
+    ApiProvider.prototype.doLoginApi = function (credenciales) {
+        var _this = this;
+        return new Promise(function (resolve) {
+            _this.http.post(_this.api2 + '/doLoginApi', JSON.stringify(credenciales), { headers: { 'Content-Type': 'application/json' } }).subscribe(function (data) {
+                resolve(data);
+            }, function (err) {
+                console.log(err);
+            });
+        });
+    };
+    ApiProvider.prototype.getDataCita = function (credenciales) {
+        var _this = this;
+        return new Promise(function (resolve) {
+            _this.http.post(_this.api2 + '/getDataCita', JSON.stringify(credenciales), { headers: { 'Content-Type': 'application/json' } }).subscribe(function (data) {
+                resolve(data);
+            }, function (err) {
+                console.log(err);
+            });
+        });
+    };
+    ApiProvider.prototype.addPush = function (dd) {
+        var _this = this;
+        return new Promise(function (resolve) {
+            _this.http.post(_this.api2 + '/addPush', JSON.stringify(dd), { headers: { 'Content-Type': 'application/json' } }).subscribe(function (data) {
+                resolve(data);
+            }, function (err) {
+                console.log(err);
+            });
+        });
+    };
+    ApiProvider.prototype.categoriasActivas = function () {
+        var _this = this;
+        return new Promise(function (resolve) {
+            _this.http.get(_this.api2 + '/categoriasActivas').subscribe(function (data) {
+                console.log('d');
+                resolve(data);
+            }, function (err) {
+                resolve(false);
+                console.log(err);
+            });
+        });
+    };
+    ApiProvider.prototype.getCentroInfo = function (data) {
+        var _this = this;
+        return new Promise(function (resolve) {
+            _this.http.post(_this.api2 + '/getCentroInfo', JSON.stringify(data), { headers: { 'Content-Type': 'application/json' } }).subscribe(function (data) {
+                resolve(data);
+            }, function (err) {
+                console.log(err);
+            });
+        });
+    };
+    ApiProvider.prototype.reservasUser = function (data) {
+        var _this = this;
+        return new Promise(function (resolve) {
+            _this.http.post(_this.api2 + '/reservasUser', JSON.stringify(data), { headers: { 'Content-Type': 'application/json' } }).subscribe(function (data) {
+                resolve(data);
+            }, function (err) {
+                console.log(err);
+            });
+        });
+    };
+    ApiProvider.prototype.addCita = function (data) {
+        var _this = this;
+        return new Promise(function (resolve) {
+            _this.http.post(_this.api2 + '/addCita', JSON.stringify(data), { headers: { 'Content-Type': 'application/json' } }).subscribe(function (data) {
+                resolve(data);
+            }, function (err) {
+                console.log(err);
+            });
+        });
+    };
+    ApiProvider.prototype.getCentroServicios = function (data) {
+        var _this = this;
+        return new Promise(function (resolve) {
+            _this.http.post(_this.api2 + '/getCentroServicios', JSON.stringify(data), { headers: { 'Content-Type': 'application/json' } }).subscribe(function (data) {
+                resolve(data);
+            }, function (err) {
+                console.log(err);
+            });
+        });
+    };
+    ApiProvider.prototype.favoritosGPS = function (filtro) {
+        var _this = this;
+        return new Promise(function (resolve) {
+            _this.http.post(_this.api2 + '/favoritosGPS', JSON.stringify(filtro), { headers: { 'Content-Type': 'application/json' } }).subscribe(function (data) {
+                resolve(data);
+            }, function (err) {
+                console.log(err);
+            });
+        });
+    };
+    ApiProvider.prototype.getOpiniones = function (filtro) {
+        var _this = this;
+        return new Promise(function (resolve) {
+            _this.http.post(_this.api2 + '/getOpiniones', JSON.stringify(filtro), { headers: { 'Content-Type': 'application/json' } }).subscribe(function (data) {
+                resolve(data);
+            }, function (err) {
+                console.log(err);
+            });
+        });
+    };
+    ApiProvider.prototype.addUserFb = function (filtro) {
+        var _this = this;
+        return new Promise(function (resolve) {
+            _this.http.post(_this.api2 + '/addUserFb', JSON.stringify(filtro), { headers: { 'Content-Type': 'application/json' } }).subscribe(function (data) {
+                resolve(data);
+            }, function (err) {
+                console.log(err);
+            });
+        });
+    };
+    ApiProvider.prototype.getCupones = function (filtro) {
+        var _this = this;
+        return new Promise(function (resolve) {
+            _this.http.post(_this.api2 + '/getCupones', JSON.stringify(filtro), { headers: { 'Content-Type': 'application/json' } }).subscribe(function (data) {
+                resolve(data);
+            }, function (err) {
+                console.log(err);
+            });
+        });
+    };
+    ApiProvider.prototype.canjearCupon = function (filtro) {
+        var _this = this;
+        return new Promise(function (resolve) {
+            _this.http.post(_this.api2 + '/canjearCupon', JSON.stringify(filtro), { headers: { 'Content-Type': 'application/json' } }).subscribe(function (data) {
+                resolve(data);
+            }, function (err) {
+                console.log(err);
+            });
+        });
+    };
+    ApiProvider.prototype.buscarOfertas = function (filtro) {
+        var _this = this;
+        return new Promise(function (resolve) {
+            _this.http.post(_this.api2 + '/buscarOfertas', JSON.stringify(filtro), { headers: { 'Content-Type': 'application/json' } }).subscribe(function (data) {
+                resolve(data);
+            }, function (err) {
+                console.log(err);
+            });
+        });
+    };
+    ApiProvider.prototype.buscarServicios = function (filtro) {
+        var _this = this;
+        return new Promise(function (resolve) {
+            _this.http.post(_this.api2 + '/buscarServiciosGPS', JSON.stringify(filtro), { headers: { 'Content-Type': 'application/json' } }).subscribe(function (data) {
+                resolve(data);
+            }, function (err) {
+                console.log(err);
+            });
+        });
+    };
+    ApiProvider = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["Injectable"])(),
+        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_0__angular_common_http__["a" /* HttpClient */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__angular_common_http__["a" /* HttpClient */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__ionic_storage__["b" /* Storage */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__ionic_storage__["b" /* Storage */]) === "function" && _b || Object])
+    ], ApiProvider);
+    return ApiProvider;
+    var _a, _b;
+}());
+
+//# sourceMappingURL=api.js.map
+
+/***/ }),
+
+/***/ 118:
 /***/ (function(module, exports) {
 
 function webpackEmptyAsyncContext(req) {
@@ -13,11 +300,11 @@ function webpackEmptyAsyncContext(req) {
 webpackEmptyAsyncContext.keys = function() { return []; };
 webpackEmptyAsyncContext.resolve = webpackEmptyAsyncContext;
 module.exports = webpackEmptyAsyncContext;
-webpackEmptyAsyncContext.id = 116;
+webpackEmptyAsyncContext.id = 118;
 
 /***/ }),
 
-/***/ 157:
+/***/ 159:
 /***/ (function(module, exports, __webpack_require__) {
 
 var map = {
@@ -50,56 +337,56 @@ var map = {
 		13
 	],
 	"../pages/demo/demo.module": [
-		427,
+		429,
 		12
 	],
 	"../pages/detalle-reserva/detalle-reserva.module": [
-		428,
+		427,
 		11
 	],
 	"../pages/favoritos/favoritos.module": [
-		429,
+		428,
 		10
 	],
 	"../pages/inicio/inicio.module": [
-		430,
+		431,
 		9
 	],
 	"../pages/lista-servicios/lista-servicios.module": [
-		431,
-		8
+		430,
+		2
 	],
 	"../pages/login/login.module": [
-		432,
-		7
+		433,
+		8
 	],
 	"../pages/mis-reservas/mis-reservas.module": [
-		433,
-		6
+		432,
+		1
 	],
 	"../pages/modal-services/modal-services.module": [
 		434,
-		1
+		4
 	],
 	"../pages/ofertas/ofertas.module": [
 		435,
-		5
+		7
 	],
 	"../pages/opiniones/opiniones.module": [
 		436,
-		4
+		6
 	],
 	"../pages/perfil-centro/perfil-centro.module": [
 		437,
-		0
-	],
-	"../pages/reserva-hecha/reserva-hecha.module": [
-		438,
 		3
 	],
-	"../pages/reserva/reserva.module": [
+	"../pages/reserva-hecha/reserva-hecha.module": [
 		439,
-		2
+		5
+	],
+	"../pages/reserva/reserva.module": [
+		438,
+		0
 	]
 };
 function webpackAsyncContext(req) {
@@ -113,18 +400,18 @@ function webpackAsyncContext(req) {
 webpackAsyncContext.keys = function webpackAsyncContextKeys() {
 	return Object.keys(map);
 };
-webpackAsyncContext.id = 157;
+webpackAsyncContext.id = 159;
 module.exports = webpackAsyncContext;
 
 /***/ }),
 
-/***/ 328:
+/***/ 330:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return HomePage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(19);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(15);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -156,13 +443,13 @@ var HomePage = (function () {
 
 /***/ }),
 
-/***/ 329:
+/***/ 331:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ListPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(19);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(15);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -213,13 +500,13 @@ var ListPage = (function () {
 
 /***/ }),
 
-/***/ 332:
+/***/ 333:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__ = __webpack_require__(333);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__app_module__ = __webpack_require__(354);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__ = __webpack_require__(334);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__app_module__ = __webpack_require__(355);
 
 
 Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* platformBrowserDynamic */])().bootstrapModule(__WEBPACK_IMPORTED_MODULE_1__app_module__["a" /* AppModule */]);
@@ -227,24 +514,24 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 
 /***/ }),
 
-/***/ 354:
+/***/ 355:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AppModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__ = __webpack_require__(30);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(19);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__app_component__ = __webpack_require__(402);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__pages_home_home__ = __webpack_require__(328);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__pages_list_list__ = __webpack_require__(329);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_ion2_calendar__ = __webpack_require__(331);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(15);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__app_component__ = __webpack_require__(411);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__pages_home_home__ = __webpack_require__(330);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__pages_list_list__ = __webpack_require__(331);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_ion2_calendar__ = __webpack_require__(332);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_ion2_calendar___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_ion2_calendar__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ionic_storage__ = __webpack_require__(327);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__angular_common_http__ = __webpack_require__(330);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__ionic_native_status_bar__ = __webpack_require__(323);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__ionic_native_splash_screen__ = __webpack_require__(326);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__providers_api_api__ = __webpack_require__(419);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ionic_storage__ = __webpack_require__(82);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__angular_common_http__ = __webpack_require__(286);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__ionic_native_status_bar__ = __webpack_require__(326);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__ionic_native_splash_screen__ = __webpack_require__(329);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__providers_api_api__ = __webpack_require__(105);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -286,19 +573,19 @@ var AppModule = (function () {
                         { loadChildren: '../pages/confirmar-reserva/confirmar-reserva.module#ConfirmarReservaPageModule', name: 'ConfirmarReservaPage', segment: 'confirmar-reserva', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/cuenta/cuenta.module#CuentaPageModule', name: 'CuentaPage', segment: 'cuenta', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/cupones/cupones.module#CuponesPageModule', name: 'CuponesPage', segment: 'cupones', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/demo/demo.module#DemoPageModule', name: 'DemoPage', segment: 'demo', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/detalle-reserva/detalle-reserva.module#DetalleReservaPageModule', name: 'DetalleReservaPage', segment: 'detalle-reserva', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/favoritos/favoritos.module#FavoritosPageModule', name: 'FavoritosPage', segment: 'favoritos', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/inicio/inicio.module#InicioPageModule', name: 'InicioPage', segment: 'inicio', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/demo/demo.module#DemoPageModule', name: 'DemoPage', segment: 'demo', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/lista-servicios/lista-servicios.module#ListaServiciosPageModule', name: 'ListaServiciosPage', segment: 'lista-servicios', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/login/login.module#LoginPageModule', name: 'LoginPage', segment: 'login', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/inicio/inicio.module#InicioPageModule', name: 'InicioPage', segment: 'inicio', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/mis-reservas/mis-reservas.module#MisReservasPageModule', name: 'MisReservasPage', segment: 'mis-reservas', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/login/login.module#LoginPageModule', name: 'LoginPage', segment: 'login', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/modal-services/modal-services.module#ModalServicesPageModule', name: 'ModalServicesPage', segment: 'modal-services', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/ofertas/ofertas.module#OfertasPageModule', name: 'OfertasPage', segment: 'ofertas', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/opiniones/opiniones.module#OpinionesPageModule', name: 'OpinionesPage', segment: 'opiniones', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/perfil-centro/perfil-centro.module#PerfilCentroPageModule', name: 'PerfilCentroPage', segment: 'perfil-centro', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/reserva-hecha/reserva-hecha.module#ReservaHechaPageModule', name: 'ReservaHechaPage', segment: 'reserva-hecha', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/reserva/reserva.module#ReservaPageModule', name: 'ReservaPage', segment: 'reserva', priority: 'low', defaultHistory: [] }
+                        { loadChildren: '../pages/reserva/reserva.module#ReservaPageModule', name: 'ReservaPage', segment: 'reserva', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/reserva-hecha/reserva-hecha.module#ReservaHechaPageModule', name: 'ReservaHechaPage', segment: 'reserva-hecha', priority: 'low', defaultHistory: [] }
                     ]
                 }),
                 __WEBPACK_IMPORTED_MODULE_7__ionic_storage__["a" /* IonicStorageModule */].forRoot()
@@ -324,254 +611,254 @@ var AppModule = (function () {
 
 /***/ }),
 
-/***/ 381:
+/***/ 382:
 /***/ (function(module, exports, __webpack_require__) {
 
 var map = {
-	"./af": 158,
-	"./af.js": 158,
-	"./ar": 159,
-	"./ar-dz": 160,
-	"./ar-dz.js": 160,
-	"./ar-kw": 161,
-	"./ar-kw.js": 161,
-	"./ar-ly": 162,
-	"./ar-ly.js": 162,
-	"./ar-ma": 163,
-	"./ar-ma.js": 163,
-	"./ar-sa": 164,
-	"./ar-sa.js": 164,
-	"./ar-tn": 165,
-	"./ar-tn.js": 165,
-	"./ar.js": 159,
-	"./az": 166,
-	"./az.js": 166,
-	"./be": 167,
-	"./be.js": 167,
-	"./bg": 168,
-	"./bg.js": 168,
-	"./bm": 169,
-	"./bm.js": 169,
-	"./bn": 170,
-	"./bn.js": 170,
-	"./bo": 171,
-	"./bo.js": 171,
-	"./br": 172,
-	"./br.js": 172,
-	"./bs": 173,
-	"./bs.js": 173,
-	"./ca": 174,
-	"./ca.js": 174,
-	"./cs": 175,
-	"./cs.js": 175,
-	"./cv": 176,
-	"./cv.js": 176,
-	"./cy": 177,
-	"./cy.js": 177,
-	"./da": 178,
-	"./da.js": 178,
-	"./de": 179,
-	"./de-at": 180,
-	"./de-at.js": 180,
-	"./de-ch": 181,
-	"./de-ch.js": 181,
-	"./de.js": 179,
-	"./dv": 182,
-	"./dv.js": 182,
-	"./el": 183,
-	"./el.js": 183,
-	"./en-au": 184,
-	"./en-au.js": 184,
-	"./en-ca": 185,
-	"./en-ca.js": 185,
-	"./en-gb": 186,
-	"./en-gb.js": 186,
-	"./en-ie": 187,
-	"./en-ie.js": 187,
-	"./en-il": 188,
-	"./en-il.js": 188,
-	"./en-nz": 189,
-	"./en-nz.js": 189,
-	"./eo": 190,
-	"./eo.js": 190,
-	"./es": 191,
-	"./es-do": 192,
-	"./es-do.js": 192,
-	"./es-us": 193,
-	"./es-us.js": 193,
-	"./es.js": 191,
-	"./et": 194,
-	"./et.js": 194,
-	"./eu": 195,
-	"./eu.js": 195,
-	"./fa": 196,
-	"./fa.js": 196,
-	"./fi": 197,
-	"./fi.js": 197,
-	"./fo": 198,
-	"./fo.js": 198,
-	"./fr": 199,
-	"./fr-ca": 200,
-	"./fr-ca.js": 200,
-	"./fr-ch": 201,
-	"./fr-ch.js": 201,
-	"./fr.js": 199,
-	"./fy": 202,
-	"./fy.js": 202,
-	"./gd": 203,
-	"./gd.js": 203,
-	"./gl": 204,
-	"./gl.js": 204,
-	"./gom-latn": 205,
-	"./gom-latn.js": 205,
-	"./gu": 206,
-	"./gu.js": 206,
-	"./he": 207,
-	"./he.js": 207,
-	"./hi": 208,
-	"./hi.js": 208,
-	"./hr": 209,
-	"./hr.js": 209,
-	"./hu": 210,
-	"./hu.js": 210,
-	"./hy-am": 211,
-	"./hy-am.js": 211,
-	"./id": 212,
-	"./id.js": 212,
-	"./is": 213,
-	"./is.js": 213,
-	"./it": 214,
-	"./it.js": 214,
-	"./ja": 215,
-	"./ja.js": 215,
-	"./jv": 216,
-	"./jv.js": 216,
-	"./ka": 217,
-	"./ka.js": 217,
-	"./kk": 218,
-	"./kk.js": 218,
-	"./km": 219,
-	"./km.js": 219,
-	"./kn": 220,
-	"./kn.js": 220,
-	"./ko": 221,
-	"./ko.js": 221,
-	"./ky": 222,
-	"./ky.js": 222,
-	"./lb": 223,
-	"./lb.js": 223,
-	"./lo": 224,
-	"./lo.js": 224,
-	"./lt": 225,
-	"./lt.js": 225,
-	"./lv": 226,
-	"./lv.js": 226,
-	"./me": 227,
-	"./me.js": 227,
-	"./mi": 228,
-	"./mi.js": 228,
-	"./mk": 229,
-	"./mk.js": 229,
-	"./ml": 230,
-	"./ml.js": 230,
-	"./mr": 231,
-	"./mr.js": 231,
-	"./ms": 232,
-	"./ms-my": 233,
-	"./ms-my.js": 233,
-	"./ms.js": 232,
-	"./mt": 234,
-	"./mt.js": 234,
-	"./my": 235,
-	"./my.js": 235,
-	"./nb": 236,
-	"./nb.js": 236,
-	"./ne": 237,
-	"./ne.js": 237,
-	"./nl": 238,
-	"./nl-be": 239,
-	"./nl-be.js": 239,
-	"./nl.js": 238,
-	"./nn": 240,
-	"./nn.js": 240,
-	"./pa-in": 241,
-	"./pa-in.js": 241,
-	"./pl": 242,
-	"./pl.js": 242,
-	"./pt": 243,
-	"./pt-br": 244,
-	"./pt-br.js": 244,
-	"./pt.js": 243,
-	"./ro": 245,
-	"./ro.js": 245,
-	"./ru": 246,
-	"./ru.js": 246,
-	"./sd": 247,
-	"./sd.js": 247,
-	"./se": 248,
-	"./se.js": 248,
-	"./si": 249,
-	"./si.js": 249,
-	"./sk": 250,
-	"./sk.js": 250,
-	"./sl": 251,
-	"./sl.js": 251,
-	"./sq": 252,
-	"./sq.js": 252,
-	"./sr": 253,
-	"./sr-cyrl": 254,
-	"./sr-cyrl.js": 254,
-	"./sr.js": 253,
-	"./ss": 255,
-	"./ss.js": 255,
-	"./sv": 256,
-	"./sv.js": 256,
-	"./sw": 257,
-	"./sw.js": 257,
-	"./ta": 258,
-	"./ta.js": 258,
-	"./te": 259,
-	"./te.js": 259,
-	"./tet": 260,
-	"./tet.js": 260,
-	"./tg": 261,
-	"./tg.js": 261,
-	"./th": 262,
-	"./th.js": 262,
-	"./tl-ph": 263,
-	"./tl-ph.js": 263,
-	"./tlh": 264,
-	"./tlh.js": 264,
-	"./tr": 265,
-	"./tr.js": 265,
-	"./tzl": 266,
-	"./tzl.js": 266,
-	"./tzm": 267,
-	"./tzm-latn": 268,
-	"./tzm-latn.js": 268,
-	"./tzm.js": 267,
-	"./ug-cn": 269,
-	"./ug-cn.js": 269,
-	"./uk": 270,
-	"./uk.js": 270,
-	"./ur": 271,
-	"./ur.js": 271,
-	"./uz": 272,
-	"./uz-latn": 273,
-	"./uz-latn.js": 273,
-	"./uz.js": 272,
-	"./vi": 274,
-	"./vi.js": 274,
-	"./x-pseudo": 275,
-	"./x-pseudo.js": 275,
-	"./yo": 276,
-	"./yo.js": 276,
-	"./zh-cn": 277,
-	"./zh-cn.js": 277,
-	"./zh-hk": 278,
-	"./zh-hk.js": 278,
-	"./zh-tw": 279,
-	"./zh-tw.js": 279
+	"./af": 160,
+	"./af.js": 160,
+	"./ar": 161,
+	"./ar-dz": 162,
+	"./ar-dz.js": 162,
+	"./ar-kw": 163,
+	"./ar-kw.js": 163,
+	"./ar-ly": 164,
+	"./ar-ly.js": 164,
+	"./ar-ma": 165,
+	"./ar-ma.js": 165,
+	"./ar-sa": 166,
+	"./ar-sa.js": 166,
+	"./ar-tn": 167,
+	"./ar-tn.js": 167,
+	"./ar.js": 161,
+	"./az": 168,
+	"./az.js": 168,
+	"./be": 169,
+	"./be.js": 169,
+	"./bg": 170,
+	"./bg.js": 170,
+	"./bm": 171,
+	"./bm.js": 171,
+	"./bn": 172,
+	"./bn.js": 172,
+	"./bo": 173,
+	"./bo.js": 173,
+	"./br": 174,
+	"./br.js": 174,
+	"./bs": 175,
+	"./bs.js": 175,
+	"./ca": 176,
+	"./ca.js": 176,
+	"./cs": 177,
+	"./cs.js": 177,
+	"./cv": 178,
+	"./cv.js": 178,
+	"./cy": 179,
+	"./cy.js": 179,
+	"./da": 180,
+	"./da.js": 180,
+	"./de": 181,
+	"./de-at": 182,
+	"./de-at.js": 182,
+	"./de-ch": 183,
+	"./de-ch.js": 183,
+	"./de.js": 181,
+	"./dv": 184,
+	"./dv.js": 184,
+	"./el": 185,
+	"./el.js": 185,
+	"./en-au": 186,
+	"./en-au.js": 186,
+	"./en-ca": 187,
+	"./en-ca.js": 187,
+	"./en-gb": 188,
+	"./en-gb.js": 188,
+	"./en-ie": 189,
+	"./en-ie.js": 189,
+	"./en-il": 190,
+	"./en-il.js": 190,
+	"./en-nz": 191,
+	"./en-nz.js": 191,
+	"./eo": 192,
+	"./eo.js": 192,
+	"./es": 193,
+	"./es-do": 194,
+	"./es-do.js": 194,
+	"./es-us": 195,
+	"./es-us.js": 195,
+	"./es.js": 193,
+	"./et": 196,
+	"./et.js": 196,
+	"./eu": 197,
+	"./eu.js": 197,
+	"./fa": 198,
+	"./fa.js": 198,
+	"./fi": 199,
+	"./fi.js": 199,
+	"./fo": 200,
+	"./fo.js": 200,
+	"./fr": 201,
+	"./fr-ca": 202,
+	"./fr-ca.js": 202,
+	"./fr-ch": 203,
+	"./fr-ch.js": 203,
+	"./fr.js": 201,
+	"./fy": 204,
+	"./fy.js": 204,
+	"./gd": 205,
+	"./gd.js": 205,
+	"./gl": 206,
+	"./gl.js": 206,
+	"./gom-latn": 207,
+	"./gom-latn.js": 207,
+	"./gu": 208,
+	"./gu.js": 208,
+	"./he": 209,
+	"./he.js": 209,
+	"./hi": 210,
+	"./hi.js": 210,
+	"./hr": 211,
+	"./hr.js": 211,
+	"./hu": 212,
+	"./hu.js": 212,
+	"./hy-am": 213,
+	"./hy-am.js": 213,
+	"./id": 214,
+	"./id.js": 214,
+	"./is": 215,
+	"./is.js": 215,
+	"./it": 216,
+	"./it.js": 216,
+	"./ja": 217,
+	"./ja.js": 217,
+	"./jv": 218,
+	"./jv.js": 218,
+	"./ka": 219,
+	"./ka.js": 219,
+	"./kk": 220,
+	"./kk.js": 220,
+	"./km": 221,
+	"./km.js": 221,
+	"./kn": 222,
+	"./kn.js": 222,
+	"./ko": 223,
+	"./ko.js": 223,
+	"./ky": 224,
+	"./ky.js": 224,
+	"./lb": 225,
+	"./lb.js": 225,
+	"./lo": 226,
+	"./lo.js": 226,
+	"./lt": 227,
+	"./lt.js": 227,
+	"./lv": 228,
+	"./lv.js": 228,
+	"./me": 229,
+	"./me.js": 229,
+	"./mi": 230,
+	"./mi.js": 230,
+	"./mk": 231,
+	"./mk.js": 231,
+	"./ml": 232,
+	"./ml.js": 232,
+	"./mr": 233,
+	"./mr.js": 233,
+	"./ms": 234,
+	"./ms-my": 235,
+	"./ms-my.js": 235,
+	"./ms.js": 234,
+	"./mt": 236,
+	"./mt.js": 236,
+	"./my": 237,
+	"./my.js": 237,
+	"./nb": 238,
+	"./nb.js": 238,
+	"./ne": 239,
+	"./ne.js": 239,
+	"./nl": 240,
+	"./nl-be": 241,
+	"./nl-be.js": 241,
+	"./nl.js": 240,
+	"./nn": 242,
+	"./nn.js": 242,
+	"./pa-in": 243,
+	"./pa-in.js": 243,
+	"./pl": 244,
+	"./pl.js": 244,
+	"./pt": 245,
+	"./pt-br": 246,
+	"./pt-br.js": 246,
+	"./pt.js": 245,
+	"./ro": 247,
+	"./ro.js": 247,
+	"./ru": 248,
+	"./ru.js": 248,
+	"./sd": 249,
+	"./sd.js": 249,
+	"./se": 250,
+	"./se.js": 250,
+	"./si": 251,
+	"./si.js": 251,
+	"./sk": 252,
+	"./sk.js": 252,
+	"./sl": 253,
+	"./sl.js": 253,
+	"./sq": 254,
+	"./sq.js": 254,
+	"./sr": 255,
+	"./sr-cyrl": 256,
+	"./sr-cyrl.js": 256,
+	"./sr.js": 255,
+	"./ss": 257,
+	"./ss.js": 257,
+	"./sv": 258,
+	"./sv.js": 258,
+	"./sw": 259,
+	"./sw.js": 259,
+	"./ta": 260,
+	"./ta.js": 260,
+	"./te": 261,
+	"./te.js": 261,
+	"./tet": 262,
+	"./tet.js": 262,
+	"./tg": 263,
+	"./tg.js": 263,
+	"./th": 264,
+	"./th.js": 264,
+	"./tl-ph": 265,
+	"./tl-ph.js": 265,
+	"./tlh": 266,
+	"./tlh.js": 266,
+	"./tr": 267,
+	"./tr.js": 267,
+	"./tzl": 268,
+	"./tzl.js": 268,
+	"./tzm": 269,
+	"./tzm-latn": 270,
+	"./tzm-latn.js": 270,
+	"./tzm.js": 269,
+	"./ug-cn": 271,
+	"./ug-cn.js": 271,
+	"./uk": 272,
+	"./uk.js": 272,
+	"./ur": 273,
+	"./ur.js": 273,
+	"./uz": 274,
+	"./uz-latn": 275,
+	"./uz-latn.js": 275,
+	"./uz.js": 274,
+	"./vi": 276,
+	"./vi.js": 276,
+	"./x-pseudo": 277,
+	"./x-pseudo.js": 277,
+	"./yo": 278,
+	"./yo.js": 278,
+	"./zh-cn": 279,
+	"./zh-cn.js": 279,
+	"./zh-hk": 280,
+	"./zh-hk.js": 280,
+	"./zh-tw": 281,
+	"./zh-tw.js": 281
 };
 function webpackContext(req) {
 	return __webpack_require__(webpackContextResolve(req));
@@ -587,23 +874,24 @@ webpackContext.keys = function webpackContextKeys() {
 };
 webpackContext.resolve = webpackContextResolve;
 module.exports = webpackContext;
-webpackContext.id = 381;
+webpackContext.id = 382;
 
 /***/ }),
 
-/***/ 402:
+/***/ 411:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MyApp; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(19);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__ = __webpack_require__(323);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__ = __webpack_require__(326);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(15);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__ = __webpack_require__(326);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__ = __webpack_require__(329);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_forms__ = __webpack_require__(13);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_storage__ = __webpack_require__(327);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__pages_home_home__ = __webpack_require__(328);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__pages_list_list__ = __webpack_require__(329);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__providers_api_api__ = __webpack_require__(105);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_storage__ = __webpack_require__(82);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__pages_home_home__ = __webpack_require__(330);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__pages_list_list__ = __webpack_require__(331);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -623,29 +911,102 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
+
+
 var MyApp = (function () {
-    function MyApp(platform, statusBar, splashScreen, formBuilder, loadingCtrl, storage, modalCtrl) {
+    function MyApp(platform, statusBar, alertCtrl, splashScreen, formBuilder, events, loadingCtrl, storage, modalCtrl, apiProvider) {
+        var _this = this;
         this.platform = platform;
         this.statusBar = statusBar;
+        this.alertCtrl = alertCtrl;
         this.splashScreen = splashScreen;
         this.formBuilder = formBuilder;
+        this.events = events;
         this.loadingCtrl = loadingCtrl;
         this.storage = storage;
         this.modalCtrl = modalCtrl;
+        this.apiProvider = apiProvider;
         this.rootPage = '';
-        this.menuActivo = true;
+        this.menuActivo = false;
         this.presentLoading();
+        events.subscribe('userCreated', function (user) {
+            _this.userDataProfile = user;
+        });
+        events.subscribe('userLogout', function () {
+            _this.userDataProfile = false;
+            _this.storage.set("usr_tok_by", false);
+            _this.menuActivo = false;
+            _this.nav.setRoot('InicioPage');
+            //console.log(user);
+        });
         this.initializeApp();
         // used for an example of ngFor and navigation
         this.pages = [
-            { title: 'Home', component: __WEBPACK_IMPORTED_MODULE_6__pages_home_home__["a" /* HomePage */] },
-            { title: 'List', component: __WEBPACK_IMPORTED_MODULE_7__pages_list_list__["a" /* ListPage */] }
+            { title: 'Home', component: __WEBPACK_IMPORTED_MODULE_7__pages_home_home__["a" /* HomePage */] },
+            { title: 'List', component: __WEBPACK_IMPORTED_MODULE_8__pages_list_list__["a" /* ListPage */] }
         ];
         this.authForm = formBuilder.group({
-            username: ['', __WEBPACK_IMPORTED_MODULE_4__angular_forms__["Validators"].compose([__WEBPACK_IMPORTED_MODULE_4__angular_forms__["Validators"].required, __WEBPACK_IMPORTED_MODULE_4__angular_forms__["Validators"].pattern('[a-zA-Z]*'), __WEBPACK_IMPORTED_MODULE_4__angular_forms__["Validators"].minLength(8), __WEBPACK_IMPORTED_MODULE_4__angular_forms__["Validators"].maxLength(30)])],
-            password: ['', __WEBPACK_IMPORTED_MODULE_4__angular_forms__["Validators"].compose([__WEBPACK_IMPORTED_MODULE_4__angular_forms__["Validators"].required, __WEBPACK_IMPORTED_MODULE_4__angular_forms__["Validators"].minLength(8)])]
+            // username: ['', Validators.compose([Validators.required, Validators.pattern('[a-zA-Z]*'), Validators.minLength(8), Validators.maxLength(30)])],
+            username: ['', __WEBPACK_IMPORTED_MODULE_4__angular_forms__["Validators"].compose([__WEBPACK_IMPORTED_MODULE_4__angular_forms__["Validators"].required])],
+            password: ['', __WEBPACK_IMPORTED_MODULE_4__angular_forms__["Validators"].compose([__WEBPACK_IMPORTED_MODULE_4__angular_forms__["Validators"].required])]
         });
     }
+    MyApp.prototype.presentAlert = function (titulo, mensaje) {
+        var alert = this.alertCtrl.create({
+            title: titulo,
+            subTitle: mensaje,
+            buttons: ['Cerrar']
+        });
+        alert.present();
+    };
+    MyApp.prototype.doLogin = function (data) {
+        var _this = this;
+        var loading = this.loadingCtrl.create({ content: "Verificando Credenciales..." });
+        loading.present();
+        this.apiProvider.doLoginApi(data)
+            .then(function (data) {
+            console.log(data);
+            if (data.data[0] && (data.data[0].idCliente > 0)) {
+                if (data.data[0].estado == 0) {
+                    console.log(data);
+                    _this.presentAlert('Cuenta en revision', 'Tu cuenta no ha sido activada, te enviaremos un email cuando este lista!');
+                }
+                else {
+                    console.log(data);
+                    _this.storage.get('pushKeyBY').then(function (value) {
+                        if (value) {
+                            console.log(value);
+                            var pushState = {
+                                pushK: value,
+                                device: device.platform,
+                                deviceId: device.uuid,
+                                login: Date.now(),
+                                user: data.data[0].idUsuario
+                            };
+                            console.log(pushState);
+                            _this.apiProvider.addPush(pushState).then(function (data) {
+                                console.log(data);
+                            });
+                        }
+                        //value;
+                    });
+                    _this.storage.set("usr_tok_by", data.data[0]);
+                    _this.events.publish('userCreated', data.data[0]);
+                    _this.menuActivo = true;
+                    //this.closeModal();
+                }
+                loading.dismissAll();
+            }
+            else {
+                loading.dismissAll();
+                _this.presentAlert('Ups!', 'Credenciales incorrectas');
+            }
+        });
+    };
+    MyApp.prototype.onSubmit = function (data) {
+        console.log(data);
+    };
     MyApp.prototype.initializeApp = function () {
         var _this = this;
         this.platform.ready().then(function () {
@@ -653,7 +1014,18 @@ var MyApp = (function () {
             // Here you can do any higher level native things you might need.
             _this.statusBar.styleDefault();
             _this.splashScreen.hide();
-            _this.menuActivo = false;
+            _this.apiProvider.verificarLogin()
+                .then(function (data) {
+                console.log(data);
+                if (data) {
+                    _this.userDataProfile = data;
+                    _this.menuActivo = true;
+                }
+                else {
+                    _this.menuActivo = false;
+                }
+            });
+            //this.menuActivo = false;
             //  this.storage.set('introShownBY', false);
             // init demo verification
             _this.storage.get('introShownBY').then(function (result) {
@@ -694,13 +1066,137 @@ var MyApp = (function () {
     MyApp.prototype.salirApp = function (nombre) {
         nombre == "Salir" ? this.menuActivo = false : this.nav.setRoot('InicioPage');
     };
-    MyApp.prototype.loginApp = function () {
-        this.menuActivo = true;
+    MyApp.prototype.facebookLogin = function () {
+        //faceLogin
+        var _this = this;
+        //this.menuActivo = true;
+        facebookConnectPlugin.getLoginStatus(function (success) {
+            if (success.status === 'connected') {
+                _this.apiProvider.verificarFBLog({ userId: success.authResponse.userID })
+                    .then(function (data) {
+                    console.log(data);
+                    if (data) {
+                        _this.storage.set("usr_tok_by", events.data.info);
+                        _this.menuActivo = true;
+                    }
+                    else {
+                        _this.addUserFb(success.authResponse);
+                        console.log('Ha ocurrido un error');
+                    }
+                });
+            }
+            else {
+                console.log('getLoginStatus', success.status);
+                facebookConnectPlugin.login(['email', 'public_profile'], _this.fbLoginSuccess, _this.fbLoginError);
+            }
+        });
+    };
+    MyApp.prototype.fbLoginError = function (error) {
+        console.log('fbLoginError', error);
+        //mensajeAlerta(1, 'Ha ocurrido un error');
+        //$ionicLoading.hide();
+    };
+    ;
+    MyApp.prototype.getFacebookProfileInfo = function (authResponse) {
+        return new Promise(function (resolve) {
+            facebookConnectPlugin.api('/me?fields=email,name&access_token=' + authResponse.accessToken, null, function (response) {
+                console.log(response);
+                resolve(response);
+            }, function (response) {
+                console.log(response);
+                resolve(response);
+            });
+        });
+        //var info = $q.defer();
+    };
+    ;
+    // This is the success callback from the login method
+    MyApp.prototype.fbLoginSuccess = function (response) {
+        if (!response.authResponse) {
+            fbLoginError("Cannot find the authResponse");
+            return;
+        }
+        var authResponse = response.authResponse;
+        this.getFacebookProfileInfo(authResponse)
+            .then(function (profileInfo) {
+            // For the purpose of this example I will store user data on local storage
+            var _this = this;
+            var usuario = {
+                fbId: profileInfo.id,
+                nombre: profileInfo.name,
+                email: profileInfo.email,
+                imagenFB: "http://graph.facebook.com/" + authResponse.userID + "/picture?type=large"
+            };
+            this.apiProvider.addUserFb(usuario).then(function (events) {
+                if (events.insertId > 0) {
+                    _this.apiProvider.verificarFBLog({ userId: authResponse.userID })
+                        .then(function (data) {
+                        console.log(data);
+                        if (data) {
+                            _this.storage.set("usr_tok_by", events.data.info);
+                            _this.menuActivo = true;
+                        }
+                        else {
+                            console.log('Ha ocurrido un error');
+                        }
+                    });
+                }
+                else {
+                    _this.apiProvider.verificarFBLog({ userId: authResponse.userID })
+                        .then(function (data) {
+                        console.log(data);
+                        if (data) {
+                            _this.storage.set("usr_tok_by", events.data.info);
+                            _this.menuActivo = true;
+                        }
+                        else {
+                            console.log('Ha ocurrido un error');
+                        }
+                    });
+                }
+            });
+        }, function (fail) {
+            // Fail get profile info
+            console.log('profile info fail', fail);
+        });
+    };
+    ;
+    MyApp.prototype.addUserFb = function (data) {
+        var _this = this;
+        this.apiProvider.addUserFb(usuario).then(function (events) {
+            if (events.insertId > 0) {
+                _this.apiProvider.verificarFBLog({ userId: data.userID })
+                    .then(function (data) {
+                    console.log(data);
+                    if (data) {
+                        _this.storage.set("usr_tok_by", events.data.info);
+                        _this.menuActivo = true;
+                    }
+                    else {
+                        console.log('Ha ocurrido un error');
+                    }
+                });
+            }
+            else {
+                _this.apiProvider.verificarFBLog({ userId: data.userID })
+                    .then(function (data) {
+                    console.log(data);
+                    if (data) {
+                        _this.storage.set("usr_tok_by", events.data.info);
+                        _this.menuActivo = true;
+                    }
+                    else {
+                        console.log('Ha ocurrido un error');
+                    }
+                });
+            }
+        });
     };
     MyApp.prototype.goPagina = function (pagina) {
         console.log(pagina);
         if ('logout' == pagina) {
             console.log('cerrarsesion');
+            this.events.publish('userLogout');
         }
         else {
             this.nav.setRoot(pagina);
@@ -715,103 +1211,17 @@ var MyApp = (function () {
         __metadata("design:type", Object)
     ], MyApp.prototype, "slider", void 0);
     MyApp = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({template:/*ion-inline-start:"/Users/jose/Documents/beyouApp/beYou/src/app/app.html"*/'<ion-menu [content]="content" type=\'overlay\'>\n<!--   <ion-header>\n    <ion-toolbar>\n      <ion-title>Menu</ion-title>\n    </ion-toolbar>\n  </ion-header> -->\n\n  <ion-content style=\'    background-color: #fafafa;\'>\n\n  <div *ngIf=\'!menuActivo\'>\n  <div>\n    <div style="background-color:#36609F;margin: 20px 17px;border-radius: 30px;color: white;text-align: center;font-size: 15px;">\n    <img src="assets/imgs/Facebook.png" style="\n    vertical-align: middle;\n    margin-right: 10px;\n    ">\n    <img src="assets/imgs/Sep.png" style="\n    vertical-align: middle;\n    padding-top:  10px;\n    padding-bottom: 10px;\n    ">\n    <span (click)=\'loginApp()\' style="\n    ">Continuar con Facebook</span>\n    </div>\n\n<div style="\n    margin: 0px 17px;\n    text-align: center;\n    /* height: 300px; */\n">\n         <img src="assets/imgs/Sep2.png" style="\n    width: 40%;\n    display: inline-block;\n    height: 2px;\n    vertical-align: middle;\n"><span style="\n    display: inline-block;\n    margin: 0px 10px;\n">OR</span> <img src="assets/imgs/Sep2.png" style="\n    width: 40%;\n    display: inline-block;\n    height: 2px;\n    vertical-align: middle;\n">\n    </div>\n\n    <div style="\n    margin: 0px 17px;">\n\n    <form [formGroup]="authForm" (ngSubmit)="onSubmit(authForm.value)">\n        <ion-item [ngClass]="{\'error-border\':!authForm.controls.username.valid && authForm.controls.username.touched}">\n            <ion-label floating>Email</ion-label>\n            <ion-input formControlName="username" type="text"></ion-input>\n        </ion-item>\n  \n        <ion-item *ngIf="authForm.controls.username.hasError(\'required\') && authForm.controls.username.touched">\n            <p>Sorry, field username is required!</p>\n        </ion-item>\n        <ion-item *ngIf="authForm.controls.username.hasError(\'pattern\') && authForm.controls.username.touched">\n            <p>Sorry, only small and capital letters are allowed!</p>\n        </ion-item>        \n        <ion-item *ngIf="authForm.controls.username.hasError(\'minlength\') && authForm.controls.username.touched">\n            <p>Sorry, minimum username length is 8!</p>\n        </ion-item>\n        <ion-item *ngIf="authForm.controls.username.hasError(\'maxlength\') && authForm.controls.username.touched">\n            <p>Sorry, maximum username length is 30!</p>\n        </ion-item>\n  \n        <ion-item [ngClass]="{\'error-border\':!authForm.controls.password.valid && authForm.controls.password.touched}">\n            <ion-label floating>Password</ion-label>\n            <ion-input formControlName="password" type="password"></ion-input>\n        </ion-item>\n        <ion-item *ngIf="authForm.controls.password.hasError(\'required\') && authForm.controls.password.touched">\n            <p>Sorry, field password is required!</p>\n        </ion-item>\n        <ion-item *ngIf="authForm.controls.password.hasError(\'minlength\') && authForm.controls.password.touched">\n            <p>Sorry, minimum password length is 8!</p>\n        </ion-item>                \n  \n        <button ion-button full color="verdeApp" [disabled]="!authForm.valid" style="    border-radius: 40px;margin-top: 20px;" type="submit">Login</button>        \n    </form>\n\n\n    </div>\n\n  </div>\n\n    <ion-list style=\'margin-top:30px\'>\n      <button style="background-color: #fafafa;margin-top: 10px; font-size: 15px;    border-bottom: solid 0.5px #80808045; color:#3d3f4a" menuClose ion-item *ngFor="let p of [\'Olvidé mi contraseña\',\n                                                            \n                                                            \'BeYou para negocios\',\n                                                              \'Compartir BeYou\']">\n       {{p}}\n\n      \n\n      </button>\n\n\n      <button (click)=\'presentProfileModal()\' style="background-color: #fafafa;margin-top: 10px; font-size: 15px;    border-bottom: solid 0.5px #80808045; color:#3d3f4a" menuClose ion-item >\n       Registrate en BeYou\n      \n\n      </button>\n\n\n\n\n\n    </ion-list>\n<div style="width:100%; height:40px"></div>\n\n\n    <div style="padding-left: 16px;\n    padding-right: 16px;\n     padding-bottom: 10px;\n    color: darkgray;\n    font-size: 15px;\n    position: fixed;\n    bottom: 0;\n    background: #fafafa;\n    z-index: 10;">Al registrarte e iniciar sesion en BeYou aceptas nuestros <a>terminos y condiciones de servicio</a></div>\n\n    </div>\n\n    <div *ngIf=\'menuActivo\'>\n        <ion-item style=\'margin-top: 0px;\' class=\'fixProfileMargin\'>\n          <ion-avatar item-start>\n          <img style=\'width:75px; height: 75px\' src="assets/imgs/ben.png">\n          </ion-avatar>\n          <h2 style="margin-bottom: 23px;">Marty McFly</h2>\n          <div class="barraContainer">\n            <div class="barraProgress"><span>400/750</span></div>\n          </div>\n        </ion-item>\n\n          <ion-list>\n          <button (click)=\'goPagina(p.pagina)\' style="background-color: #fafafa; font-size: 14px;    border-bottom: solid 0.5px #80808045; color:#3d3f4a" menuClose ion-item *ngFor="let p of [{nombre:\'Servicios\', img:\'listVerde.png\', pagina: \'InicioPage\'},{nombre:\'Reservaciones\', img:\'reservation.png\', pagina: \'MisReservasPage\'},\n          {nombre:\'Favoritos\', img:\'corazonVerde.png\', pagina: \'FavoritosPage\'},\n          {nombre:\'Opiniones\', img:\'opiniones.png\', pagina: \'OpinionesPage\'},\n          {nombre:\'Cupones / Regalos\', img:\'cupones.png\',  pagina: \'CuponesPage\'},\n          {nombre:\'Ofertas\', img:\'ofertas.png\', pagina: \'OfertasPage\' }]" >\n\n          {{p.nombre}}\n\n          <img style=\'float: right;\' src="assets/imgs/{{p.img}}">\n\n          </button>\n\n\n\n          </ion-list>\n\n\n          <ion-list style=\'    margin-top: 0px !important;\n    position: absolute;\n    width: 100%;\n    bottom: 0px;\n    margin-bottom: 0px !important;\'>\n          <button   (click)=\'goPagina(p.pagina)\' style="background-color: #fafafa; font-size: 14px;    border-bottom: solid 0.5px #80808045; color:#3d3f4a" menuClose ion-item *ngFor="let p of [\n          {nombre:\'Ajustes\', img:\'ajustes.png\', pagina: \'AjustesPage\'},\n          {nombre:\'Ayuda\', img:\'ayuda.png\', pagina: \'AyudaPage\'},\n          {nombre:\'Mi Cuenta\', img:\'perfil.png\', pagina: \'CuentaPage\'},\n          {nombre:\'Salir\', img:\'salir.png\', pagina: \'logout\' }]" >\n\n          {{p.nombre}}\n\n          <img style=\'float: right;\' src="assets/imgs/{{p.img}}">\n\n          </button>\n\n\n\n          </ion-list>\n\n\n\n\n\n    </div>\n\n\n  </ion-content>\n\n</ion-menu>\n\n<!-- Disable swipe-to-go-back because it\'s poor UX to combine STGB with side menus -->\n<ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>'/*ion-inline-end:"/Users/jose/Documents/beyouApp/beYou/src/app/app.html"*/
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({template:/*ion-inline-start:"/Users/jose/Documents/beyouApp/beYou/src/app/app.html"*/'<ion-menu [content]="content" type=\'overlay\'>\n<!--   <ion-header>\n    <ion-toolbar>\n      <ion-title>Menu</ion-title>\n    </ion-toolbar>\n  </ion-header> -->\n\n  <ion-content style=\'    background-color: #fafafa;\'>\n\n  <div *ngIf=\'!menuActivo\'>\n  <div>\n    <div style="background-color:#36609F;margin: 20px 17px;border-radius: 30px;color: white;text-align: center;font-size: 15px;">\n    <img src="assets/imgs/Facebook.png" style="\n    vertical-align: middle;\n    margin-right: 10px;\n    ">\n    <img src="assets/imgs/Sep.png" style="\n    vertical-align: middle;\n    padding-top:  10px;\n    padding-bottom: 10px;\n    ">\n    <span (click)=\'facebookLogin()\' style="\n    ">Continuar con Facebook</span>\n    </div>\n\n<div style="\n    margin: 0px 17px;\n    text-align: center;\n    /* height: 300px; */\n">\n         <img src="assets/imgs/Sep2.png" style="\n    width: 40%;\n    display: inline-block;\n    height: 2px;\n    vertical-align: middle;\n"><span style="\n    display: inline-block;\n    margin: 0px 10px;\n">OR</span> <img src="assets/imgs/Sep2.png" style="\n    width: 40%;\n    display: inline-block;\n    height: 2px;\n    vertical-align: middle;\n">\n    </div>\n\n    <div style="\n    margin: 0px 17px;">\n\n    <form [formGroup]="authForm" (ngSubmit)="doLogin(authForm.value)">\n        <ion-item [ngClass]="{\'error-border\':!authForm.controls.username.valid && authForm.controls.username.touched}">\n            <ion-label floating>Email</ion-label>\n            <ion-input formControlName="username" type="text"></ion-input>\n        </ion-item>\n  \n        <ion-item *ngIf="authForm.controls.username.hasError(\'required\') && authForm.controls.username.touched">\n            <p>Email invalido</p>\n        </ion-item>\n        <ion-item *ngIf="authForm.controls.username.hasError(\'pattern\') && authForm.controls.username.touched">\n            <p>Email invalido</p>\n        </ion-item>        \n        <ion-item *ngIf="authForm.controls.username.hasError(\'minlength\') && authForm.controls.username.touched">\n            <p>Sorry, minimum username length is 8!</p>\n        </ion-item>\n        <ion-item *ngIf="authForm.controls.username.hasError(\'maxlength\') && authForm.controls.username.touched">\n            <p>Sorry, maximum username length is 30!</p>\n        </ion-item>\n  \n        <ion-item [ngClass]="{\'error-border\':!authForm.controls.password.valid && authForm.controls.password.touched}">\n            <ion-label floating>Contraseña</ion-label>\n            <ion-input formControlName="password" type="password"></ion-input>\n        </ion-item>\n        <ion-item *ngIf="authForm.controls.password.hasError(\'required\') && authForm.controls.password.touched">\n            <p>Contraseña invalida</p>\n        </ion-item>\n        <ion-item *ngIf="authForm.controls.password.hasError(\'minlength\') && authForm.controls.password.touched">\n            <p>Contraseña invalida</p>\n        </ion-item>                \n  \n        <button ion-button full color="verdeApp" [disabled]="!authForm.valid" style="    border-radius: 40px;margin-top: 20px;" type="submit">Login</button>        \n    </form>\n\n\n    </div>\n\n  </div>\n\n    <ion-list style=\'margin-top:30px\'>\n      <button style="background-color: #fafafa;margin-top: 10px; font-size: 15px;    border-bottom: solid 0.5px #80808045; color:#3d3f4a" menuClose ion-item *ngFor="let p of [\'Olvidé mi contraseña\',\n                                                            \n                                                            \'BeYou para negocios\',\n                                                              \'Compartir BeYou\']">\n       {{p}}\n\n      \n\n      </button>\n\n\n      <button (click)=\'presentProfileModal()\' style="background-color: #fafafa;margin-top: 10px; font-size: 15px;    border-bottom: solid 0.5px #80808045; color:#3d3f4a" menuClose ion-item >\n       Registrate en BeYou\n      \n\n      </button>\n\n\n\n\n\n    </ion-list>\n<div style="width:100%; height:40px"></div>\n\n\n    <div style="padding-left: 16px;\n    padding-right: 16px;\n     padding-bottom: 10px;\n    color: darkgray;\n    font-size: 15px;\n    position: fixed;\n    bottom: 0;\n    background: #fafafa;\n    z-index: 10;">Al registrarte e iniciar sesion en BeYou aceptas nuestros <a>terminos y condiciones de servicio</a></div>\n\n    </div>\n\n    <div *ngIf=\'menuActivo\'>\n        <ion-item style=\'margin-top: 0px;\' class=\'fixProfileMargin\'>\n          <ion-avatar item-start>\n          <img style=\'width:75px; height: 75px\' src="assets/imgs/ben.png">\n          </ion-avatar>\n          <h2 style="margin-bottom: 23px;">{{userDataProfile?.nombre || \'Desconocido\'}}</h2>\n          <div class="barraContainer">\n            <div class="barraProgress"><span>400/750</span></div>\n          </div>\n        </ion-item>\n\n          <ion-list>\n          <button (click)=\'goPagina(p.pagina)\' style="background-color: #fafafa; font-size: 14px;    border-bottom: solid 0.5px #80808045; color:#3d3f4a" menuClose ion-item *ngFor="let p of [{nombre:\'Servicios\', img:\'listVerde.png\', pagina: \'InicioPage\'},{nombre:\'Reservaciones\', img:\'reservation.png\', pagina: \'MisReservasPage\'},\n          {nombre:\'Favoritos\', img:\'corazonVerde.png\', pagina: \'FavoritosPage\'},\n          {nombre:\'Opiniones\', img:\'opiniones.png\', pagina: \'OpinionesPage\'},\n          {nombre:\'Cupones / Regalos\', img:\'cupones.png\',  pagina: \'CuponesPage\'},\n          {nombre:\'Ofertas\', img:\'ofertas.png\', pagina: \'OfertasPage\' }]" >\n\n          {{p.nombre}}\n\n          <img style=\'float: right;\' src="assets/imgs/{{p.img}}">\n\n          </button>\n\n\n\n          </ion-list>\n\n\n          <ion-list style=\'    margin-top: 0px !important;\n    position: absolute;\n    width: 100%;\n    bottom: 0px;\n    margin-bottom: 0px !important;\'>\n          <button   (click)=\'goPagina(p.pagina)\' style="background-color: #fafafa; font-size: 14px;    border-bottom: solid 0.5px #80808045; color:#3d3f4a" menuClose ion-item *ngFor="let p of [\n          {nombre:\'Ajustes\', img:\'ajustes.png\', pagina: \'AjustesPage\'},\n          {nombre:\'Ayuda\', img:\'ayuda.png\', pagina: \'AyudaPage\'},\n          {nombre:\'Mi Cuenta\', img:\'perfil.png\', pagina: \'CuentaPage\'},\n          {nombre:\'Salir\', img:\'salir.png\', pagina: \'logout\' }]" >\n\n          {{p.nombre}}\n\n          <img style=\'float: right;\' src="assets/imgs/{{p.img}}">\n\n          </button>\n\n\n\n          </ion-list>\n\n\n\n\n\n    </div>\n\n\n  </ion-content>\n\n</ion-menu>\n\n<!-- Disable swipe-to-go-back because it\'s poor UX to combine STGB with side menus -->\n<ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>'/*ion-inline-end:"/Users/jose/Documents/beyouApp/beYou/src/app/app.html"*/
         }),
-        __metadata("design:paramtypes", [typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["Platform"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["Platform"]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__["a" /* StatusBar */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__["a" /* StatusBar */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__["a" /* SplashScreen */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__["a" /* SplashScreen */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_4__angular_forms__["FormBuilder"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__angular_forms__["FormBuilder"]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["LoadingController"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["LoadingController"]) === "function" && _f || Object, typeof (_g = typeof __WEBPACK_IMPORTED_MODULE_5__ionic_storage__["b" /* Storage */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5__ionic_storage__["b" /* Storage */]) === "function" && _g || Object, typeof (_h = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["ModalController"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["ModalController"]) === "function" && _h || Object])
+        __metadata("design:paramtypes", [typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["Platform"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["Platform"]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__["a" /* StatusBar */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__["a" /* StatusBar */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["AlertController"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["AlertController"]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__["a" /* SplashScreen */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__["a" /* SplashScreen */]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_4__angular_forms__["FormBuilder"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__angular_forms__["FormBuilder"]) === "function" && _f || Object, typeof (_g = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["Events"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["Events"]) === "function" && _g || Object, typeof (_h = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["LoadingController"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["LoadingController"]) === "function" && _h || Object, typeof (_j = typeof __WEBPACK_IMPORTED_MODULE_6__ionic_storage__["b" /* Storage */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_6__ionic_storage__["b" /* Storage */]) === "function" && _j || Object, typeof (_k = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["ModalController"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["ModalController"]) === "function" && _k || Object, typeof (_l = typeof __WEBPACK_IMPORTED_MODULE_5__providers_api_api__["a" /* ApiProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5__providers_api_api__["a" /* ApiProvider */]) === "function" && _l || Object])
     ], MyApp);
     return MyApp;
-    var _a, _b, _c, _d, _e, _f, _g, _h;
+    var _a, _b, _c, _d, _e, _f, _g, _h, _j, _k, _l;
 }());
 
 //# sourceMappingURL=app.component.js.map
 
-/***/ }),
-
-/***/ 419:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ApiProvider; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_common_http__ = __webpack_require__(330);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_storage__ = __webpack_require__(327);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-
-/*
-  Generated class for the ApiProvider provider.
-
-  See https://angular.io/guide/dependency-injection for more info on providers
-  and Angular DI.
-*/
-var ApiProvider = (function () {
-    function ApiProvider(http, storage) {
-        this.http = http;
-        this.storage = storage;
-        this.api2 = 'http://50.116.17.150:3000';
-        // console.log('Hello ApiProvider Provider');
-    }
-    ApiProvider.prototype.verificarLogin = function () {
-        var _this = this;
-        return new Promise(function (resolve) {
-            _this.storage.get('usr_tok_by').then(function (value) {
-                // console.log(value);
-                value ? resolve(value) : resolve(false);
-            }).catch(function () { return resolve(false); });
-        });
-    };
-    ApiProvider.prototype.categoriasHome = function () {
-        var _this = this;
-        return new Promise(function (resolve) {
-            _this.http.get(_this.api2 + '/categoriasHome').subscribe(function (data) {
-                console.log('d');
-                resolve(data);
-            }, function (err) {
-                console.log(err);
-            });
-        });
-    };
-    ApiProvider.prototype.categoriasActivas = function () {
-        var _this = this;
-        return new Promise(function (resolve) {
-            _this.http.get(_this.api2 + '/categoriasActivas').subscribe(function (data) {
-                console.log('d');
-                resolve(data);
-            }, function (err) {
-                console.log(err);
-            });
-        });
-    };
-    ApiProvider.prototype.registrarUsuario = function (credenciales) {
-        var _this = this;
-        return new Promise(function (resolve) {
-            _this.http.post(_this.api2 + '/registrarUsuario', JSON.stringify(credenciales), { headers: { 'Content-Type': 'application/json' } }).subscribe(function (data) {
-                resolve(data);
-            }, function (err) {
-                console.log(err);
-            });
-        });
-    };
-    ApiProvider = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["Injectable"])(),
-        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_0__angular_common_http__["a" /* HttpClient */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__angular_common_http__["a" /* HttpClient */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__ionic_storage__["b" /* Storage */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__ionic_storage__["b" /* Storage */]) === "function" && _b || Object])
-    ], ApiProvider);
-    return ApiProvider;
-    var _a, _b;
-}());
-
-//# sourceMappingURL=api.js.map
-
 /***/ })
 
-},[332]);
+},[333]);
 //# sourceMappingURL=main.js.map
