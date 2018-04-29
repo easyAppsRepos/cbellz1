@@ -1002,33 +1002,45 @@ var MyApp = (function () {
             });
         };
         this.addUserFb = function (data) {
-            _this.apiProvider.addUserFb(data).then(function (events) {
-                if (events.insertId > 0) {
-                    _this.apiProvider.verificarFBLog({ userId: data.userID })
-                        .then(function (data) {
-                        console.log(data);
-                        if (data) {
-                            _this.storage.set("usr_tok_by", events.data.info);
-                            _this.menuActivo = true;
-                        }
-                        else {
-                            console.log('Ha ocurrido un error');
-                        }
-                    });
-                }
-                else {
-                    _this.apiProvider.verificarFBLog({ userId: data.userID })
-                        .then(function (data) {
-                        console.log(data);
-                        if (data) {
-                            _this.storage.set("usr_tok_by", events.data.info);
-                            _this.menuActivo = true;
-                        }
-                        else {
-                            console.log('Ha ocurrido un error');
-                        }
-                    });
-                }
+            _this.getFacebookProfileInfo(data)
+                .then(function (profileInfo) {
+                // For the purpose of this example I will store user data on local storage
+                var usuario = {
+                    fbId: profileInfo.id,
+                    nombre: profileInfo.name,
+                    email: profileInfo.email,
+                    imagenFB: "http://graph.facebook.com/" + authResponse.userID + "/picture?type=large"
+                };
+                _this.apiProvider.addUserFb(usuario).then(function (events) {
+                    if (events.insertId > 0) {
+                        _this.apiProvider.verificarFBLog({ userId: profileInfo.id })
+                            .then(function (data) {
+                            console.log(data);
+                            if (data.data.length > 0) {
+                                console.log('addUserFbinsertplus0');
+                                _this.storage.set("usr_tok_by", data.data[0]);
+                                _this.menuActivo = true;
+                            }
+                            else {
+                                console.log('Ha ocurrido un error');
+                            }
+                        });
+                    }
+                    else {
+                        _this.apiProvider.verificarFBLog({ userId: profileInfo.id })
+                            .then(function (data) {
+                            console.log(data);
+                            if (data.data.length > 0) {
+                                console.log('addUserFbinsertmenos0');
+                                _this.storage.set("usr_tok_by", data.data[0]);
+                                _this.menuActivo = true;
+                            }
+                            else {
+                                console.log('Ha ocurrido un error');
+                            }
+                        });
+                    }
+                });
             });
         };
         this.presentLoading();
