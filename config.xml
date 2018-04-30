@@ -114,11 +114,6 @@
   <plugin name="cordova-plugin-googlemaps" spec="^2.2.9">
     <variable name="API_KEY_FOR_ANDROID" value="AIzaSyAT-tTbOja69paXaiAgAtNi9nGHRh75bzk" />
     <variable name="API_KEY_FOR_IOS" value="AIzaSyDjyHD9s5AzGciXjVHuney4MzKtduyHIPc" />
- 
-    <!-- these are optional settings -->
-
-    <variable name="LOCATION_WHEN_IN_USE_DESCRIPTION" value="BeYou" />
-    <variable name="LOCATION_ALWAYS_USAGE_DESCRIPTION" value="BeYou" />
   </plugin>
 
 
