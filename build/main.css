@@ -31485,7 +31485,7 @@ ion-navbar.toolbar {
   margin-left: 12px;
   margin-top: 12px;
   display: inline-block;
-  width: auto;
+  width: 50%;
 }
 
 .button-ios.activated {
