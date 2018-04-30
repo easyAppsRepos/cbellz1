@@ -134,7 +134,7 @@ var MapaPage = (function () {
         //this.latitudePerson = 9.9931605;
         //this.longitudePerson = -84.2307427;
         var _this = this;
-        var loading = this.loadingController.create({ content: "Obteniendo ubicacion" });
+        var loading = this.loadingCtrl.create({ content: "Obteniendo ubicacion" });
         loading.present();
         console.log('gps');
         navigator.geolocation.getCurrentPosition(function (pos) {
