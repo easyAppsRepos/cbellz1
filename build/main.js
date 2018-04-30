@@ -1,4 +1,4 @@
-webpackJsonp([21],{
+webpackJsonp([22],{
 
 /***/ 105:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -317,10 +317,9 @@ var ApiProvider = (function () {
     };
     ApiProvider = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["Injectable"])(),
-        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_0__angular_common_http__["a" /* HttpClient */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__angular_common_http__["a" /* HttpClient */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__ionic_storage__["b" /* Storage */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__ionic_storage__["b" /* Storage */]) === "function" && _b || Object])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_0__angular_common_http__["a" /* HttpClient */], __WEBPACK_IMPORTED_MODULE_2__ionic_storage__["b" /* Storage */]])
     ], ApiProvider);
     return ApiProvider;
-    var _a, _b;
 }());
 
 //# sourceMappingURL=api.js.map
@@ -350,86 +349,90 @@ webpackEmptyAsyncContext.id = 118;
 var map = {
 	"../pages/addservicios/addservicios.module": [
 		421,
-		20
+		21
 	],
 	"../pages/ajustes/ajustes.module": [
 		420,
-		19
+		20
 	],
 	"../pages/ayuda/ayuda.module": [
-		426,
-		18
+		425,
+		19
 	],
 	"../pages/buscar-modal/buscar-modal.module": [
 		422,
-		17
+		18
 	],
 	"../pages/confirmar-reserva/confirmar-reserva.module": [
 		423,
-		16
+		17
 	],
 	"../pages/cuenta/cuenta.module": [
 		424,
-		15
+		16
 	],
 	"../pages/cupones/cupones.module": [
-		425,
+		430,
 		4
 	],
 	"../pages/demo/demo.module": [
-		428,
-		14
+		426,
+		15
 	],
 	"../pages/detalle-reserva/detalle-reserva.module": [
 		427,
-		13
+		14
 	],
 	"../pages/favoritos/favoritos.module": [
 		429,
-		12
+		13
 	],
 	"../pages/inicio/inicio.module": [
-		430,
-		11
+		428,
+		12
 	],
 	"../pages/lista-servicios/lista-servicios.module": [
-		431,
+		434,
 		3
 	],
 	"../pages/login/login.module": [
 		432,
+		11
+	],
+	"../pages/mapa/mapa.module": [
+		431,
 		10
 	],
 	"../pages/mis-reservas/mis-reservas.module": [
-		435,
+		433,
 		2
 	],
 	"../pages/modal-services/modal-services.module": [
-		433,
+		436,
 		6
 	],
 	"../pages/negocioregistro/negocioregistro.module": [
-		434,
+		435,
 		9
 	],
 	"../pages/ofertas/ofertas.module": [
-		436,
+		437,
 		8
 	],
 	"../pages/opiniones/opiniones.module": [
-		437,
+		438,
 		1
 	],
 	"../pages/perfil-centro/perfil-centro.module": [
-		438,
+		439,
 		5
 	],
 	"../pages/reserva-hecha/reserva-hecha.module": [
-		440,
+		441,
 		7
 	],
 	"../pages/reserva/reserva.module": [
-		439,
+		440,
 		0
 	]
 };
@@ -615,17 +618,18 @@ var AppModule = (function () {
                         { loadChildren: '../pages/buscar-modal/buscar-modal.module#BuscarModalPageModule', name: 'BuscarModalPage', segment: 'buscar-modal', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/confirmar-reserva/confirmar-reserva.module#ConfirmarReservaPageModule', name: 'ConfirmarReservaPage', segment: 'confirmar-reserva', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/cuenta/cuenta.module#CuentaPageModule', name: 'CuentaPage', segment: 'cuenta', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/cupones/cupones.module#CuponesPageModule', name: 'CuponesPage', segment: 'cupones', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/ayuda/ayuda.module#AyudaPageModule', name: 'AyudaPage', segment: 'ayuda', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/detalle-reserva/detalle-reserva.module#DetalleReservaPageModule', name: 'DetalleReservaPage', segment: 'detalle-reserva', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/demo/demo.module#DemoPageModule', name: 'DemoPage', segment: 'demo', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/favoritos/favoritos.module#FavoritosPageModule', name: 'FavoritosPage', segment: 'favoritos', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/detalle-reserva/detalle-reserva.module#DetalleReservaPageModule', name: 'DetalleReservaPage', segment: 'detalle-reserva', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/inicio/inicio.module#InicioPageModule', name: 'InicioPage', segment: 'inicio', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/lista-servicios/lista-servicios.module#ListaServiciosPageModule', name: 'ListaServiciosPage', segment: 'lista-servicios', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/favoritos/favoritos.module#FavoritosPageModule', name: 'FavoritosPage', segment: 'favoritos', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/cupones/cupones.module#CuponesPageModule', name: 'CuponesPage', segment: 'cupones', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/mapa/mapa.module#MapaPageModule', name: 'MapaPage', segment: 'mapa', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/login/login.module#LoginPageModule', name: 'LoginPage', segment: 'login', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/modal-services/modal-services.module#ModalServicesPageModule', name: 'ModalServicesPage', segment: 'modal-services', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/negocioregistro/negocioregistro.module#NegocioregistroPageModule', name: 'NegocioregistroPage', segment: 'negocioregistro', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/mis-reservas/mis-reservas.module#MisReservasPageModule', name: 'MisReservasPage', segment: 'mis-reservas', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/lista-servicios/lista-servicios.module#ListaServiciosPageModule', name: 'ListaServiciosPage', segment: 'lista-servicios', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/negocioregistro/negocioregistro.module#NegocioregistroPageModule', name: 'NegocioregistroPage', segment: 'negocioregistro', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/modal-services/modal-services.module#ModalServicesPageModule', name: 'ModalServicesPage', segment: 'modal-services', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/ofertas/ofertas.module#OfertasPageModule', name: 'OfertasPage', segment: 'ofertas', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/opiniones/opiniones.module#OpinionesPageModule', name: 'OpinionesPage', segment: 'opiniones', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/perfil-centro/perfil-centro.module#PerfilCentroPageModule', name: 'PerfilCentroPage', segment: 'perfil-centro', priority: 'low', defaultHistory: [] },
@@ -1214,6 +1218,10 @@ var MyApp = (function () {
     };
     MyApp.prototype.presentProfileModal = function () {
         var profileModal = this.modalCtrl.create('LoginPage');
+        profileModal.present();
+    };
+    MyApp.prototype.registroNegocio = function () {
+        var profileModal = this.modalCtrl.create('NegocioregistroPage');
         profileModal.present();
     };
     MyApp.prototype.openCentroPage = function () {

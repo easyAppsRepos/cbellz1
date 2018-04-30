@@ -32043,6 +32043,12 @@ page-lista-servicios .select-ios .select-icon .select-icon-inner {
   color: white !important;
 }
 
+page-mapa #map {
+  display: block;
+  height: 100%;
+  width: 100%;
+}
+
 page-mis-reservas .content-ios {
   background-color: #f7f8f9;
 }

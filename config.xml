@@ -110,6 +110,19 @@
 <gap:plugin name="cordova-plugin-network-information" source="npm" version="1.0.1" />
 <gap:plugin name="cordova-plugin-inappbrowser" source="npm"  />
 
+
+  <plugin name="cordova-plugin-googlemaps" spec="^2.2.9">
+    <variable name="API_KEY_FOR_ANDROID" value="AIzaSyAT-tTbOja69paXaiAgAtNi9nGHRh75bzk" />
+    <variable name="API_KEY_FOR_IOS" value="AIzaSyDjyHD9s5AzGciXjVHuney4MzKtduyHIPc" />
+ 
+    <!-- these are optional settings -->
+    <variable name="PLAY_SERVICES_VERSION" value="11.8.0" />
+    <variable name="ANDROID_SUPPORT_V4_VERSION" value="24.1.0" />
+    <variable name="LOCATION_WHEN_IN_USE_DESCRIPTION" value="BeYou" />
+    <variable name="LOCATION_ALWAYS_USAGE_DESCRIPTION" value="BeYou" />
+  </plugin>
+
+
    <gap:plugin name="cordova-plugin-geolocation"  source="npm" />
 
        <access origin="*" />
