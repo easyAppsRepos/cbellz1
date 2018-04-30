@@ -1226,22 +1226,15 @@ var MyApp = (function () {
     };
     ;
     MyApp.prototype.goPagina = function (pagina) {
-        var _this = this;
         console.log(pagina);
         if ('logout' == pagina) {
-            if (navigator.facebookConnectPlugin) {
-                console.log('cerrarsesionfb');
-                facebookConnectPlugin.logout(function (res) {
-                    _this.events.publish('userLogout');
-                }, function (e) {
-                    console.log('Error logout from Facebook', e);
-                    _this.events.publish('userLogout');
-                });
-            }
-            else {
-                console.log('cerrarsesionemail');
-                this.events.publish('userLogout');
-            }
+            facebookConnectPlugin.logout(function (res) {
+                //  this.events.publish('userLogout');
+            }, function (e) {
+                console.log('Error logout from Facebook', e);
+                // this.events.publish('userLogout');
+            });
+            this.events.publish('userLogout');
         }
         else {
             this.nav.setRoot(pagina);
