@@ -126,15 +126,10 @@ var MapaPage = (function () {
                 zoom: 12,
                 tilt: 30
             };
-            _this.map.one(plugin.google.maps.event.MAP_READY).then(function () {
+            _this.map.one(plugin.google.maps.event.MAP_READY, function () {
                 console.log('Map is ready!');
                 // move the map's camera to position
                 _this.map.moveCamera(position);
-                var markerOptions = {
-                    position: _this.myPosition,
-                    title: "Mi ubicacion"
-                };
-                _this.map.addMarker(markerOptions);
             });
         };
     }
