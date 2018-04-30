@@ -70,6 +70,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
  */
 var MapaPage = (function () {
     function MapaPage(navCtrl, navParams, modalCtrl, loadingCtrl, events, apiProvider, alertCtrl) {
+        var _this = this;
         this.navCtrl = navCtrl;
         this.navParams = navParams;
         this.modalCtrl = modalCtrl;
@@ -108,27 +109,26 @@ var MapaPage = (function () {
                 title: 'Point 4'
             },
         ];
+        this.loadMap = function () {
+            // create a new map by passing HTMLElement
+            var element = document.getElementById('map');
+            _this.map = plugin.google.maps.Map.getMap(element);
+            // create CameraPosition
+            var position = {
+                target: { lat: _this.myPosition.latitude, lng: _this.myPosition.longitude },
+                zoom: 12,
+                tilt: 30
+            };
+            _this.map.one(GoogleMapsEvent.MAP_READY).then(function () {
+                console.log('Map is ready!');
+                // move the map's camera to position
+                _this.map.moveCamera(position);
+            });
+        };
     }
     MapaPage.prototype.ionViewDidLoad = function () {
         this.getServiciosGPS();
         console.log('ionViewDidLoad MapaPage');
-    };
-    MapaPage.prototype.loadMap = function () {
-        var _this = this;
-        // create a new map by passing HTMLElement
-        var element = document.getElementById('map');
-        this.map = plugin.google.maps.Map.getMap(element);
-        // create CameraPosition
-        var position = {
-            target: new LatLng(this.myPosition.latitude, this.myPosition.longitude),
-            zoom: 12,
-            tilt: 30
-        };
-        this.map.one(GoogleMapsEvent.MAP_READY).then(function () {
-            console.log('Map is ready!');
-            // move the map's camera to position
-            _this.map.moveCamera(position);
-        });
     };
     MapaPage.prototype.getServiciosGPS = function () {
         //this.latitudePerson = 9.9931605;
