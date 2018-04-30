@@ -109,6 +109,13 @@ var MapaPage = (function () {
                 title: 'Point 4'
             },
         ];
+        this.addMarker = function (options) {
+            var markerOptions = {
+                position: new LatLng(options.position.latitude, options.position.longitude),
+                title: options.title
+            };
+            _this.map.addMarker(markerOptions);
+        };
         this.loadMap = function () {
             // create a new map by passing HTMLElement
             var element = document.getElementById('map');
@@ -127,7 +134,7 @@ var MapaPage = (function () {
                     position: _this.myPosition,
                     title: "Mi ubicacion"
                 };
-                _this.addMarker(markerOptions);
+                _this.map.addMarker(markerOptions);
             });
         };
     }
