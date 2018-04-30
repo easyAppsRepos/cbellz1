@@ -99,30 +99,24 @@ var FavoritosPage = (function () {
         console.log('ionViewDidLoad FavoritosPage');
     };
     FavoritosPage.prototype.getServiciosGPS = function () {
-        this.latitudePerson = 9.9931605;
-        this.longitudePerson = -84.2307427;
         /*
-       
-           let loading = this.loadingController.create({content : "Obteniendo ubicacion"});
-           loading.present();
-       
-             console.log('gps');
-               navigator.geolocation.getCurrentPosition((pos) => {
-       
-                 console.log(pos.coords.latitude+' Long: '+ pos.coords.longitude);
-                 this.latitudePerson = pos.coords.latitude;
-                 this.longitudePerson = pos.coords.longitude;
-                 loading.dismissAll();
-            
-       
-       
-               }, function(error) {
-                 console.log('some err');
-                 console.log(error);
-                 loading.dismissAll();
-               },{ enableHighAccuracy: true, timeout: 30000 });
-       
-           */
+           this.latitudePerson = 9.9931605;
+           this.longitudePerson = -84.2307427;
+       */
+        var _this = this;
+        var loading = this.loadingController.create({ content: "Obteniendo ubicacion" });
+        loading.present();
+        console.log('gps');
+        navigator.geolocation.getCurrentPosition(function (pos) {
+            console.log(pos.coords.latitude + ' Long: ' + pos.coords.longitude);
+            _this.latitudePerson = pos.coords.latitude;
+            _this.longitudePerson = pos.coords.longitude;
+            loading.dismissAll();
+        }, function (error) {
+            console.log('some err');
+            console.log(error);
+            loading.dismissAll();
+        }, { enableHighAccuracy: true, timeout: 30000 });
     };
     FavoritosPage.prototype.getFavoritos = function (idCliente) {
         var _this = this;
@@ -211,9 +205,10 @@ var FavoritosPage = (function () {
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'page-favoritos',template:/*ion-inline-start:"/Users/jose/Documents/beyouApp/beYou/src/pages/favoritos/favoritos.html"*/'<ion-header>\n  <ion-navbar  color="headerColor">\n\n    <ion-buttons start>\n    <button ion-button menuToggle>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n    </ion-buttons>\n\n    <ion-title>\nFavoritos\n\n\n    </ion-title>\n\n          <ion-buttons end>\n      <button (click)=\'filtroCategoria()\' ion-button icon-only>\n        <ion-icon name="ios-options"></ion-icon>\n      </button>\n\n\n       \n\n      </ion-buttons>\n\n\n\n  </ion-navbar>\n</ion-header>\n\n<ion-content >\n\n\n\n    <ion-list mode="md" >\n\n\n        <div class=\'noResultado\' *ngIf="(favoritos)?.length === 0" >No has marcado ningun negocio como favorito</div> \n\n		<ion-card *ngFor="let n of favoritos" (click)=\'goCentro(n.idCentro)\' >\n		<ion-card-content>\n				<div style="\n				display: inline-block;    width: 100%;\n				">\n				<img src="assets/imgs/fotoComercio.png" style="\n				display: inline-block;\n				height: 90px;\n				width: 90px !important;\n				vertical-align: top;\n				">\n				<div style="    display: inline-block;\n    width: calc(100% - 105px);\n    margin-left: 10px;\n				">\n				<span style="margin: 2px 0px 0px 0px;\n				font-size: 19px;\n				color: #333;">{{n.nombre}}</span>\n				<span style="    display: block;\n    font-size: 16px;\n    margin: 10px 0px;\n    font-weight: 800;\n    color: #EC527E;">${{n.pMin}} <span [hidden]=\'n.pMin == n.pMax\'>- ${{n.pMax}}</span></span>\n\n				<span class="itemComercio" >\n\n					<span style="  margin-right: 21px;  color: #888;\n    font-size: 15px;"><ion-icon [ngClass]="{\'colorGris\': n.cantRate==0}"  style=\'    margin-right: 8px;\n    color: rgb(249,199,53);\n    font-size: 21px;\n    vertical-align: middle;\' name="md-star"></ion-icon>{{n.rate  | number:\'1.1-2\'}} ({{n.cantRate\n}})</span>\n\n					<span style="     color: #888;\n    font-size: 15px;  "><ion-icon style=\'  margin-right: 8px;      vertical-align: middle;   font-size: 21px;color:#2FD99B;\' name="ios-pin"></ion-icon>{{n.distance | number:\'1.1-2\'}} Km</span>\n\n				</span>\n\n				</div>\n				</div>\n\n		</ion-card-content>\n		</ion-card>\n\n\n\n\n\n\n\n\n\n    </ion-list>\n\n\n</ion-content>\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n'/*ion-inline-end:"/Users/jose/Documents/beyouApp/beYou/src/pages/favoritos/favoritos.html"*/,
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["NavController"], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["NavParams"], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["ModalController"], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["LoadingController"], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["Events"], __WEBPACK_IMPORTED_MODULE_2__providers_api_api__["a" /* ApiProvider */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["AlertController"]])
+        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["NavController"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["NavController"]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["NavParams"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["NavParams"]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["ModalController"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["ModalController"]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["LoadingController"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["LoadingController"]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["Events"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["Events"]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_2__providers_api_api__["a" /* ApiProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__providers_api_api__["a" /* ApiProvider */]) === "function" && _f || Object, typeof (_g = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["AlertController"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["AlertController"]) === "function" && _g || Object])
     ], FavoritosPage);
     return FavoritosPage;
+    var _a, _b, _c, _d, _e, _f, _g;
 }());
 
 //# sourceMappingURL=favoritos.js.map
