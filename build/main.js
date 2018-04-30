@@ -1230,7 +1230,7 @@ var MyApp = (function () {
         console.log(pagina);
         if ('logout' == pagina) {
             if (navigator.facebookConnectPlugin) {
-                console.log('cerrarsesion');
+                console.log('cerrarsesionfb');
                 facebookConnectPlugin.logout(function (res) {
                     _this.events.publish('userLogout');
                 }, function (e) {
@@ -1239,6 +1239,7 @@ var MyApp = (function () {
                 });
             }
             else {
+                console.log('cerrarsesionemail');
                 this.events.publish('userLogout');
             }
         }
