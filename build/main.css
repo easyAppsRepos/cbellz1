@@ -31791,6 +31791,10 @@ ion-calendar {
   position: relative;
 }
 
+.ratingStar {
+  color: #FFCB19;
+}
+
 .itemReserva img {
   display: inline-block;
   vertical-align: top;
@@ -31798,13 +31802,8 @@ ion-calendar {
 }
 
 .alert-ios .alert-head {
-  background: #2FD99B !important;
-  color: white !important;
+  color: #444 !important;
   font-weight: 800 !important;
-}
-
-.alert-ios .alert-message {
-  background: #2FD99B !important;
 }
 
 .alert-ios .alert-radio-label {

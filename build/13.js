@@ -1,15 +1,14 @@
 webpackJsonp([13],{
 
-/***/ 426:
+/***/ 427:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CuponesPageModule", function() { return CuponesPageModule; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DetalleReservaPageModule", function() { return DetalleReservaPageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(15);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__cupones__ = __webpack_require__(450);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__pipes_pipes_module__ = __webpack_require__(440);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__detalle_reserva__ = __webpack_require__(452);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -19,104 +18,31 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
- //<--- here
-var CuponesPageModule = (function () {
-    function CuponesPageModule() {
+var DetalleReservaPageModule = (function () {
+    function DetalleReservaPageModule() {
     }
-    CuponesPageModule = __decorate([
+    DetalleReservaPageModule = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["NgModule"])({
             declarations: [
-                __WEBPACK_IMPORTED_MODULE_2__cupones__["a" /* CuponesPage */],
+                __WEBPACK_IMPORTED_MODULE_2__detalle_reserva__["a" /* DetalleReservaPage */],
             ],
             imports: [
-                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["IonicPageModule"].forChild(__WEBPACK_IMPORTED_MODULE_2__cupones__["a" /* CuponesPage */]),
-                __WEBPACK_IMPORTED_MODULE_3__pipes_pipes_module__["a" /* PipesModule */]
+                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["IonicPageModule"].forChild(__WEBPACK_IMPORTED_MODULE_2__detalle_reserva__["a" /* DetalleReservaPage */]),
             ],
         })
-    ], CuponesPageModule);
-    return CuponesPageModule;
+    ], DetalleReservaPageModule);
+    return DetalleReservaPageModule;
 }());
 
-//# sourceMappingURL=cupones.module.js.map
+//# sourceMappingURL=detalle-reserva.module.js.map
 
 /***/ }),
 
-/***/ 440:
+/***/ 452:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return PipesModule; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__filtrofav_filtrofav__ = __webpack_require__(441);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-
-
-var PipesModule = (function () {
-    function PipesModule() {
-    }
-    PipesModule = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["NgModule"])({
-            declarations: [__WEBPACK_IMPORTED_MODULE_1__filtrofav_filtrofav__["a" /* FiltrofavPipe */]],
-            imports: [],
-            exports: [__WEBPACK_IMPORTED_MODULE_1__filtrofav_filtrofav__["a" /* FiltrofavPipe */]]
-        })
-    ], PipesModule);
-    return PipesModule;
-}());
-
-//# sourceMappingURL=pipes.module.js.map
-
-/***/ }),
-
-/***/ 441:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return FiltrofavPipe; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-
-/**
- * Generated class for the FiltrofavPipe pipe.
- *
- * See https://angular.io/api/core/Pipe for more info on Angular Pipes.
- */
-var FiltrofavPipe = (function () {
-    function FiltrofavPipe() {
-    }
-    FiltrofavPipe.prototype.transform = function (items, callback) {
-        if (!items || !callback) {
-            return items;
-        }
-        return items.filter(function (item) { return callback(item); });
-    };
-    FiltrofavPipe = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Pipe"])({
-            name: 'filtrofav',
-        })
-    ], FiltrofavPipe);
-    return FiltrofavPipe;
-}());
-
-//# sourceMappingURL=filtrofav.js.map
-
-/***/ }),
-
-/***/ 450:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CuponesPage; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return DetalleReservaPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(15);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_api_api__ = __webpack_require__(105);
@@ -135,175 +61,61 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-
 /**
- * Generated class for the CuponesPage page.
+ * Generated class for the DetalleReservaPage page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
  */
-var CuponesPage = (function () {
-    function CuponesPage(navCtrl, navParams, modalCtrl, loadingCtrl, events, apiProvider, alertCtrl) {
+var DetalleReservaPage = (function () {
+    function DetalleReservaPage(navCtrl, navParams, modalCtrl, apiProvider, loadingController, events) {
         this.navCtrl = navCtrl;
         this.navParams = navParams;
         this.modalCtrl = modalCtrl;
-        this.loadingCtrl = loadingCtrl;
-        this.events = events;
         this.apiProvider = apiProvider;
-        this.alertCtrl = alertCtrl;
+        this.loadingController = loadingController;
+        this.events = events;
+        this.dataCentro = {};
     }
-    CuponesPage.prototype.ionViewDidLoad = function () {
-        var _this = this;
-        this.section = "one";
-        console.log('ionViewDidLosad CuponesPage');
-        this.apiProvider.verificarLogin()
-            .then(function (data) {
-            console.log(data);
-            if (data) {
-                _this.dataUser = data;
-                //this.menuActivo = true;
-            }
-            else {
-                console.log('error');
-                // this.menuActivo = false;
-            }
-            _this.getCupones(_this.dataUser.idCliente);
-        });
+    DetalleReservaPage.prototype.ionViewDidLoad = function () {
+        console.log('ionViewDidLoad DetalleReservaPage');
+        this.getDataCita(this.navParams.get('idCita'));
     };
-    CuponesPage.prototype.getCupones = function (idCliente) {
+    DetalleReservaPage.prototype.getEstado = function (idEstado) {
+        var estado = '';
+        idEstado == 1 ? estado = "Pendiente de confirmar" :
+            idEstado == 5 ? estado = "Reprogramada" :
+                idEstado == 2 ? estado = "Confimada" :
+                    idEstado == 3 ? estado = "Completada" :
+                        idEstado == 4 ? estado = "Cancelada" : estado = "";
+        return estado;
+    };
+    DetalleReservaPage.prototype.getDataCita = function (idCita) {
         var _this = this;
-        var dataE = { idCliente: idCliente };
+        var dataE = { idCita: idCita };
         console.log(dataE);
-        this.apiProvider.getCupones(dataE)
+        this.apiProvider.getDataCita(dataE)
             .then(function (data) {
             console.log(data);
             if (data) {
-                _this.cupones = data || [];
+                _this.dataCita = data['cita'][0] || [];
+                _this.servicios = data['servicios'] || [];
             }
             else {
                 console.log('Ha ocurrido un error');
             }
         });
     };
-    CuponesPage.prototype.presentAlert = function (titulo, mensaje) {
-        var alert = this.alertCtrl.create({
-            title: titulo,
-            subTitle: mensaje,
-            buttons: ['Cerrar']
-        });
-        alert.present();
-    };
-    CuponesPage.prototype.filtroDisponible = function (user) {
-        console.log(user);
-        return user.estado == 1;
-    };
-    CuponesPage.prototype.filtroUsado = function (user) {
-        console.log(user);
-        return user.estado == 2;
-    };
-    CuponesPage.prototype.canjear = function (codigo) {
-        console.log(codigo);
-        if (codigo) {
-            this.usarCodigo(codigo, this.dataUser.idCliente);
-        }
-        else {
-            this.presentAlert('Invalido', 'Cupon invalido');
-        }
-    };
-    CuponesPage.prototype.usarCodigo = function (codigo, idCliente) {
-        var _this = this;
-        var dataE = { codigo: codigo, idCliente: idCliente };
-        console.log(dataE);
-        this.apiProvider.canjearCupon(dataE)
-            .then(function (data) {
-            console.log(data);
-            if (data.insertId > 0) {
-                _this.getCupones(idCliente);
-                _this.presentAlert('Agregado', 'Cupon agregado correctamente');
-                _this.codigo = '';
-            }
-            else {
-                _this.presentAlert('Invalido', 'Cupon invalido');
-            }
-        });
-    };
-    CuponesPage.prototype.filtroExpirado = function (user) {
-        console.log(user);
-        return user.estado == 3;
-    };
-    CuponesPage.prototype.filtroCategoria = function () {
-        //console.log('ionViewDidLoad FavoritosPage');
-        this.showCheckbox();
-    };
-    CuponesPage.prototype.showCheckbox = function () {
-        var _this = this;
-        var alert = this.alertCtrl.create({ cssClass: 'alertCustomCss' });
-        alert.setTitle('Filtra por servicio');
-        alert.addInput({
-            type: 'checkbox',
-            label: 'Rostro y Cuerpo',
-            value: 'Rostro y Cuerpo',
-            checked: true
-        });
-        alert.addInput({
-            type: 'checkbox',
-            label: 'Peluqueria',
-            value: 'Peluqueria'
-        });
-        alert.addInput({
-            type: 'checkbox',
-            label: 'Uñas',
-            value: 'Uñas'
-        });
-        alert.addInput({
-            type: 'checkbox',
-            label: 'Masaje',
-            value: 'Masaje',
-            checked: true
-        });
-        alert.addInput({
-            type: 'checkbox',
-            label: 'Depilacion',
-            value: 'Depilacion'
-        });
-        alert.addInput({
-            type: 'checkbox',
-            label: 'Bienestar',
-            value: 'Bienestar'
-        });
-        alert.addInput({
-            type: 'checkbox',
-            label: 'Paquetes',
-            value: 'Paquetes',
-            checked: true
-        });
-        alert.addInput({
-            type: 'checkbox',
-            label: 'Ofertas',
-            value: 'Ofertas'
-        });
-        alert.addButton('Cancel');
-        alert.addButton({
-            text: 'Seleccionar',
-            handler: function (data) {
-                console.log('Checkbox data:', data);
-                _this.testCheckboxOpen = false;
-                _this.testCheckboxResult = data;
-            }
-        });
-        alert.present();
-    };
-    CuponesPage = __decorate([
+    DetalleReservaPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-            selector: 'page-cupones',template:/*ion-inline-start:"/Users/jose/Documents/beyouApp/beYou/src/pages/cupones/cupones.html"*/'<!--\n  Generated template for the CuponesPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar>\n\n   <ion-buttons start>\n    <button ion-button menuToggle>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n    </ion-buttons>\n\n    \n    <ion-title>Cupones</ion-title>\n\n\n\n          <ion-buttons end>\n      <button (click)=\'filtroCategoria()\' ion-button icon-only>\n        <ion-icon name="ios-options"></ion-icon>\n      </button>\n\n\n       \n\n      </ion-buttons>\n\n\n\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content >\n\n<div>\n\n\n<!-- 	<span style="    vertical-align: middle;\n    height: 100%;\n    font-size: 17px;\n    color: #333;\n    margin-left: 12px;\n    margin-top: 23px;\n    display: inline-block;">Ingresar coupon</span> -->\n  <ion-item class=\'redem\' >\n    <ion-label style=\'color:#555\' stacked>Cupon</ion-label>\n    <ion-input  [(ngModel)]="codigo" type="text" placeholder="Ingresar cupon"></ion-input>\n  </ion-item>\n\n\n	<button ion-button   style="    padding: 14px 30px;\n    color: white;\n    background-color: #2FD99B;\n    margin: 12px 0px;\n    float: right;\n    margin-right: 9px;\n    border-radius: 40px;\n    font-size: 16px;" (click)=\'canjear(codigo)\'>Usar coupon</button>\n\n</div>\n\n\n<ion-segment mode="md" [(ngModel)]="section" style=\'    border-top-style: solid;\n    border-top-width: 2px;\n    border-top-color: rgba(0, 0, 0, 0.1);\n    background: white;\' >\n\n\n    <ion-segment-button   style=\'    border-right: solid 2px rgb(0,0,0,0.1);  font-size: 15px;text-transform: none !important;\' value="one" >\n	       <span> \n	       <img  *ngIf=\'section=="one"\' style=\'vertical-align: middle;margin-right: 10px;\' src="assets/imgs/disponibleBlanco.png">\n	       <img  *ngIf=\'!(section=="one")\' style=\'vertical-align: middle;margin-right: 10px;\' src="assets/imgs/disponibleGris.png">\n	        Disponible</span>\n	    </ion-segment-button>\n\n\n\n	    <ion-segment-button  value="two" style=\'    border-right: solid 2px rgb(0,0,0,0.1); \n    	font-size: 15px;text-transform: none !important;\' >\n    	<span>\n	      <img  *ngIf=\'section=="two"\' style=\'vertical-align: middle;margin-right: 10px;\' src="assets/imgs/usadosBlanco.png"> \n	      <img  *ngIf=\'!(section=="two")\'  style=\'vertical-align: middle;margin-right: 10px;\' src="assets/imgs/usadosGris.png"> \n\n	      \n\n	      Usado\n	       </span>\n	    </ion-segment-button>\n\n\n	        <ion-segment-button   style=\'font-size: 15px;text-transform: none !important;\' value="tres" >\n	       <span> \n	       <img  *ngIf=\'section=="tres"\' style=\'vertical-align: middle;margin-right: 10px;\' src="assets/imgs/expireBlanco.png">\n	       <img  *ngIf=\'!(section=="tres")\' style=\'vertical-align: middle;margin-right: 10px;\' src="assets/imgs/expireGris.png">\n	        Expirado</span>\n	    </ion-segment-button>\n\n\n\n</ion-segment>\n\n\n\n\n<div [ngSwitch]="section">\n    <ion-list mode="md" *ngSwitchCase="\'one\'">\n\n\n<div class=\'noResultado\' *ngIf="(cupones | filtrofav: filtroDisponible)?.length === 0" >No tienes cupones disponibles</div>\n\n\n		<ion-card   *ngFor="let n of cupones | filtrofav: filtroDisponible">\n\n		<ion-card-content>\n				<div style="\n				display: inline-block;    width: 100%;\n				">\n				<img src="assets/imgs/fotoComercio.png" style="\n				display: inline-block;\n				height: 90px;\n				width: 90px !important;\n				vertical-align: top;\n				">\n				<div style="    display: inline-block;\n    width: calc(100% - 105px);\n    margin-left: 10px;\n				">\n				\n				<span style="    display: block;\n    font-size: 16px;\n\n    font-weight: 800;\n    color: #EC527E;">{{n.nombreCupon}}</span>\n\n    <span style="margin: 2px 0px 0px 0px;\n				font-size: 19px;\n				color: #333;display:block">{{n.nombreCentro}}</span>\n\n				<span class="itemComercio" style="    margin-top: 13px;\n    display: block;\n}">\n\n					<span style="  margin-right: 21px;  color: #888;\n    font-size: 15px;"><ion-icon style=\'    margin-right: 8px;\n   color:#2FD99B;\n    font-size: 21px;\n    vertical-align: middle;\' name="md-calendar"></ion-icon>Expira {{n.fechaExpira?.split(\'T\')[0]}}</span>\n\n					<span style="     color: #888;\n    font-size: 15px;  "><ion-icon style=\'  margin-right: 8px;      vertical-align: middle;   font-size: 21px;color:rgb(249,199,0);\n    font-weight: 800;\' name="ios-add-circle-outline"></ion-icon>Usar</span>\n\n				</span>\n\n				</div>\n				</div>\n\n		</ion-card-content>\n		</ion-card>\n\n\n\n\n		\n\n\n\n    </ion-list>\n  \n\n    <ion-list mode="md" *ngSwitchCase="\'two\'">\n\n    	<div class=\'noResultado\' *ngIf="(cupones | filtrofav: filtroUsado)?.length === 0" >No has usado ningun cupon aun</div>\n		<ion-card  *ngFor="let n of cupones | filtrofav: filtroUsado">\n\n		<ion-card-content>\n				<div style="\n				display: inline-block;    width: 100%;\n				">\n				<img src="assets/imgs/fotoComercio.png" style="\n				display: inline-block;\n				height: 90px;\n				width: 90px !important;\n				vertical-align: top;\n				">\n				<div style="    display: inline-block;\n    width: calc(100% - 105px);\n    margin-left: 10px;\n				">\n				\n				<span style="    display: block;\n    font-size: 16px;\n\n    font-weight: 800;\n    color: #EC527E;">{{n.nombreCupon}}</span>\n\n    <span style="margin: 2px 0px 0px 0px;\n				font-size: 19px;\n				color: #333;display:block">{{n.nombreCentro}}</span>\n\n				<span class="itemComercio" style="    margin-top: 13px;\n    display: block;\n}">\n\n					<span style="  margin-right: 21px;  color: #888;\n    font-size: 15px;"><ion-icon style=\'    margin-right: 8px;\n   color:#2FD99B;\n    font-size: 21px;\n    vertical-align: middle;\' name="md-calendar"></ion-icon>{{n.fechaUso?.split(\'T\')[0]}}</span>\n\n					<span style="     color: #888;\n    font-size: 15px;  "><ion-icon style=\'  margin-right: 8px;      vertical-align: middle;   font-size: 21px;color:#2FD99B;\n    font-weight: 800;\' name="md-checkbox"></ion-icon>Usado</span>\n\n				</span>\n\n				</div>\n				</div>\n\n		</ion-card-content>\n		</ion-card>\n\n\n\n\n\n\n    </ion-list>\n\n\n    <ion-list mode="md" *ngSwitchCase="\'tres\'">\n\n\n<div class=\'noResultado\' *ngIf="(cupones | filtrofav: filtroExpirado)?.length === 0" >No tienes cupones expirados</div>\n\n		<ion-card *ngFor="let n of cupones | filtrofav: filtroExpirado">\n\n		<ion-card-content>\n				<div style="\n				display: inline-block;    width: 100%;\n				">\n				<img src="assets/imgs/fotoComercio.png" style="\n				display: inline-block;\n				height: 90px;\n				width: 90px !important;\n				vertical-align: top;\n				">\n				<div style="    display: inline-block;\n    width: calc(100% - 105px);\n    margin-left: 10px;\n				">\n				\n				<span style=" text-decoration: line-through;   display: block;\n    font-size: 16px;\n\n    font-weight: 800;\n    color: #EC527E;">{{n.nombreCupon}}</span>\n\n    <span style="margin: 2px 0px 0px 0px;\n				font-size: 19px;\n				color: #333;display:block">{{n.nombreCentro}}</span>\n\n				<span class="itemComercio" style="    margin-top: 13px;\n    display: block;\n}">\n\n					<span style="  text-decoration: line-through; margin-right: 21px;  color: #888;\n    font-size: 15px;"><ion-icon style=\'    margin-right: 8px;\n   color:#EC527E;\n    font-size: 21px;\n    vertical-align: middle;\' name="md-calendar"></ion-icon>{{n.fechaExpira?.split(\'T\')[0]}}</span>\n\n					<span style="     color: #888;\n    font-size: 15px;  "><ion-icon style=\'  margin-right: 8px;      vertical-align: middle;   font-size: 21px;color:#EC527E;\n    font-weight: 800;\' name="md-close-circle"></ion-icon>Expirado</span>\n\n				</span>\n\n				</div>\n				</div>\n\n		</ion-card-content>\n		</ion-card>\n\n\n\n\n    </ion-list>\n</div>\n\n\n</ion-content>\n'/*ion-inline-end:"/Users/jose/Documents/beyouApp/beYou/src/pages/cupones/cupones.html"*/,
+            selector: 'page-detalle-reserva',template:/*ion-inline-start:"/Users/jose/Documents/beyouApp/beYou/src/pages/detalle-reserva/detalle-reserva.html"*/'<!--\n  Generated template for the DetalleReservaPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar>\n    <ion-title>Mi Reservacion</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content padding>\n\n\n\n\n	<div>\n		<div><span  class="tituloBook">Reserva ID</span> <span  class="subBook">{{dataCita?.idCita}}</span></div>\n		<div style="margin-top: 12px;"><span class="tituloBook">Estado</span> <span class="subBook">{{getEstado(dataCita?.estado)}}</span></div>\n\n        <div *ngIf=\'dataCita?.estado == 5\' >\n		<span style="    font-size: 15px;\n    color: #777;\n    display: inline-block;\n    margin-top: 12px;">Motivo de reprogramacion</span>\n		<p class="parrafoHead">{{dataCita?.comentarioEstado}}</p>\n        </div>\n\n		<div style="\n    display: inline-block;    width: 100%;    margin-top: 20px;\n">\n	<img src="assets/imgs/fotoComercio.png" style="\n    display: inline-block;\n    height: 90px;\n    width: 90px !important;\n    vertical-align: top;\n">\n	<div style="\n    display: inline-block;\n    width: calc(100% - 114px);\n    margin-left:  20px;\n">\n		<span style="margin: 2px 0px 0px 0px;\n    font-size: 19px;\n    color: #333;">{{dataCita?.nombre}}</span>\n		<span style="margin-top:10px" class="itemComercio">{{dataCita?.direccion}}</span>\n		<span style="margin-top:10px" class="itemComercio"></span>\n\n\n	</div>\n	</div>\n\n\n\n	</div>\n\n\n <div style="    width: 100%;\n    text-align: center;\n margin-top: 20px;">\n\n	<button  color=\'headerColor\' ion-button  style="    width: 40%;\n    margin-right: 5%;\n    border-radius: 70px;" > <img style="margin-right:10px" src="assets/imgs/telefono.png"> Llamar</button> \n\n	<button  style=" border-radius: 70px;   width: 40%;\n    margin-left: 5%;"  color=\'verdeApp\' ion-button> <img style="margin-right:10px" src="assets/imgs/agregadosBlanco.png">  Mapa</button>\n\n\n\n</div>\n\n<div style="margin-top:13px"><span  style=\' \n    width: 50px;\n    margin-left: 8px;\n    font-size: 15px;\' class="tituloBook">Fecha</span> <span  style=\'    font-size: 15px;\' class="subBook">{{dataCita?.horaInicio}}</span></div>\n\n\n<div  *ngFor="let n of servicios">\n\n<div class="separator"></div>\n\n<div style="\n    width: 100%;\n    display: inline-block;\n">\n	\n	<img src="assets/imgs/servicio1.png" style="\n    display: inline-block;\n    vertical-align: top;\n    height: 54px;\n    width: 54px;\n">\n	<div style="\n    display: inline-block;\n    width: calc(100% - 83px);\n    margin-left: 22px;\n">\n\n<span style="     color: #EC527E !important;\n    font-size: 16px;\n    float: right;\n    margin-right: 47px;">${{n.precio}}</span>\n\n\n		<span style="\n    font-size: 19px;\n    color:  #333;\n">{{n.nombre}}</span>\n		<div style="    margin-top: 7px;"><span style="    color: #333;\n    font-size: 12px;">{{n.nombreCategoria}}</span>	<span style="margin-right: 20px;     margin-left: 20px;   color: #333;\n    font-size: 12px;"><ion-icon style=\'margin-right: 5px\' name="ios-time-outline"></ion-icon>{{n.duracion}} min</span></div>\n	</div>\n</div>\n\n</div>\n\n\n\n<div class="separator"></div>\n\n\n	<div style="\n    margin-bottom: 15px;\n\n"><span style="\n    font-size: 16px;\n    color: #333;\n">Total</span> <span style="    color: #EC527E !important;\n    font-size: 16px;\n    margin-left: 47px;">${{dataCita?.total}}</span></div>\n\n\n\n <div style="    width: 100%;\n    text-align: center;\n margin-top: 20px; margin-bottom: 30px;">\n\n	<button  color=\'headerColor\' ion-button  style="    width: 40%;\n    margin-right: 5%;\n    border-radius: 70px;" > Cancelar</button> \n\n	<button  style=" border-radius: 70px;   width: 40%;\n    margin-left: 5%;"  color=\'verdeApp\' ion-button> Aceptar </button>\n\n\n\n</div>\n\n\n\n\n</ion-content>\n'/*ion-inline-end:"/Users/jose/Documents/beyouApp/beYou/src/pages/detalle-reserva/detalle-reserva.html"*/,
         }),
-        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["NavController"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["NavController"]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["NavParams"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["NavParams"]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["ModalController"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["ModalController"]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["LoadingController"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["LoadingController"]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["Events"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["Events"]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_2__providers_api_api__["a" /* ApiProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__providers_api_api__["a" /* ApiProvider */]) === "function" && _f || Object, typeof (_g = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["AlertController"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["AlertController"]) === "function" && _g || Object])
-    ], CuponesPage);
-    return CuponesPage;
-    var _a, _b, _c, _d, _e, _f, _g;
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["NavController"], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["NavParams"], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["ModalController"], __WEBPACK_IMPORTED_MODULE_2__providers_api_api__["a" /* ApiProvider */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["LoadingController"], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["Events"]])
+    ], DetalleReservaPage);
+    return DetalleReservaPage;
 }());
 
-//# sourceMappingURL=cupones.js.map
+//# sourceMappingURL=detalle-reserva.js.map
 
 /***/ })
 

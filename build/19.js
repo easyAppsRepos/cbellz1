@@ -5,10 +5,10 @@ webpackJsonp([19],{
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AddserviciosPageModule", function() { return AddserviciosPageModule; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AjustesPageModule", function() { return AjustesPageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(15);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__addservicios__ = __webpack_require__(444);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ajustes__ = __webpack_require__(445);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -18,31 +18,31 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
-var AddserviciosPageModule = (function () {
-    function AddserviciosPageModule() {
+var AjustesPageModule = (function () {
+    function AjustesPageModule() {
     }
-    AddserviciosPageModule = __decorate([
+    AjustesPageModule = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["NgModule"])({
             declarations: [
-                __WEBPACK_IMPORTED_MODULE_2__addservicios__["a" /* AddserviciosPage */],
+                __WEBPACK_IMPORTED_MODULE_2__ajustes__["a" /* AjustesPage */],
             ],
             imports: [
-                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["IonicPageModule"].forChild(__WEBPACK_IMPORTED_MODULE_2__addservicios__["a" /* AddserviciosPage */]),
+                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["IonicPageModule"].forChild(__WEBPACK_IMPORTED_MODULE_2__ajustes__["a" /* AjustesPage */]),
             ],
         })
-    ], AddserviciosPageModule);
-    return AddserviciosPageModule;
+    ], AjustesPageModule);
+    return AjustesPageModule;
 }());
 
-//# sourceMappingURL=addservicios.module.js.map
+//# sourceMappingURL=ajustes.module.js.map
 
 /***/ }),
 
-/***/ 444:
+/***/ 445:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AddserviciosPage; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AjustesPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(15);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -57,29 +57,29 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 /**
- * Generated class for the AddserviciosPage page.
+ * Generated class for the AjustesPage page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
  */
-var AddserviciosPage = (function () {
-    function AddserviciosPage(navCtrl, navParams) {
+var AjustesPage = (function () {
+    function AjustesPage(navCtrl, navParams) {
         this.navCtrl = navCtrl;
         this.navParams = navParams;
     }
-    AddserviciosPage.prototype.ionViewDidLoad = function () {
-        console.log('ionViewDidLoad AddserviciosPage');
+    AjustesPage.prototype.ionViewDidLoad = function () {
+        console.log('ionViewDidLoad AjustesPage');
     };
-    AddserviciosPage = __decorate([
+    AjustesPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-            selector: 'page-addservicios',template:/*ion-inline-start:"/Users/jose/Documents/beyouApp/beYou/src/pages/addservicios/addservicios.html"*/'<!--\n  Generated template for the AddserviciosPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar>\n    <ion-title>Reserva</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content padding>\n\n\n<ion-card>\n\n  <ion-card-header>\n    Card Header\n  </ion-card-header>\n\n  <ion-card-content>\n    <!-- Add card content here! -->\n  </ion-card-content>\n\n</ion-card>\n\n\n\n\n</ion-content>\n'/*ion-inline-end:"/Users/jose/Documents/beyouApp/beYou/src/pages/addservicios/addservicios.html"*/,
+            selector: 'page-ajustes',template:/*ion-inline-start:"/Users/jose/Documents/beyouApp/beYou/src/pages/ajustes/ajustes.html"*/'<!--\n  Generated template for the AjustesPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar>\n\n   <ion-buttons start>\n    <button ion-button menuToggle>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n    </ion-buttons>\n\n    \n    <ion-title>Ajustes</ion-title>\n\n\n\n  </ion-navbar>\n\n</ion-header>\n\n\n\n<ion-content style=\'background-color: #fafafa; \' >\n\n\n          <ion-list>\n\n    <ion-item class="claseItem " [color]=\'verdeApp\'>\n    <ion-label>Notificaciones</ion-label>\n    <ion-toggle [color]=\'verdeApp\' [(ngModel)]="notis"></ion-toggle>\n  </ion-item>\n\n\n          <button  class="claseItem"  ion-item  >\n          Notificaciones\n          <img style=\'float: right;width: 20px;\' src="assets/imgs/ofertasVerde.png">\n          </button>\n                    <button  class="claseItem"  ion-item  >\n          Sobre Beyou\n          <img style=\'float: right;width: 20px;\' src="assets/imgs/ofertasVerde.png">\n          </button>\n\n          <button  class="claseItem"  ion-item  >\n          Terminos de uso\n          <img style=\'float: right;width: 20px;\' src="assets/imgs/ofertasVerde.png">\n          </button>\n\n\n          <button  class="claseItem"  ion-item  >\n          Evalua el app en la tienda\n          <img style=\'float: right;width: 20px;\' src="assets/imgs/ofertasVerde.png">\n          </button>\n\n\n                    <button  class="claseItem"  ion-item  >\n          Envianos un mensaje\n          <img style=\'float: right;width: 20px;\' src="assets/imgs/ofertasVerde.png">\n          </button>\n\n                    <button  class="claseItem"  ion-item  >\n          BeYou para negocios\n          <img style=\'float: right;width: 20px;\' src="assets/imgs/ofertasVerde.png">\n          </button>\n\n\n\n      \n\n\n\n\n          </ion-list>\n\n\n</ion-content>\n'/*ion-inline-end:"/Users/jose/Documents/beyouApp/beYou/src/pages/ajustes/ajustes.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["NavController"], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["NavParams"]])
-    ], AddserviciosPage);
-    return AddserviciosPage;
+    ], AjustesPage);
+    return AjustesPage;
 }());
 
-//# sourceMappingURL=addservicios.js.map
+//# sourceMappingURL=ajustes.js.map
 
 /***/ })
 
