@@ -236,7 +236,9 @@ var ListaServiciosPage = (function () {
         }, { enableHighAccuracy: true, timeout: 30000 });
     };
     ListaServiciosPage.prototype.openBusqueda = function () {
-        this.presentProfileModal();
+        this.navCtrl.push('BuscarModalPage');
+        //this.presentProfileModal();
+        //
     };
     ListaServiciosPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
