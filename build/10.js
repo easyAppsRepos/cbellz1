@@ -123,13 +123,17 @@ var MapaPage = (function () {
             // create CameraPosition
             var position = {
                 target: { lat: _this.myPosition.latitude, lng: _this.myPosition.longitude },
-                zoom: 12,
+                zoom: 17,
                 tilt: 30
             };
             _this.map.one(plugin.google.maps.event.MAP_READY, function () {
                 console.log('Map is ready!');
                 // move the map's camera to position
-                _this.map.moveCamera(position);
+                //this.map.moveCamera(position);
+                _this.map.addMarker({
+                    position: { lng: -84.212576, lat: 10.0028923 },
+                    title: "Marcador ejemplo"
+                });
             });
         };
     }
