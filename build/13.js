@@ -82,7 +82,7 @@ var FavoritosPage = (function () {
     }
     FavoritosPage.prototype.ionViewDidLoad = function () {
         var _this = this;
-        this.getServiciosGPS();
+        //this.getServiciosGPS();
         this.apiProvider.verificarLogin()
             .then(function (data) {
             console.log(data);
@@ -104,7 +104,7 @@ var FavoritosPage = (function () {
            this.longitudePerson = -84.2307427;
        */
         var _this = this;
-        var loading = this.loadingController.create({ content: "Obteniendo ubicacion" });
+        var loading = this.loadingCtrl.create({ content: "Obteniendo ubicacion" });
         loading.present();
         console.log('gps');
         navigator.geolocation.getCurrentPosition(function (pos) {
