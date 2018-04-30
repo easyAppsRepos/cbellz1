@@ -79,28 +79,32 @@ var ConfirmarReservaPage = (function () {
         this.events = events;
         this.apiProvider = apiProvider;
         this.confirmacionLista = function () {
-            if (_this.dataCentro.idCliente > 0) {
-                var loading_1 = _this.loadingCtrl.create({ content: "Creando Cita..." });
-                loading_1.present();
-                console.log(_this.dataCentro);
-                _this.apiProvider.addCita(_this.dataCentro)
-                    .then(function (data) {
-                    if (data) {
-                        console.log(data);
-                        if (data.insertId > 0) {
-                            _this.navCtrl.setRoot('ReservaHechaPage');
+            _this.apiProvider.verificarLogin()
+                .then(function (data) {
+                console.log(data);
+                if (data) {
+                    var loading_1 = _this.loadingCtrl.create({ content: "Creando Cita..." });
+                    loading_1.present();
+                    _this.dataCentro.idCliente = data.idCliente;
+                    console.log(_this.dataCentro);
+                    _this.apiProvider.addCita(_this.dataCentro)
+                        .then(function (data) {
+                        if (data) {
+                            console.log(data);
+                            if (data.insertId > 0) {
+                                _this.navCtrl.setRoot('ReservaHechaPage');
+                            }
                         }
-                    }
-                    else {
-                        console.log('Ha ocurrido un error');
-                    }
-                    loading_1.dismissAll();
-                });
-            }
-            else {
-                console.log('login');
-                _this.menuCtrl.open();
-            }
+                        else {
+                            console.log('Ha ocurrido un error');
+                        }
+                        loading_1.dismissAll();
+                    });
+                }
+                else {
+                    _this.menuCtrl.open();
+                }
+            });
         };
         this.dataCentro = {};
         this.idCliente = 0;
