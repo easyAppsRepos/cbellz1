@@ -19658,7 +19658,7 @@ ion-refresher-content {
   -webkit-transform-origin: center;
   transform-origin: center;
   font-size: 30px;
-  color: #000;
+  color: #999;
   -webkit-transition: 200ms;
   transition: 200ms;
 }
@@ -19667,19 +19667,19 @@ ion-refresher-content {
 .refresher-refreshing-text {
   text-align: center;
   font-size: 16px;
-  color: #000;
+  color: #999;
 }
 
 .refresher-refreshing .spinner-ios line,
 .refresher-refreshing .spinner-ios-small line,
 .refresher-refreshing .spinner-crescent circle {
-  stroke: #000;
+  stroke: #999;
 }
 
 .refresher-refreshing .spinner-bubbles circle,
 .refresher-refreshing .spinner-circles circle,
 .refresher-refreshing .spinner-dots circle {
-  fill: #000;
+  fill: #999;
 }
 
 ion-refresher-content[state=pulling] .refresher-pulling {
@@ -31518,7 +31518,7 @@ ion-navbar.toolbar {
 }
 
 .alertCustomCss {
-  color: white;
+  color: white !important;
 }
 
 .alertCustomCss button {
@@ -31647,7 +31647,6 @@ list-ios .item-block .item-inner {
 .barraProgress {
   background-color: #2FD99B;
   height: 5px;
-  width: 85%;
   position: absolute;
   left: 0;
   margin-top: -2px;
@@ -31852,12 +31851,13 @@ page-ajustes .list-ios > .item-block:last-child, page-ajustes .list-ios > .item-
 }
 
 page-ayuda .faqRespuesta {
-  color: #444;
+  color: #555;
   margin: 0px !important;
   padding: 20px;
   font-size: 16px;
   font-weight: normal;
   white-space: normal;
+  font-family: unset;
 }
 
 page-buscar-modal .content-ios {
@@ -31890,6 +31890,26 @@ page-buscar-modal .checkbox-ios .checkbox-icon {
   height: 26px;
 }
 
+page-calificar .rat {
+  color: #555;
+  font-size: 16px;
+  margin: 16px;
+}
+
+page-calificar ul {
+  padding: 0px;
+}
+
+page-calificar ul.rating li {
+  padding: 5px 10px !important;
+  background: none;
+  color: #ffb400;
+}
+
+page-calificar ul.rating li ion-icon {
+  font-size: 30px;
+}
+
 page-confirmar-reserva .content-ios {
   background-color: #f7f8f9;
 }
@@ -31909,6 +31929,20 @@ page-confirmar-reserva .separator {
 }
 
 page-confirmar-reserva .item-ios.item-block .item-inner {
+  border-bottom: none !important;
+}
+
+page-cuenta .itemActi {
+  border: solid 1px lightgray;
+  padding: 2px;
+}
+
+page-cuenta page-cuenta .list-ios > .item-block:last-child, page-cuenta page-cuenta .list-ios > .item-wrapper:last-child .item-block {
+  border-bottom: none !important;
+  border-color: none !important;
+}
+
+page-cuenta .list-ios > .item-block:last-child, page-cuenta .list-ios > .item-wrapper:last-child .item-block {
   border-bottom: none !important;
 }
 
@@ -32025,6 +32059,10 @@ page-detalle-reserva .separator {
   background: rgba(230, 230, 230, 0.74);
   margin-left: 32px;
   margin: 18px 32px;
+}
+
+page-lista-servicios .scroll-content {
+  border: none !important;
 }
 
 page-lista-servicios .content-ios {
@@ -32186,6 +32224,10 @@ page-modal-services .list {
 .segment-md .segment-button.activated {
   border-color: #2FD99B;
   opacity: 1;
+}
+
+page-nosotros .linkRedes {
+  margin: 13px;
 }
 
 page-ofertas .content-ios {
@@ -32417,4 +32459,13 @@ page-reserva ion-footer .toolbar-ios {
 
 page-reserva-hecha .content-ios {
   background-color: #f7f8f9;
+}
+
+page-resultados .tagResultado {
+  background-color: #2FD99B;
+  color: #fafafa;
+  display: inline-block;
+  padding: 11px;
+  margin: 2px;
+  border-radius: 3px;
 }

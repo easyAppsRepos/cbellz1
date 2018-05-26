@@ -1,14 +1,14 @@
 webpackJsonp([17],{
 
-/***/ 423:
+/***/ 430:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ConfirmarReservaPageModule", function() { return ConfirmarReservaPageModule; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DemoPageModule", function() { return DemoPageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(15);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__confirmar_reserva__ = __webpack_require__(449);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(14);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__demo__ = __webpack_require__(460);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -18,34 +18,33 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
-var ConfirmarReservaPageModule = (function () {
-    function ConfirmarReservaPageModule() {
+var DemoPageModule = (function () {
+    function DemoPageModule() {
     }
-    ConfirmarReservaPageModule = __decorate([
+    DemoPageModule = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["NgModule"])({
             declarations: [
-                __WEBPACK_IMPORTED_MODULE_2__confirmar_reserva__["a" /* ConfirmarReservaPage */],
+                __WEBPACK_IMPORTED_MODULE_2__demo__["a" /* DemoPage */],
             ],
             imports: [
-                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["IonicPageModule"].forChild(__WEBPACK_IMPORTED_MODULE_2__confirmar_reserva__["a" /* ConfirmarReservaPage */]),
+                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["IonicPageModule"].forChild(__WEBPACK_IMPORTED_MODULE_2__demo__["a" /* DemoPage */]),
             ],
         })
-    ], ConfirmarReservaPageModule);
-    return ConfirmarReservaPageModule;
+    ], DemoPageModule);
+    return DemoPageModule;
 }());
 
-//# sourceMappingURL=confirmar-reserva.module.js.map
+//# sourceMappingURL=demo.module.js.map
 
 /***/ }),
 
-/***/ 449:
+/***/ 460:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ConfirmarReservaPage; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return DemoPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(15);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_api_api__ = __webpack_require__(105);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(14);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -57,100 +56,37 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 
 
-
-
-
-
-
 /**
- * Generated class for the ConfirmarReservaPage page.
+ * Generated class for the DemoPage page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
  */
-var ConfirmarReservaPage = (function () {
-    function ConfirmarReservaPage(navCtrl, navParams, modalCtrl, menuCtrl, loadingCtrl, events, apiProvider) {
-        var _this = this;
+var DemoPage = (function () {
+    function DemoPage(navCtrl, navParams) {
         this.navCtrl = navCtrl;
         this.navParams = navParams;
-        this.modalCtrl = modalCtrl;
-        this.menuCtrl = menuCtrl;
-        this.loadingCtrl = loadingCtrl;
-        this.events = events;
-        this.apiProvider = apiProvider;
-        this.confirmacionLista = function () {
-            _this.apiProvider.verificarLogin()
-                .then(function (data) {
-                console.log(data);
-                if (data) {
-                    var loading_1 = _this.loadingCtrl.create({ content: "Creando Cita..." });
-                    loading_1.present();
-                    _this.dataCentro.idCliente = data.idCliente;
-                    console.log(_this.dataCentro);
-                    _this.apiProvider.addCita(_this.dataCentro)
-                        .then(function (data) {
-                        if (data) {
-                            console.log(data);
-                            if (data.insertId > 0) {
-                                _this.navCtrl.setRoot('ReservaHechaPage');
-                            }
-                        }
-                        else {
-                            console.log('Ha ocurrido un error');
-                        }
-                        loading_1.dismissAll();
-                    });
-                }
-                else {
-                    _this.menuCtrl.open();
-                }
-            });
-        };
-        this.dataCentro = {};
-        this.idCliente = 0;
     }
-    ConfirmarReservaPage.prototype.ionViewDidLoad = function () {
-        var _this = this;
-        console.log('ionViewDidLoad ConfirmarReservaPage');
-        this.apiProvider.getCarrito()
-            .then(function (data) {
-            console.log(data);
-            _this.dataCentro.servicios = data;
-        });
-        this.apiProvider.getTotal()
-            .then(function (data) {
-            console.log(data);
-            _this.dataCentro.total = data;
-        });
-        this.apiProvider.verificarLogin()
-            .then(function (data) {
-            console.log(data);
-            if (data) {
-                _this.idCliente = data.idCliente;
-                console.log(_this.idCliente);
-            }
-            else {
-                _this.idCliente = 0;
-            }
-            _this.dataCentro.fecha = _this.navParams.get('fecha');
-            _this.dataCentro.hora = _this.navParams.get('hora');
-            _this.dataCentro.data = _this.navParams.get('centro');
-            _this.dataCentro.idEmpleado = _this.navParams.get('idEmpleado');
-            _this.dataCentro.idCliente = _this.idCliente;
-        });
-        console.log(this.dataCentro);
+    DemoPage.prototype.ionViewDidLoad = function () {
+        console.log('ionViewDidLoad DemoPage');
     };
-    ConfirmarReservaPage = __decorate([
+    DemoPage.prototype.siguienteSlide = function () {
+        console.log('dasd');
+        this.slider.slideNext();
+    };
+    DemoPage.prototype.iniciarApp = function () {
+        this.navCtrl.setRoot('InicioPage');
+    };
+    DemoPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-            selector: 'page-confirmar-reserva',template:/*ion-inline-start:"/Users/jose/Documents/beyouApp/beYou/src/pages/confirmar-reserva/confirmar-reserva.html"*/'<!--\n  Generated template for the ConfirmarReservaPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar>\n    <ion-title>ConfirmarReserva</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content padding>\n\n\n\n<div style="\n    display: inline-block;    width: 100%;\n">\n	<img src="assets/imgs/fotoComercio.png" style="\n    display: inline-block;\n    height: 90px;\n    width: 90px !important;\n    vertical-align: top;\n">\n	<div style="\n    display: inline-block;\n    width: calc(100% - 114px);\n    margin-left:  20px;\n">\n		<span style="margin: 2px 0px 0px 0px;\n    font-size: 19px;\n    color: #333;">{{dataCentro.data?.nombre}}</span>\n    <span class="itemComercio"></span>\n	<!-- 	<span class="itemComercio">{{dataCentro.data?.direccion}}</span>\n		<span class="itemComercio">City Name, Country</span> -->\n		<span class="itemComercio" style="margin-top:10px !important">Fecha <span style="margin-left: 10px;color:#EC527E !important">{{dataCentro?.fecha}}</span></span>\n\n                <span class="itemComercio" style="margin-top:10px !important">Hora <span style="margin-left: 10px;color:#EC527E !important">{{dataCentro?.hora}}</span></span>\n\n\n	</div>\n\n\n	</div>\n\n\n\n\n<div class="separator"></div>\n\n<div *ngFor="let n of dataCentro.servicios" style="\n    width: 100%;\n    display: inline-block;\n">\n	\n	<img src="assets/imgs/servicio1.png" style="\n    display: inline-block;\n    vertical-align: top;\n    height: 54px;\n    width: 54px;\n">\n	<div style="\n    display: inline-block;\n    width: calc(100% - 83px);\n    margin-left: 22px;\n">\n\n<span style="     color: #EC527E !important;\n    font-size: 16px;\n    float: right;\n    margin-right: 47px;">${{n.precio}}</span>\n\n\n		<span style="\n    font-size: 19px;\n    color:  #333;\n">{{n.nombre}}</span>\n		<div style="    margin-top: 7px;"><span style="    color: #333;\n    font-size: 12px;">{{n.nombreCategoria}}</span>	<span style="margin-right: 20px;     margin-left: 20px;   color: #333;\n    font-size: 12px;"><ion-icon style=\'margin-right: 5px\' name="ios-time-outline"></ion-icon>{{n.duracion}} min</span></div>\n	</div>\n\n    <div class="separator"></div>\n\n\n</div>\n\n\n\n\n	<div style="\n    margin-bottom: 15px;\n    margin-left: 81px;\n"><span style="\n    font-size: 16px;\n    color: #999;\n">Total</span> <span style="\n    color: #EC527E !important;\n    font-size: 16px;\n    float: right;\n    margin-right: 47px;\n">${{dataCentro?.total}}</span>\n\n\n\n</div>\n\n	 <ion-item style=\'padding: 0px !important;\'>\n  <ion-textarea  style=\'    color: #777;\n    background: white;\n    height: 136px;\' placeholder="Nota para el centro de belleza" \n      [(ngModel)]="dataCentro.notaCita" name="note" autocomplete="on" autocorrect="on"></ion-textarea>\n </ion-item>\n\n\n\n\n\n\n\n\n\n<button (click)=\'confirmacionLista()\' style="    margin: 40px 0px 40px 0px;" ion-button class="botonVerdeFulls">Confirmar Reserva</button>\n\n\n\n\n\n</ion-content>\n'/*ion-inline-end:"/Users/jose/Documents/beyouApp/beYou/src/pages/confirmar-reserva/confirmar-reserva.html"*/,
+            selector: 'page-demo',template:/*ion-inline-start:"/Users/jose/Documents/beyouApp/beYou/src/pages/demo/demo.html"*/'<ion-content>\n\n<ion-slides   pager="true" style=\'background-image: url(assets/imgs/fondoDemo.png);\' >\n\n\n  <ion-slide>\n  <h1 class="tituloDemo">EL SERVICIO <br> QUE NECESITAS</h1>\n    <img class="imgDemo"  src="assets/imgs/demo1.png" />\n\n    <p class="textoDemo">Busca, Filtra y Reserva en <br>\n    					los mejores centros de belleza</p>\n  </ion-slide>\n \n\n  <ion-slide>\n    <h1  class="tituloDemo">RESERVAS 24/7</h1>\n    <img class="imgDemo" \n   style="    padding-left: 68px;" src="assets/imgs/demo2.png"  />\n    <p class="textoDemo">Programa tus citas en cualquier <br>\n    					momento indicando el dia, hora y el <br>\n    					staff que deseas</p>\n  </ion-slide>\n \n  <ion-slide>\n    <h1  class="tituloDemo">VIVA LA EXPERIENCIA	</h1>\n     <img sclass="imgDemo"  style="    padding-right: 35px;"  src="assets/imgs/demo3.png"  />\n      <p class="textoDemo">Acumula puntos agregando <br>\n    					comentarios, reservando y <br>\n    					compartiendo experiencias BeYou</p>\n   \n     <!--    <button ion-button color="light" (click)="goToHome()">Start Using My App</button>\n      -->\n  </ion-slide>\n \n</ion-slides>\n\n\n <button style="    position: fixed;\n    right: 0;\n    margin: 10px;\n    color: white;\n    font-size: 19px;\n    bottom: 0;\n    background: transparent; z-index:20"  (click)=\'iniciarApp()\'>Iniciar</button>\n\n<!-- \n     <button style="    position: absolute;\n    left: 0;\n    margin: 10px;\n    color: white;\n    font-size: 19px;\n    bottom: 0;\n    background: transparent; z-index:20"  (click)=\'siguienteSlide()\' >Siguiente</button>\n\n -->\n\n</ion-content>'/*ion-inline-end:"/Users/jose/Documents/beyouApp/beYou/src/pages/demo/demo.html"*/,
         }),
-        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["NavController"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["NavController"]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["NavParams"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["NavParams"]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["ModalController"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["ModalController"]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["MenuController"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["MenuController"]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["LoadingController"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["LoadingController"]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["Events"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["Events"]) === "function" && _f || Object, typeof (_g = typeof __WEBPACK_IMPORTED_MODULE_2__providers_api_api__["a" /* ApiProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__providers_api_api__["a" /* ApiProvider */]) === "function" && _g || Object])
-    ], ConfirmarReservaPage);
-    return ConfirmarReservaPage;
-    var _a, _b, _c, _d, _e, _f, _g;
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["NavController"], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["NavParams"]])
+    ], DemoPage);
+    return DemoPage;
 }());
 
-//# sourceMappingURL=confirmar-reserva.js.map
+//# sourceMappingURL=demo.js.map
 
 /***/ })
 

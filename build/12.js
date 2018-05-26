@@ -1,14 +1,14 @@
 webpackJsonp([12],{
 
-/***/ 428:
+/***/ 439:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "InicioPageModule", function() { return InicioPageModule; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MapaPageModule", function() { return MapaPageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(15);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__inicio__ = __webpack_require__(454);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(14);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__mapa__ = __webpack_require__(469);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -18,33 +18,33 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
-var InicioPageModule = (function () {
-    function InicioPageModule() {
+var MapaPageModule = (function () {
+    function MapaPageModule() {
     }
-    InicioPageModule = __decorate([
+    MapaPageModule = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["NgModule"])({
             declarations: [
-                __WEBPACK_IMPORTED_MODULE_2__inicio__["a" /* InicioPage */],
+                __WEBPACK_IMPORTED_MODULE_2__mapa__["a" /* MapaPage */],
             ],
             imports: [
-                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["IonicPageModule"].forChild(__WEBPACK_IMPORTED_MODULE_2__inicio__["a" /* InicioPage */]),
+                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["IonicPageModule"].forChild(__WEBPACK_IMPORTED_MODULE_2__mapa__["a" /* MapaPage */]),
             ],
         })
-    ], InicioPageModule);
-    return InicioPageModule;
+    ], MapaPageModule);
+    return MapaPageModule;
 }());
 
-//# sourceMappingURL=inicio.module.js.map
+//# sourceMappingURL=mapa.module.js.map
 
 /***/ }),
 
-/***/ 454:
+/***/ 469:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return InicioPage; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MapaPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(15);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(14);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_api_api__ = __webpack_require__(105);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -60,58 +60,118 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
+
 /**
- * Generated class for the InicioPage page.
+ * Generated class for the MapaPage page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
  */
-var InicioPage = (function () {
-    function InicioPage(navCtrl, navParams, apiProvider, loadingController, events) {
+var MapaPage = (function () {
+    function MapaPage(navCtrl, navParams, modalCtrl, loadingCtrl, events, apiProvider, alertCtrl) {
+        var _this = this;
         this.navCtrl = navCtrl;
         this.navParams = navParams;
-        this.apiProvider = apiProvider;
-        this.loadingController = loadingController;
+        this.modalCtrl = modalCtrl;
+        this.loadingCtrl = loadingCtrl;
         this.events = events;
-        this.categorias = [];
+        this.apiProvider = apiProvider;
+        this.alertCtrl = alertCtrl;
+        this.myPosition = {};
+        this.markers = [
+            {
+                position: {
+                    latitude: -17.3666745,
+                    longitude: -66.2387878,
+                },
+                title: 'Point 1'
+            },
+            {
+                position: {
+                    latitude: -17.3706884,
+                    longitude: -66.2397749,
+                },
+                title: 'Point 2'
+            },
+            {
+                position: {
+                    latitude: -17.391398,
+                    longitude: -66.2407904,
+                },
+                title: 'Point 3'
+            },
+            {
+                position: {
+                    latitude: -17.3878887,
+                    longitude: -66.223664,
+                },
+                title: 'Point 4'
+            },
+        ];
+        this.addMarker = function (options) {
+            var markerOptions = {
+                position: new LatLng(options.position.latitude, options.position.longitude),
+                title: options.title
+            };
+            _this.map.addMarker(markerOptions);
+        };
+        this.loadMap = function () {
+            // create a new map by passing HTMLElement
+            var element = document.getElementById('map');
+            _this.map = plugin.google.maps.Map.getMap(element);
+            // create CameraPosition
+            var position = {
+                target: { lat: _this.myPosition.latitude, lng: _this.myPosition.longitude },
+                zoom: 17,
+                tilt: 30
+            };
+            _this.map.one(plugin.google.maps.event.MAP_READY, function () {
+                console.log('Map is ready!');
+                // move the map's camera to position
+                //this.map.moveCamera(position);
+                _this.map.addMarker({
+                    position: { lng: -84.212576, lat: 10.0028923 },
+                    title: "Marcador ejemplo"
+                });
+            });
+        };
     }
-    InicioPage.prototype.ionViewDidLoad = function () {
+    MapaPage.prototype.ionViewDidLoad = function () {
+        this.getServiciosGPS();
+        console.log('ionViewDidLoad MapaPage');
+    };
+    MapaPage.prototype.getServiciosGPS = function () {
+        //this.latitudePerson = 9.9931605;
+        //this.longitudePerson = -84.2307427;
         var _this = this;
-        console.log('ionViewDidLoad InicioPage');
-        this.apiProvider.categoriasHome()
-            .then(function (data) {
-            console.log(data);
-            if (data) {
-                _this.categorias = data || [];
-            }
-            else {
-                console.log('Ha ocurrido un error');
-            }
-        });
+        var loading = this.loadingCtrl.create({ content: "Obteniendo ubicacion" });
+        loading.present();
+        console.log('gps');
+        navigator.geolocation.getCurrentPosition(function (pos) {
+            console.log(pos.coords.latitude + ' Long: ' + pos.coords.longitude);
+            _this.myPosition = {
+                latitude: pos.coords.latitude,
+                longitude: pos.coords.longitude
+            };
+            _this.loadMap();
+            loading.dismissAll();
+        }, function (error) {
+            console.log('some err');
+            console.log(error);
+            loading.dismissAll();
+        }, { enableHighAccuracy: true, timeout: 30000 });
     };
-    InicioPage.prototype.goServicio = function (nombreServicio) {
-        console.log(nombreServicio);
-        this.navCtrl.push('ListaServiciosPage', { 'nombre': nombreServicio });
-    };
-    InicioPage.prototype.goMapa = function () {
-        //console.log(nombreServicio);
-        this.navCtrl.push('MapaPage');
-    };
-    InicioPage.prototype.setDefaultPic = function (nombre) {
-        console.log(nombre);
-        return "assets/imgs/" + nombre;
-    };
-    InicioPage = __decorate([
+    MapaPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-            selector: 'page-inicio',template:/*ion-inline-start:"/Users/jose/Documents/beyouApp/beYou/src/pages/inicio/inicio.html"*/'<ion-header>\n  <ion-navbar  color="headerColor">\n\n    <ion-buttons start>\n    <button ion-button menuToggle>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n    </ion-buttons>\n\n    <ion-title>\n<img src="assets/imgs/logoMenu.png">\n\n    </ion-title>\n\n      <ion-buttons end>\n      <button  ion-button icon-only>\n        <ion-icon name="pin"></ion-icon>\n      </button>\n\n\n    <!--      (click)=\'goMapa()\'   <button ion-button icon-only>\n        <ion-icon name="search"></ion-icon>\n      </button> -->\n\n\n      </ion-buttons>\n\n  </ion-navbar>\n</ion-header>\n\n<ion-content >\n\n  <div *ngIf=\'true\'>\n\n    <div style="width: 100%;" >\n    <img src="assets/imgs/imagenLogo.png" style="height: 100%; width:100%;margin-top:-75px;">\n    </div>\n\n    <div>\n      <div class="tituloSeccion">\n      Selecciona una Categoria\n      </div>\n\n      <div class="containerServicios">\n\n\n        <div *ngFor="let n of categorias" class="servicios" (click)=\'goServicio(n.idCategoria)\'> \n          <img [src]="n.linkIcono" [hidden]="!n.linkIcono">\n          <img  src="assets/imgs/{{n.idImagenIcono}}" [hidden]="n.linkIcono"> \n          <span>{{n.nombre}}</span>\n        </div>\n\n\n<!-- \n        <div class="servicios" (click)=\'goServicio("Peluqueria")\'> \n          <img src="assets/imgs/Peluqueria.png">\n          <span>Peluqueria</span>\n        </div>\n\n                <div class="servicios" (click)=\'goServicio("Rostro y Cuerpo")\'> \n          <img src="assets/imgs/rostro.png">\n          <span>Rostro y Cuerpo</span>\n        </div>\n\n                <div class="servicios" (click)=\'goServicio("Uñas")\'> \n          <img src="assets/imgs/unas.png">\n          <span>Uñas</span>\n        </div>\n\n     \n\n                <div class="servicios" (click)=\'goServicio("Masaje")\'> \n          <img src="assets/imgs/masaje.png">\n          <span>Masaje</span>\n        </div>\n\n                <div class="servicios" (click)=\'goServicio("Depilacion")\'> \n          <img src="assets/imgs/depilacion.png">\n          <span>Depilacion</span>\n        </div>\n\n                <div class="servicios" (click)=\'goServicio("Bienestar")\'> \n          <img src="assets/imgs/bienestar.png" >\n          <span>Bienestar</span>\n        </div>\n\n                <div class="servicios" (click)=\'goServicio("Paquetes")\'> \n          <img src="assets/imgs/paquetes.png">\n          <span>Paquetes</span>\n        </div>\n                <div class="servicios" (click)=\'goServicio("Ofertas")\'> \n          <img src="assets/imgs/ofertasVerde.png">\n          <span>Ofertas</span>\n        </div>\n\n -->\n      </div>\n    </div>\n\n  </div>\n</ion-content>\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n'/*ion-inline-end:"/Users/jose/Documents/beyouApp/beYou/src/pages/inicio/inicio.html"*/,
+            selector: 'page-mapa',template:/*ion-inline-start:"/Users/jose/Documents/beyouApp/beYou/src/pages/mapa/mapa.html"*/'<!--\n  Generated template for the MapaPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n  <ion-navbar >\n    <ion-title>\n      Negocios cercanos\n    </ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content>\n  <div id="map"></div>  \n</ion-content>'/*ion-inline-end:"/Users/jose/Documents/beyouApp/beYou/src/pages/mapa/mapa.html"*/,
         }),
-        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["NavController"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["NavController"]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["NavParams"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["NavParams"]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__providers_api_api__["a" /* ApiProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__providers_api_api__["a" /* ApiProvider */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["LoadingController"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["LoadingController"]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["Events"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["Events"]) === "function" && _e || Object])
-    ], InicioPage);
-    return InicioPage;
-    var _a, _b, _c, _d, _e;
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["NavController"], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["NavParams"], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["ModalController"], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["LoadingController"], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["Events"], __WEBPACK_IMPORTED_MODULE_2__providers_api_api__["a" /* ApiProvider */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["AlertController"]])
+    ], MapaPage);
+    return MapaPage;
 }());
 
-//# sourceMappingURL=inicio.js.map
+//# sourceMappingURL=mapa.js.map
 
 /***/ })
 

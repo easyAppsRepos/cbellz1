@@ -1,14 +1,14 @@
 webpackJsonp([19],{
 
-/***/ 425:
+/***/ 431:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AyudaPageModule", function() { return AyudaPageModule; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ConfirmarReservaPageModule", function() { return ConfirmarReservaPageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(15);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ayuda__ = __webpack_require__(451);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(14);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__confirmar_reserva__ = __webpack_require__(461);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -18,33 +18,34 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
-var AyudaPageModule = (function () {
-    function AyudaPageModule() {
+var ConfirmarReservaPageModule = (function () {
+    function ConfirmarReservaPageModule() {
     }
-    AyudaPageModule = __decorate([
+    ConfirmarReservaPageModule = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["NgModule"])({
             declarations: [
-                __WEBPACK_IMPORTED_MODULE_2__ayuda__["a" /* AyudaPage */],
+                __WEBPACK_IMPORTED_MODULE_2__confirmar_reserva__["a" /* ConfirmarReservaPage */],
             ],
             imports: [
-                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["IonicPageModule"].forChild(__WEBPACK_IMPORTED_MODULE_2__ayuda__["a" /* AyudaPage */]),
+                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["IonicPageModule"].forChild(__WEBPACK_IMPORTED_MODULE_2__confirmar_reserva__["a" /* ConfirmarReservaPage */]),
             ],
         })
-    ], AyudaPageModule);
-    return AyudaPageModule;
+    ], ConfirmarReservaPageModule);
+    return ConfirmarReservaPageModule;
 }());
 
-//# sourceMappingURL=ayuda.module.js.map
+//# sourceMappingURL=confirmar-reserva.module.js.map
 
 /***/ }),
 
-/***/ 451:
+/***/ 461:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AyudaPage; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ConfirmarReservaPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(15);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(14);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_api_api__ = __webpack_require__(105);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -56,38 +57,102 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 
 
+
+
+
+
+
 /**
- * Generated class for the AyudaPage page.
+ * Generated class for the ConfirmarReservaPage page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
  */
-var AyudaPage = (function () {
-    function AyudaPage(navCtrl, navParams) {
+var ConfirmarReservaPage = (function () {
+    function ConfirmarReservaPage(navCtrl, navParams, modalCtrl, menuCtrl, loadingCtrl, events, apiProvider) {
+        var _this = this;
         this.navCtrl = navCtrl;
         this.navParams = navParams;
-        this.information = [];
+        this.modalCtrl = modalCtrl;
+        this.menuCtrl = menuCtrl;
+        this.loadingCtrl = loadingCtrl;
+        this.events = events;
+        this.apiProvider = apiProvider;
+        this.confirmacionLista = function () {
+            _this.apiProvider.verificarLogin()
+                .then(function (data) {
+                console.log(data);
+                if (data) {
+                    var loading_1 = _this.loadingCtrl.create({ content: "Creando Cita..." });
+                    loading_1.present();
+                    _this.dataCentro.idCliente = data.idCliente;
+                    console.log(_this.dataCentro);
+                    _this.apiProvider.addCita(_this.dataCentro)
+                        .then(function (data) {
+                        if (data) {
+                            console.log(data);
+                            if (data.insertId > 0) {
+                                _this.navCtrl.setRoot('ReservaHechaPage');
+                            }
+                        }
+                        else {
+                            console.log('Ha ocurrido un error');
+                        }
+                        loading_1.dismissAll();
+                    });
+                }
+                else {
+                    _this.menuCtrl.open();
+                }
+            });
+        };
+        this.dataCentro = {};
+        this.idCliente = 0;
     }
-    AyudaPage.prototype.ionViewDidLoad = function () {
-        console.log('ionViewDidLoad AyudaPage');
-        this.information = [{ nombre: 'Sit dolor in eget tempor massa?', id: 1, respuesta: 'Lorem ipsum dolor sit amet, wisi 						augue ultrices in amet aliquam.' },
-            { nombre: 'Sit dolor in eget tempor massa?', id: 2, respuesta: 'Lorem ipsum dolor sit amet, wisi augue ultrices in amet aliquam, id accumsan leo, sit dolor in eget tempor massa, elementum tellus ipsum commodo.' },
-            { nombre: 'Sit dolor in eget tempor massa?', id: 3, respuesta: 'Lorem ipsum dolor sit amet.' }];
-        //this.fechaSeleccionada = new Date(Date.now());
+    ConfirmarReservaPage.prototype.ionViewDidLoad = function () {
+        var _this = this;
+        console.log('ionViewDidLoad ConfirmarReservaPage');
+        this.apiProvider.getCarrito()
+            .then(function (data) {
+            console.log(data);
+            _this.dataCentro.servicios = data;
+        });
+        this.apiProvider.getTotal()
+            .then(function (data) {
+            console.log(data);
+            _this.dataCentro.total = data.toFixed(2);
+        });
+        this.apiProvider.verificarLogin()
+            .then(function (data) {
+            console.log(data);
+            if (data) {
+                _this.idCliente = data.idCliente;
+                console.log(_this.idCliente);
+            }
+            else {
+                _this.idCliente = 0;
+            }
+            _this.dataCentro.fecha = _this.navParams.get('fecha');
+            _this.dataCentro.fechaInicio = _this.navParams.get('fechaInicio');
+            _this.dataCentro.fechaFinal = _this.navParams.get('fechaFinal');
+            _this.dataCentro.hora = _this.navParams.get('hora');
+            _this.dataCentro.idCuponCliente = _this.navParams.get('idCuponCliente');
+            _this.dataCentro.data = _this.navParams.get('centro');
+            _this.dataCentro.idEmpleado = _this.navParams.get('idEmpleado');
+            _this.dataCentro.idCliente = _this.idCliente;
+        });
+        console.log(this.dataCentro);
     };
-    AyudaPage.prototype.toggleSection = function (i) {
-        this.information[i].open = !this.information[i].open;
-    };
-    AyudaPage = __decorate([
+    ConfirmarReservaPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-            selector: 'page-ayuda',template:/*ion-inline-start:"/Users/jose/Documents/beyouApp/beYou/src/pages/ayuda/ayuda.html"*/'<!--\n  Generated template for the AjustesPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar>\n\n   <ion-buttons start>\n    <button ion-button menuToggle>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n    </ion-buttons>\n\n    \n    <ion-title>Ayuda</ion-title>\n\n\n\n  </ion-navbar>\n\n</ion-header>\n\n\n\n\n<ion-content style=\'background-color: #fafafa; \' >\n\n\n\n		<ion-list class="accordion-list">\n			<ion-list-header  [ngClass]="{\'borderSelected\': item.open, \'borderSelected2\': item.open && item.id==1}" *ngFor="let item of information; let i = index" no-lines no-padding>\n			<button style=\'    background: white !important;\n    border-bottom: solid 1px #d3d3d352\'  ion-item (click)="toggleSection(i)" detail-none [ngClass]="{\'section-active\': item.open, \'section\': !item.open}">\n			<ion-icon class=\'btnList\' item-right  name="ios-add" *ngIf="!item.open"></ion-icon>\n			<ion-icon class=\'btnList\' item-right name="ios-remove" *ngIf="item.open"></ion-icon>\n\n			{{ item.nombre }}\n\n			</button>\n\n			<ion-list class=\'faqRespuesta\' *ngIf="item.open" no-lines >\n			{{item.respuesta}}\n			</ion-list>\n\n			</ion-list-header>\n		</ion-list>\n\n\n\n</ion-content>\n'/*ion-inline-end:"/Users/jose/Documents/beyouApp/beYou/src/pages/ayuda/ayuda.html"*/,
+            selector: 'page-confirmar-reserva',template:/*ion-inline-start:"/Users/jose/Documents/beyouApp/beYou/src/pages/confirmar-reserva/confirmar-reserva.html"*/'<!--\n  Generated template for the ConfirmarReservaPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar>\n    <ion-title>ConfirmarReserva</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content padding>\n\n\n\n<div style="\n    display: inline-block;    width: 100%;\n">\n	<img src="assets/imgs/fotoComercio.png" style="\n    display: inline-block;\n    height: 90px;\n    width: 90px !important;\n    vertical-align: top;\n">\n	<div style="\n    display: inline-block;\n    width: calc(100% - 114px);\n    margin-left:  20px;\n">\n		<span style="margin: 2px 0px 0px 0px;\n    font-size: 19px;\n    color: #333;">{{dataCentro.data?.nombre}}</span>\n    <span class="itemComercio"></span>\n	<!-- 	<span class="itemComercio">{{dataCentro.data?.direccion}}</span>\n		<span class="itemComercio">City Name, Country</span> -->\n		<span class="itemComercio" style="margin-top:10px !important">Fecha <span style="margin-left: 10px;color:#EC527E !important">{{dataCentro?.fecha}}</span></span>\n\n                <span class="itemComercio" style="margin-top:10px !important">Hora Inicio<span style="margin-left: 10px;color:#EC527E !important">{{dataCentro?.hora}}</span></span>\n\n                 <span class="itemComercio" style="margin-top:10px !important">Finalizacion aprox. <span style="margin-left: 10px;color:#EC527E !important">{{dataCentro.fechaFinal?.split(\' \')[1].slice(0, -3)}}</span></span>\n\n\n\n\n	</div>\n\n\n	</div>\n\n\n\n\n<div class="separator"></div>\n\n<div *ngFor="let n of dataCentro.servicios" style="\n    width: 100%;\n    display: inline-block;\n">\n	\n	<img src="assets/imgs/servicio1.png" style="\n    display: inline-block;\n    vertical-align: top;\n    height: 54px;\n    width: 54px;\n">\n	<div style="\n    display: inline-block;\n    width: calc(100% - 83px);\n    margin-left: 22px;\n">\n\n<span style="     color: #EC527E !important;\n    font-size: 16px;\n    float: right;\n    margin-right: 47px;margin-top: 28px;">${{n.precioFinal}}</span>\n\n\n		<span style="\n    font-size: 19px;\n    color:  #333;\n">{{n.nombre}}</span>\n		<div style="    margin-top: 7px;"><span style="    color: #333;\n    font-size: 12px;">{{n.nombreCategoria}}</span>	<span style="margin-right: 20px;     margin-left: 20px;   color: #333;\n    font-size: 12px;"><ion-icon style=\'margin-right: 5px\' name="ios-time-outline"></ion-icon>{{n.duracion}} min</span></div>\n	</div>\n\n    <div class="separator"></div>\n\n\n</div>\n\n\n\n\n	<div style="\n    margin-bottom: 15px;\n    margin-left: 81px;\n"><span style="\n    font-size: 16px;\n    color: #999;\n">Total</span> <span style="\n    color: #EC527E !important;\n    font-size: 16px;\n    float: right;\n    margin-right: 47px;\n">${{dataCentro?.total}}</span>\n\n\n\n</div>\n\n	 <ion-item style=\'padding: 0px !important;\'>\n  <ion-textarea  style=\'    color: #777;\n    background: white;\n    height: 136px;\' placeholder="Nota para el centro de belleza" \n      [(ngModel)]="dataCentro.notaCita" name="note" autocomplete="on" autocorrect="on"></ion-textarea>\n </ion-item>\n\n\n\n\n\n\n\n\n\n<button (click)=\'confirmacionLista()\' style="    margin: 40px 0px 40px 0px;" ion-button class="botonVerdeFulls">Confirmar Reserva</button>\n\n\n\n\n\n</ion-content>\n'/*ion-inline-end:"/Users/jose/Documents/beyouApp/beYou/src/pages/confirmar-reserva/confirmar-reserva.html"*/,
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["NavController"], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["NavParams"]])
-    ], AyudaPage);
-    return AyudaPage;
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["NavController"], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["NavParams"], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["ModalController"], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["MenuController"], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["LoadingController"], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["Events"], __WEBPACK_IMPORTED_MODULE_2__providers_api_api__["a" /* ApiProvider */]])
+    ], ConfirmarReservaPage);
+    return ConfirmarReservaPage;
 }());
 
-//# sourceMappingURL=ayuda.js.map
+//# sourceMappingURL=confirmar-reserva.js.map
 
 /***/ })
 

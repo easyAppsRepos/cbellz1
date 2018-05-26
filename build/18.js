@@ -1,16 +1,14 @@
 webpackJsonp([18],{
 
-/***/ 422:
+/***/ 429:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "BuscarModalPageModule", function() { return BuscarModalPageModule; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CuentaPageModule", function() { return CuentaPageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(15);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__buscar_modal__ = __webpack_require__(448);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_ion2_calendar__ = __webpack_require__(332);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_ion2_calendar___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_ion2_calendar__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(14);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__cuenta__ = __webpack_require__(459);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -20,35 +18,35 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
-
-var BuscarModalPageModule = (function () {
-    function BuscarModalPageModule() {
+var CuentaPageModule = (function () {
+    function CuentaPageModule() {
     }
-    BuscarModalPageModule = __decorate([
+    CuentaPageModule = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["NgModule"])({
             declarations: [
-                __WEBPACK_IMPORTED_MODULE_2__buscar_modal__["a" /* BuscarModalPage */],
+                __WEBPACK_IMPORTED_MODULE_2__cuenta__["a" /* CuentaPage */],
             ],
             imports: [
-                __WEBPACK_IMPORTED_MODULE_3_ion2_calendar__["CalendarModule"],
-                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["IonicPageModule"].forChild(__WEBPACK_IMPORTED_MODULE_2__buscar_modal__["a" /* BuscarModalPage */]),
+                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["IonicPageModule"].forChild(__WEBPACK_IMPORTED_MODULE_2__cuenta__["a" /* CuentaPage */]),
             ],
         })
-    ], BuscarModalPageModule);
-    return BuscarModalPageModule;
+    ], CuentaPageModule);
+    return CuentaPageModule;
 }());
 
-//# sourceMappingURL=buscar-modal.module.js.map
+//# sourceMappingURL=cuenta.module.js.map
 
 /***/ }),
 
-/***/ 448:
+/***/ 459:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return BuscarModalPage; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CuentaPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(15);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(14);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_storage__ = __webpack_require__(53);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_api_api__ = __webpack_require__(105);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -65,123 +63,102 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 /**
- * Generated class for the BuscarModalPage page.
+ * Generated class for the CuentaPage page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
  */
-var BuscarModalPage = (function () {
-    function BuscarModalPage(navCtrl, navParams, modalCtrl, loadingCtrl, events, alertCtrl, viewCtrl) {
+var CuentaPage = (function () {
+    function CuentaPage(navCtrl, navParams, modalCtrl, alertCtrl, loadingCtrl, events, apiProvider, storage) {
         this.navCtrl = navCtrl;
         this.navParams = navParams;
         this.modalCtrl = modalCtrl;
+        this.alertCtrl = alertCtrl;
         this.loadingCtrl = loadingCtrl;
         this.events = events;
-        this.alertCtrl = alertCtrl;
-        this.viewCtrl = viewCtrl;
-        this.date = new Date();
-        this.options = {
-            from: Date.now(),
-            defaultDate: this.date,
-            weekdays: ['D', 'L', 'M', 'K', 'J', 'V', 'S'],
-            monthPickerFormat: ['ENE', 'FEB', 'MAR', 'ABR', 'MAY', 'JUN', 'JUL', 'AGO', 'SEP', 'OCT', 'NOV', 'DIC'],
-        };
-        this.information = [{ nombre: 'Disponible en fecha', id: 1 },
-            { nombre: 'Disponible en hora', id: 2 },
-            { nombre: 'Servicio', id: 3 }];
+        this.apiProvider = apiProvider;
+        this.storage = storage;
+        this.editarData = true;
+        this.dataUserInput = {};
+        this.dataUser = {};
     }
-    BuscarModalPage.prototype.ionViewDidLoad = function () {
-        console.log('ionViewDidLoad BuscarModalPage');
-    };
-    BuscarModalPage.prototype.closeModal = function () {
-        //	this.events.publish('modalServices');
-        this.viewCtrl.dismiss();
-    };
-    BuscarModalPage.prototype.showCheckbox = function () {
+    CuentaPage.prototype.ionViewDidLoad = function () {
         var _this = this;
-        var alert = this.alertCtrl.create({ cssClass: 'alertCustomCss' });
-        alert.setTitle('Filtra por categoria');
-        alert.addInput({
-            type: 'checkbox',
-            label: 'Rostro y Cuerpo',
-            value: 'Rostro y Cuerpo',
-            checked: true
-        });
-        alert.addInput({
-            type: 'checkbox',
-            label: 'Peluqueria',
-            value: 'Peluqueria'
-        });
-        alert.addInput({
-            type: 'checkbox',
-            label: 'Uñas',
-            value: 'Uñas'
-        });
-        alert.addInput({
-            type: 'checkbox',
-            label: 'Masaje',
-            value: 'Masaje',
-            checked: true
-        });
-        alert.addInput({
-            type: 'checkbox',
-            label: 'Depilacion',
-            value: 'Depilacion'
-        });
-        alert.addInput({
-            type: 'checkbox',
-            label: 'Bienestar',
-            value: 'Bienestar'
-        });
-        alert.addInput({
-            type: 'checkbox',
-            label: 'Paquetes',
-            value: 'Paquetes',
-            checked: true
-        });
-        alert.addInput({
-            type: 'checkbox',
-            label: 'Ofertas',
-            value: 'Ofertas'
-        });
-        alert.addButton('Cancel');
-        alert.addButton({
-            text: 'Seleccionar',
-            handler: function (data) {
-                console.log('Checkbox data:', data);
-                _this.testCheckboxOpen = false;
-                _this.testCheckboxResult = data;
+        console.log('ionViewDidLoad CuentaPage');
+        this.apiProvider.verificarLogin()
+            .then(function (data) {
+            console.log(data);
+            if (data) {
+                _this.dataUserInput = JSON.parse(JSON.stringify(data));
+                ;
+                _this.dataUser = data;
+                //this.menuActivo = true;
             }
+            else {
+                console.log('error');
+                // this.menuActivo = false;
+            }
+        });
+    };
+    CuentaPage.prototype.agregadoOk = function () {
+        var alert = this.alertCtrl.create({
+            title: 'Editado correctamente',
+            subTitle: 'Sus datos han sido editados correctamente',
+            buttons: ['Cerrar']
         });
         alert.present();
     };
-    BuscarModalPage.prototype.onChange = function ($event) {
-        console.log($event);
-        this.fechaSeleccionada = $event;
+    CuentaPage.prototype.getPorcentaje = function () {
+        var enviar = ((900) / (this.dataUser.completadas * 100)) + '%';
+        console.log(enviar);
+        return enviar;
     };
-    BuscarModalPage.prototype.toggleSection = function (i) {
-        if (i == 2) {
-            this.showCheckbox();
-        }
-        else {
-            this.information[i].open = !this.information[i].open;
-        }
+    CuentaPage.prototype.guardarCambios = function () {
+        var _this = this;
+        var loading = this.loadingCtrl.create({ content: "Cargando ..." });
+        loading.present();
+        this.apiProvider.editarUsuario(this.dataUser)
+            .then(function (data) {
+            loading.dismissAll();
+            console.log(data);
+            if (data.affectedRows > 0) {
+                //this.storage.set(`usr_tok_by`, this.dataUser);
+                _this.storage.get('usr_tok_by').then(function (value) {
+                    // console.log(value);
+                    var da = value;
+                    da.genero = _this.dataUser.genero;
+                    da.telefono = _this.dataUser.telefono;
+                    da.nombre = _this.dataUser.nombre;
+                    console.log(da);
+                    _this.storage.set("usr_tok_by", da);
+                }).catch(function () { return resolve(false); });
+                _this.agregadoOk();
+                //console.log('borrada');
+                _this.editarData = true;
+            }
+            else {
+                console.log('Ha ocurrido un error');
+            }
+        });
+        //console.log(this.dataUser);
     };
-    BuscarModalPage.prototype.toggleItem = function (i, j) {
-        this.information[i].children[j].open = !this.information[i].children[j].open;
+    CuentaPage.prototype.cancelarEdicion = function () {
+        this.dataUser = this.dataUserInput;
+        this.editarData = true;
     };
-    BuscarModalPage = __decorate([
+    CuentaPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-            selector: 'page-buscar-modal',template:/*ion-inline-start:"/Users/jose/Documents/beyouApp/beYou/src/pages/buscar-modal/buscar-modal.html"*/'<!--\n  Generated template for the BuscarModalPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar>\n    <ion-title>Filtrar busqueda</ion-title>\n\n\n\n    <ion-buttons end>\n    <button style="    font-size: 34px;" ion-button (click)="closeModal()"><ion-icon ios="ios-close"></ion-icon></button>\n\n\n    </ion-buttons>\n\n\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content >\n\n\n\n\n<ion-list style=\'margin:0px;\'>\n  <ion-item style=\'       background: white !important;  padding-top: 6px;\n    padding-bottom: 6px;   color: #444 !important;\'>\n    <ion-label >Palabra clave</ion-label>\n    <ion-input placeholder="Opcional"></ion-input>\n  </ion-item>\n\n  <ion-item  style=\'        background: white !important;    padding-top: 6px;\n    padding-bottom: 6px;   border-top: solid 1px lightgray; color: #444 !important;\'>\n    <ion-label  fixed>Lugar</ion-label>\n    <ion-input type="text" placeholder="Opcional"></ion-input>\n  </ion-item>\n</ion-list>\n \n <div style="font-weight: 800;\n    font-size: 18px;\n    padding: 13px;\n    background: #9993;">Ordenar Por</div>\n\n<div style="    margin: 29px 15px;">\n  <ion-segment  style=\'background: rgb(245,246,247);\n    font-weight: 800;\' color=\'verdeApp\' [(ngModel)]="ordenarPor">\n    <ion-segment-button value="kittens">\n      Mejor a mayor precio\n    </ion-segment-button>\n    <ion-segment-button value="puppies">\n      Mayor a menor precio\n    </ion-segment-button>\n  </ion-segment>\n\n</div>\n\n\n<ion-list style=\'margin-bottom: 0px\'>\n\n\n  <ion-item style=\'       background: white !important;    padding-top: 6px;\n    padding-bottom: 6px; border-top: solid 1px lightgray !important;\'>\n    <ion-label  style=\'    color: #444 !important;\'>Opiniones altas  primero</ion-label>\n    <ion-checkbox  item-right [(ngModel)]="peppfweroni"></ion-checkbox>\n  </ion-item>\n\n\n\n</ion-list>\n\n\n\n <div style="font-weight: 800;\n    font-size: 18px;\n    padding: 13px;\n    background: #9993;">Mostrar solo</div>\n\n\n<ion-list style=\'margin-bottom: 0px\'>\n\n  <ion-item style=\'     background: white !important;     padding-top: 6px;\n    padding-bottom: 6px;  border-top: solid 1px lightgray;\'>\n    <ion-label style=\'    color: #444 !important;\'>Abierto ahora</ion-label>\n    <ion-checkbox  item-right [(ngModel)]="pepperoni"></ion-checkbox>\n  </ion-item>\n\n\n  <ion-item style=\'     background: white !important;     padding-top: 6px;\n    padding-bottom: 10px;  border-top: solid 1px lightgray;\'>\n    <ion-label  style=\'    color: #444 !important;\'>Disponible hoy</ion-label>\n    <ion-checkbox  item-right [(ngModel)]="peppferoni"></ion-checkbox>\n  </ion-item>\n\n\n\n</ion-list>\n\n\n\n\n\n\n\n		<ion-list class="accordion-list">\n			<!-- First Level -->\n			<ion-list-header style=\'background: white !important;\n    border-top: solid 1px lightgray;    padding-bottom: 10px;\'  [ngClass]="{\'borderSelected\': item.open, \'borderSelected2\': item.open && item.id==1}" *ngFor="let item of information; let i = index" no-lines no-padding>\n			<!-- Toggle Button -->\n			<button style=\'    color: #444 !important;background: white !important;\'  ion-item (click)="toggleSection(i)" detail-none [ngClass]="{\'section-active\': item.open, \'section\': !item.open}">\n			<ion-icon class=\'btnList\' item-right  name="ios-add" *ngIf="!item.open"></ion-icon>\n			<ion-icon class=\'btnList\' item-right name="ios-remove" *ngIf="item.open"></ion-icon>\n{{item.nombre}} \n			{{ item.id == 1 ? (fechaSeleccionada || \'\') : \n			   item.id == 2 ? (horaSeleccionada  || \'\') : \n			   item.id == 3 ? (staffSeleccionado  || \'\') : \'\' }}\n\n			</button>\n\n			<ion-list style=\'margin:0px !important\' *ngIf="item.open && item.id == 1" no-lines >\n			<!-- Second Level -->\n			\n				 <ion-calendar [(ngModel)]="date"\n	                  (onChange)="onChange($event)"\n	                  [options]="options"\n	                  type="string"\n	                  format="MMM DD YYYY">\n	   			 </ion-calendar>\n			</ion-list>\n\n\n			<ion-list class=\'backItem\' style=\'width: 100%;\n    display: table;\n    white-space: normal;\'  *ngIf="item.open && item.id == 2 "  radio-group [(ngModel)]="horaSeleccionada">\n				<ion-item class=\'itemHora\'>\n				<ion-label>11:25am</ion-label>\n				<ion-radio mode=\'wp\' value="11:25am" checked></ion-radio>\n				</ion-item>\n				<ion-item class=\'itemHora\' >\n				<ion-label>11:35am</ion-label>\n				<ion-radio mode=\'wp\' value="11:35am"></ion-radio>\n				</ion-item>\n				<ion-item class=\'itemHora\'>\n				<ion-label>11:55am</ion-label>\n				<ion-radio mode=\'wp\' value="11:55am" [disabled]="isDisabled"></ion-radio>\n				</ion-item>\n\n\n\n\n\n\n			</ion-list>\n\n\n\n\n\n\n\n			</ion-list-header>\n		</ion-list>\n\n		<div style="width:100%;height:50px;"></div>\n\n\n    <div style="width: 100%;\n    position: fixed;\n    z-index: 33;\n    bottom: 0px;\n    background: rgb(247,248,249);\n    padding-bottom: 6px;\n">\n          <button ion-button class="botonVerdeFull">Buscar<ion-icon style=\'    margin-left: 10px !important;\' name="md-arrow-forward"></ion-icon> </button>\n\n\n    </div>\n\n\n</ion-content>\n'/*ion-inline-end:"/Users/jose/Documents/beyouApp/beYou/src/pages/buscar-modal/buscar-modal.html"*/,
+            selector: 'page-cuenta',template:/*ion-inline-start:"/Users/jose/Documents/beyouApp/beYou/src/pages/cuenta/cuenta.html"*/'<!--\n  Generated template for the AjustesPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar>\n\n   <ion-buttons start>\n    <button ion-button menuToggle>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n    </ion-buttons>\n\n    \n    <ion-title>Cuenta</ion-title>\n\n\n\n  </ion-navbar>\n\n</ion-header>\n\n\n\n<ion-content style=\'background-color: #fafafa; \' >\n\n\n        <ion-item style=\'    margin-top: 0px;\n    background-color: white !important;\n    padding: 20px;\' class=\'fixProfileMargin\'>\n          <ion-avatar item-start>\n          <img style=\'width:75px; height: 75px\' src="assets/imgs/usuario.png">\n          </ion-avatar>\n          <h2 style="margin-bottom: 23px;">{{dataUser?.nombre}}</h2>\n          <div class="barraContainer">\n            <div class="barraProgress" [ngStyle]="{\'width\': getPorcentaje()}" ><span>{{(dataUser?.completadas * 100) || 0}}/900</span></div>\n          </div>\n        </ion-item>\n\n\n\n\n          <ion-list>\n<!-- \n\n\n          <button  class="claseItem"  ion-item  >\n          {{dataUser?.nombre || \'no especificado\'}}\n    \n          </button>       <button  class="claseItem"  ion-item  >\n          {{dataUser?.email || \'no especificado\'}}\n        \n          </button>\n          <button  class="claseItem"  ion-item  >\n          {{dataUser?.telefono || \'no especificado\'}}\n        \n          </button>\n\n          <button  class="claseItem"  ion-item  >\n          Genero: {{dataUser?.genero || \'no especificado\'}}\n        \n          </button>\n-->\n\n\n  <ion-item style=\'margin-top: 20px\'  >\n    <ion-label color="headerColor" stacked>Nombre</ion-label>\n    <ion-input  [ngClass]="{\'itemActi\':!editarData}"   [disabled]=\'editarData\' [(ngModel)]="dataUser.nombre"  type="text" placeholder="nombre"></ion-input>\n  </ion-item>\n\n  <ion-item  style=\'margin-top: 20px\'>\n    <ion-label color="headerColor" stacked>Email</ion-label>\n    <ion-input  [disabled]=\'true\' [(ngModel)]="dataUser.email"  type="text" placeholder="correo electronico"></ion-input>\n  </ion-item>\n\n  <ion-item  style=\'margin-top: 20px\'>\n    <ion-label color="headerColor" stacked>Telefono</ion-label>\n    <ion-input  [ngClass]="{\'itemActi\':!editarData}"  [disabled]=\'editarData\' [(ngModel)]="dataUser.telefono"  type="tel" placeholder="telefono"></ion-input>\n  </ion-item>\n\n\n  <ion-item  style=\'margin-top: 20px\'>\n    <ion-label color="headerColor" stacked>Genero</ion-label>\n    <ion-input   [ngClass]="{\'itemActi\':!editarData}"  [disabled]=\'editarData\' [(ngModel)]="dataUser.genero"  type="text" placeholder=""></ion-input>\n  </ion-item>\n\n    \n\n\n\n\n\n\n\n          </ion-list>\n\n\n\n              <div [hidden]=\'!editarData\'  style="width: 100%;\n    position: fixed;\n    bottom: 0px;\n    background: rgb(247,248,249);\n    padding-bottom: 6px;\n">\n          <button (click)=\'editarData=false\' ion-button class="botonVerdeFull">Actualizar informacion<ion-icon style=\'    margin-left: 10px !important;\' name="md-arrow-forward"></ion-icon> \n\n          </button>\n </div>\n\n<div  style="width: 100%;\n    position: fixed;\n    bottom: 0px;\n    background: rgb(247,248,249);\n    padding-bottom: 6px;\n" [hidden]=\'editarData\'>\n    \n\n    <button (click)=\'guardarCambios()\'  style=" border-radius: 70px;   width: 40%;\n    margin-left: 5%;float:left"  color=\'verdeApp\' ion-button> Guardar cambio</button> \n\n    <button (click)=\'cancelarEdicion()\'  color=\'headerColor\' ion-button  style="    width: 40%;\n    margin-right: 5%;\n    border-radius: 70px;float:right" >Deshacer</button>\n\n\n</div>\n\n\n\n\n   \n\n\n\n\n\n</ion-content>\n'/*ion-inline-end:"/Users/jose/Documents/beyouApp/beYou/src/pages/cuenta/cuenta.html"*/,
         }),
-        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["NavController"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["NavController"]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["NavParams"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["NavParams"]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["ModalController"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["ModalController"]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["LoadingController"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["LoadingController"]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["Events"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["Events"]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["AlertController"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["AlertController"]) === "function" && _f || Object, typeof (_g = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["ViewController"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["ViewController"]) === "function" && _g || Object])
-    ], BuscarModalPage);
-    return BuscarModalPage;
-    var _a, _b, _c, _d, _e, _f, _g;
+        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["NavController"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["NavController"]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["NavParams"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["NavParams"]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["ModalController"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["ModalController"]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["AlertController"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["AlertController"]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["LoadingController"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["LoadingController"]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["Events"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["Events"]) === "function" && _f || Object, typeof (_g = typeof __WEBPACK_IMPORTED_MODULE_3__providers_api_api__["a" /* ApiProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__providers_api_api__["a" /* ApiProvider */]) === "function" && _g || Object, typeof (_h = typeof __WEBPACK_IMPORTED_MODULE_2__ionic_storage__["b" /* Storage */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__ionic_storage__["b" /* Storage */]) === "function" && _h || Object])
+    ], CuentaPage);
+    return CuentaPage;
+    var _a, _b, _c, _d, _e, _f, _g, _h;
 }());
 
-//# sourceMappingURL=buscar-modal.js.map
+//# sourceMappingURL=cuenta.js.map
 
 /***/ })
 
