@@ -1,6 +1,6 @@
 webpackJsonp([8],{
 
-/***/ 445:
+/***/ 446:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -8,7 +8,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ReservaHechaPageModule", function() { return ReservaHechaPageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(14);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__reserva_hecha__ = __webpack_require__(475);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__reserva_hecha__ = __webpack_require__(476);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -38,7 +38,7 @@ var ReservaHechaPageModule = (function () {
 
 /***/ }),
 
-/***/ 475:
+/***/ 476:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -76,7 +76,7 @@ var ReservaHechaPage = (function () {
     };
     ReservaHechaPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-            selector: 'page-reserva-hecha',template:/*ion-inline-start:"/Users/jose/Documents/beyouApp/beYou/src/pages/reserva-hecha/reserva-hecha.html"*/'<!--\n  Generated template for the ReservaHechaPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar>\n    <ion-title>ReservaHecha</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content padding>\n\n\n\n<div style="\n    padding-left: 40px;\n    text-align: center;\n    padding-right: 40px;\n    margin-top: 30px;\n">\n	<img src="assets/imgs/fotoComercio.png" style="\n   height: 90px;\n   width: 90px;\n   ">\n\n	<span style="\n    display: block;\n    font-size: 20px;\n    color: #333;\n    margin-top: 15px;\n    margin-bottom:  15px;\n">Center Name Here...</span>\n\n	<span style="\n    display: block;\n    color: #999;\n    font-size: 15px;\n    margin-bottom: 40px;\n        line-height: 24px;\n">Tu reserva esta siendo confirmada en este momento. Te notificaremos cuando hayamos procesado tu reserva</span>\n\n\n</div>\n\n\n<div style="    width: 100%;\n    text-align: center;\n    position: fixed;\n    left: 0;\n    bottom: 40px;">\n\n<button (click)=\'goPagina("MisReservasPage")\' color=\'verdeApp\' ion-button>Ver mi Reserva</button>\n\n<button (click)=\'goPagina("InicioPage")\' color=\'headerColor\' ion-button>Volver al Inicio</button>\n\n\n\n\n</div>\n\n</ion-content>\n'/*ion-inline-end:"/Users/jose/Documents/beyouApp/beYou/src/pages/reserva-hecha/reserva-hecha.html"*/,
+            selector: 'page-reserva-hecha',template:/*ion-inline-start:"/Users/jose/Documents/beyouApp/beYou/src/pages/reserva-hecha/reserva-hecha.html"*/'<!--\n  Generated template for the ReservaHechaPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar>\n    <ion-title>ReservaHecha</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content padding>\n\n\n\n<div style="\n    padding-left: 40px;\n    text-align: center;\n    padding-right: 40px;\n    margin-top: 30px;\n">\n	<img src="assets/imgs/fotoComercio.png" style="\n   height: 90px;\n   width: 90px;\n   ">\n\n	<span style="\n    display: block;\n    font-size: 20px;\n    color: #333;\n    margin-top: 15px;\n    margin-bottom:  15px;\n">Completado!</span>\n\n	<span style="\n    display: block;\n    color: #999;\n    font-size: 15px;\n    margin-bottom: 40px;\n        line-height: 24px;\n">Tu reserva esta siendo confirmada en este momento. Te notificaremos cuando hayamos procesado tu reserva</span>\n\n\n</div>\n\n\n<div style="    width: 100%;\n    text-align: center;\n    position: fixed;\n    left: 0;\n    bottom: 40px;">\n\n<button (click)=\'goPagina("MisReservasPage")\' color=\'verdeApp\' ion-button>Ver mi Reserva</button>\n\n<button (click)=\'goPagina("InicioPage")\' color=\'headerColor\' ion-button>Volver al Inicio</button>\n\n\n\n\n</div>\n\n</ion-content>\n'/*ion-inline-end:"/Users/jose/Documents/beyouApp/beYou/src/pages/reserva-hecha/reserva-hecha.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["NavController"], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["NavParams"]])
     ], ReservaHechaPage);
