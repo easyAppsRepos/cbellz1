@@ -32061,6 +32061,10 @@ page-detalle-reserva .separator {
   margin: 18px 32px;
 }
 
+page-inicio .imagenCategoria {
+  height: 45px;
+}
+
 page-lista-servicios .scroll-content {
   border: none !important;
 }

@@ -116,6 +116,12 @@
     <variable name="API_KEY_FOR_IOS" value="AIzaSyDjyHD9s5AzGciXjVHuney4MzKtduyHIPc" />
   </plugin>
 
+  <plugin name="cordova-plugin-request-location-accuracy" source="npm" />
+  <plugin name="cordova.plugins.diagnostic" source="npm" />
+
+  <preference name="cordova.plugins.diagnostic.modules" value="LOCATION NOTIFICATIONS" />
+
+
 
    <gap:plugin name="cordova-plugin-geolocation"  source="npm" />
 
