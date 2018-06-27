@@ -134,7 +134,7 @@ var MapaPage = (function () {
             _this.map.one(plugin.google.maps.event.MAP_READY, function () {
                 console.log('Map is ready!');
                 // move the map's camera to position
-                //this.map.moveCamera(position);
+                _this.map.moveCamera(position);
                 _this.map.addMarker({
                     position: { lng: -84.212576, lat: 10.0028923 },
                     title: "Marcador ejemplo"
