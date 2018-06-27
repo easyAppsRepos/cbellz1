@@ -249,7 +249,7 @@ var MapaPage = (function () {
                     _this.onError("Location services is already switched ON");
                     break;
             }
-        }, this.onError);
+        }, this.onError());
     };
     MapaPage.prototype.requestLocationAccuracy = function () {
         var _this = this;
@@ -283,7 +283,7 @@ var MapaPage = (function () {
                     _this.onError("Location services is already switched ON");
                     break;
             }
-        }, this.onError);
+        }, this.onError());
     };
     MapaPage.prototype._makeRequest = function () {
         cordova.plugins.locationAccuracy.canRequest(function (canRequest) {
