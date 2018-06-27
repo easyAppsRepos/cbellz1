@@ -186,37 +186,6 @@ var MapaPage = (function () {
     MapaPage.prototype.onError = function (error) {
         console.error("The following error occurred: " + error);
     };
-    MapaPage.prototype.handleLocationAuthorizationStatus = function (status) {
-        switch (status) {
-            case cordova.plugins.diagnostic.permissionStatus.GRANTED:
-                if (this.plt.is('ios')) {
-                    this.onError("Location services is already switched ON");
-                }
-                else {
-                    this._makeRequest();
-                }
-                break;
-            case cordova.plugins.diagnostic.permissionStatus.NOT_REQUESTED:
-                this.requestLocationAuthorization();
-                break;
-            case cordova.plugins.diagnostic.permissionStatus.DENIED:
-                if (this.plt.is('android')) {
-                    this.onError("User denied permission to use location");
-                }
-                else {
-                    this._makeRequest();
-                }
-                break;
-            case cordova.plugins.diagnostic.permissionStatus.DENIED_ALWAYS:
-                // Android only
-                this.onError("User denied permission to use location");
-                break;
-            case cordova.plugins.diagnostic.permissionStatus.GRANTED_WHEN_IN_USE:
-                // iOS only
-                this.onError("Location services is already switched ON");
-                break;
-        }
-    };
     MapaPage.prototype.requestLocationAuthorization = function () {
         var _this = this;
         cordova.plugins.diagnostic.requestLocationAuthorization(function (status) {
@@ -290,7 +259,8 @@ var MapaPage = (function () {
         cordova.plugins.locationAccuracy.canRequest(function (canRequest) {
             if (canRequest) {
                 cordova.plugins.locationAccuracy.request(function () {
-                    _this.handleSuccess("Location accuracy request successful");
+                    console.log("Location accuracy request successful");
+                    _this.getServiciosGPS();
                 }, function (error) {
                     _this.onError("Error requesting location accuracy: " + JSON.stringify(error));
                     if (error) {
