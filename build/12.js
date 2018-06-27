@@ -218,10 +218,72 @@ var MapaPage = (function () {
         }
     };
     MapaPage.prototype.requestLocationAuthorization = function () {
-        cordova.plugins.diagnostic.requestLocationAuthorization(this.handleLocationAuthorizationStatus, this.onError);
+        var _this = this;
+        cordova.plugins.diagnostic.requestLocationAuthorization(function (status) {
+            switch (status) {
+                case cordova.plugins.diagnostic.permissionStatus.GRANTED:
+                    if (_this.plt.is('ios')) {
+                        _this.onError("Location services is already switched ON");
+                    }
+                    else {
+                        _this._makeRequest();
+                    }
+                    break;
+                case cordova.plugins.diagnostic.permissionStatus.NOT_REQUESTED:
+                    _this.requestLocationAuthorization();
+                    break;
+                case cordova.plugins.diagnostic.permissionStatus.DENIED:
+                    if (_this.plt.is('android')) {
+                        onError("User denied permission to use location");
+                    }
+                    else {
+                        _this._makeRequest();
+                    }
+                    break;
+                case cordova.plugins.diagnostic.permissionStatus.DENIED_ALWAYS:
+                    // Android only
+                    _this.onError("User denied permission to use location");
+                    break;
+                case cordova.plugins.diagnostic.permissionStatus.GRANTED_WHEN_IN_USE:
+                    // iOS only
+                    _this.onError("Location services is already switched ON");
+                    break;
+            }
+        }, this.onError);
     };
     MapaPage.prototype.requestLocationAccuracy = function () {
-        cordova.plugins.diagnostic.getLocationAuthorizationStatus(this.handleLocationAuthorizationStatus, this.onError);
+        var _this = this;
+        cordova.plugins.diagnostic.getLocationAuthorizationStatus(function (status) {
+            switch (status) {
+                case cordova.plugins.diagnostic.permissionStatus.GRANTED:
+                    if (_this.plt.is('ios')) {
+                        _this.onError("Location services is already switched ON");
+                    }
+                    else {
+                        _this._makeRequest();
+                    }
+                    break;
+                case cordova.plugins.diagnostic.permissionStatus.NOT_REQUESTED:
+                    _this.requestLocationAuthorization();
+                    break;
+                case cordova.plugins.diagnostic.permissionStatus.DENIED:
+                    if (_this.plt.is('android')) {
+                        onError("User denied permission to use location");
+                    }
+                    else {
+                        _this._makeRequest();
+                    }
+                    break;
+                case cordova.plugins.diagnostic.permissionStatus.DENIED_ALWAYS:
+                    // Android only
+                    _this.onError("User denied permission to use location");
+                    break;
+                case cordova.plugins.diagnostic.permissionStatus.GRANTED_WHEN_IN_USE:
+                    // iOS only
+                    _this.onError("Location services is already switched ON");
+                    break;
+            }
+        }, this.onError);
     };
     MapaPage.prototype._makeRequest = function () {
         cordova.plugins.locationAccuracy.canRequest(function (canRequest) {
