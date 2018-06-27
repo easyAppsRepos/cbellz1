@@ -189,7 +189,7 @@ var MapaPage = (function () {
     MapaPage.prototype.handleLocationAuthorizationStatus = function (status) {
         switch (status) {
             case cordova.plugins.diagnostic.permissionStatus.GRANTED:
-                if (this.platform === "ios") {
+                if (this.plt.is('ios')) {
                     this.onError("Location services is already switched ON");
                 }
                 else {
@@ -200,7 +200,7 @@ var MapaPage = (function () {
                 this.requestLocationAuthorization();
                 break;
             case cordova.plugins.diagnostic.permissionStatus.DENIED:
-                if (this.platform === "android") {
+                if (this.plt.is('android')) {
                     onError("User denied permission to use location");
                 }
                 else {
@@ -233,7 +233,7 @@ var MapaPage = (function () {
                     if (error) {
                         // Android only
                         this.onError("error code=" + error.code + "; error message=" + error.message);
-                        if (this.platform === "android" && error.code !== cordova.plugins.locationAccuracy.ERROR_USER_DISAGREED) {
+                        if (this.plt.is('android') && error.code !== cordova.plugins.locationAccuracy.ERROR_USER_DISAGREED) {
                             if (window.confirm("Failed to automatically set Location Mode to 'High Accuracy'. Would you like to switch to the Location Settings page and do this manually?")) {
                                 cordova.plugins.diagnostic.switchToLocationSettings();
                             }
