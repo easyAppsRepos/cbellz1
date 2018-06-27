@@ -178,7 +178,7 @@ var MapaPage = (function () {
             console.log(error);
             loading.dismissAll();
             //this.presentAlert();
-            this.requestLocationAccuracy();
+            _this.requestLocationAccuracy();
         }, { enableHighAccuracy: true, timeout: 30000 });
     };
     MapaPage.prototype.gpsServices = function () {
