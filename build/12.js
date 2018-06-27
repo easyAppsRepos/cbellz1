@@ -201,7 +201,7 @@ var MapaPage = (function () {
                 break;
             case cordova.plugins.diagnostic.permissionStatus.DENIED:
                 if (this.plt.is('android')) {
-                    onError("User denied permission to use location");
+                    this.onError("User denied permission to use location");
                 }
                 else {
                     this._makeRequest();
@@ -234,7 +234,7 @@ var MapaPage = (function () {
                     break;
                 case cordova.plugins.diagnostic.permissionStatus.DENIED:
                     if (_this.plt.is('android')) {
-                        onError("User denied permission to use location");
+                        _this.onError("User denied permission to use location");
                     }
                     else {
                         _this._makeRequest();
@@ -268,7 +268,7 @@ var MapaPage = (function () {
                     break;
                 case cordova.plugins.diagnostic.permissionStatus.DENIED:
                     if (_this.plt.is('android')) {
-                        onError("User denied permission to use location");
+                        _this.onError("User denied permission to use location");
                     }
                     else {
                         _this._makeRequest();
@@ -286,16 +286,17 @@ var MapaPage = (function () {
         }, this.onError());
     };
     MapaPage.prototype._makeRequest = function () {
+        var _this = this;
         cordova.plugins.locationAccuracy.canRequest(function (canRequest) {
             if (canRequest) {
                 cordova.plugins.locationAccuracy.request(function () {
-                    this.handleSuccess("Location accuracy request successful");
+                    _this.handleSuccess("Location accuracy request successful");
                 }, function (error) {
-                    this.onError("Error requesting location accuracy: " + JSON.stringify(error));
+                    _this.onError("Error requesting location accuracy: " + JSON.stringify(error));
                     if (error) {
                         // Android only
-                        this.onError("error code=" + error.code + "; error message=" + error.message);
-                        if (this.plt.is('android') && error.code !== cordova.plugins.locationAccuracy.ERROR_USER_DISAGREED) {
+                        _this.onError("error code=" + error.code + "; error message=" + error.message);
+                        if (_this.plt.is('android') && error.code !== cordova.plugins.locationAccuracy.ERROR_USER_DISAGREED) {
                             if (window.confirm("Failed to automatically set Location Mode to 'High Accuracy'. Would you like to switch to the Location Settings page and do this manually?")) {
                                 cordova.plugins.diagnostic.switchToLocationSettings();
                             }
@@ -307,7 +308,7 @@ var MapaPage = (function () {
             else {
                 // On iOS, this will occur if Location Services is currently on OR a request is currently in progress.
                 // On Android, this will occur if the app doesn't have authorization to use location.
-                this.onError("Cannot request location accurac // android");
+                _this.onError("Cannot request location accurac // android");
             }
         });
     };
