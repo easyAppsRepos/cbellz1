@@ -169,17 +169,14 @@ var MapaPage = (function () {
                     data.forEach(function (element, index) {
                         var imagenLink = element.idFoto ? 'http://50.116.17.150:3000/' + element.idFoto : 'assets/imgs/fotoComercio.png';
                         var htmlInfoWindow = new plugin.google.maps.HtmlInfoWindow();
-                        var html = "&lt;span style='color: #2FD99B;'&gt; Centro tu Belleza &lt;/span" +
-                            "&gt; &lt;br&gt;" +
-                            "&lt;span style='margin-right: 21px;  color: #888;font-size: 15px;'&gt;" +
-                            "&lt;ion-icon name='md-star' role='img' " +
-                            " style='margin-right: 8px;color: rgb(249,199,53);font-size: 21px;" +
-                            "vertical-align: middle;' class='icon icon-ios ion-md-star'&gt;" +
-                            "&lt;/ion-icon&gt;4.0 (3)&lt;/span&gt;" +
-                            "&lt;span style='color: #888;font-size: 15px;'&gt;" +
-                            "&lt;ion-icon name='ios-pin' role='img' style='margin-right: 8px;vertical-align: middle;   font-size: 21px;color:#2FD99B;' class='icon icon-ios ion-ios-pin' aria-label='pin' ng-reflect-name='ios-pin'&gt;" +
-                            "&lt;/ion-icon&gt;505.38 Km" + "&lt;/span&gt;";
-                        htmlInfoWindow.setContent(html);
+                        var frame = document.createElement('div');
+                        frame.innerHTML = ["<span style='color: #2FD99B;'>Centro tu Belleza</span>",
+                            "<span style='margin-right: 21px;  color: #888;font-size: 15px;'><ion-icon name='md-star' role='img' style='    margin-right: 8px;\n          color: rgb(249,199,53);font-size: 21px;vertical-align: middle;' class='icon icon-ios ion-md-star'> </ion-icon>4.0 (3)</span>",
+                            "<span style='color: #888;font-size: 15px;  '><ion-icon name='ios-pin' role='img' style='  margin-right: 8px;      vertical-align: middle;   font-size: 21px;color:#2FD99B;' class='icon icon-ios ion-ios-pin' aria-label='pin' ng-reflect-name='ios-pin'></ion-icon>505.38 Km</span>"].join("");
+                        htmlInfoWindow.setContent(frame, {
+                            width: "180px",
+                            height: "100px"
+                        });
                         _this.map.addMarker({
                             'position': { lng: element.longitud, lat: element.latitud },
                             'icon': {
