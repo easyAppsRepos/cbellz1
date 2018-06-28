@@ -153,7 +153,7 @@ var MapaPage = (function () {
                 console.log('Map is ready!');
                 // move the map's camera to position
                 // this.map.moveCamera(position);
-                map.animateCamera({
+                _this.map.animateCamera({
                     target: { lat: _this.myPosition.latitude, lng: _this.myPosition.longitude },
                     zoom: 15,
                     tilt: 60,
