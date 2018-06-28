@@ -130,25 +130,18 @@ var MapaPage = (function () {
         this.loadMap = function () {
             var element = document.getElementById('map');
             _this.map = plugin.google.maps.Map.getMap(element);
+            _this.map.setVisible(true);
             // create CameraPosition
             var position = {
                 target: { lat: _this.myPosition.latitude, lng: _this.myPosition.longitude },
-                zoom: 17,
+                zoom: 15,
                 tilt: 30
             };
             _this.map.one(plugin.google.maps.event.MAP_READY, function () {
                 console.log('Map is ready!');
                 // move the map's camera to position
-                //this.map.moveCamera(position);
-                _this.map.animateCamera({
-                    target: { lat: _this.myPosition.latitude, lng: _this.myPosition.longitude },
-                    zoom: 17,
-                    tilt: 60,
-                    bearing: 140,
-                    duration: 5000
-                }, function () {
-                    console.log("Camera target has been changed");
-                });
+                _this.map.moveCamera(position);
+                _this.map.setVisible(true);
                 /*
                 this.map.addMarker({
                 position: {lng: -84.212576, lat: 10.0028923},
@@ -194,8 +187,8 @@ var MapaPage = (function () {
         }, function (error) {
             console.log('storageme err');
             console.log(error);
-            //loading.dismissAll();
-            _this.presentAlert();
+            loading.dismissAll();
+            //this.presentAlert();
             _this.requestLocationAccuracy();
         }, { enableHighAccuracy: true, timeout: 30000 });
     };
