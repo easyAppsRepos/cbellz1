@@ -134,13 +134,15 @@ var MapaPage = (function () {
             };
             _this.map.one(plugin.google.maps.event.MAP_READY, function () {
                 console.log('Map is ready!');
-                _this.map.setVisible(true);
                 // move the map's camera to position
                 _this.map.moveCamera(position);
                 _this.map.addMarker({
                     position: { lng: -84.212576, lat: 10.0028923 },
                     title: "Marcador ejemplo"
                 });
+                setTimeout(function () {
+                    _this.map.setVisible(true);
+                }, 2500);
             });
         };
         this.plt.is('ios') ? (this.platform = 'ios') : this.plt.is('android') ? (this.platform = 'android') : (this.platform = 'web');
