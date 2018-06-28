@@ -73,12 +73,6 @@ var __metadata = (this && this.__metadata) || function (k, v) {
  */
 var MapaPage = (function () {
     function MapaPage(navCtrl, navParams, modalCtrl, loadingCtrl, events, apiProvider, alertCtrl, storage, plt) {
-        /*
-        if(this.map){
-        console.log('setVisible false');
-        this.map.setVisible(false);
-        }
-        */
         var _this = this;
         this.navCtrl = navCtrl;
         this.navParams = navParams;
@@ -151,6 +145,7 @@ var MapaPage = (function () {
             };
             _this.map.one(plugin.google.maps.event.MAP_READY, function () {
                 //this.map.setVisible(false);
+                _this.loading.dismissAll();
                 console.log('Map is ready!');
                 // move the map's camera to position
                 //this.map.moveCamera(position);
@@ -170,8 +165,16 @@ var MapaPage = (function () {
                 */
             });
         };
+        /*
+        if(this.map){
+        console.log('setVisible false');
+        this.map.setVisible(false);
+        }
+        */
+        this.loading = this.loadingCtrl.create({ content: "Buscando negocios cercanos" });
     }
     MapaPage.prototype.ionViewDidEnter = function () {
+        this.loading.present();
         this.getServiciosGPS();
         // create a new map by passing HTMLElement
         //verificar si sirve en ionviewdidenter
@@ -193,9 +196,10 @@ var MapaPage = (function () {
         alert.present();
     };
     MapaPage.prototype.getServiciosGPS = function () {
+        //let loading = this.loadingCtrl.create({content : "Obteniendo ubicacion"});
+        //loading.present();
         var _this = this;
-        var loading = this.loadingCtrl.create({ content: "Obteniendo ubicacion" });
-        loading.present();
+        //loading.present();
         navigator.geolocation.getCurrentPosition(function (pos) {
             _this.myPosition = {
                 latitude: pos.coords.latitude,
@@ -207,7 +211,7 @@ var MapaPage = (function () {
                 'lng': pos.coords.longitude,
                 'expirationDate': fechaExpiracion });
             // setTimeout(() => {
-            loading.dismissAll();
+            //loading.dismissAll();
             _this.loadMap();
             //   },2000);
             //   loading.dismissAll();
@@ -216,7 +220,7 @@ var MapaPage = (function () {
             console.log('storageme err');
             console.log(error);
             //setTimeout(() => {
-            loading.dismissAll();
+            _this.loading.dismissAll();
             _this.requestLocationAccuracy();
             // },2000);
             // loading.dismissAll();
