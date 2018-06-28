@@ -136,7 +136,7 @@ var MapaPage = (function () {
             _this.map = plugin.google.maps.Map.getMap(element, {
                 'camera': {
                     target: { lat: _this.myPosition.latitude, lng: _this.myPosition.longitude },
-                    zoom: 16
+                    zoom: 15
                 },
                 'preferences': {
                     'zoom': {
@@ -163,7 +163,11 @@ var MapaPage = (function () {
                             'position': { lng: element.longitud, lat: element.latitud },
                             'title': element.nombre,
                             'icon': {
-                                'url': imagenLink
+                                'url': imagenLink,
+                                size: {
+                                    width: 35,
+                                    height: 35
+                                }
                             }
                         });
                     });
