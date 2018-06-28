@@ -131,7 +131,12 @@ var MapaPage = (function () {
             //let loading3 = this.loadingCtrl.create({content : "Buscando negocios cercanos"});
             //loading3.present();
             var element = document.getElementById('map');
-            _this.map = plugin.google.maps.Map.getMap(element);
+            _this.map = plugin.google.maps.Map.getMap(element, { 'preferences': {
+                    'zoom': {
+                        'minZoom': 14,
+                        'maxZoom': 18
+                    }
+                } });
             // create CameraPosition
             var position = {
                 target: { lat: _this.myPosition.latitude, lng: _this.myPosition.longitude },
