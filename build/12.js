@@ -73,6 +73,12 @@ var __metadata = (this && this.__metadata) || function (k, v) {
  */
 var MapaPage = (function () {
     function MapaPage(navCtrl, navParams, modalCtrl, loadingCtrl, events, apiProvider, alertCtrl, storage, plt) {
+        /*
+        if(this.map){
+        console.log('setVisible false');
+        this.map.setVisible(false);
+        }
+        */
         var _this = this;
         this.navCtrl = navCtrl;
         this.navParams = navParams;
@@ -122,9 +128,6 @@ var MapaPage = (function () {
             _this.map.addMarker(markerOptions);
         };
         this.loadMap = function () {
-            // create a new map by passing HTMLElement
-            var element = document.getElementById('map');
-            _this.map = plugin.google.maps.Map.getMap(element);
             // create CameraPosition
             var position = {
                 target: { lat: _this.myPosition.latitude, lng: _this.myPosition.longitude },
@@ -141,10 +144,11 @@ var MapaPage = (function () {
                 });
             });
         };
-        this.plt.is('ios') ? (this.platform = 'ios') : this.plt.is('android') ? (this.platform = 'android') : (this.platform = 'web');
-        console.log(this.platform);
     }
     MapaPage.prototype.ionViewDidLoad = function () {
+        // create a new map by passing HTMLElement
+        var element = document.getElementById('map');
+        this.map = plugin.google.maps.Map.getMap(element);
         this.getServiciosGPS();
         //this.gpsServices();
         console.log('ionViewDidLoad MapaPage');
@@ -154,12 +158,22 @@ var MapaPage = (function () {
         if (this.map) {
             console.log('j here');
             setTimeout(function () {
+                console.log('d');
                 _this.map.setVisible(true);
             }, 2500);
         }
     };
     MapaPage.prototype.ionViewWillLeave = function () {
-        this.map.setVisible(false);
+        if (this.map) {
+            console.log('ionViewWillLeave');
+            this.map.setVisible(false);
+        }
+    };
+    MapaPage.prototype.ionViewWillEnter = function () {
+        if (this.map) {
+            console.log('ionViewWillEnter');
+            this.map.setVisible(false);
+        }
     };
     MapaPage.prototype.presentAlert = function () {
         var alert = this.alertCtrl.create({
