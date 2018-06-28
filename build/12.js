@@ -133,7 +133,8 @@ var MapaPage = (function () {
             var element = document.getElementById('map');
             _this.map = plugin.google.maps.Map.getMap(element, {
                 'camera': {
-                    zoom: 15
+                    target: { lat: _this.myPosition.latitude, lng: _this.myPosition.longitude },
+                    zoom: 16
                 },
                 'preferences': {
                     'zoom': {
@@ -145,21 +146,14 @@ var MapaPage = (function () {
             // create CameraPosition
             var position = {
                 target: { lat: _this.myPosition.latitude, lng: _this.myPosition.longitude },
-                zoom: 15,
+                zoom: 16,
                 tilt: 30
             };
             _this.map.one(plugin.google.maps.event.MAP_READY, function () {
                 //this.map.setVisible(false);
                 console.log('Map is ready!');
                 // move the map's camera to position
-                // this.map.moveCamera(position);
-                _this.map.animateCamera({
-                    target: { lat: _this.myPosition.latitude, lng: _this.myPosition.longitude },
-                    zoom: 15,
-                    tilt: 60,
-                    bearing: 140,
-                    duration: 3000
-                });
+                //this.map.moveCamera(position);
                 //loading3.dismissAll();
                 /*
                 setTimeout(() => {
