@@ -130,7 +130,7 @@ var MapaPage = (function () {
         this.loadMap = function () {
             var element = document.getElementById('map');
             _this.map = plugin.google.maps.Map.getMap(element);
-            _this.map.setVisible(true);
+            _this.map.setVisible(false);
             // create CameraPosition
             var position = {
                 target: { lat: _this.myPosition.latitude, lng: _this.myPosition.longitude },
