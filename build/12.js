@@ -139,7 +139,15 @@ var MapaPage = (function () {
             _this.map.one(plugin.google.maps.event.MAP_READY, function () {
                 console.log('Map is ready!');
                 // move the map's camera to position
-                _this.map.moveCamera(position);
+                //this.map.moveCamera(position);
+                _this.map.animateCamera({
+                    target: { lat: _this.myPosition.latitude, lng: _this.myPosition.longitude },
+                    zoom: 17,
+                    tilt: 40,
+                    duration: 4000
+                }, function () {
+                    console.log("Camera target has been changed");
+                });
                 /*
                 this.map.addMarker({
                 position: {lng: -84.212576, lat: 10.0028923},
@@ -168,8 +176,8 @@ var MapaPage = (function () {
     };
     MapaPage.prototype.getServiciosGPS = function () {
         var _this = this;
-        //let loading = this.loadingCtrl.create({content : "Obteniendo ubicacion"});
-        //loading.present();
+        var loading = this.loadingCtrl.create({ content: "Obteniendo ubicacion" });
+        loading.present();
         navigator.geolocation.getCurrentPosition(function (pos) {
             _this.myPosition = {
                 latitude: pos.coords.latitude,
@@ -180,13 +188,13 @@ var MapaPage = (function () {
             _this.storage.set('coorLBY', { 'lat': pos.coords.latitude,
                 'lng': pos.coords.longitude,
                 'expirationDate': fechaExpiracion });
-            //loading.dismissAll();
+            loading.dismissAll();
             _this.loadMap();
         }, function (error) {
             console.log('storageme err');
             console.log(error);
             //loading.dismissAll();
-            //this.presentAlert();
+            _this.presentAlert();
             _this.requestLocationAccuracy();
         }, { enableHighAccuracy: true, timeout: 30000 });
     };
