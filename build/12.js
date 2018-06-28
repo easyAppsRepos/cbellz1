@@ -168,6 +168,18 @@ var MapaPage = (function () {
                     _this.dataMarcas = data;
                     data.forEach(function (element, index) {
                         var imagenLink = element.idFoto ? 'http://50.116.17.150:3000/' + element.idFoto : 'assets/imgs/fotoComercio.png';
+                        var htmlInfoWindow = new plugin.google.maps.HtmlInfoWindow();
+                        var html = "&lt; span style='color: #2FD99B;'&gt; Centro tu Belleza&lt;span" +
+                            "&gt; &lt;br&gt;" +
+                            "&lt;span style='margin-right: 21px;  color: #888;font-size: 15px;'&gt;" +
+                            "&lt;ion-icon name='md-star' role='img' " +
+                            " style='margin-right: 8px;color: rgb(249,199,53);font-size: 21px;" +
+                            "vertical-align: middle;' class='icon icon-ios ion-md-star'&gt;" +
+                            "&lt;ion-icon&gt;4.0 (3)&lt; span&gt;" +
+                            "&lt;span style='color: #888;font-size: 15px;'&gt;" +
+                            "&lt;ion-icon name='ios-pin' role='img' style='margin-right: 8px;vertical-align: middle;   font-size: 21px;color:#2FD99B;' class='icon icon-ios ion-ios-pin' aria-label='pin' ng-reflect-name='ios-pin'&gt;" +
+                            "&lt;ion-icon&gt;505.38 Km&lt;" + "span&gt;";
+                        htmlInfoWindow.setContent(html);
                         _this.map.addMarker({
                             'position': { lng: element.longitud, lat: element.latitud },
                             'title': element.nombre,
@@ -178,6 +190,11 @@ var MapaPage = (function () {
                                     height: 35
                                 }
                             }
+                        }, function (marker) {
+                            marker.on(plugin.google.maps.event.MARKER_CLICK, function () {
+                                htmlInfoWindow.open(marker);
+                            });
+                            marker.trigger(plugin.google.maps.event.MARKER_CLICK);
                         });
                     });
                     _this.loading.dismissAll();
