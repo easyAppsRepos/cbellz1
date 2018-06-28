@@ -178,11 +178,10 @@ var MapaPage = (function () {
                             "&lt;/ion-icon&gt;4.0 (3)&lt;/span&gt;" +
                             "&lt;span style='color: #888;font-size: 15px;'&gt;" +
                             "&lt;ion-icon name='ios-pin' role='img' style='margin-right: 8px;vertical-align: middle;   font-size: 21px;color:#2FD99B;' class='icon icon-ios ion-ios-pin' aria-label='pin' ng-reflect-name='ios-pin'&gt;" +
-                            "&lt;/ion-icon&gt;505.38 Km&lt;" + "&lt;/span&gt;";
+                            "&lt;/ion-icon&gt;505.38 Km" + "&lt;/span&gt;";
                         htmlInfoWindow.setContent(html);
                         _this.map.addMarker({
                             'position': { lng: element.longitud, lat: element.latitud },
-                            'title': element.nombre,
                             'icon': {
                                 'url': imagenLink,
                                 size: {
