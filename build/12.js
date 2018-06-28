@@ -125,6 +125,7 @@ var MapaPage = (function () {
             // create a new map by passing HTMLElement
             var element = document.getElementById('map');
             _this.map = plugin.google.maps.Map.getMap(element);
+            _this.map.setVisible(false);
             // create CameraPosition
             var position = {
                 target: { lat: _this.myPosition.latitude, lng: _this.myPosition.longitude },
@@ -133,6 +134,7 @@ var MapaPage = (function () {
             };
             _this.map.one(plugin.google.maps.event.MAP_READY, function () {
                 console.log('Map is ready!');
+                _this.map.setVisible(true);
                 // move the map's camera to position
                 _this.map.moveCamera(position);
                 _this.map.addMarker({
