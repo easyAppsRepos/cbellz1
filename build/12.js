@@ -83,6 +83,7 @@ var MapaPage = (function () {
         this.alertCtrl = alertCtrl;
         this.storage = storage;
         this.plt = plt;
+        this.dataMarcas = [];
         this.myPosition = {};
         this.markers = [
             {
@@ -121,6 +122,13 @@ var MapaPage = (function () {
             };
             _this.map.addMarker(markerOptions);
         };
+        this.getCentrosCercanos = function () {
+            _this.apiProvider.getCentrosMapa({ lat: _this.myPosition.latitude, lon: _this.myPosition.longitude })
+                .then(function (data) {
+                console.log(data);
+                _this.dataMarcas = data || [];
+            });
+        };
         this.loadMap = function () {
             //let loading3 = this.loadingCtrl.create({content : "Buscando negocios cercanos"});
             //loading3.present();
@@ -145,18 +153,26 @@ var MapaPage = (function () {
             };
             _this.map.one(plugin.google.maps.event.MAP_READY, function () {
                 //this.map.setVisible(false);
-                _this.loading.dismissAll();
+                _this.apiProvider.getCentrosMapa({ lat: _this.myPosition.latitude, lon: _this.myPosition.longitude })
+                    .then(function (data) {
+                    console.log(data);
+                    _this.dataMarcas = data;
+                    data.forEach(function (element, index) {
+                        var imagenLink = element.idFoto ? 'http://50.116.17.150:3000/' + element.idFoto : 'assets/imgs/fotoComercio.png';
+                        _this.map.addMarker({
+                            'position': { lng: element.longitud, lat: element.latitud },
+                            'title': element.nombre,
+                            'icon': {
+                                'url': imagenLink
+                            }
+                        });
+                    });
+                    _this.loading.dismissAll();
+                });
                 console.log('Map is ready!');
                 // move the map's camera to position
                 //this.map.moveCamera(position);
                 //loading3.dismissAll();
-                /*
-                setTimeout(() => {
-              
-              
-                this.map.setVisible(true);
-                },1000);
-                */
                 /*
                 this.map.addMarker({
                 position: {lng: -84.212576, lat: 10.0028923},
