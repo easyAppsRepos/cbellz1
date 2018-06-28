@@ -152,7 +152,14 @@ var MapaPage = (function () {
                 //this.map.setVisible(false);
                 console.log('Map is ready!');
                 // move the map's camera to position
-                _this.map.moveCamera(position);
+                // this.map.moveCamera(position);
+                map.animateCamera({
+                    target: { lat: _this.myPosition.latitude, lng: _this.myPosition.longitude },
+                    zoom: 15,
+                    tilt: 60,
+                    bearing: 140,
+                    duration: 3000
+                });
                 //loading3.dismissAll();
                 /*
                 setTimeout(() => {
