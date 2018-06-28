@@ -143,8 +143,9 @@ var MapaPage = (function () {
                 _this.map.animateCamera({
                     target: { lat: _this.myPosition.latitude, lng: _this.myPosition.longitude },
                     zoom: 17,
-                    tilt: 40,
-                    duration: 4000
+                    tilt: 60,
+                    bearing: 140,
+                    duration: 5000
                 }, function () {
                     console.log("Camera target has been changed");
                 });
