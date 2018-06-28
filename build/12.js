@@ -132,6 +132,7 @@ var MapaPage = (function () {
                 zoom: 15,
                 tilt: 30
             };
+            _this.escondeMapa = true;
             _this.map.one(plugin.google.maps.event.MAP_READY, function () {
                 _this.map.setVisible(false);
                 console.log('Map is ready!');
@@ -156,7 +157,7 @@ var MapaPage = (function () {
         this.map.setVisible(false);
         }
         */
-        this.escondeMapa = true;
+        this.escondeMapa = false;
     }
     MapaPage.prototype.ionViewDidLoad = function () {
         // create a new map by passing HTMLElement
