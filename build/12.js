@@ -165,7 +165,7 @@ var MapaPage = (function () {
             });
         };
     }
-    MapaPage.prototype.ionViewDidLoad = function () {
+    MapaPage.prototype.ionViewDidEnter = function () {
         // create a new map by passing HTMLElement
         this.getServiciosGPS();
         //this.gpsServices();
