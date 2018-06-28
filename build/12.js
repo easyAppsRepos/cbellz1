@@ -206,19 +206,19 @@ var MapaPage = (function () {
             _this.storage.set('coorLBY', { 'lat': pos.coords.latitude,
                 'lng': pos.coords.longitude,
                 'expirationDate': fechaExpiracion });
-            setTimeout(function () {
-                loading.dismissAll();
-                _this.loadMap();
-            }, 2000);
+            // setTimeout(() => {
+            loading.dismissAll();
+            _this.loadMap();
+            //   },2000);
             //   loading.dismissAll();
             //  this.loadMap();
         }, function (error) {
             console.log('storageme err');
             console.log(error);
-            setTimeout(function () {
-                loading.dismissAll();
-                _this.requestLocationAccuracy();
-            }, 2000);
+            //setTimeout(() => {
+            loading.dismissAll();
+            _this.requestLocationAccuracy();
+            // },2000);
             // loading.dismissAll();
             // this.requestLocationAccuracy();
         }, { enableHighAccuracy: true, timeout: 30000 });
