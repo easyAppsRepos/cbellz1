@@ -32087,7 +32087,7 @@ page-lista-servicios .select-ios .select-icon .select-icon-inner {
 
 page-mapa #map {
   display: block;
-  height: 100%;
+  height: 500px;
   width: 100%;
 }
 
