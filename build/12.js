@@ -138,10 +138,12 @@ var MapaPage = (function () {
                 console.log('Map is ready!');
                 // move the map's camera to position
                 _this.map.moveCamera(position);
-                _this.map.addMarker({
-                    position: { lng: -84.212576, lat: 10.0028923 },
-                    title: "Marcador ejemplo"
+                /*
+                this.map.addMarker({
+                position: {lng: -84.212576, lat: 10.0028923},
+                title: "Marcador ejemplo"
                 });
+                */
             });
         };
     }
@@ -152,28 +154,6 @@ var MapaPage = (function () {
         this.getServiciosGPS();
         //this.gpsServices();
         console.log('ionViewDidLoad MapaPage');
-    };
-    MapaPage.prototype.ionViewDidEnter = function () {
-        var _this = this;
-        if (this.map) {
-            console.log('j here');
-            setTimeout(function () {
-                console.log('d');
-                _this.map.setVisible(true);
-            }, 2500);
-        }
-    };
-    MapaPage.prototype.ionViewWillLeave = function () {
-        if (this.map) {
-            console.log('ionViewWillLeave');
-            this.map.setVisible(false);
-        }
-    };
-    MapaPage.prototype.ionViewWillEnter = function () {
-        if (this.map) {
-            console.log('ionViewWillEnter');
-            this.map.setVisible(false);
-        }
     };
     MapaPage.prototype.presentAlert = function () {
         var alert = this.alertCtrl.create({
