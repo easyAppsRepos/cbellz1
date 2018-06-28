@@ -159,8 +159,8 @@ var MapaPage = (function () {
     };
     MapaPage.prototype.getServiciosGPS = function () {
         var _this = this;
-        var loading = this.loadingCtrl.create({ content: "Obteniendo ubicacion" });
-        loading.present();
+        //let loading = this.loadingCtrl.create({content : "Obteniendo ubicacion"});
+        //loading.present();
         navigator.geolocation.getCurrentPosition(function (pos) {
             _this.myPosition = {
                 latitude: pos.coords.latitude,
@@ -171,12 +171,12 @@ var MapaPage = (function () {
             _this.storage.set('coorLBY', { 'lat': pos.coords.latitude,
                 'lng': pos.coords.longitude,
                 'expirationDate': fechaExpiracion });
-            loading.dismissAll();
+            //loading.dismissAll();
             _this.loadMap();
         }, function (error) {
             console.log('storageme err');
             console.log(error);
-            loading.dismissAll();
+            //loading.dismissAll();
             //this.presentAlert();
             _this.requestLocationAccuracy();
         }, { enableHighAccuracy: true, timeout: 30000 });
