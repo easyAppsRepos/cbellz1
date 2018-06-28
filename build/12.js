@@ -134,6 +134,10 @@ var MapaPage = (function () {
             //loading3.present();
             var element = document.getElementById('map');
             _this.map = plugin.google.maps.Map.getMap(element, {
+                controls: {
+                    'myLocationButton': true,
+                    'zoom': true,
+                },
                 'camera': {
                     target: { lat: _this.myPosition.latitude, lng: _this.myPosition.longitude },
                     zoom: 15
