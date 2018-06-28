@@ -166,8 +166,12 @@ var MapaPage = (function () {
         };
     }
     MapaPage.prototype.ionViewDidEnter = function () {
-        // create a new map by passing HTMLElement
         this.getServiciosGPS();
+        // create a new map by passing HTMLElement
+        //verificar si sirve en ionviewdidenter
+        //verificar reduciendo widj
+        //verificar con push y setRoot
+        //cambiar fondo oclor
         //this.gpsServices();
         console.log('ionViewDidLoad MapaPage');
     };
@@ -196,14 +200,21 @@ var MapaPage = (function () {
             _this.storage.set('coorLBY', { 'lat': pos.coords.latitude,
                 'lng': pos.coords.longitude,
                 'expirationDate': fechaExpiracion });
-            loading.dismissAll();
-            _this.loadMap();
+            setTimeout(function () {
+                loading.dismissAll();
+                _this.loadMap();
+            }, 2000);
+            //   loading.dismissAll();
+            //  this.loadMap();
         }, function (error) {
             console.log('storageme err');
             console.log(error);
-            loading.dismissAll();
-            //this.presentAlert();
-            _this.requestLocationAccuracy();
+            setTimeout(function () {
+                loading.dismissAll();
+                _this.requestLocationAccuracy();
+            }, 2000);
+            // loading.dismissAll();
+            // this.requestLocationAccuracy();
         }, { enableHighAccuracy: true, timeout: 30000 });
     };
     MapaPage.prototype.gpsServices = function () {
