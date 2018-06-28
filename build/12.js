@@ -135,8 +135,7 @@ var MapaPage = (function () {
             var element = document.getElementById('map');
             _this.map = plugin.google.maps.Map.getMap(element, {
                 controls: {
-                    'myLocationButton': true,
-                    'zoom': true,
+                    'zoom': true // android only
                 },
                 'camera': {
                     target: { lat: _this.myPosition.latitude, lng: _this.myPosition.longitude },
@@ -150,7 +149,7 @@ var MapaPage = (function () {
                     padding: {
                         left: 10,
                         top: 10,
-                        bottom: 10,
+                        bottom: 53,
                         right: 10
                     }
                 }
