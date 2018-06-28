@@ -141,7 +141,9 @@ var MapaPage = (function () {
                 console.log('Map is ready!');
                 // move the map's camera to position
                 _this.map.moveCamera(position);
-                _this.map.setVisible(true);
+                setTimeout(function () {
+                    _this.map.setVisible(true);
+                }, 2000);
                 /*
                 this.map.addMarker({
                 position: {lng: -84.212576, lat: 10.0028923},
