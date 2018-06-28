@@ -125,7 +125,6 @@ var MapaPage = (function () {
             // create a new map by passing HTMLElement
             var element = document.getElementById('map');
             _this.map = plugin.google.maps.Map.getMap(element);
-            _this.map.setVisible(false);
             // create CameraPosition
             var position = {
                 target: { lat: _this.myPosition.latitude, lng: _this.myPosition.longitude },
@@ -140,9 +139,6 @@ var MapaPage = (function () {
                     position: { lng: -84.212576, lat: 10.0028923 },
                     title: "Marcador ejemplo"
                 });
-                setTimeout(function () {
-                    _this.map.setVisible(true);
-                }, 2500);
             });
         };
         this.plt.is('ios') ? (this.platform = 'ios') : this.plt.is('android') ? (this.platform = 'android') : (this.platform = 'web');
@@ -152,6 +148,18 @@ var MapaPage = (function () {
         this.getServiciosGPS();
         //this.gpsServices();
         console.log('ionViewDidLoad MapaPage');
+    };
+    MapaPage.prototype.ionViewDidEnter = function () {
+        var _this = this;
+        if (this.map) {
+            console.log('j here');
+            setTimeout(function () {
+                _this.map.setVisible(true);
+            }, 2500);
+        }
+    };
+    MapaPage.prototype.ionViewWillLeave = function () {
+        this.map.setVisible(false);
     };
     MapaPage.prototype.presentAlert = function () {
         var alert = this.alertCtrl.create({
