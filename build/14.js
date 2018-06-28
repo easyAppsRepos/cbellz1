@@ -127,7 +127,8 @@ var InicioPage = (function () {
     };
     InicioPage.prototype.goMapa = function () {
         //console.log(nombreServicio);
-        this.navCtrl.setRoot('MapaPage');
+        //this.navCtrl.setRoot('MapaPage');
+        this.navCtrl.push('MapaPage');
     };
     InicioPage.prototype.openMenu = function () {
         var profileModal = this.modalCtrl.create('LoginPage');

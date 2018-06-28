@@ -128,8 +128,8 @@ var MapaPage = (function () {
             _this.map.addMarker(markerOptions);
         };
         this.loadMap = function () {
-            var loading3 = _this.loadingCtrl.create({ content: "Buscando negocios cercanos" });
-            loading3.present();
+            //let loading3 = this.loadingCtrl.create({content : "Buscando negocios cercanos"});
+            //loading3.present();
             var element = document.getElementById('map');
             _this.map = plugin.google.maps.Map.getMap(element);
             // create CameraPosition
@@ -139,14 +139,18 @@ var MapaPage = (function () {
                 tilt: 30
             };
             _this.map.one(plugin.google.maps.event.MAP_READY, function () {
-                _this.map.setVisible(false);
+                //this.map.setVisible(false);
                 console.log('Map is ready!');
                 // move the map's camera to position
                 _this.map.moveCamera(position);
-                setTimeout(function () {
-                    loading3.dismissAll();
-                    _this.map.setVisible(true);
-                }, 1000);
+                //loading3.dismissAll();
+                /*
+                setTimeout(() => {
+              
+              
+                this.map.setVisible(true);
+                },1000);
+                */
                 /*
                 this.map.addMarker({
                 position: {lng: -84.212576, lat: 10.0028923},
