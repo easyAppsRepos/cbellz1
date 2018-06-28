@@ -146,6 +146,12 @@ var MapaPage = (function () {
                     'zoom': {
                         'minZoom': 13,
                         'maxZoom': 17
+                    },
+                    padding: {
+                        left: 10,
+                        top: 10,
+                        bottom: 10,
+                        right: 10
                     }
                 }
             });
