@@ -230,10 +230,15 @@ var MapaPage = (function () {
             });
         };
     }
-    MapaPage.prototype.ionViewDidEnter = function () {
+    MapaPage.prototype.ionViewDidLoad = function () {
         this.loading = this.loadingCtrl.create({ content: "Buscando negocios cercanos" });
         this.loading.present();
         this.getServiciosGPS();
+    };
+    MapaPage.prototype.ionViewDidEnter = function () {
+        // this.loading = this.loadingCtrl.create({content : "Buscando negocios cercanos"});
+        //  this.loading.present();
+        //  this.getServiciosGPS();
         // create a new map by passing HTMLElement
         //verificar si sirve en ionviewdidenter
         //verificar reduciendo widj
