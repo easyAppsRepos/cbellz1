@@ -32085,6 +32085,10 @@ page-lista-servicios .select-ios .select-icon .select-icon-inner {
   color: white !important;
 }
 
+page-mapa .centradoTexto {
+  text-align: center;
+}
+
 page-mapa .ratingStar {
   color: #FFCB19;
 }

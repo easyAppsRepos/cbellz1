@@ -171,7 +171,7 @@ var MapaPage = (function () {
                         var imagenLink = element.idFoto ? 'http://50.116.17.150:3000/' + element.idFoto : 'assets/imgs/fotoComercio.png';
                         var htmlInfoWindow = new plugin.google.maps.HtmlInfoWindow();
                         var frame = document.createElement('div');
-                        frame.className = 'text-align: center;';
+                        frame.className = 'centradoTexto';
                         frame.innerHTML = ["<span style='color: #555;font-size: 17px;'><b>" + element.nombre + "</b></span><br>",
                             "<span style=\"display: block;margin: 3px 0px;color: lightgray;font-size: 15px;\">",
                             _this.getEstrella(1, element.rate),
@@ -181,7 +181,7 @@ var MapaPage = (function () {
                             _this.getEstrella(5, element.rate),
                             "</span>",
                             "<span style='color: #888;font-size: 16px;  '><ion-icon name='ios-pin' role='img' style='  margin-right: 8px;      vertical-align: middle;   font-size: 21px;color:#2FD99B;' class='icon icon-ios ion-ios-pin' aria-label='pin' ng-reflect-name='ios-pin'></ion-icon>a " + (element.distance ? element.distance.toFixed(1) : '-') + "km aprox.</span><br>",
-                            "<button (click)='goTo(" + element.idCentro + ")' class='margin: 6px 0px; padding: 5px;background-color: #2FD99B;color: white;font-weight: 900;' >Mas Informacion</button>"].join("");
+                            "<button (click)='goTo(" + element.idCentro + ")' style='margin: 6px 0px; padding: 5px;background-color: #2FD99B;color: white;font-weight: 900;' >Mas Informacion</button>"].join("");
                         htmlInfoWindow.setContent(frame, {
                             width: "180px",
                             height: "110px"
