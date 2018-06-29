@@ -181,7 +181,11 @@ var MapaPage = (function () {
                             _this.getEstrella(5, element.rate),
                             "</span>",
                             "<span style='color: #888;font-size: 16px;  '><ion-icon name='ios-pin' role='img' style='  margin-right: 8px;      vertical-align: middle;   font-size: 21px;color:#2FD99B;' class='icon icon-ios ion-ios-pin' aria-label='pin' ng-reflect-name='ios-pin'></ion-icon>a " + (element.distance ? element.distance.toFixed(1) : '-') + "km aprox.</span><br>",
-                            "<button (click)='goTo(" + element.idCentro + ")' style='margin: 6px 0px; padding: 5px;background-color: #2FD99B;color: white;font-weight: 900;' >Mas Informacion</button>"].join("");
+                            "<button  style='margin: 6px 0px; padding: 5px;background-color: #2FD99B;color: white;font-weight: 900;' >Mas Informacion</button>"].join("");
+                        var button = frame.getElementsByTagName("button")[0];
+                        button.addEventListener("click", function () {
+                            _this.navCtrl.push('PerfilCentroPage', { 'idCentro': element.idCentro, 'idServicioSeleccionado': 0 });
+                        });
                         htmlInfoWindow.setContent(frame, {
                             width: "180px",
                             height: "110px"
