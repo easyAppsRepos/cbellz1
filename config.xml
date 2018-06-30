@@ -84,7 +84,7 @@
 -->
 
   <preference name="android-build-tool" value="gradle" />
-  
+
 
 <plugin name="uk.co.workingedge.phonegap.plugin.launchnavigator" source="npm" />
 
@@ -114,7 +114,7 @@
 <gap:plugin name="cordova-plugin-inappbrowser" source="npm"  />
 
 
-  <plugin name="cordova-plugin-googlemaps" spec="^2.2.9">
+  <plugin name="cordova-plugin-googlemaps" spec="2.2.9">
     <variable name="API_KEY_FOR_ANDROID" value="AIzaSyAT-tTbOja69paXaiAgAtNi9nGHRh75bzk" />
     <variable name="API_KEY_FOR_IOS" value="AIzaSyDjyHD9s5AzGciXjVHuney4MzKtduyHIPc" />
   </plugin>
