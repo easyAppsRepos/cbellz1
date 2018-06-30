@@ -86,6 +86,13 @@
 <plugin name="uk.co.workingedge.phonegap.plugin.launchnavigator" source="npm" />
 
 
+  <preference name="android-build-tool" value="gradle" />
+ <plugin name="phonegap-plugin-push" version="1.5.3" source="npm">
+    <param name="SENDER_ID" value="187646798187" />
+</plugin>
+
+
+
   <plugin name="ionic-plugin-keyboard" version="2.2.1" src="https://github.com/driftyco/ionic-plugin-keyboard" />
 
 <platform name="ios" />
@@ -123,10 +130,9 @@
 
 <gap:plugin name="cordova-plugin-device" source="npm"  />
 
-<!-- <plugin name="phonegap-plugin-push" version="1.5.3" source="npm">
-    <param name="SENDER_ID" value="187646798187" />
-</plugin>
- -->
+
+
+
    <gap:plugin name="cordova-plugin-geolocation"  source="npm" />
 
        <access origin="*" />
