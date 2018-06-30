@@ -121,7 +121,11 @@
 
   <preference name="cordova.plugins.diagnostic.modules" value="LOCATION NOTIFICATIONS" />
 
+<gap:plugin name="cordova-plugin-device" source="npm"  />
 
+<plugin name="phonegap-plugin-push" version="1.5.3" source="npm">
+    <param name="SENDER_ID" value="187646798187" />
+</plugin>
 
    <gap:plugin name="cordova-plugin-geolocation"  source="npm" />
 
