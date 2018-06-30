@@ -1331,6 +1331,7 @@ var MyApp = (function () {
             //end init demo verification
             //init Push tasks
             if (_this.platform.is('android') || _this.platform.is('ios')) {
+                console.log('amhere1');
                 //PUSH FUNCIONANDO
                 var push = PushNotification.init({
                     "android": {
