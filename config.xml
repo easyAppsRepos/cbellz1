@@ -14,7 +14,7 @@
       <access origin="*"/>
   <content src="index.html"/>
 
-  <preference name="phonegap-version" value="cli-8.0.0" />
+  <preference name="phonegap-version" value="cli-7.1.0" />
   <preference name="orientation" value="portrait" />
   <preference name="webviewbounce" value="false"/>
 
@@ -124,8 +124,6 @@
   <preference name="cordova.plugins.diagnostic.modules" value="LOCATION NOTIFICATIONS" />
 
 <gap:plugin name="cordova-plugin-device" source="npm"  />
-
-<gap:plugin name="cordova-android-support-gradle-release" source="npm"  />
 
 
 
