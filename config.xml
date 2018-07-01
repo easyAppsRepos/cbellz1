@@ -123,12 +123,12 @@
 <gap:plugin name="cordova-plugin-network-information" source="npm" version="1.0.1" />
 <gap:plugin name="cordova-plugin-inappbrowser" source="npm"  />
 
-
+<!-- 
   <plugin name="cordova-plugin-googlemaps" spec="^2.2.9">
 
       <variable name="API_KEY_FOR_ANDROID" value="AIzaSyAT-tTbOja69paXaiAgAtNi9nGHRh75bzk" />
     <variable name="API_KEY_FOR_IOS" value="AIzaSyDjyHD9s5AzGciXjVHuney4MzKtduyHIPc" />
-  </plugin>
+  </plugin> -->
 
   <plugin name="cordova-plugin-request-location-accuracy" source="npm" />
   <plugin name="cordova.plugins.diagnostic" source="npm" />
