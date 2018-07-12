@@ -1,6 +1,6 @@
 webpackJsonp([5],{
 
-/***/ 447:
+/***/ 445:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -8,7 +8,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PerfilCentroPageModule", function() { return PerfilCentroPageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(14);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__perfil_centro__ = __webpack_require__(477);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__perfil_centro__ = __webpack_require__(475);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_http__ = __webpack_require__(451);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -2838,7 +2838,7 @@ Observable_1.Observable.prototype.map = map_1.map;
 
 /***/ }),
 
-/***/ 477:
+/***/ 475:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2868,7 +2868,6 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 var PerfilCentroPage = (function () {
     function PerfilCentroPage(navCtrl, navParams, http, modalCtrl, apiProvider, loadingController, events) {
-        var _this = this;
         this.navCtrl = navCtrl;
         this.navParams = navParams;
         this.http = http;
@@ -2883,15 +2882,21 @@ var PerfilCentroPage = (function () {
         this.arraySelected = [];
         this.dataCentro = {};
         this.favorito = false;
-        events.subscribe('actualizarData', function (data, cambiarA) {
-            _this.information.forEach(function (elementw, index) {
-                var index = elementw.children.findIndex(function (i) { return i.idServicio === data; });
-                if (index > -1) {
-                    elementw.children[index].selected = cambiarA;
-                }
+        /*
+        events.subscribe('actualizarData', (data, cambiarA) => {
+  
+       
+            this.information.forEach((elementw, index) => {
+               let index = elementw.children.findIndex(i => i.idServicio === data);
+              if (index > -1) {
+              elementw.children[index].selected=cambiarA;
+              }
             });
-            console.log(_this.information);
-        });
+       
+  
+          console.log(this.information);
+    });
+  */
         //localData.subscribe(data => {this.information = data;console.log(this.information);this.information[0].open=true;})
     }
     PerfilCentroPage.prototype.ionViewDidLoad = function () {
@@ -2913,6 +2918,8 @@ var PerfilCentroPage = (function () {
         });
         console.log('ionViewDidoad PerfilCentroPage');
         //this.navParams.get('nombre')
+    };
+    PerfilCentroPage.prototype.ionViewDidEnter = function () {
         this.apiProvider.vaciarCarrito()
             .then(function (data) {
             console.log(data);
@@ -2921,7 +2928,15 @@ var PerfilCentroPage = (function () {
     };
     PerfilCentroPage.prototype.getCentroInfo = function (idCentro) {
         var _this = this;
-        var dataPost = { idCentro: idCentro, idCliente: this.idUsuario };
+        var d = new Date();
+        var numDia = d.getDay();
+        if (numDia == 6) {
+            numDia = 0;
+        }
+        else {
+            numDia = numDia + 1;
+        }
+        var dataPost = { idCentro: idCentro, idCliente: this.idUsuario, numDia: numDia };
         console.log(dataPost);
         this.apiProvider.getCentroInfo(dataPost)
             .then(function (data) {
@@ -2955,10 +2970,40 @@ var PerfilCentroPage = (function () {
         if (this.cuponActivo.length > 0) {
             var descuento = this.cuponActivo[0].porcentajeDescuento || 0;
             var precio = item.precio;
-            retorno = precio - (precio * (descuento / 100));
+            if (this.cuponActivo[0].tipo == "2") {
+                if (this.cuponActivo[0].tipoDescuento == "1") {
+                    retorno = precio - (precio * (descuento / 100));
+                }
+                if (this.cuponActivo[0].tipoDescuento == "2") {
+                    retorno = precio - descuento;
+                }
+            }
+            if (this.cuponActivo[0].tipo == "1") {
+                if (this.cuponActivo[0].serviciosCupon.split(',').includes(String(item.idServicio))) {
+                    if (this.cuponActivo[0].tipoDescuento == "1") {
+                        retorno = precio - (precio * (descuento / 100));
+                    }
+                    if (this.cuponActivo[0].tipoDescuento == "2") {
+                        retorno = precio - descuento;
+                    }
+                }
+                else {
+                    retorno = precio;
+                }
+            }
+            if (item.oferta) {
+                if (retorno > item.oferta) {
+                    retorno = item.oferta;
+                }
+            }
         }
         else {
-            retorno = item.precio;
+            if (item.oferta) {
+                retorno = item.oferta;
+            }
+            else {
+                retorno = item.precio;
+            }
         }
         return retorno.toFixed(2);
     };
@@ -3002,28 +3047,35 @@ var PerfilCentroPage = (function () {
         console.log(this.information[i].children[j].open);
     };
     PerfilCentroPage.prototype.toggleSelect = function (i, j) {
-        this.information[i].children[j].selected = !this.information[i].children[j].selected;
-        if (this.information[i].children[j].selected) {
-            // this.arraySelected.push(this.information[i].children[j]);
-            //console.log(this.information[i].children[j]);
-            this.information[i].children[j].precioFinal = this.getPrecioDescuento(this.information[i].children[j]);
-            this.apiProvider.addProducto(this.information[i].children[j])
-                .then(function (data) {
-                console.log(data);
-            });
-        }
-        else {
+        // this.information[i].children[j].selected = !this.information[i].children[j].selected;
+        //if(this.information[i].children[j].selected){
+        var _this = this;
+        // this.arraySelected.push(this.information[i].children[j]);
+        //console.log(this.information[i].children[j]);
+        this.information[i].children[j].precioFinal = this.getPrecioDescuento(this.information[i].children[j]);
+        this.apiProvider.addProducto(this.information[i].children[j])
+            .then(function (data) {
+            console.log(data);
+            _this.goReserva(_this.information[i].children[j].idCategoria);
+        });
+        //new
+        // }
+        /*
+            else{
             console.log(this.information[i].children[j].idServicio);
             this.apiProvider.sacarProducto(this.information[i].children[j].idServicio)
-                .then(function (data) {
-                console.log(data);
-            });
-            //var array = [2, 5, 9];
-            //let index = this.arraySelected.indexOf(this.information[i].children[j].idServicio);
-            //if (index > -1) {
-            //this.arraySelected.splice(index, 1);
-            //}
-        }
+              .then(data => {
+                  console.log(data);
+              });
+    
+    
+              //var array = [2, 5, 9];
+              //let index = this.arraySelected.indexOf(this.information[i].children[j].idServicio);
+              //if (index > -1) {
+              //this.arraySelected.splice(index, 1);
+              //}
+            }
+        */
         console.log(this.arraySelected);
     };
     PerfilCentroPage.prototype.getCuponData = function () {
@@ -3034,20 +3086,21 @@ var PerfilCentroPage = (function () {
         console.log(retorno);
         return retorno;
     };
-    PerfilCentroPage.prototype.goReserva = function () {
+    PerfilCentroPage.prototype.goReserva = function (categoria) {
         //servicios: this.arraySelected
-        var dataE = { 'servicios': this.arraySelected, 'idCentro': this.navParams.get('idCentro'), centro: this.dataCentro, 'cupon': this.getCuponData() };
+        var dataE = { 'servicios': this.arraySelected, 'idCentro': this.navParams.get('idCentro'), centro: this.dataCentro, 'cupon': this.getCuponData(), idCategoria: categoria };
         console.log(dataE);
         this.navCtrl.push('ReservaPage', dataE);
         // this.navCtrl.push('ReservaPage');
     };
     PerfilCentroPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-            selector: 'page-perfil-centro',template:/*ion-inline-start:"/Users/jose/Documents/beyouApp/beYou/src/pages/perfil-centro/perfil-centro.html"*/'<ion-header>\n\n\n	<ion-navbar  color="headerColor">\n\n\n		<ion-title>\n		<span style="      display: block;\n    font-size: 15px;">{{dataCentro?.nombre}}</span>  \n		<span style="    display: block;\n    font-size: 11px;\n    margin-top: 4px;">{{dataCentro.rate  | number:\'1.1-2\'}} ({{dataCentro.cantRate\n}})               <ion-icon  [ngClass]="{\'ratingStar\': dataCentro.rate>= 1}" name="star"></ion-icon>\n    						  <ion-icon  [ngClass]="{\'ratingStar\': dataCentro.rate>= 2}" name="star"></ion-icon>\n    						  <ion-icon [ngClass]="{\'ratingStar\': dataCentro.rate>= 3}"  name="star"></ion-icon>\n    						  <ion-icon  [ngClass]="{\'ratingStar\': dataCentro.rate>= 4}" name="star"></ion-icon>\n    						  <ion-icon [ngClass]="{\'ratingStar\': dataCentro.rate>= 5}" name="star"></ion-icon>\n    						  </span>  \n		</ion-title>\n\n\n	</ion-navbar>\n\n\n</ion-header>\n\n\n\n<ion-content  >\n\n<div style="background-color: black;\n    height: 200px;\n    width: 100%;\n    position: relative;">\n	<img  [hidden]=\'!dataCentro.idCentro\'  style=\'    position: absolute;\n    width: 100%;\n    bottom: 0px;\' src="http://50.116.17.150:3000/{{dataCentro?.imagenBanner}}" \n        onError="this.src=\'assets/imgs/fotoProfile.png\';"\n\n     >\n\n\n	<img style=\'position: absolute;\n    width: 100%;bottom:0px;\n\' src="assets/imgs/overlayCentroProfile.png">\n\n		<div style="\n		position: absolute;\n		width:  100%;\n		height: 25px;\n		bottom:  0px;\n		color: white;\n		font-size:  13px;\n		">\n				<span *ngIf=\'!favorito && idUsuario>0\' (click)=\'agregarFavorito()\' style="\n				float: left;\n				margin-left: 20px;\n        height: 23px;\n				"><img src="assets/imgs/corazon.png" style="\n				margin-right:  5px;\n				"  > Agregar a favoritos</span>\n\n        <span *ngIf=\'favorito\' (click)=\'agregarFavorito()\' style="\n        float: left;\n        margin-left: 20px;\n        height: 23px;\n        "><img src="assets/imgs/corazonVerde.png" style="\n        margin-right:  5px;\n        "> Favorito </span>\n\n\n				<span style="\n				float: right;\n				margin-right: 20px;\n				"><img src="assets/imgs/reloj.png" style="\n				margin-right: 5px;\n				">{{dataCentro.horarioAppBanner}}</span>\n		</div>\n</div>\n\n<ion-segment mode="md" [(ngModel)]="section">\n    <ion-segment-button   style=\'font-size: 15px;text-transform: none !important;\' value="one" >\n	       <span> \n	       <img  *ngIf=\'section=="one"\' style=\'vertical-align: middle;margin-right: 5px;\' src="assets/imgs/servicioBlanco.png">\n	       <img  *ngIf=\'!(section=="one")\' style=\'vertical-align: middle;margin-right: 5px;\' src="assets/imgs/servicio.png">\n	        Servicio</span>\n	    </ion-segment-button>\n\n\n\n	    <ion-segment-button  value="two" style=\'\n\n\n    	font-size: 15px;text-transform: none !important;\' >\n      <span>\n	      <img  *ngIf=\'section=="two"\' style=\'vertical-align: middle;margin-right: 5px;\' src="assets/imgs/agregadosBlanco.png"> \n	      <img  *ngIf=\'!(section=="two")\'  style=\'vertical-align: middle;margin-right: 5px;\' src="assets/imgs/agregados.png"> \n\n	      \n\n\n	       Mapa</span>\n	    </ion-segment-button>\n\n    <ion-segment-button   style=\'font-size: 15px;text-transform: none !important;\' value="tres" >\n         <span> \n         <img  *ngIf=\'section=="tres"\' style=\'vertical-align: middle;margin-right: 5px;\' src="assets/imgs/estrellaBlanca.png">\n         <img  *ngIf=\'!(section=="tres")\' style=\'vertical-align: middle;margin-right: 5px;\' src="assets/imgs/estrellaGris.png">\n          Opiniones</span>\n      </ion-segment-button>\n\n</ion-segment>\n\n\n\n<div [ngSwitch]="section">\n    <ion-list mode="md" *ngSwitchCase="\'one\'">\n\n    <div [hidden]=\'(cuponActivo.length > 0)\' class=\'alertaCupon\' style="background-color:#EC527E">\n      Elige los servicios \n\n    </div>\n 	  <div [hidden]=\'!(cuponActivo.length > 0)\' class=\'alertaCupon\' style="background-color:#EC527E">\n	  	Todos los servicios con un <b> {{cuponActivo[0]?.porcentajeDescuento}}% Descontado</b> por Cupon {{cuponActivo[0]?.codigo}}\n\n	  </div>\n\n	  <div>\n	  		 <ion-list class="accordion-list">\n    <!-- First Level -->\n    <ion-list-header *ngFor="let item of information; let i = index" no-lines no-padding>\n      <!-- Toggle Button -->\n      <button ion-item (click)="toggleSection(i)" detail-none [ngClass]="{\'section-active\': item.open, \'section\': !item.open}">\n        <ion-icon class=\'btnList\' item-right  name="ios-add" *ngIf="!item.open"></ion-icon>\n        <ion-icon class=\'btnList\' item-right name="ios-remove" *ngIf="item.open"></ion-icon>\n          {{ item.name }}\n      </button>\n \n      <ion-list *ngIf="item.children && item.open" no-lines >\n        <!-- Second Level -->\n        <ion-list-header  [ngClass]="{\'section-active\': child.open, \'section\': !child.open}"  *ngFor="let child of item.children; let j = index" no-padding>\n          <!-- Toggle Button -->\n          <button ion-item (click)="toggleSelect(i, j)" *ngIf="child.children" class="child" detail-none>\n<!--             <ion-icon item-left name="add" *ngIf="!child.open"></ion-icon>\n            <ion-icon item-left name="close" *ngIf="child.open"></ion-icon> \n            <ion-icon  class=\'btnList\' item-right  name="ios-add" *ngIf="!child.open"></ion-icon>\n            <ion-icon class=\'btnList\' item-right name="ios-remove" *ngIf="child.open"></ion-icon>-->\n\n            {{ child.name }}\n          </button>\n \n          <!-- Direct Add Button as Fallback -->\n          <ion-item  (click)="toggleSelect(i, j)"  *ngIf="!child.children" ion-item detail-none class="child-item section-active section" text-wrap >\n<ion-icon *ngIf="child.selected" style=\'position: absolute;\n    right: 10px;\n    font-size: 25px;\n    top: 22px;\n    color: #2FD99B;\' name=\'ios-checkbox\'></ion-icon>\n            <h2>{{ child.nombre }}</h2>\n            <!-- Direct Add Button as Fallback \n            <p text-lowercase>{{ child.information }}</p>\n            -->\n   <p > <span style="  text-transform: none !important;\n    font-size: 15px;\n    margin: 0px;\n    margin-top: 8px;\n    display: block;\n    margin-bottom: 4px;"  >\n                <ion-icon name="ios-time-outline"></ion-icon> {{ child.duracion }}min\n             </span>\n</p>\n             \n\n            <div *ngIf=\'cuponActivo.length>0\' style="    margin: 4px;\n    font-size: 15px;\n    color: #777;\n    position: absolute;\n    right: 0;\n    margin-right: 58px;\n    margin-top: -20px;\n    text-decoration: line-through;" item-end>${{ child.precio }}</div>\n\n\n     <div *ngIf=\'cuponActivo.length>0\' style="margin: 4px;\n     margin-right: 41px;\n    font-size: 15px;\n    color: #EC527E;" item-end>${{ getPrecioDescuento(child)}}</div>\n\n         <div *ngIf=\'!(cuponActivo.length>0)\' style="margin: 4px;\n     margin-right: 41px;\n    font-size: 15px;\n    color: #EC527E;" item-end>${{ child.precio }}</div>\n\n\n\n          </ion-item>\n\n          <div  style="    width: 100%;\n    height: 2px;\n    background-color: #2FD99B;" ><div style="width: 100%;\n    height: 2px;\n    background-color: #f1f1f1;\n    margin-left: 7px;"></div>\n    </div>\n\n\n\n\n\n\n\n \n          <ion-list *ngIf="child.children && child.open" >\n            <!-- Third Level -->\n            <ion-item   *ngFor="let item of child.children; let k = index" detail-none class="child-item " text-wrap>\n              <h2>{{ item.name }}</h2>\n              <p text-lowercase>{{ item.information }}</p>\n              <!-- Direct Add Button -->\n              <button ion-button outline item-end (click)="buyItem(item)">{{ item.precio }}</button>\n            </ion-item>\n          </ion-list>\n \n        </ion-list-header>\n      </ion-list>\n      \n    </ion-list-header>\n    <div style="width:100%;height:60px"></div>\n\n\n  </ion-list>\n    <div style="width: 100%;\n    position: fixed;\n    bottom: 0px;\n    background: rgb(247,248,249);\n    padding-bottom: 6px;\n">\n         \n\n\n    </div>\n\n	  </div>\n\n <button (tap)=\'goReserva()\' ion-button class="botonVerdeFull">Agendar Cita<ion-icon style=\'    margin-left: 10px !important;\' name="md-arrow-forward"></ion-icon> </button>\n    </ion-list>\n\n    <ion-list  mode="md" *ngSwitchCase="\'two\'">\n\n\n<div style="\n    padding: 12px 20px;\n    border-bottom: solid 1px lightgray;\n">\n    <span style="color:#EC527E;font-size: 17px;font-weight: 800;">Direccion</span>\n    <p style="\n    margin: 5px 0px;\n    font-size: 15px;\n    color: #888;\n">{{dataCentro.direccion || \'No especificado\'}}</p>\n    </div>\n\n<div style="\n    padding: 12px 20px;\n    border-bottom: solid 1px lightgray;    background: white;\n">\n    <span style="color:#EC527E;font-size: 17px;font-weight: 800;">Sobre nosotros</span>\n    <p style="\n    margin: 5px 0px;\n    font-size: 15px;\n    color: #888;    line-height: 22px;\n">{{dataCentro.sobreNosotros || \'No especificado\'}}</p>\n    </div>\n\n<div style="\n    padding: 12px 20px;\n    \n">\n    <span style="color:#EC527E;font-size: 17px;font-weight: 800;">Horario de atencion</span>\n    <p style="\n    margin: 5px 0px;\n    font-size: 15px;\n    color: #888;\n">{{dataCentro.horarioDetalle || \'No especificado\'}}</p>\n    </div>\n\n\n\n <div style="    width: 100%;\n    text-align: center;\n margin-top: 20px; margin-bottom: 30px;">\n\n  <button  (click)=\'comoLlegar()\'  color=\'headerColor\' ion-button  style="    width: 40%;\n    margin-right: 5%;\n    border-radius: 70px;" > COMO LLEGAR</button> \n\n  <button  [disabled]="!dataCentro.telefono" (click)=\'llamar()\' style=" border-radius: 70px;   width: 40%;\n    margin-left: 5%;"  color=\'verdeApp\' ion-button> LLAMAR </button>\n\n\n\n</div>\n\n\n\n\n\n    </ion-list>\n     <ion-list  mode="md" *ngSwitchCase="\'tres\'">\n\n\n\n\n<div *ngFor="let n of comentarios" style="margin-top:30px;\n    width: 100%;\n    display: inline-block;    padding-left: 15px;\n    padding-right: 15px;\n">\n  \n  <img src="assets/imgs/usuario.png" style="\n    display: inline-block;\n    vertical-align: top;\n    height: 54px;\n    width: 54px;\n">\n  <div style="\n    display: inline-block;\n    width: calc(100% - 83px);\n    margin-left: 22px;\n">\n<span style="\n    color: #888;\n    font-size: 13px;\n    float: right;\n    margin-right: 47px;\n    margin-top: 6px;\n    ">{{n.timeAgo || \'\'}}</span>\n\n    <span style="\n    font-size: 19px;\n    color:  #333;\n">{{n.nombreUsuario || \'\'}}\n\n\n\n    </span>\n    <div style="    margin-top: 7px;">\n      \n          <span style="\n    display: block;\n    font-size: 17px;\n    margin-top: 4px;\n    color: #999;\n    ">\n\n                  <ion-icon [ngClass]="{\'ratingStar\': n.puntuacion>= 1}"  class=" icon icon-ios ion-ios-star" name="star" role="img" aria-label="star" ng-reflect-name="star"></ion-icon>\n                  <ion-icon [ngClass]="{\'ratingStar\': n.puntuacion>= 2}" class=" icon icon-ios ion-ios-star" name="star" role="img" aria-label="star" ng-reflect-name="star"></ion-icon>\n                  <ion-icon [ngClass]="{\'ratingStar\': n.puntuacion>= 3}" class=" icon icon-ios ion-ios-star" name="star" role="img" aria-label="star" ng-reflect-name="star"></ion-icon>\n                  <ion-icon [ngClass]="{\'ratingStar\': n.puntuacion>= 4}" class=" icon icon-ios ion-ios-star" name="star" role="img" aria-label="star" ng-reflect-name="star"></ion-icon>\n                  <ion-icon [ngClass]="{\'ratingStar\': n.puntuacion>= 5}" class=" icon icon-ios ion-ios-star" name="star" role="img" aria-label="star" ng-reflect-name="star"></ion-icon>\n                  </span>  \n\n\n    </div>\n\n    <p style="\n    margin-right: 35px;\n    line-height: 19px;\n    color: #999;\n">{{n.comentario || \'\'}}</p>\n  </div>\n  \n<div class="separator"></div>\n</div>\n\n\n\n\n\n\n\n\n\n\n\n\n     </ion-list>\n\n</div>\n\n\n</ion-content>\n\n\n\n\n\n\n\n\n'/*ion-inline-end:"/Users/jose/Documents/beyouApp/beYou/src/pages/perfil-centro/perfil-centro.html"*/
+            selector: 'page-perfil-centro',template:/*ion-inline-start:"/Users/jose/Documents/beyouApp/beYou/src/pages/perfil-centro/perfil-centro.html"*/'<ion-header>\n\n\n	<ion-navbar  color="headerColor">\n\n\n		<ion-title>\n		<span style="      display: block;\n    font-size: 15px;">{{dataCentro?.nombre}}</span>  \n		<span style="    display: block;\n    font-size: 11px;\n    margin-top: 4px;">{{dataCentro.rate  | number:\'1.1-2\'}} ({{dataCentro.cantRate\n}})               <ion-icon  [ngClass]="{\'ratingStar\': dataCentro.rate>= 1}" name="star"></ion-icon>\n    						  <ion-icon  [ngClass]="{\'ratingStar\': dataCentro.rate>= 2}" name="star"></ion-icon>\n    						  <ion-icon [ngClass]="{\'ratingStar\': dataCentro.rate>= 3}"  name="star"></ion-icon>\n    						  <ion-icon  [ngClass]="{\'ratingStar\': dataCentro.rate>= 4}" name="star"></ion-icon>\n    						  <ion-icon [ngClass]="{\'ratingStar\': dataCentro.rate>= 5}" name="star"></ion-icon>\n    						  </span>  \n		</ion-title>\n\n\n	</ion-navbar>\n\n\n</ion-header>\n\n\n\n<ion-content  >\n\n<div style="background-color: black;\n    height: 200px;\n    width: 100%;\n    position: relative;">\n	<img  [hidden]=\'!dataCentro.idCentro\'  style=\'    position: absolute;\n    width: 100%;\n    bottom: 0px;\' src="http://50.116.17.150:3000/{{dataCentro?.imagenBanner}}" \n        onError="this.src=\'assets/imgs/fotoProfile.png\';"\n\n     >\n\n\n	<img style=\'position: absolute;\n    width: 100%;bottom:0px;\n\' src="assets/imgs/overlayCentroProfile.png">\n\n		<div style="\n		position: absolute;\n		width:  100%;\n		height: 25px;\n		bottom:  0px;\n		color: white;\n		font-size:  13px;\n		">\n				<span *ngIf=\'!favorito && idUsuario>0\' (click)=\'agregarFavorito()\' style="\n				float: left;\n				margin-left: 20px;\n        height: 23px;\n				"><img src="assets/imgs/corazon.png" style="\n				margin-right:  5px;\n				"  > Agregar a favoritos</span>\n\n        <span *ngIf=\'favorito\' (click)=\'agregarFavorito()\' style="\n        float: left;\n        margin-left: 20px;\n        height: 23px;\n        "><img src="assets/imgs/corazonVerde.png" style="\n        margin-right:  5px;\n        "> Favorito </span>\n\n\n				<span style="\n				float: right;\n				margin-right: 20px;\n				"><img src="assets/imgs/reloj.png" style="\n				margin-right: 5px;\n				">HOY : {{dataCentro.horarioHoy || \'CERRADO\'}}</span>\n		</div>\n</div>\n\n<ion-segment mode="md" [(ngModel)]="section">\n    <ion-segment-button   style=\'font-size: 15px;text-transform: none !important;\' value="one" >\n	       <span> \n	       <img  *ngIf=\'section=="one"\' style=\'vertical-align: middle;margin-right: 5px;\' src="assets/imgs/servicioBlanco.png">\n	       <img  *ngIf=\'!(section=="one")\' style=\'vertical-align: middle;margin-right: 5px;\' src="assets/imgs/servicio.png">\n	        Servicio</span>\n	    </ion-segment-button>\n\n\n\n	    <ion-segment-button  value="two" style=\'\n\n\n    	font-size: 15px;text-transform: none !important;\' >\n      <span>\n	      <img  *ngIf=\'section=="two"\' style=\'vertical-align: middle;margin-right: 5px;\' src="assets/imgs/agregadosBlanco.png"> \n	      <img  *ngIf=\'!(section=="two")\'  style=\'vertical-align: middle;margin-right: 5px;\' src="assets/imgs/agregados.png"> \n\n	      \n\n\n	       Mapa</span>\n	    </ion-segment-button>\n\n    <ion-segment-button   style=\'font-size: 15px;text-transform: none !important;\' value="tres" >\n         <span> \n         <img  *ngIf=\'section=="tres"\' style=\'vertical-align: middle;margin-right: 5px;\' src="assets/imgs/estrellaBlanca.png">\n         <img  *ngIf=\'!(section=="tres")\' style=\'vertical-align: middle;margin-right: 5px;\' src="assets/imgs/estrellaGris.png">\n          Opiniones</span>\n      </ion-segment-button>\n\n</ion-segment>\n\n\n\n<div [ngSwitch]="section">\n    <ion-list mode="md" *ngSwitchCase="\'one\'">\n\n    <div [hidden]=\'(cuponActivo.length > 0)\' class=\'alertaCupon\' style="background-color:#EC527E">\n      Elige los servicios \n\n    </div>\n\n\n 	  <div [hidden]=\'!(cuponActivo.length > 0)\' class=\'alertaCupon\' style="background-color:#EC527E">\n\n      <!-- 	  	\n      Todos los servicios con un <b> {{cuponActivo[0]?.porcentajeDescuento}}% Descontado</b> por Cupon {{cuponActivo[0]?.codigo}}\n       -->\n\n      <span *ngIf=\'cuponActivo[0]?.tipo=="1"\'> \n         <span  *ngIf=\'cuponActivo[0]?.tipoDescuento=="1"\'> \n          Algunos servicios con {{cuponActivo[0]?.porcentajeDescuento}}% Descontado\n        </span>\n        <span  *ngIf=\'cuponActivo[0]?.tipoDescuento=="2"\'>\n          Algunos servicios con ${{cuponActivo[0]?.porcentajeDescuento}} Descontado\n        </span>\n      </span>\n      <span *ngIf=\'cuponActivo[0]?.tipo=="2"\'>\n        <span  *ngIf=\'favoritos[0]?.tipoDescuento=="1"\'> \n          Todos los servicios con {{cuponActivo[0]?.porcentajeDescuento}}% Descontado\n        </span>\n        <span  *ngIf=\'favoritos[0]?.tipoDescuento=="2"\'>\n          Todos los servicios con ${{cuponActivo[0]?.porcentajeDescuento}} Descontado\n        </span>\n      </span>\n\n\n\n	  </div>\n\n	  <div>\n	  		 <ion-list class="accordion-list">\n    <!-- First Level -->\n    <ion-list-header *ngFor="let item of information; let i = index" no-lines no-padding>\n      <!-- Toggle Button -->\n      <button ion-item (click)="toggleSection(i)" detail-none [ngClass]="{\'section-active\': item.open, \'section\': !item.open}">\n        <ion-icon class=\'btnList\' item-right  name="ios-add" *ngIf="!item.open"></ion-icon>\n        <ion-icon class=\'btnList\' item-right name="ios-remove" *ngIf="item.open"></ion-icon>\n          {{ item.name }}\n      </button>\n \n      <ion-list *ngIf="item.children && item.open" no-lines >\n        <!-- Second Level -->\n        <ion-list-header  [ngClass]="{\'section-active\': child.open, \'section\': !child.open}"  *ngFor="let child of item.children; let j = index" no-padding>\n          <!-- Toggle Button -->\n          <button ion-item (click)="toggleSelect(i, j)" *ngIf="child.children" class="child" detail-none>\n<!--             <ion-icon item-left name="add" *ngIf="!child.open"></ion-icon>\n            <ion-icon item-left name="close" *ngIf="child.open"></ion-icon> \n            <ion-icon  class=\'btnList\' item-right  name="ios-add" *ngIf="!child.open"></ion-icon>\n            <ion-icon class=\'btnList\' item-right name="ios-remove" *ngIf="child.open"></ion-icon>-->\n\n            {{ child.name }}\n          </button>\n \n          <!-- Direct Add Button as Fallback -->\n          <ion-item  (click)="toggleSelect(i, j)"  *ngIf="!child.children" ion-item detail-none class="child-item section-active section" text-wrap >\n\n<!-- \nNEW\n\n<ion-icon *ngIf="child.selected" style=\'position: absolute;\n    right: 10px;\n    font-size: 25px;\n    top: 22px;\n    color: #2FD99B;\' name=\'ios-checkbox\'></ion-icon>\n -->\n\n            <h2>{{ child.nombre }}</h2>\n            <!-- Direct Add Button as Fallback \n            <p text-lowercase>{{ child.information }}</p>\n            -->\n   <p > <span style="  text-transform: none !important;\n    font-size: 15px;\n    margin: 0px;\n    margin-top: 8px;\n    display: block;\n    margin-bottom: 4px;"  >\n                <ion-icon name="ios-time-outline"></ion-icon> {{ child.duracion }}min\n             </span>\n</p>\n             \n\n            <div *ngIf=\'cuponActivo.length>0 || child.oferta\' style="    margin: 4px;\n    font-size: 15px;\n    color: #777;\n    position: absolute;\n    right: 0;\n    margin-right: 58px;\n    margin-top: -20px;\n    text-decoration: line-through;" item-end>\n\n                <span *ngIf=\'cuponActivo.length>0  && !child.oferta\'>\n\n  <span *ngIf="(cuponActivo[0].tipo==\'1\') && (cuponActivo[0].serviciosCupon.split(\',\').includes(child.idServicio.toString()))" >\n                      ${{ child.precio }}\n                    </span>\n\n                      <span *ngIf=\'cuponActivo[0].tipo=="2"\'>\n                      ${{ child.precio }}\n                    </span>\n                     \n              </span>\n\n\n                <span *ngIf=\'child.oferta\'>${{ child.precio }}</span>  \n\n                </div>\n\n\n\n     <div *ngIf=\'cuponActivo.length>0 || child.oferta\' style="font-size: 15px;\n    color: #EC527E;\n    margin-top: 23px;\n    min-width: 60px;\n    margin-left: 0px;" item-end>\n  \n        <span *ngIf="(cuponActivo.length>0) && !(child.oferta)">\n        ${{ getPrecioDescuento(child)}}\n        </span>\n\n        <span *ngIf="child.oferta">\n           <span *ngIf="(cuponActivo.length>0)">\n              ${{ getPrecioDescuento(child)}}\n           </span>\n\n          <span *ngIf="!(cuponActivo.length>0)">\n                ${{child.oferta}}\n           </span>\n         \n<!--           <span style="     background: lightcoral;\n    color: white;\n    padding: 2px;\n    border-radius: 4px;\n    font-size: 13px;\n    position: absolute;\n    top: 35px;\n    right: 82px;">\n          oferta</span> -->\n        </span>\n\n    </div>\n\n         <div *ngIf=\'!(cuponActivo.length>0) && !child.oferta\' style="margin: 4px;\n     margin-right: 41px;\n    font-size: 15px;\n    color: #EC527E;" item-end>${{ child.precio }}</div>\n\n\n\n          </ion-item>\n\n          <div  style="    width: 100%;\n    height: 2px;\n    background-color: #2FD99B;" ><div style="width: 100%;\n    height: 2px;\n    background-color: #f1f1f1;\n    margin-left: 7px;"></div>\n    </div>\n\n\n\n\n\n\n\n \n          <ion-list *ngIf="child.children && child.open" >\n            <!-- Third Level -->\n            <ion-item   *ngFor="let item of child.children; let k = index" detail-none class="child-item " text-wrap>\n              <h2>{{ item.name }}</h2>\n              <p text-lowercase>{{ item.information }}</p>\n              <!-- Direct Add Button -->\n              <button ion-button outline item-end (click)="buyItem(item)">{{ item.precio }}</button>\n            </ion-item>\n          </ion-list>\n \n        </ion-list-header>\n      </ion-list>\n      \n    </ion-list-header>\n    <div style="width:100%;height:60px"></div>\n\n\n  </ion-list>\n    <div style="width: 100%;\n    position: fixed;\n    bottom: 0px;\n    background: rgb(247,248,249);\n    padding-bottom: 6px;\n">\n         \n\n\n    </div>\n\n	  </div>\n<!-- \n <button (tap)=\'goReserva()\' ion-button class="botonVerdeFull">Agendar Cita<ion-icon style=\'    margin-left: 10px !important;\' name="md-arrow-forward"></ion-icon> </button>\n -->\n\n    </ion-list>\n\n\n    <ion-list  mode="md" *ngSwitchCase="\'two\'">\n\n\n<div style="\n    padding: 12px 20px;\n    border-bottom: solid 1px lightgray;\n">\n    <span style="color:#EC527E;font-size: 17px;font-weight: 800;">Direccion</span>\n    <p style="\n    margin: 5px 0px;\n    font-size: 15px;\n    color: #888;\n">{{dataCentro.direccion || \'No especificado\'}}</p>\n    </div>\n\n<div style="\n    padding: 12px 20px;\n    border-bottom: solid 1px lightgray;    background: white;\n">\n    <span style="color:#EC527E;font-size: 17px;font-weight: 800;">Sobre nosotros</span>\n    <p style="\n    margin: 5px 0px;\n    font-size: 15px;\n    color: #888;    line-height: 22px;\n">{{dataCentro.sobreNosotros || \'No especificado\'}}</p>\n    </div>\n\n<div style="\n    padding: 12px 20px;\n    \n">\n    <span style="color:#EC527E;font-size: 17px;font-weight: 800;">Horario de atencion</span>\n    <p style="\n    margin: 5px 0px;\n    font-size: 15px;\n    color: #888;\n">{{dataCentro.horarioDetalle || \'No especificado\'}}</p>\n    </div>\n\n\n\n <div style="    width: 100%;\n    text-align: center;\n margin-top: 20px; margin-bottom: 30px;">\n\n  <button  (click)=\'comoLlegar()\'  color=\'headerColor\' ion-button  style="    width: 40%;\n    margin-right: 5%;\n    border-radius: 70px;" > COMO LLEGAR</button> \n\n  <button  [disabled]="!dataCentro.telefono" (click)=\'llamar()\' style=" border-radius: 70px;   width: 40%;\n    margin-left: 5%;"  color=\'verdeApp\' ion-button> LLAMAR </button>\n\n\n\n</div>\n\n\n\n\n\n    </ion-list>\n     <ion-list  mode="md" *ngSwitchCase="\'tres\'">\n\n\n\n\n<div *ngFor="let n of comentarios" style="margin-top:30px;\n    width: 100%;\n    display: inline-block;    padding-left: 15px;\n    padding-right: 15px;\n">\n  \n  <img src="assets/imgs/usuario.png" style="\n    display: inline-block;\n    vertical-align: top;\n    height: 54px;\n    width: 54px;\n">\n  <div style="\n    display: inline-block;\n    width: calc(100% - 83px);\n    margin-left: 22px;\n">\n<span style="\n    color: #888;\n    font-size: 13px;\n    float: right;\n    margin-right: 47px;\n    margin-top: 6px;\n    ">{{n.timeAgo || \'\'}}</span>\n\n    <span style="\n    font-size: 19px;\n    color:  #333;\n">{{n.nombreUsuario || \'\'}}\n\n\n\n    </span>\n    <div style="    margin-top: 7px;">\n      \n          <span style="\n    display: block;\n    font-size: 17px;\n    margin-top: 4px;\n    color: #999;\n    ">\n\n                  <ion-icon [ngClass]="{\'ratingStar\': n.puntuacion>= 1}"  class=" icon icon-ios ion-ios-star" name="star" role="img" aria-label="star" ng-reflect-name="star"></ion-icon>\n                  <ion-icon [ngClass]="{\'ratingStar\': n.puntuacion>= 2}" class=" icon icon-ios ion-ios-star" name="star" role="img" aria-label="star" ng-reflect-name="star"></ion-icon>\n                  <ion-icon [ngClass]="{\'ratingStar\': n.puntuacion>= 3}" class=" icon icon-ios ion-ios-star" name="star" role="img" aria-label="star" ng-reflect-name="star"></ion-icon>\n                  <ion-icon [ngClass]="{\'ratingStar\': n.puntuacion>= 4}" class=" icon icon-ios ion-ios-star" name="star" role="img" aria-label="star" ng-reflect-name="star"></ion-icon>\n                  <ion-icon [ngClass]="{\'ratingStar\': n.puntuacion>= 5}" class=" icon icon-ios ion-ios-star" name="star" role="img" aria-label="star" ng-reflect-name="star"></ion-icon>\n                  </span>  \n\n\n    </div>\n\n    <p style="\n    margin-right: 35px;\n    line-height: 19px;\n    color: #999;\n">{{n.comentario || \'\'}}</p>\n  </div>\n  \n<div class="separator"></div>\n</div>\n\n\n\n\n\n\n\n\n\n\n\n\n     </ion-list>\n\n</div>\n\n\n</ion-content>\n\n\n\n\n\n\n\n\n'/*ion-inline-end:"/Users/jose/Documents/beyouApp/beYou/src/pages/perfil-centro/perfil-centro.html"*/
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["NavController"], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["NavParams"], __WEBPACK_IMPORTED_MODULE_2__angular_http__["a" /* Http */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["ModalController"], __WEBPACK_IMPORTED_MODULE_4__providers_api_api__["a" /* ApiProvider */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["LoadingController"], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["Events"]])
+        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["NavController"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["NavController"]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["NavParams"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["NavParams"]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__angular_http__["a" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__angular_http__["a" /* Http */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["ModalController"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["ModalController"]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_4__providers_api_api__["a" /* ApiProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__providers_api_api__["a" /* ApiProvider */]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["LoadingController"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["LoadingController"]) === "function" && _f || Object, typeof (_g = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["Events"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["Events"]) === "function" && _g || Object])
     ], PerfilCentroPage);
     return PerfilCentroPage;
+    var _a, _b, _c, _d, _e, _f, _g;
 }());
 
 //# sourceMappingURL=perfil-centro.js.map

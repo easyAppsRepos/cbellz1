@@ -1,6 +1,6 @@
 webpackJsonp([6],{
 
-/***/ 442:
+/***/ 440:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -8,7 +8,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ModalServicesPageModule", function() { return ModalServicesPageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(14);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__modal_services__ = __webpack_require__(472);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__modal_services__ = __webpack_require__(470);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_http__ = __webpack_require__(451);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -2838,16 +2838,17 @@ Observable_1.Observable.prototype.map = map_1.map;
 
 /***/ }),
 
-/***/ 472:
+/***/ 470:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ModalServicesPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(14);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_http__ = __webpack_require__(451);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_map__ = __webpack_require__(452);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_map__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_api_api__ = __webpack_require__(105);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_http__ = __webpack_require__(451);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_map__ = __webpack_require__(452);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_map__);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -2863,6 +2864,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 /**
  * Generated class for the ModalServicesPage page.
  *
@@ -2870,28 +2872,118 @@ var __metadata = (this && this.__metadata) || function (k, v) {
  * Ionic pages and navigation.
  */
 var ModalServicesPage = (function () {
-    function ModalServicesPage(navCtrl, navParams, viewCtrl, events, http) {
-        var _this = this;
+    function ModalServicesPage(navCtrl, navParams, viewCtrl, events, http, apiProvider) {
+        /*
+                let localData = http.get('assets/information.json').map(res => res.json().items);
+              
+            localData.subscribe(data => {
+              this.information = data;
+                this.information[0].open=true;
+                  this.information[0].children[0].selected=true;
+    
+                   this.information[1].open=true;
+    
+                   this.information[1].children[1].selected=true;
+            })
+    
+        */
         this.navCtrl = navCtrl;
         this.navParams = navParams;
         this.viewCtrl = viewCtrl;
         this.events = events;
         this.http = http;
-        var localData = http.get('assets/information.json').map(function (res) { return res.json().items; });
-        localData.subscribe(function (data) {
-            _this.information = data;
-            _this.information[0].open = true;
-            _this.information[0].children[0].selected = true;
-            _this.information[1].open = true;
-            _this.information[1].children[1].selected = true;
-        });
+        this.apiProvider = apiProvider;
+        this.dataUser = {};
+        this.idUsuario = 0;
     }
     ModalServicesPage.prototype.closeModal = function () {
-        this.events.publish('modalServices');
+        //	this.events.publish('modalServices');
         this.viewCtrl.dismiss();
     };
     ModalServicesPage.prototype.ionViewDidLoad = function () {
+        var _this = this;
         console.log('ionViewDidLoad ModalServicesPage');
+        this.apiProvider.verificarLogin()
+            .then(function (data) {
+            console.log(data);
+            if (data) {
+                _this.idUsuario = data.idCliente;
+                _this.getServiciosCategoria();
+            }
+            else {
+                console.log('error');
+                _this.idUsuario = 0;
+                _this.getServiciosCategoria();
+            }
+        });
+    };
+    /*
+      ionViewDidEnter(){
+      this.getServiciosCategoria();
+      }
+    */
+    ModalServicesPage.prototype.getServiciosCategoria = function () {
+        var _this = this;
+        var dataE = { idCategoria: this.navParams.get('idCategoria'),
+            idCentro: this.navParams.get('idCentro'),
+            idCliente: this.idUsuario };
+        this.apiProvider.getServiciosCategoria(dataE).then(function (data) {
+            console.log(data);
+            _this.serviciosCategoria = data['servicios'];
+            _this.cuponActivo = data['cupon'];
+        });
+    };
+    ModalServicesPage.prototype.addCarrito = function (child) {
+        var _this = this;
+        child.precioFinal = this.getPrecioDescuento(child);
+        this.apiProvider.addProducto(child)
+            .then(function (data) {
+            console.log(data);
+            _this.events.publish('actualizarDataServicios');
+            _this.viewCtrl.dismiss();
+        });
+    };
+    ModalServicesPage.prototype.getPrecioDescuento = function (item) {
+        var retorno = 0;
+        if (this.cuponActivo.length > 0) {
+            var descuento = this.cuponActivo[0].porcentajeDescuento || 0;
+            var precio = item.precio;
+            if (this.cuponActivo[0].tipo == "2") {
+                if (this.cuponActivo[0].tipoDescuento == "1") {
+                    retorno = precio - (precio * (descuento / 100));
+                }
+                if (this.cuponActivo[0].tipoDescuento == "2") {
+                    retorno = precio - descuento;
+                }
+            }
+            if (this.cuponActivo[0].tipo == "1") {
+                if (this.cuponActivo[0].serviciosCupon.split(',').includes(String(item.idServicio))) {
+                    if (this.cuponActivo[0].tipoDescuento == "1") {
+                        retorno = precio - (precio * (descuento / 100));
+                    }
+                    if (this.cuponActivo[0].tipoDescuento == "2") {
+                        retorno = precio - descuento;
+                    }
+                }
+                else {
+                    retorno = precio;
+                }
+            }
+            if (item.oferta) {
+                if (retorno > item.oferta) {
+                    retorno = item.oferta;
+                }
+            }
+        }
+        else {
+            if (item.oferta) {
+                retorno = item.oferta;
+            }
+            else {
+                retorno = item.precio;
+            }
+        }
+        return retorno.toFixed(2);
     };
     ModalServicesPage.prototype.toggleSection = function (i) {
         this.information[i].open = !this.information[i].open;
@@ -2904,11 +2996,12 @@ var ModalServicesPage = (function () {
     };
     ModalServicesPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-            selector: 'page-modal-services',template:/*ion-inline-start:"/Users/jose/Documents/beyouApp/beYou/src/pages/modal-services/modal-services.html"*/'<!--\n  Generated template for the ModalServicesPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n\n<ion-header>\n\n<ion-navbar color=\'verdeApp\'>\n    <ion-title><span style=\'position: absolute;\n    top: 0;\n    left: 0;\n    margin: 15px;\n    font-weight: 500;\'>Agregar mas servicios</span></ion-title>\n\n    <ion-buttons end>\n    <button style="    font-size: 34px;" ion-button (click)="closeModal()"><ion-icon ios="ios-close"></ion-icon></button>\n\n\n    </ion-buttons>\n</ion-navbar>\n\n</ion-header>\n\n\n<ion-content >\n\n\n\n\n	\n	  		          <ion-list class="accordion-list">\n    <!-- First Level -->\n    <ion-list-header *ngFor="let item of information; let i = index" no-lines no-padding>\n      <!-- Toggle Button -->\n      <button ion-item (click)="toggleSection(i)" detail-none [ngClass]="{\'section-active\': item.open, \'section\': !item.open}">\n        <ion-icon class=\'btnList\' item-right  name="ios-add" *ngIf="!item.open"></ion-icon>\n        <ion-icon class=\'btnList\' item-right name="ios-remove" *ngIf="item.open"></ion-icon>\n          {{ item.name }}\n      </button>\n \n      <ion-list *ngIf="item.children && item.open" no-lines >\n        <!-- Second Level -->\n        <ion-list-header  [ngClass]="{\'section-active\': child.open, \'section\': !child.open}"  *ngFor="let child of item.children; let j = index" no-padding>\n          <!-- Toggle Button -->\n          <button ion-item (click)="toggleSelect(i, j)" *ngIf="child.children" class="child" detail-none>\n<!--             <ion-icon item-left name="add" *ngIf="!child.open"></ion-icon>\n            <ion-icon item-left name="close" *ngIf="child.open"></ion-icon> \n            <ion-icon  class=\'btnList\' item-right  name="ios-add" *ngIf="!child.open"></ion-icon>\n            <ion-icon class=\'btnList\' item-right name="ios-remove" *ngIf="child.open"></ion-icon>-->\n\n            {{ child.name }}\n          </button>\n \n          <!-- Direct Add Button as Fallback -->\n          <ion-item  (click)="toggleSelect(i, j)"  *ngIf="!child.children" ion-item detail-none class="child-item section-active section" text-wrap >\n<ion-icon *ngIf="child.selected" style=\'position: absolute;\n    right: 10px;\n    font-size: 25px;\n    top: 22px;\n    color: #2FD99B;\' name=\'ios-checkbox\'></ion-icon>\n            <h2>{{ child.name }}</h2>\n            <!-- Direct Add Button as Fallback \n            <p text-lowercase>{{ child.information }}</p>\n            -->\n   <p > <span style="  text-transform: none !important;\n    font-size: 15px;\n    margin: 0px;\n    margin-top: 8px;\n    display: block;\n    margin-bottom: 4px;"  >\n                <ion-icon name="ios-time-outline"></ion-icon> 60min\n             </span>\n</p>\n             \n\n            <div style="    margin: 4px;\n    font-size: 15px;\n    color: #777;\n    position: absolute;\n    right: 0;\n    margin-right: 58px;\n    margin-top: -20px;\n    text-decoration: line-through;" item-end>{{ child.price }}</div>\n\n\n     <div style="margin: 4px;\n     margin-right: 41px;\n    font-size: 15px;\n    color: #EC527E;" item-end>{{ child.price }}</div>\n\n\n\n          </ion-item>\n\n          <div  style="    width: 100%;\n    height: 2px;\n    background-color: #2FD99B;" ><div style="width: 100%;\n    height: 2px;\n    background-color: #f1f1f1;\n    margin-left: 7px;"></div>\n    </div>\n\n\n\n\n\n\n\n \n          <ion-list *ngIf="child.children && child.open" >\n            <!-- Third Level -->\n            <ion-item   *ngFor="let item of child.children; let k = index" detail-none class="child-item " text-wrap>\n              <h2>{{ item.name }}</h2>\n              <p text-lowercase>{{ item.information }}</p>\n              <!-- Direct Add Button -->\n              <button ion-button outline item-end (click)="buyItem(item)">{{ item.price }}</button>\n            </ion-item>\n          </ion-list>\n \n        </ion-list-header>\n      </ion-list>\n      \n    </ion-list-header>\n\n	 </ion-list>\n\n\n</ion-content>'/*ion-inline-end:"/Users/jose/Documents/beyouApp/beYou/src/pages/modal-services/modal-services.html"*/,
+            selector: 'page-modal-services',template:/*ion-inline-start:"/Users/jose/Documents/beyouApp/beYou/src/pages/modal-services/modal-services.html"*/'<!--\n  Generated template for the ModalServicesPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n\n<ion-header>\n\n<ion-navbar color=\'verdeApp\'>\n    <ion-title><span style=\'position: absolute;\n    top: 0;\n    left: 0;\n    margin: 15px;\n    font-weight: 500;\'>Agregar mas servicios</span></ion-title>\n\n    <ion-buttons end>\n    <button style="    font-size: 34px;" ion-button (click)="closeModal()"><ion-icon ios="ios-close"></ion-icon></button>\n\n\n    </ion-buttons>\n</ion-navbar>\n\n</ion-header>\n\n\n  <ion-content >\n\n    <ion-list class="accordion-list">\n\n        <ion-item  (click)=\'addCarrito(child)\' *ngFor="let child of serviciosCategoria; let i = index"  ion-item detail-none class="child-item section-active section" text-wrap >\n        <!-- \n        NEW\n\n        <ion-icon *ngIf="child.selected" style=\'position: absolute;\n        right: 10px;\n        font-size: 25px;\n        top: 22px;\n        color: #2FD99B;\' name=\'ios-checkbox\'></ion-icon>\n        -->\n        <h2>{{ child.nombre }}</h2>\n        <p > <span style="  text-transform: none !important;\n        font-size: 15px;\n        margin: 0px;\n        margin-top: 8px;\n        display: block;\n        margin-bottom: 4px;"  >\n        <ion-icon name="ios-time-outline"></ion-icon> {{ child.duracion }}min\n        </span>\n        </p>\n\n\n        <div *ngIf=\'cuponActivo.length>0 || child.oferta\' style="    margin: 4px;\n        font-size: 15px;\n        color: #777;\n        position: absolute;\n        right: 0;\n        margin-right: 58px;\n        margin-top: -20px;\n        text-decoration: line-through;" item-end>\n        <span *ngIf=\'cuponActivo.length>0  && !child.oferta\'>\n        <span *ngIf="(cuponActivo[0].tipo==\'1\') && (cuponActivo[0].serviciosCupon.split(\',\').includes(child.idServicio.toString()))" >\n          ${{ child.precio }}\n        </span>\n          <span *ngIf=\'cuponActivo[0].tipo=="2"\'>\n          ${{ child.precio }}\n        </span>\n        </span>\n        <span *ngIf=\'child.oferta\'>${{ child.precio }}</span>  \n        </div>\n\n        <div *ngIf=\'cuponActivo.length>0 || child.oferta\' style="font-size: 15px;\n    color: #EC527E;\n    margin-top: 23px;\n    min-width: 60px;\n    margin-left: 0px;" item-end>\n\n        <span *ngIf="(cuponActivo.length>0) && !(child.oferta)">\n        ${{ getPrecioDescuento(child)}}\n        </span>\n\n        <span *ngIf="child.oferta">\n        <span *ngIf="(cuponActivo.length>0)">\n        ${{ getPrecioDescuento(child)}}\n        </span>\n\n        <span *ngIf="!(cuponActivo.length>0)">\n        ${{child.oferta}}\n        </span>\n\n        </span>\n\n        </div>\n\n        <div *ngIf=\'!(cuponActivo.length>0) && !child.oferta\' style="margin: 4px;\n        margin-right: 41px;\n        font-size: 15px;\n        color: #EC527E;" item-end>${{ child.precio }}</div>\n\n\n\n        </ion-item>\n\n  	 </ion-list>\n\n\n\n  </ion-content>\n<ion-footer><div style="text-align: center;\n    margin: 9px;\n    color: #6f6c6c;">Si deseas agregar servicios relacionados a otra categoria por favor realizar una reserva diferente</div></ion-footer>\n\n\n'/*ion-inline-end:"/Users/jose/Documents/beyouApp/beYou/src/pages/modal-services/modal-services.html"*/,
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["NavController"], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["NavParams"], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["ViewController"], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["Events"], __WEBPACK_IMPORTED_MODULE_2__angular_http__["a" /* Http */]])
+        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["NavController"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["NavController"]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["NavParams"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["NavParams"]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["ViewController"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["ViewController"]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["Events"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["Events"]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_3__angular_http__["a" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__angular_http__["a" /* Http */]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_2__providers_api_api__["a" /* ApiProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__providers_api_api__["a" /* ApiProvider */]) === "function" && _f || Object])
     ], ModalServicesPage);
     return ModalServicesPage;
+    var _a, _b, _c, _d, _e, _f;
 }());
 
 //# sourceMappingURL=modal-services.js.map
