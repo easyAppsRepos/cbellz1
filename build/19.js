@@ -119,10 +119,10 @@ var CuentaPage = (function () {
         var _this = this;
         var options = {
             quality: 100,
-            destinationType: cordova.plugins.camera.DestinationType.FILE_URI,
-            sourceType: cordova.plugins.camera.PictureSourceType.PHOTOLIBRARY
+            destinationType: navigator.camera.DestinationType.FILE_URI,
+            sourceType: navigator.camera.PictureSourceType.PHOTOLIBRARY
         };
-        cordova.plugins.getPicture(options).then(function (imageData) {
+        navigator.camera.getPicture(options).then(function (imageData) {
             _this.imageURI = imageData;
         }, function (err) {
             console.log(err);
