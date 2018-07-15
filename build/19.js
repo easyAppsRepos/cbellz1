@@ -122,11 +122,10 @@ var CuentaPage = (function () {
             destinationType: navigator.camera.DestinationType.FILE_URI,
             sourceType: navigator.camera.PictureSourceType.PHOTOLIBRARY
         };
-        navigator.camera.getPicture(options).then(function (imageData) {
+        navigator.camera.getPicture(function (imageData) {
             _this.imageURI = imageData;
         }, function (err) {
             console.log(err);
-            _this.presentToast(err);
         });
     };
     CuentaPage.prototype.guardarCambios = function () {
