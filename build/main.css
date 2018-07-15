@@ -31477,6 +31477,12 @@ ion-navbar.toolbar {
   min-height: calc(46px + env(safe-area-inset-bottom));
 }
 
+.inputT input {
+  border-right: solid 2px #f3eded !important;
+  padding: 7px 7px 7px 20px  !important;
+  margin: 6px 0px !important;
+}
+
 .redem {
   vertical-align: middle;
   font-size: 17px;
@@ -32085,6 +32091,12 @@ page-lista-servicios .select-ios .select-icon .select-icon-inner {
   color: white !important;
 }
 
+page-login .inputT input {
+  border-right: solid 2px #f3eded !important;
+  padding: 7px 7px 7px 20px  !important;
+  margin: 6px 0px !important;
+}
+
 page-mapa .centradoTexto {
   text-align: center;
 }
@@ -32237,6 +32249,12 @@ page-modal-services .list {
 .segment-md .segment-button.activated {
   border-color: #2FD99B;
   opacity: 1;
+}
+
+page-negocioregistro .inputT input {
+  border-right: solid 2px #f3eded !important;
+  padding: 7px 7px 7px 20px  !important;
+  margin: 6px 0px !important;
 }
 
 page-nosotros .linkRedes {
@@ -32405,6 +32423,12 @@ page-perfil-centro .list {
 .segment-md .segment-button.activated {
   border-color: #2FD99B;
   opacity: 1;
+}
+
+page-recuperar .inputT input {
+  border-right: solid 2px #f3eded !important;
+  padding: 7px 7px 7px 20px  !important;
+  margin: 6px 0px !important;
 }
 
 @media (min-width: 300px) and (min-height: 500px) {

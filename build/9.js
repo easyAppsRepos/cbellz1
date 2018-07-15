@@ -1,14 +1,14 @@
 webpackJsonp([9],{
 
-/***/ 443:
+/***/ 446:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "OfertasPageModule", function() { return OfertasPageModule; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ReservaHechaPageModule", function() { return ReservaHechaPageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(14);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ofertas__ = __webpack_require__(473);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__reserva_hecha__ = __webpack_require__(477);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -18,34 +18,33 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
-var OfertasPageModule = (function () {
-    function OfertasPageModule() {
+var ReservaHechaPageModule = (function () {
+    function ReservaHechaPageModule() {
     }
-    OfertasPageModule = __decorate([
+    ReservaHechaPageModule = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["NgModule"])({
             declarations: [
-                __WEBPACK_IMPORTED_MODULE_2__ofertas__["a" /* OfertasPage */],
+                __WEBPACK_IMPORTED_MODULE_2__reserva_hecha__["a" /* ReservaHechaPage */],
             ],
             imports: [
-                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["IonicPageModule"].forChild(__WEBPACK_IMPORTED_MODULE_2__ofertas__["a" /* OfertasPage */]),
+                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["IonicPageModule"].forChild(__WEBPACK_IMPORTED_MODULE_2__reserva_hecha__["a" /* ReservaHechaPage */]),
             ],
         })
-    ], OfertasPageModule);
-    return OfertasPageModule;
+    ], ReservaHechaPageModule);
+    return ReservaHechaPageModule;
 }());
 
-//# sourceMappingURL=ofertas.module.js.map
+//# sourceMappingURL=reserva-hecha.module.js.map
 
 /***/ }),
 
-/***/ 473:
+/***/ 477:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return OfertasPage; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ReservaHechaPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(14);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_api_api__ = __webpack_require__(105);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -57,121 +56,34 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 
 
-
-
-
-
-
 /**
- * Generated class for the OfertasPage page.
+ * Generated class for the ReservaHechaPage page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
  */
-var OfertasPage = (function () {
-    function OfertasPage(navCtrl, navParams, modalCtrl, loadingCtrl, events, apiProvider, alertCtrl) {
+var ReservaHechaPage = (function () {
+    function ReservaHechaPage(navCtrl, navParams) {
         this.navCtrl = navCtrl;
         this.navParams = navParams;
-        this.modalCtrl = modalCtrl;
-        this.loadingCtrl = loadingCtrl;
-        this.events = events;
-        this.apiProvider = apiProvider;
-        this.alertCtrl = alertCtrl;
     }
-    OfertasPage.prototype.ionViewDidLoad = function () {
-        this.getOfertas();
+    ReservaHechaPage.prototype.ionViewDidLoad = function () {
+        console.log('ionViewDidLoad ReservaHechaPage');
     };
-    OfertasPage.prototype.getOfertas = function () {
-        var _this = this;
-        var dataE = {};
-        console.log(dataE);
-        this.apiProvider.buscarOfertas(dataE)
-            .then(function (data) {
-            console.log(data);
-            if (data) {
-                _this.ofertas = data || [];
-            }
-            else {
-                console.log('Ha ocurrido un error');
-            }
-        });
+    ReservaHechaPage.prototype.goPagina = function (pagina) {
+        this.navCtrl.setRoot(pagina);
+        //this.navCtrl.push('PerfilCentroPage');
     };
-    OfertasPage.prototype.goCentro = function (idCentro) {
-        // this.navCtrl.push('PerfilCentroPage');  
-        this.navCtrl.push('PerfilCentroPage', { 'idCentro': idCentro, 'idServicioSeleccionado': 8 });
-    };
-    OfertasPage.prototype.filtroCategoria = function () {
-        //console.log('ionViewDidLoad FavoritosPage');
-        this.showCheckbox();
-    };
-    OfertasPage.prototype.showCheckbox = function () {
-        var _this = this;
-        var alert = this.alertCtrl.create({ cssClass: 'alertCustomCss' });
-        alert.setTitle('Filtra por categoria');
-        alert.addInput({
-            type: 'checkbox',
-            label: 'Rostro y Cuerpo',
-            value: 'Rostro y Cuerpo',
-            checked: true
-        });
-        alert.addInput({
-            type: 'checkbox',
-            label: 'Peluqueria',
-            value: 'Peluqueria'
-        });
-        alert.addInput({
-            type: 'checkbox',
-            label: 'Uñas',
-            value: 'Uñas'
-        });
-        alert.addInput({
-            type: 'checkbox',
-            label: 'Masaje',
-            value: 'Masaje',
-            checked: true
-        });
-        alert.addInput({
-            type: 'checkbox',
-            label: 'Depilacion',
-            value: 'Depilacion'
-        });
-        alert.addInput({
-            type: 'checkbox',
-            label: 'Bienestar',
-            value: 'Bienestar'
-        });
-        alert.addInput({
-            type: 'checkbox',
-            label: 'Paquetes',
-            value: 'Paquetes',
-            checked: true
-        });
-        alert.addInput({
-            type: 'checkbox',
-            label: 'Ofertas',
-            value: 'Ofertas'
-        });
-        alert.addButton('Cancel');
-        alert.addButton({
-            text: 'Seleccionar',
-            handler: function (data) {
-                console.log('Checkbox data:', data);
-                _this.testCheckboxOpen = false;
-                _this.testCheckboxResult = data;
-            }
-        });
-        alert.present();
-    };
-    OfertasPage = __decorate([
+    ReservaHechaPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-            selector: 'page-ofertas',template:/*ion-inline-start:"/Users/jose/Documents/beyouApp/beYou/src/pages/ofertas/ofertas.html"*/'<!--\n  Generated template for the OfertasPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar>\n\n   <ion-buttons start>\n    <button ion-button menuToggle>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n    </ion-buttons>\n\n    \n    <ion-title>Ofertas</ion-title>\n\n\n\n          <ion-buttons end>\n\n\n       \n\n      </ion-buttons>\n\n\n\n  </ion-navbar>\n\n</ion-header>\n\n\n\n\n\n<ion-content >\n\n\n<div *ngIf=\'ofertas && ofertas.length<1\' style=\'    text-align: center;\n    font-size: 15px;\n    color: darkgray;\n    margin-top: 20px;\'> No hay ofertas actualmente</div>\n	<ion-card  *ngFor="let n of ofertas" (click)=\'goCentro(n.idCentro)\'>\n\n		<ion-card-content>\n				<div style="\n				display: inline-block;    width: 100%;\n				">\n				<img src="http://50.116.17.150:3000/{{n.idFoto}}" \n        onError="this.src=\'assets/imgs/fotoComercio.png\';" style="\n				display: inline-block;\n				height: 90px;\n				width: 90px !important;\n				vertical-align: top;\n				">\n				<div style="    display: inline-block;\n    width: calc(100% - 105px);\n    margin-left: 10px;\n				">\n				<span style="margin: 2px 0px 0px 0px;\n				font-size: 19px;\n				color: #333;display:block">{{n.nombreOferta}}</span>\n				<span style="display:block;\n				font-size: 16px;\n				color: #333;">{{n.nombreCentro}}</span>\n\n\n						<span style="    \n    font-size: 16px;\n    color: gray;  text-decoration: line-through;">${{n.precio}}</span> <span style="    \n    font-size: 16px;\nmargin-left: 10px;\n    font-weight: 800;\n    color: #EC527E;">${{n.precioOferta}}</span>\n\n				<span class="itemComercio" >\n\n					<span style="  margin-right: 21px;  color: #888;\n    font-size: 15px;"><ion-icon style=\'    margin-right: 8px;\n    color: rgb(249,199,53);\n    font-size: 21px;\n    vertical-align: middle;\' name="md-star"></ion-icon>{{n.rate  | number:\'1.1-2\'}} ({{n.cantRate\n}})</span>\n\n			<!-- 		<span style="     color: #888;\n    font-size: 15px;  "><ion-icon style=\'  margin-right: 8px;      vertical-align: middle;   font-size: 21px;color:#2FD99B;\' name="ios-pin"></ion-icon>{{n.distance | number:\'1.1-2\'}} Km</span>\n -->\n				</span>\n\n				</div>\n				</div>\n\n		</ion-card-content>\n		</ion-card>\n\n\n	\n\n\n\n\n</ion-content>\n'/*ion-inline-end:"/Users/jose/Documents/beyouApp/beYou/src/pages/ofertas/ofertas.html"*/,
+            selector: 'page-reserva-hecha',template:/*ion-inline-start:"/Users/jose/Documents/beyouApp/beYou/src/pages/reserva-hecha/reserva-hecha.html"*/'<!--\n  Generated template for the ReservaHechaPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar>\n    <ion-title>ReservaHecha</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content padding>\n\n\n\n<div style="\n    padding-left: 40px;\n    text-align: center;\n    padding-right: 40px;\n    margin-top: 30px;\n">\n	<img src="assets/imgs/fotoComercio.png" style="\n   height: 90px;\n   width: 90px;\n   ">\n\n	<span style="\n    display: block;\n    font-size: 20px;\n    color: #333;\n    margin-top: 15px;\n    margin-bottom:  15px;\n">Completado!</span>\n\n	<span style="\n    display: block;\n    color: #999;\n    font-size: 15px;\n    margin-bottom: 40px;\n        line-height: 24px;\n">Tu reserva esta siendo confirmada en este momento. Te notificaremos cuando hayamos procesado tu reserva</span>\n\n\n</div>\n\n\n<div style="    width: 100%;\n    text-align: center;\n    position: fixed;\n    left: 0;\n    bottom: 40px;">\n\n<button (click)=\'goPagina("MisReservasPage")\' color=\'verdeApp\' ion-button>Ver mi Reserva</button>\n\n<button (click)=\'goPagina("InicioPage")\' color=\'headerColor\' ion-button>Volver al Inicio</button>\n\n\n\n\n</div>\n\n</ion-content>\n'/*ion-inline-end:"/Users/jose/Documents/beyouApp/beYou/src/pages/reserva-hecha/reserva-hecha.html"*/,
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["NavController"], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["NavParams"], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["ModalController"], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["LoadingController"], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["Events"], __WEBPACK_IMPORTED_MODULE_2__providers_api_api__["a" /* ApiProvider */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["AlertController"]])
-    ], OfertasPage);
-    return OfertasPage;
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["NavController"], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["NavParams"]])
+    ], ReservaHechaPage);
+    return ReservaHechaPage;
 }());
 
-//# sourceMappingURL=ofertas.js.map
+//# sourceMappingURL=reserva-hecha.js.map
 
 /***/ })
 

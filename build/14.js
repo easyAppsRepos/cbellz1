@@ -1,14 +1,14 @@
 webpackJsonp([14],{
 
-/***/ 434:
+/***/ 438:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "InicioPageModule", function() { return InicioPageModule; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MapaPageModule", function() { return MapaPageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(14);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__inicio__ = __webpack_require__(464);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__mapa__ = __webpack_require__(469);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -18,34 +18,35 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
-var InicioPageModule = (function () {
-    function InicioPageModule() {
+var MapaPageModule = (function () {
+    function MapaPageModule() {
     }
-    InicioPageModule = __decorate([
+    MapaPageModule = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["NgModule"])({
             declarations: [
-                __WEBPACK_IMPORTED_MODULE_2__inicio__["a" /* InicioPage */],
+                __WEBPACK_IMPORTED_MODULE_2__mapa__["a" /* MapaPage */],
             ],
             imports: [
-                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["IonicPageModule"].forChild(__WEBPACK_IMPORTED_MODULE_2__inicio__["a" /* InicioPage */]),
+                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["IonicPageModule"].forChild(__WEBPACK_IMPORTED_MODULE_2__mapa__["a" /* MapaPage */]),
             ],
         })
-    ], InicioPageModule);
-    return InicioPageModule;
+    ], MapaPageModule);
+    return MapaPageModule;
 }());
 
-//# sourceMappingURL=inicio.module.js.map
+//# sourceMappingURL=mapa.module.js.map
 
 /***/ }),
 
-/***/ 464:
+/***/ 469:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return InicioPage; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MapaPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(14);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_api_api__ = __webpack_require__(105);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_storage__ = __webpack_require__(53);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -62,92 +63,352 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
+
 /**
- * Generated class for the InicioPage page.
+ * Generated class for the MapaPage page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
  */
-var InicioPage = (function () {
-    function InicioPage(menuCtrl, navCtrl, navParams, apiProvider, loadingController, events, modalCtrl) {
+var MapaPage = (function () {
+    function MapaPage(navCtrl, navParams, modalCtrl, loadingCtrl, events, apiProvider, alertCtrl, storage, plt, ngZone) {
+        /*
+        if(this.map){
+        console.log('setVisible false');
+        this.map.setVisible(false);
+        }
+        */
         var _this = this;
-        this.menuCtrl = menuCtrl;
         this.navCtrl = navCtrl;
         this.navParams = navParams;
-        this.apiProvider = apiProvider;
-        this.loadingController = loadingController;
-        this.events = events;
         this.modalCtrl = modalCtrl;
-        this.inicioSesion = false;
-        this.categorias = [];
-        events.subscribe('loginOK', function () {
-            // user and time are the same arguments passed in `events.publish(user, time)`
-            _this.apiProvider.verificarLogin()
+        this.loadingCtrl = loadingCtrl;
+        this.events = events;
+        this.apiProvider = apiProvider;
+        this.alertCtrl = alertCtrl;
+        this.storage = storage;
+        this.plt = plt;
+        this.ngZone = ngZone;
+        this.dataMarcas = [];
+        this.myPosition = {};
+        this.markers = [
+            {
+                position: {
+                    latitude: -17.3666745,
+                    longitude: -66.2387878,
+                },
+                title: 'Point 1'
+            },
+            {
+                position: {
+                    latitude: -17.3706884,
+                    longitude: -66.2397749,
+                },
+                title: 'Point 2'
+            },
+            {
+                position: {
+                    latitude: -17.391398,
+                    longitude: -66.2407904,
+                },
+                title: 'Point 3'
+            },
+            {
+                position: {
+                    latitude: -17.3878887,
+                    longitude: -66.223664,
+                },
+                title: 'Point 4'
+            },
+        ];
+        this.addMarker = function (options) {
+            var markerOptions = {
+                position: new LatLng(options.position.latitude, options.position.longitude),
+                title: options.title
+            };
+            _this.map.addMarker(markerOptions);
+        };
+        this.getCentrosCercanos = function () {
+            _this.apiProvider.getCentrosMapa({ lat: _this.myPosition.latitude, lon: _this.myPosition.longitude })
                 .then(function (data) {
                 console.log(data);
-                if (data) {
-                    _this.inicioSesion = false;
-                }
-                else {
-                    _this.inicioSesion = true;
+                _this.dataMarcas = data || [];
+            });
+        };
+        this.goTo = function (idCentro) { console.log(idCentro); };
+        this.loadMap = function () {
+            //let loading3 = this.loadingCtrl.create({content : "Buscando negocios cercanos"});
+            //loading3.present();
+            var element = document.getElementById('map');
+            _this.map = plugin.google.maps.Map.getMap(element, {
+                controls: {
+                    'zoom': true // android only
+                },
+                'camera': {
+                    target: { lat: _this.myPosition.latitude, lng: _this.myPosition.longitude },
+                    zoom: 15
+                },
+                'preferences': {
+                    'zoom': {
+                        'minZoom': 13,
+                        'maxZoom': 17
+                    },
+                    padding: {
+                        left: 10,
+                        top: 10,
+                        bottom: 53,
+                        right: 10
+                    }
                 }
             });
-        });
+            // create CameraPosition
+            var position = {
+                target: { lat: _this.myPosition.latitude, lng: _this.myPosition.longitude },
+                zoom: 16,
+                tilt: 30
+            };
+            _this.map.one(plugin.google.maps.event.MAP_READY, function () {
+                //this.map.setVisible(false);
+                _this.apiProvider.getCentrosMapa({ lat: _this.myPosition.latitude, lon: _this.myPosition.longitude })
+                    .then(function (data) {
+                    console.log(data);
+                    _this.dataMarcas = data;
+                    data.forEach(function (element, index) {
+                        var imagenLink = element.idFoto ? 'http://50.116.17.150:3000/' + element.idFoto : 'assets/imgs/fotoComercio.png';
+                        var htmlInfoWindow = new plugin.google.maps.HtmlInfoWindow();
+                        var frame = document.createElement('div');
+                        frame.className = 'centradoTexto';
+                        frame.innerHTML = ["<span style='color: #555;font-size: 17px;'><b>" + element.nombre + "</b></span><br>",
+                            "<span style=\"display: block;margin: 3px 0px;color: lightgray;font-size: 15px;\">",
+                            _this.getEstrella(1, element.rate),
+                            _this.getEstrella(2, element.rate),
+                            _this.getEstrella(3, element.rate),
+                            _this.getEstrella(4, element.rate),
+                            _this.getEstrella(5, element.rate),
+                            "</span>",
+                            "<span style='color: #888;font-size: 16px;  '><ion-icon name='ios-pin' role='img' style='  margin-right: 8px;      vertical-align: middle;   font-size: 21px;color:#2FD99B;' class='icon icon-ios ion-ios-pin' aria-label='pin' ng-reflect-name='ios-pin'></ion-icon>a " + (element.distance ? element.distance.toFixed(1) : '-') + "km aprox.</span><br>",
+                            "<button  style='margin: 6px 0px; padding: 5px;background-color: #2FD99B;color: white;font-weight: 900;' >Mas Informacion</button>"].join("");
+                        var button = frame.getElementsByTagName("button")[0];
+                        button.addEventListener("click", function () {
+                            _this.ngZone.run(function () {
+                                _this.navCtrl.push('PerfilCentroPage', { 'idCentro': element.idCentro, 'idServicioSeleccionado': 0 });
+                            });
+                        });
+                        htmlInfoWindow.setContent(frame, {
+                            width: "180px",
+                            height: "110px"
+                        });
+                        _this.map.addMarker({
+                            'position': { lng: element.longitud, lat: element.latitud },
+                            'icon': {
+                                'url': imagenLink,
+                                size: {
+                                    width: 35,
+                                    height: 35
+                                }
+                            }
+                        }, function (marker) {
+                            marker.on(plugin.google.maps.event.MARKER_CLICK, function () {
+                                htmlInfoWindow.open(marker);
+                            });
+                            //marker.trigger(plugin.google.maps.event.MARKER_CLICK);
+                        });
+                    });
+                    _this.loading.dismissAll();
+                });
+                console.log('Map is ready!');
+                // move the map's camera to position
+                //this.map.moveCamera(position);
+                //loading3.dismissAll();
+                /*
+                this.map.addMarker({
+                position: {lng: -84.212576, lat: 10.0028923},
+                title: "Marcador ejemplo"
+                });
+                */
+            });
+        };
     }
-    InicioPage.prototype.ionViewDidLoad = function () {
+    MapaPage.prototype.ionViewDidLoad = function () {
+        this.loading = this.loadingCtrl.create({ content: "Buscando negocios cercanos" });
+        this.loading.present();
+        this.getServiciosGPS();
+    };
+    MapaPage.prototype.ionViewDidEnter = function () {
+        // this.loading = this.loadingCtrl.create({content : "Buscando negocios cercanos"});
+        //  this.loading.present();
+        //  this.getServiciosGPS();
+        // create a new map by passing HTMLElement
+        //verificar si sirve en ionviewdidenter
+        //verificar reduciendo widj
+        //verificar con push y setRoot
+        //cambiar fondo oclor
+        //this.gpsServices();
+        console.log('ionViewDidLoad MapaPage');
+    };
+    MapaPage.prototype.regresawe = function () {
+        this.navCtrl.setRoot('InicioPage');
+    };
+    MapaPage.prototype.getEstrella = function (numero, rate) {
+        if (rate && rate >= numero) {
+            return "<ion-icon name='md-star' role='img' class='icon icon-ios ion-md-star ratingStar'> </ion-icon>";
+        }
+        else {
+            return "<ion-icon name='md-star' role='img' class='icon icon-ios ion-md-star'> </ion-icon>";
+        }
+    };
+    MapaPage.prototype.presentAlert = function () {
+        var alert = this.alertCtrl.create({
+            title: 'GPS desactivado',
+            subTitle: 'Activa el GPS para filtrar por distancia',
+            buttons: ['Cerrar']
+        });
+        alert.present();
+    };
+    MapaPage.prototype.getServiciosGPS = function () {
+        //let loading = this.loadingCtrl.create({content : "Obteniendo ubicacion"});
+        //loading.present();
         var _this = this;
-        console.log('ionViewDidLoad InicioPage');
-        this.apiProvider.categoriasHome()
-            .then(function (data) {
-            console.log(data);
-            if (data) {
-                _this.categorias = data || [];
+        //loading.present();
+        navigator.geolocation.getCurrentPosition(function (pos) {
+            _this.myPosition = {
+                latitude: pos.coords.latitude,
+                longitude: pos.coords.longitude
+            };
+            var fechaExpiracion = new Date();
+            fechaExpiracion.setHours(fechaExpiracion.getHours() + 1);
+            _this.storage.set('coorLBY', { 'lat': pos.coords.latitude,
+                'lng': pos.coords.longitude,
+                'expirationDate': fechaExpiracion });
+            // setTimeout(() => {
+            //loading.dismissAll();
+            _this.loadMap();
+            //   },2000);
+            //   loading.dismissAll();
+            //  this.loadMap();
+        }, function (error) {
+            console.log('storageme err');
+            console.log(error);
+            //setTimeout(() => {
+            _this.loading.dismissAll();
+            _this.requestLocationAccuracy();
+            // },2000);
+            // loading.dismissAll();
+            // this.requestLocationAccuracy();
+        }, { enableHighAccuracy: true, timeout: 30000 });
+    };
+    MapaPage.prototype.gpsServices = function () {
+    };
+    MapaPage.prototype.onError = function (error) {
+        console.error("The following error occurred: " + error);
+    };
+    MapaPage.prototype.requestLocationAuthorization = function () {
+        var _this = this;
+        cordova.plugins.diagnostic.requestLocationAuthorization(function (status) {
+            switch (status) {
+                case cordova.plugins.diagnostic.permissionStatus.GRANTED:
+                    if (_this.plt.is('ios')) {
+                        _this.onError("Location services is already switched ON");
+                    }
+                    else {
+                        _this._makeRequest();
+                    }
+                    break;
+                case cordova.plugins.diagnostic.permissionStatus.NOT_REQUESTED:
+                    _this.requestLocationAuthorization();
+                    break;
+                case cordova.plugins.diagnostic.permissionStatus.DENIED:
+                    if (_this.plt.is('android')) {
+                        _this.onError("User denied permission to use location");
+                    }
+                    else {
+                        _this._makeRequest();
+                    }
+                    break;
+                case cordova.plugins.diagnostic.permissionStatus.DENIED_ALWAYS:
+                    // Android only
+                    _this.onError("User denied permission to use location");
+                    break;
+                case cordova.plugins.diagnostic.permissionStatus.GRANTED_WHEN_IN_USE:
+                    // iOS only
+                    _this.onError("Location services is already switched ON");
+                    break;
+            }
+        }, this.onError());
+    };
+    MapaPage.prototype.requestLocationAccuracy = function () {
+        var _this = this;
+        cordova.plugins.diagnostic.getLocationAuthorizationStatus(function (status) {
+            switch (status) {
+                case cordova.plugins.diagnostic.permissionStatus.GRANTED:
+                    if (_this.plt.is('ios')) {
+                        _this.onError("Location services is already switched ON");
+                    }
+                    else {
+                        _this._makeRequest();
+                    }
+                    break;
+                case cordova.plugins.diagnostic.permissionStatus.NOT_REQUESTED:
+                    _this.requestLocationAuthorization();
+                    break;
+                case cordova.plugins.diagnostic.permissionStatus.DENIED:
+                    if (_this.plt.is('android')) {
+                        _this.onError("User denied permission to use location");
+                    }
+                    else {
+                        _this._makeRequest();
+                    }
+                    break;
+                case cordova.plugins.diagnostic.permissionStatus.DENIED_ALWAYS:
+                    // Android only
+                    _this.onError("User denied permission to use location");
+                    break;
+                case cordova.plugins.diagnostic.permissionStatus.GRANTED_WHEN_IN_USE:
+                    // iOS only
+                    _this.onError("Location services is already switched ON");
+                    break;
+            }
+        }, this.onError());
+    };
+    MapaPage.prototype._makeRequest = function () {
+        var _this = this;
+        cordova.plugins.locationAccuracy.canRequest(function (canRequest) {
+            if (canRequest) {
+                cordova.plugins.locationAccuracy.request(function () {
+                    console.log("Location accuracy request successful");
+                    _this.getServiciosGPS();
+                }, function (error) {
+                    _this.onError("Error requesting location accuracy: " + JSON.stringify(error));
+                    if (error) {
+                        // Android only
+                        _this.onError("error code=" + error.code + "; error message=" + error.message);
+                        if (_this.plt.is('android') && error.code !== cordova.plugins.locationAccuracy.ERROR_USER_DISAGREED) {
+                            if (window.confirm("Failed to automatically set Location Mode to 'High Accuracy'. Would you like to switch to the Location Settings page and do this manually?")) {
+                                cordova.plugins.diagnostic.switchToLocationSettings();
+                            }
+                        }
+                    }
+                }, cordova.plugins.locationAccuracy.REQUEST_PRIORITY_HIGH_ACCURACY // iOS will ignore this
+                );
             }
             else {
-                console.log('Ha ocurrido un error');
+                // On iOS, this will occur if Location Services is currently on OR a request is currently in progress.
+                // On Android, this will occur if the app doesn't have authorization to use location.
+                _this.onError("Cannot request location accurac // android");
             }
         });
     };
-    InicioPage.prototype.ionViewDidEnter = function () {
-        var _this = this;
-        this.apiProvider.verificarLogin()
-            .then(function (data) {
-            console.log(data);
-            if (data) {
-                _this.inicioSesion = false;
-            }
-            else {
-                _this.inicioSesion = true;
-            }
-        });
-    };
-    InicioPage.prototype.goServicio = function (nombreServicio) {
-        console.log(nombreServicio);
-        this.navCtrl.push('ListaServiciosPage', { 'nombre': nombreServicio });
-    };
-    InicioPage.prototype.goMapa = function () {
-        //console.log(nombreServicio);
-        //this.navCtrl.setRoot('MapaPage');
-        this.navCtrl.push('MapaPage');
-    };
-    InicioPage.prototype.openMenu = function () {
-        var profileModal = this.modalCtrl.create('LoginPage');
-        profileModal.present();
-    };
-    InicioPage.prototype.setDefaultPic = function (nombre) {
-        console.log(nombre);
-        return "assets/imgs/" + nombre;
-    };
-    InicioPage = __decorate([
+    MapaPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-            selector: 'page-inicio',template:/*ion-inline-start:"/Users/jose/Documents/beyouApp/beYou/src/pages/inicio/inicio.html"*/'<ion-header>\n  <ion-navbar  color="headerColor">\n\n    <ion-buttons start>\n    <button ion-button menuToggle>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n    </ion-buttons>\n\n    <ion-title>\n<img src="assets/imgs/logoMenu.png">\n\n    </ion-title>\n\n      <ion-buttons end>\n\n        <button  (click)=\'goMapa()\'   ion-button icon-only>\n        <ion-icon name="ios-pin" style=\'font-color:white;color:white\'></ion-icon>\n      </button>\n\n\n<!--       <button  ion-button icon-only>\n        <ion-icon name="pin"></ion-icon>\n      </button> -->\n\n\n    <!--      (click)=\'goMapa()\'   <button ion-button icon-only>\n        <ion-icon name="search"></ion-icon>\n      </button> -->\n\n\n      </ion-buttons>\n\n  </ion-navbar>\n</ion-header>\n\n<ion-content >\n\n  <div *ngIf=\'true\'>\n\n    <div style="width: 100%;" >\n    <img src="assets/imgs/imagenLogo.png" style="height: 100%; width:100%;margin-top:-75px;">\n    </div>\n\n    <div>\n      <div class="tituloSeccion">\n      Selecciona una Categoria\n      </div>\n\n<ion-grid style=\'margin-bottom: 50px\' >\n  <div *ngFor="let n of categorias; let i = index">\n  <ion-row *ngIf=" i % 4 === 0" style=\'text-align: center;    max-width: 500px;\n    margin: 15px auto;\' > \n    <ion-col  *ngFor="let item of categorias.slice(i,i+4)" col-3 (click)=\'goServicio(item.idCategoria)\'>\n      <img  class=\'imagenCategoria\'  src="http://50.116.17.150:3000/{{item.idFoto}}" \n          onError="this.src=\'assets/imgs/ofertasVerde.png\';"> \n          <span style="    display: block;">{{item.nombre}}</span>\n    </ion-col>\n\n  </ion-row>\n</div>\n</ion-grid>\n\n\n    </div>\n\n  </div>\n</ion-content>\n\n\n\n<ion-footer>\n <div style="text-align: center;">\n   \n    <button *ngIf=\'inicioSesion\' (click)=\'openMenu()\' ion-button style="background-color: #2FD99B;width: 80%; max-width: 500px;    border-radius: 35px;">Crear Cuenta</button>\n\n  </div>\n</ion-footer>\n\n\n\n\n\n\n\n\n\n\n\n\n\n'/*ion-inline-end:"/Users/jose/Documents/beyouApp/beYou/src/pages/inicio/inicio.html"*/,
+            selector: 'page-mapa',template:/*ion-inline-start:"/Users/jose/Documents/beyouApp/beYou/src/pages/mapa/mapa.html"*/'<!--\n  Generated template for the MapaPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n  <ion-navbar >\n<!--   	    <ion-buttons start>\n    <button ion-button style="    width: 33px;" (click)=\'regresawe()\'>\n      <ion-icon name="arrow-back"  ></ion-icon>\n    </button>\n    </ion-buttons> -->\n\n    <ion-title>\n      Negocios cercanos\n    </ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content>\n  <div id="map" ></div>  \n</ion-content>'/*ion-inline-end:"/Users/jose/Documents/beyouApp/beYou/src/pages/mapa/mapa.html"*/,
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["MenuController"], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["NavController"], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["NavParams"], __WEBPACK_IMPORTED_MODULE_2__providers_api_api__["a" /* ApiProvider */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["LoadingController"], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["Events"], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["ModalController"]])
-    ], InicioPage);
-    return InicioPage;
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["NavController"], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["NavParams"], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["ModalController"], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["LoadingController"], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["Events"], __WEBPACK_IMPORTED_MODULE_2__providers_api_api__["a" /* ApiProvider */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["AlertController"], __WEBPACK_IMPORTED_MODULE_3__ionic_storage__["b" /* Storage */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["Platform"], __WEBPACK_IMPORTED_MODULE_0__angular_core__["NgZone"]])
+    ], MapaPage);
+    return MapaPage;
 }());
 
-//# sourceMappingURL=inicio.js.map
+//# sourceMappingURL=mapa.js.map
 
 /***/ })
 
