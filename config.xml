@@ -52,6 +52,10 @@
 
 
 
+  <preference name="StatusBarOverlaysWebView" value="false" />
+
+  <preference name="StatusBarStyle" value="lightcontent" />
+
 
 <!--   <feature name="StatusBar">
     <param name="ios-package" value="CDVStatusBar" onload="true"/>
@@ -71,16 +75,12 @@
 
 
 
-  <preference name="StatusBarOverlaysWebView" value="false" />
 
-  <preference name="StatusBarStyle" value="lightcontent" />
-
-
-<!--   <gap:plugin name="cordova-plugin-camera"  source="npm"  spec="2.4.1" />
+  <gap:plugin name="cordova-plugin-camera"  source="npm"  spec="2.4.1" />
   <gap:plugin name="cordova-plugin-file-transfer"  source="npm" spec="1.6.3" />
 
 <gap:plugin name="cordova-plugin-file"  source="npm" spec="~4.3.3"/> 
-
+<!-- 
 2.2.3\\
 
 11.6.2 pp fcm
