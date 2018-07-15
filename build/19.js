@@ -126,7 +126,7 @@ var CuentaPage = (function () {
             _this.imageURI = imageData;
         }, function (err) {
             console.log(err);
-        });
+        }, options);
     };
     CuentaPage.prototype.guardarCambios = function () {
         var _this = this;
