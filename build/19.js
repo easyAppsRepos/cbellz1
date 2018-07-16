@@ -1,6 +1,6 @@
 webpackJsonp([19],{
 
-/***/ 430:
+/***/ 429:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -8,7 +8,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CuentaPageModule", function() { return CuentaPageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(14);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__cuenta__ = __webpack_require__(461);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__cuenta__ = __webpack_require__(460);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -38,7 +38,7 @@ var CuentaPageModule = (function () {
 
 /***/ }),
 
-/***/ 461:
+/***/ 460:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -164,6 +164,43 @@ var CuentaPage = (function () {
     CuentaPage.prototype.cancelarEdicion = function () {
         this.dataUser = this.dataUserInput;
         this.editarData = true;
+    };
+    CuentaPage.prototype.uploadFile = function () {
+        var loader = this.loadingCtrl.create({
+            content: "Guardando..."
+        });
+        loader.present();
+        //const fileTransfer: FileTransferObject = this.transfer.create();
+        /*
+          let options = new FileUploadOptions();' = {
+            fileKey: 'ionicfile',
+            fileName: 'ionicfile',
+            chunkedMode: false,
+            mimeType: "image/jpeg",
+            headers: {}
+          };
+        */
+        var options = new FileUploadOptions();
+        options.fileKey = "ionicfile";
+        options.fileName = 'ionicfile2';
+        options.mimeType = "image/jpeg";
+        options.chunkedMode = false;
+        options.headers = {};
+        var params = {};
+        params.value1 = "test";
+        params.value2 = "param";
+        options.params = params;
+        var ft = new FileTransfer();
+        ft.upload(this.imageFileName, 'http://50.116.17.150:3000/editarCF', function (data) {
+            console.log(data);
+            //this.imageFileName = "http://192.168.0.7:8080/static/images/ionicfile.jpg"
+            loader.dismiss();
+            //this.presentToast("Image uploaded successfully");
+        }, function (err) {
+            console.log(err);
+            loader.dismiss();
+            // this.presentToast(err);
+        }, options);
     };
     CuentaPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
