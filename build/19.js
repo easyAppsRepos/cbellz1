@@ -121,10 +121,12 @@ var CuentaPage = (function () {
             options.headers = {};
             options.params = datak;
             var ft = new FileTransfer();
-            ft.upload(_this.imageFileName, 'http://50.116.17.150:3000/editarCF', function (data) {
-                console.log(data);
+            ft.upload(_this.imageFileName, 'http://50.116.17.150:3000/editarCF', function (datag) {
+                console.log(datag);
                 //this.imageFileName = "http://192.168.0.7:8080/static/images/ionicfile.jpg"
                 //this.presentToast("Image uploaded successfully");
+                var data = JSON.parse(datag.response);
+                console.log(data);
                 if (data.data && data.data.affectedRows > 0) {
                     //this.storage.set(`usr_tok_by`, this.dataUser);
                     _this.storage.get('usr_tok_by').then(function (value) {
