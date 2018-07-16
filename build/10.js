@@ -45,7 +45,6 @@ var RecuperarPageModule = (function () {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return RecuperarPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(14);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_api_api__ = __webpack_require__(105);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -57,11 +56,6 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 
 
-
-
-
-
-
 /**
  * Generated class for the RecuperarPage page.
  *
@@ -69,60 +63,20 @@ var __metadata = (this && this.__metadata) || function (k, v) {
  * Ionic pages and navigation.
  */
 var RecuperarPage = (function () {
-    function RecuperarPage(navCtrl, navParams, modalCtrl, loadingCtrl, events, apiProvider, alertCtrl) {
+    function RecuperarPage(navCtrl, navParams) {
         this.navCtrl = navCtrl;
         this.navParams = navParams;
-        this.modalCtrl = modalCtrl;
-        this.loadingCtrl = loadingCtrl;
-        this.events = events;
-        this.apiProvider = apiProvider;
-        this.alertCtrl = alertCtrl;
     }
     RecuperarPage.prototype.ionViewDidLoad = function () {
         console.log('ionViewDidLoad RecuperarPage');
-    };
-    RecuperarPage.prototype.actualizarContra = function (emails) {
-        var _this = this;
-        console.log(emails);
-        this.apiProvider.recuperarPass({ email: emails })
-            .then(function (data) {
-            console.log(data);
-            if (data.data) {
-                if (data && data.data.affectedRows > 0) {
-                    var alert = _this.alertCtrl.create({
-                        title: 'Contraseña Restablecida',
-                        subTitle: 'Te hemos enviado la contraseña nueva a tu correo',
-                        buttons: ['Cerrar']
-                    });
-                    alert.present();
-                }
-                else {
-                    var alert = _this.alertCtrl.create({
-                        title: 'Error',
-                        subTitle: 'Email Invalido',
-                        buttons: ['Cerrar']
-                    });
-                    alert.present();
-                }
-            }
-            else {
-                var alert = _this.alertCtrl.create({
-                    title: 'Error',
-                    subTitle: 'Error inesperado',
-                    buttons: ['Cerrar']
-                });
-                alert.present();
-            }
-        });
     };
     RecuperarPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'page-recuperar',template:/*ion-inline-start:"/Users/jose/Documents/beyouApp/beYou/src/pages/recuperar/recuperar.html"*/'<!--\n  Generated template for the RecuperarPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar>\n    <ion-title style=\'padding-left: 0px !important;padding-right: 0px !important;\'>Recupearar tu contraseña</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content padding style=\'    background-color: #fafafa !important;\'>\n\n<div style="    text-align: center;\n    color: darkgray;\n    margin-top: 12px;">Ingresa el email relacionado con tu cuenta BeYou</div>\n\n\n            <ion-item style=\'    padding: 0px 13px 0px 0px;\n    background-color: white !important;\n    border-radius: 60px;\n    border: solid 1px #EC527E;\n    margin: 26px 0px;\'>\n     		<ion-label style=\' color: #e6e6e6;   position: absolute;\n    right: 16px;\n    font-size: 21px;\'>\n     			  <ion-icon   ios="md-mail" md="md-mail" ></ion-icon>\n     		</ion-label>\n\n            <ion-input [(ngModel)]="emailN" class=\'inputT\' name="nombre" type="email" placeholder=\'email\'></ion-input>\n\n\n        </ion-item>\n\n\n<div  >\n     <button  (click)=\'emailN=""\'   style=" border-radius: 70px;   width: 40%;\n    margin-left: 5%; float:left"  color=\'verdeApp\' ion-button> Cancelar</button>\n\n\n    <button   color=\'headerColor\' ion-button  style="    width: 40%;\n    margin-right: 5%;\n    border-radius: 70px;float:right" [disabled]=\'!emailN\' (click)=\'actualizarContra(emailN)\'>Ok</button> \n\n\n</div>\n\n\n\n</ion-content>\n'/*ion-inline-end:"/Users/jose/Documents/beyouApp/beYou/src/pages/recuperar/recuperar.html"*/,
         }),
-        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["NavController"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["NavController"]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["NavParams"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["NavParams"]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["ModalController"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["ModalController"]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["LoadingController"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["LoadingController"]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["Events"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["Events"]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_2__providers_api_api__["a" /* ApiProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__providers_api_api__["a" /* ApiProvider */]) === "function" && _f || Object, typeof (_g = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["AlertController"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["AlertController"]) === "function" && _g || Object])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["NavController"], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["NavParams"]])
     ], RecuperarPage);
     return RecuperarPage;
-    var _a, _b, _c, _d, _e, _f, _g;
 }());
 
 //# sourceMappingURL=recuperar.js.map
