@@ -124,8 +124,29 @@ var CuentaPage = (function () {
             ft.upload(_this.imageFileName, 'http://50.116.17.150:3000/editarCF', function (data) {
                 console.log(data);
                 //this.imageFileName = "http://192.168.0.7:8080/static/images/ionicfile.jpg"
-                loader.dismiss();
                 //this.presentToast("Image uploaded successfully");
+                if (data.data && data.data.affectedRows > 0) {
+                    //this.storage.set(`usr_tok_by`, this.dataUser);
+                    _this.storage.get('usr_tok_by').then(function (value) {
+                        // console.log(value);
+                        var da = value;
+                        da.genero = _this.dataUser.genero;
+                        da.telefono = _this.dataUser.telefono;
+                        da.nombre = _this.dataUser.nombre;
+                        da.idFoto = data.idFoto;
+                        console.log(da);
+                        _this.storage.set("usr_tok_by", da);
+                    }).catch(function () { return resolve(false); });
+                    loader.dismiss();
+                    _this.agregadoOk();
+                    //console.log('borrada');
+                    _this.editarData = true;
+                }
+                else {
+                    loader.dismiss();
+                    _this.errorSu();
+                    console.log('Ha ocurrido un error');
+                }
             }, function (err) {
                 console.log(err);
                 loader.dismiss();
@@ -158,6 +179,14 @@ var CuentaPage = (function () {
         var alert = this.alertCtrl.create({
             title: 'Editado correctamente',
             subTitle: 'Sus datos han sido editados correctamente',
+            buttons: ['Cerrar']
+        });
+        alert.present();
+    };
+    CuentaPage.prototype.errorSu = function () {
+        var alert = this.alertCtrl.create({
+            title: 'Error',
+            subTitle: 'Ha ocurrido un error',
             buttons: ['Cerrar']
         });
         alert.present();
@@ -204,6 +233,7 @@ var CuentaPage = (function () {
     CuentaPage.prototype.cancelarEdicion = function () {
         this.dataUser = this.dataUserInput;
         this.editarData = true;
+        this.imageFileName = undefined;
     };
     CuentaPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
