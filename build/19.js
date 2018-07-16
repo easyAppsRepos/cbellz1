@@ -123,6 +123,7 @@ var CuentaPage = (function () {
             sourceType: navigator.camera.PictureSourceType.PHOTOLIBRARY
         };
         navigator.camera.getPicture(function (imageData) {
+            console.log(imageData);
             _this.imageFileName = imageData;
         }, function (err) {
             console.log(err);
