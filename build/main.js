@@ -1537,7 +1537,7 @@ var MyApp = (function () {
         });
     };
     MyApp.prototype.fbLoginError = function (error) {
-        console.log('fbLoginError', error);
+        console.log('fbLoginEdrror', error);
         //mensajeAlerta(1, 'Ha ocurrido un error');
         //$ionicLoading.hide();
     };
