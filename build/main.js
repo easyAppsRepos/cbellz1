@@ -133,6 +133,16 @@ var ApiProvider = (function () {
             });
         });
     };
+    ApiProvider.prototype.cerrarS = function (credenciales) {
+        var _this = this;
+        return new Promise(function (resolve) {
+            _this.http.post(_this.api2 + '/cerrarS', JSON.stringify(credenciales), { headers: { 'Content-Type': 'application/json' } }).subscribe(function (data) {
+                resolve(data);
+            }, function (err) {
+                console.log(err);
+            });
+        });
+    };
     ApiProvider.prototype.cancelarCita = function (da) {
         var _this = this;
         return new Promise(function (resolve) {
@@ -487,9 +497,10 @@ var ApiProvider = (function () {
     };
     ApiProvider = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["Injectable"])(),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_0__angular_common_http__["a" /* HttpClient */], __WEBPACK_IMPORTED_MODULE_2__ionic_storage__["b" /* Storage */]])
+        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_0__angular_common_http__["a" /* HttpClient */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__angular_common_http__["a" /* HttpClient */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__ionic_storage__["b" /* Storage */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__ionic_storage__["b" /* Storage */]) === "function" && _b || Object])
     ], ApiProvider);
     return ApiProvider;
+    var _a, _b;
 }());
 
 //# sourceMappingURL=api.js.map
@@ -1578,6 +1589,10 @@ var MyApp = (function () {
     MyApp.prototype.goPagina = function (pagina) {
         console.log(pagina);
         if ('logout' == pagina) {
+            this.apiProvider.cerrarS({ idCliente: this.userDataProfile.idCliente })
+                .then(function (data) {
+                console.log(data);
+            });
             this.events.publish('userLogout');
             this.events.publish('loginOK');
             facebookConnectPlugin.logout(function (res) {
@@ -1586,6 +1601,7 @@ var MyApp = (function () {
                 console.log('Error logout from Facebook', e);
                 // this.events.publish('userLogout');
             });
+            //cerrarS
         }
         else {
             this.nav.setRoot(pagina);
