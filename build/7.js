@@ -1,14 +1,14 @@
 webpackJsonp([7],{
 
-/***/ 440:
+/***/ 445:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ModalServicesPageModule", function() { return ModalServicesPageModule; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PerfilCentroPageModule", function() { return PerfilCentroPageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(14);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__modal_services__ = __webpack_require__(471);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__perfil_centro__ = __webpack_require__(476);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_http__ = __webpack_require__(452);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -20,24 +20,24 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
-var ModalServicesPageModule = (function () {
-    function ModalServicesPageModule() {
+var PerfilCentroPageModule = (function () {
+    function PerfilCentroPageModule() {
     }
-    ModalServicesPageModule = __decorate([
+    PerfilCentroPageModule = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["NgModule"])({
             declarations: [
-                __WEBPACK_IMPORTED_MODULE_2__modal_services__["a" /* ModalServicesPage */],
+                __WEBPACK_IMPORTED_MODULE_2__perfil_centro__["a" /* PerfilCentroPage */]
             ],
             imports: [
                 __WEBPACK_IMPORTED_MODULE_3__angular_http__["b" /* HttpModule */],
-                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["IonicPageModule"].forChild(__WEBPACK_IMPORTED_MODULE_2__modal_services__["a" /* ModalServicesPage */]),
+                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["IonicPageModule"].forChild(__WEBPACK_IMPORTED_MODULE_2__perfil_centro__["a" /* PerfilCentroPage */]),
             ],
         })
-    ], ModalServicesPageModule);
-    return ModalServicesPageModule;
+    ], PerfilCentroPageModule);
+    return PerfilCentroPageModule;
 }());
 
-//# sourceMappingURL=modal-services.module.js.map
+//# sourceMappingURL=perfil-centro.module.js.map
 
 /***/ }),
 
@@ -2838,17 +2838,17 @@ Observable_1.Observable.prototype.map = map_1.map;
 
 /***/ }),
 
-/***/ 471:
+/***/ 476:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ModalServicesPage; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return PerfilCentroPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(14);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_api_api__ = __webpack_require__(105);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_http__ = __webpack_require__(452);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_map__ = __webpack_require__(453);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_map__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_http__ = __webpack_require__(452);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_map__ = __webpack_require__(453);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_map__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_api_api__ = __webpack_require__(105);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -2865,85 +2865,107 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-/**
- * Generated class for the ModalServicesPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
-var ModalServicesPage = (function () {
-    function ModalServicesPage(navCtrl, navParams, viewCtrl, events, http, apiProvider) {
-        /*
-                let localData = http.get('assets/information.json').map(res => res.json().items);
-              
-            localData.subscribe(data => {
-              this.information = data;
-                this.information[0].open=true;
-                  this.information[0].children[0].selected=true;
-    
-                   this.information[1].open=true;
-    
-                   this.information[1].children[1].selected=true;
-            })
-    
-        */
+
+var PerfilCentroPage = (function () {
+    function PerfilCentroPage(navCtrl, navParams, http, modalCtrl, apiProvider, loadingController, events) {
         this.navCtrl = navCtrl;
         this.navParams = navParams;
-        this.viewCtrl = viewCtrl;
-        this.events = events;
         this.http = http;
+        this.modalCtrl = modalCtrl;
         this.apiProvider = apiProvider;
-        this.dataUser = {};
+        this.loadingController = loadingController;
+        this.events = events;
+        var localData = http.get('assets/information.json').map(function (res) { return res.json().items; });
+        this.centroInfo = [];
+        this.cuponActivo = [];
         this.idUsuario = 0;
+        this.arraySelected = [];
+        this.dataCentro = {};
+        this.favorito = false;
+        /*
+        events.subscribe('actualizarData', (data, cambiarA) => {
+  
+       
+            this.information.forEach((elementw, index) => {
+               let index = elementw.children.findIndex(i => i.idServicio === data);
+              if (index > -1) {
+              elementw.children[index].selected=cambiarA;
+              }
+            });
+       
+  
+          console.log(this.information);
+    });
+  */
+        //localData.subscribe(data => {this.information = data;console.log(this.information);this.information[0].open=true;})
     }
-    ModalServicesPage.prototype.closeModal = function () {
-        //	this.events.publish('modalServices');
-        this.viewCtrl.dismiss();
-    };
-    ModalServicesPage.prototype.ionViewDidLoad = function () {
+    PerfilCentroPage.prototype.ionViewDidLoad = function () {
         var _this = this;
-        console.log('ionViewDidLoad ModalServicesPage');
+        this.section = "one";
         this.apiProvider.verificarLogin()
             .then(function (data) {
             console.log(data);
             if (data) {
+                _this.dataUser = data;
                 _this.idUsuario = data.idCliente;
-                _this.getServiciosCategoria();
+                _this.getCentroInfo(_this.navParams.get('idCentro'));
             }
             else {
                 console.log('error');
                 _this.idUsuario = 0;
-                _this.getServiciosCategoria();
+                _this.getCentroInfo(_this.navParams.get('idCentro'));
+            }
+        });
+        console.log('ionViewDidoad PerfilCentroPage');
+        //this.navParams.get('nombre')
+    };
+    PerfilCentroPage.prototype.ionViewDidEnter = function () {
+        this.apiProvider.vaciarCarrito()
+            .then(function (data) {
+            console.log(data);
+            //  this.serviciosAll = data;
+        });
+    };
+    PerfilCentroPage.prototype.getCentroInfo = function (idCentro) {
+        var _this = this;
+        var d = new Date();
+        var numDia = d.getDay();
+        if (numDia == 6) {
+            numDia = 0;
+        }
+        else {
+            numDia = numDia + 1;
+        }
+        var dataPost = { idCentro: idCentro, idCliente: this.idUsuario, numDia: numDia };
+        console.log(dataPost);
+        this.apiProvider.getCentroInfo(dataPost)
+            .then(function (data) {
+            if (data) {
+                console.log(data);
+                var nombreCategoria_1 = (Object.keys(data['servicios']));
+                var serviArr = (Object.values(data['servicios']));
+                _this.comentarios = data['comentarios'];
+                _this.cuponActivo = data['cupon'];
+                var itemDate = serviArr.map(function (i, index) {
+                    console.log(nombreCategoria_1[index]);
+                    var item = { "name": nombreCategoria_1[index], "children": i, "open": i[0].idCategoria == _this.navParams.get('idServicioSeleccionado') };
+                    return item;
+                });
+                console.log(itemDate);
+                _this.information = itemDate;
+                console.log(_this.information);
+                console.log(_this.navParams.get('idServicioSeleccionado'));
+                //this.information[0].open=true;
+                _this.dataCentro = data['info'][0];
+                _this.favorito = _this.dataCentro.favorito > 0 ? true : false;
+                // this.centroInfo = data || [];
+            }
+            else {
+                console.log('Ha ocurrido un error');
             }
         });
     };
-    /*
-      ionViewDidEnter(){
-      this.getServiciosCategoria();
-      }
-    */
-    ModalServicesPage.prototype.getServiciosCategoria = function () {
-        var _this = this;
-        var dataE = { idCategoria: this.navParams.get('idCategoria'),
-            idCentro: this.navParams.get('idCentro'),
-            idCliente: this.idUsuario };
-        this.apiProvider.getServiciosCategoria(dataE).then(function (data) {
-            console.log(data);
-            _this.serviciosCategoria = data['servicios'];
-            _this.cuponActivo = data['cupon'];
-        });
-    };
-    ModalServicesPage.prototype.addCarrito = function (child) {
-        var _this = this;
-        child.precioFinal = this.getPrecioDescuento(child);
-        this.apiProvider.addProducto(child)
-            .then(function (data) {
-            console.log(data);
-            _this.events.publish('actualizarDataServicios');
-            _this.viewCtrl.dismiss();
-        });
-    };
-    ModalServicesPage.prototype.getPrecioDescuento = function (item) {
+    PerfilCentroPage.prototype.getPrecioDescuento = function (item) {
         var retorno = 0;
         if (this.cuponActivo.length > 0) {
             var descuento = this.cuponActivo[0].porcentajeDescuento || 0;
@@ -2985,25 +3007,102 @@ var ModalServicesPage = (function () {
         }
         return retorno.toFixed(2);
     };
-    ModalServicesPage.prototype.toggleSection = function (i) {
+    PerfilCentroPage.prototype.comoLlegar = function (lat, lon) {
+        console.log(this.dataCentro.latitud);
+        launchnavigator.navigate([this.dataCentro.latitud, this.dataCentro.longitud]);
+    };
+    PerfilCentroPage.prototype.llamar = function () {
+        if (this.dataCentro.telefono) {
+            var num = this.dataCentro.telefono;
+            window.plugins.CallNumber.callNumber(function (suc) { console.log(suc); }, function (err) { console.log(err); }, num, true);
+        }
+    };
+    PerfilCentroPage.prototype.agregarFavorito = function () {
+        var _this = this;
+        if (this.idUsuario > 0) {
+            //cambiarFavorito
+            var dataE = { idCentro: this.dataCentro.idCentro, idCliente: this.idUsuario };
+            console.log(dataE);
+            this.apiProvider.cambiarFavorito(dataE)
+                .then(function (data) {
+                console.log(data);
+                if (data.insertId > 0) {
+                    console.log(data);
+                    _this.favorito = !_this.favorito;
+                }
+                else {
+                    console.log('error');
+                }
+            });
+        }
+        else {
+            console.log('sessionnoiiniciada');
+        }
+    };
+    PerfilCentroPage.prototype.toggleSection = function (i) {
         this.information[i].open = !this.information[i].open;
     };
-    ModalServicesPage.prototype.toggleItem = function (i, j) {
+    PerfilCentroPage.prototype.toggleItem = function (i, j) {
         this.information[i].children[j].open = !this.information[i].children[j].open;
+        console.log(this.information[i].children[j].open);
     };
-    ModalServicesPage.prototype.toggleSelect = function (i, j) {
-        this.information[i].children[j].selected = !this.information[i].children[j].selected;
+    PerfilCentroPage.prototype.toggleSelect = function (i, j) {
+        // this.information[i].children[j].selected = !this.information[i].children[j].selected;
+        //if(this.information[i].children[j].selected){
+        var _this = this;
+        // this.arraySelected.push(this.information[i].children[j]);
+        //console.log(this.information[i].children[j]);
+        this.information[i].children[j].precioFinal = this.getPrecioDescuento(this.information[i].children[j]);
+        this.apiProvider.addProducto(this.information[i].children[j])
+            .then(function (data) {
+            console.log(data);
+            _this.goReserva(_this.information[i].children[j].idCategoria);
+        });
+        //new
+        // }
+        /*
+            else{
+            console.log(this.information[i].children[j].idServicio);
+            this.apiProvider.sacarProducto(this.information[i].children[j].idServicio)
+              .then(data => {
+                  console.log(data);
+              });
+    
+    
+              //var array = [2, 5, 9];
+              //let index = this.arraySelected.indexOf(this.information[i].children[j].idServicio);
+              //if (index > -1) {
+              //this.arraySelected.splice(index, 1);
+              //}
+            }
+        */
+        console.log(this.arraySelected);
     };
-    ModalServicesPage = __decorate([
+    PerfilCentroPage.prototype.getCuponData = function () {
+        var retorno = null;
+        if (this.cuponActivo.length > 0) {
+            return this.cuponActivo[0].idCuponCliente;
+        }
+        console.log(retorno);
+        return retorno;
+    };
+    PerfilCentroPage.prototype.goReserva = function (categoria) {
+        //servicios: this.arraySelected
+        var dataE = { 'servicios': this.arraySelected, 'idCentro': this.navParams.get('idCentro'), centro: this.dataCentro, 'cupon': this.getCuponData(), idCategoria: categoria };
+        console.log(dataE);
+        this.navCtrl.push('ReservaPage', dataE);
+        // this.navCtrl.push('ReservaPage');
+    };
+    PerfilCentroPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-            selector: 'page-modal-services',template:/*ion-inline-start:"/Users/jose/Documents/beyouApp/beYou/src/pages/modal-services/modal-services.html"*/'<!--\n  Generated template for the ModalServicesPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n\n<ion-header>\n\n<ion-navbar color=\'verdeApp\'>\n    <ion-title><span style=\'position: absolute;\n    top: 0;\n    left: 0;\n    margin: 15px;\n    font-weight: 500;\'>Agregar mas servicios</span></ion-title>\n\n    <ion-buttons end>\n    <button style="    font-size: 34px;" ion-button (tap)="closeModal()"><ion-icon ios="ios-close"></ion-icon></button>\n\n\n    </ion-buttons>\n</ion-navbar>\n\n</ion-header>\n\n\n  <ion-content >\n\n    <ion-list class="accordion-list">\n\n        <ion-item  (tap)=\'addCarrito(child)\' *ngFor="let child of serviciosCategoria; let i = index"  ion-item detail-none class="child-item section-active section" text-wrap >\n        <!-- \n        NEW\n\n        <ion-icon *ngIf="child.selected" style=\'position: absolute;\n        right: 10px;\n        font-size: 25px;\n        top: 22px;\n        color: #2FD99B;\' name=\'ios-checkbox\'></ion-icon>\n        -->\n        <h2>{{ child.nombre }}</h2>\n        <p > <span style="  text-transform: none !important;\n        font-size: 15px;\n        margin: 0px;\n        margin-top: 8px;\n        display: block;\n        margin-bottom: 4px;"  >\n        <ion-icon name="ios-time-outline"></ion-icon> {{ child.duracion }}min\n        </span>\n        </p>\n\n\n        <div *ngIf=\'cuponActivo.length>0 || child.oferta\' style="    margin: 4px;\n        font-size: 15px;\n        color: #777;\n        position: absolute;\n        right: 0;\n        margin-right: 58px;\n        margin-top: -20px;\n        text-decoration: line-through;" item-end>\n        <span *ngIf=\'cuponActivo.length>0  && !child.oferta\'>\n        <span *ngIf="(cuponActivo[0].tipo==\'1\') && (cuponActivo[0].serviciosCupon.split(\',\').includes(child.idServicio.toString()))" >\n          ${{ child.precio }}\n        </span>\n          <span *ngIf=\'cuponActivo[0].tipo=="2"\'>\n          ${{ child.precio }}\n        </span>\n        </span>\n        <span *ngIf=\'child.oferta\'>${{ child.precio }}</span>  \n        </div>\n\n        <div *ngIf=\'cuponActivo.length>0 || child.oferta\' style="font-size: 15px;\n    color: #EC527E;\n    margin-top: 23px;\n    min-width: 60px;\n    margin-left: 0px;" item-end>\n\n        <span *ngIf="(cuponActivo.length>0) && !(child.oferta)">\n        ${{ getPrecioDescuento(child)}}\n        </span>\n\n        <span *ngIf="child.oferta">\n        <span *ngIf="(cuponActivo.length>0)">\n        ${{ getPrecioDescuento(child)}}\n        </span>\n\n        <span *ngIf="!(cuponActivo.length>0)">\n        ${{child.oferta}}\n        </span>\n\n        </span>\n\n        </div>\n\n        <div *ngIf=\'!(cuponActivo.length>0) && !child.oferta\' style="margin: 4px;\n        margin-right: 41px;\n        font-size: 15px;\n        color: #EC527E;" item-end>${{ child.precio }}</div>\n\n\n\n        </ion-item>\n\n  	 </ion-list>\n\n\n\n  </ion-content>\n<ion-footer><div style="text-align: center;\n    margin: 9px;\n    color: #6f6c6c;">Si deseas agregar servicios relacionados a otra categoria por favor realizar una reserva diferente</div></ion-footer>\n\n\n'/*ion-inline-end:"/Users/jose/Documents/beyouApp/beYou/src/pages/modal-services/modal-services.html"*/,
+            selector: 'page-perfil-centro',template:/*ion-inline-start:"/Users/jose/Documents/beyouApp/beYou/src/pages/perfil-centro/perfil-centro.html"*/'<ion-header>\n\n\n	<ion-navbar  color="headerColor">\n\n\n		<ion-title>\n		<span style="      display: block;\n    font-size: 15px;">{{dataCentro?.nombre}}</span>  \n		<span style="    display: block;\n    font-size: 11px;\n    margin-top: 4px;">{{dataCentro.rate  | number:\'1.1-2\'}} ({{dataCentro.cantRate\n}})               <ion-icon  [ngClass]="{\'ratingStar\': dataCentro.rate>= 1}" name="star"></ion-icon>\n    						  <ion-icon  [ngClass]="{\'ratingStar\': dataCentro.rate>= 2}" name="star"></ion-icon>\n    						  <ion-icon [ngClass]="{\'ratingStar\': dataCentro.rate>= 3}"  name="star"></ion-icon>\n    						  <ion-icon  [ngClass]="{\'ratingStar\': dataCentro.rate>= 4}" name="star"></ion-icon>\n    						  <ion-icon [ngClass]="{\'ratingStar\': dataCentro.rate>= 5}" name="star"></ion-icon>\n    						  </span>  \n		</ion-title>\n\n\n	</ion-navbar>\n\n\n</ion-header>\n\n\n\n<ion-content  >\n\n<div style="background-color: black;\n    height: 200px;\n    width: 100%;\n    position: relative;">\n	<img  [hidden]=\'!dataCentro.idCentro\'  style=\'    position: absolute;\n    width: 100%;\n    bottom: 0px;\' src="http://50.116.17.150:3000/{{dataCentro?.imagenBanner}}" \n        onError="this.src=\'assets/imgs/fotoProfile.png\';"\n\n     >\n\n\n	<img style=\'position: absolute;\n    width: 100%;bottom:0px;\n\' src="assets/imgs/overlayCentroProfile.png">\n\n		<div style="\n		position: absolute;\n		width:  100%;\n		height: 25px;\n		bottom:  0px;\n		color: white;\n		font-size:  13px;\n		">\n				<span *ngIf=\'!favorito && idUsuario>0\' (tap)=\'agregarFavorito()\' style="\n				float: left;\n				margin-left: 20px;\n        height: 23px;\n				"><img src="assets/imgs/corazon.png" style="\n				margin-right:  5px;\n				"  > Agregar a favoritos</span>\n\n        <span *ngIf=\'favorito\' (tap)=\'agregarFavorito()\' style="\n        float: left;\n        margin-left: 20px;\n        height: 23px;\n        "><img src="assets/imgs/corazonVerde.png" style="\n        margin-right:  5px;\n        "> Favorito </span>\n\n\n				<span style="\n				float: right;\n				margin-right: 20px;\n				"><img src="assets/imgs/reloj.png" style="\n				margin-right: 5px;\n				">HOY : {{dataCentro.horarioHoy || \'CERRADO\'}}</span>\n		</div>\n</div>\n\n<ion-segment mode="md" [(ngModel)]="section">\n    <ion-segment-button   style=\'font-size: 15px;text-transform: none !important;\' value="one" >\n	       <span> \n	       <img  *ngIf=\'section=="one"\' style=\'vertical-align: middle;margin-right: 5px;\' src="assets/imgs/servicioBlanco.png">\n	       <img  *ngIf=\'!(section=="one")\' style=\'vertical-align: middle;margin-right: 5px;\' src="assets/imgs/servicio.png">\n	        Servicio</span>\n	    </ion-segment-button>\n\n\n\n	    <ion-segment-button  value="two" style=\'\n\n\n    	font-size: 15px;text-transform: none !important;\' >\n      <span>\n	      <img  *ngIf=\'section=="two"\' style=\'vertical-align: middle;margin-right: 5px;\' src="assets/imgs/agregadosBlanco.png"> \n	      <img  *ngIf=\'!(section=="two")\'  style=\'vertical-align: middle;margin-right: 5px;\' src="assets/imgs/agregados.png"> \n\n	      \n\n\n	       Mapa</span>\n	    </ion-segment-button>\n\n    <ion-segment-button   style=\'font-size: 15px;text-transform: none !important;\' value="tres" >\n         <span> \n         <img  *ngIf=\'section=="tres"\' style=\'vertical-align: middle;margin-right: 5px;\' src="assets/imgs/estrellaBlanca.png">\n         <img  *ngIf=\'!(section=="tres")\' style=\'vertical-align: middle;margin-right: 5px;\' src="assets/imgs/estrellaGris.png">\n          Opiniones</span>\n      </ion-segment-button>\n\n</ion-segment>\n\n\n\n<div [ngSwitch]="section">\n    <ion-list mode="md" *ngSwitchCase="\'one\'">\n\n    <div [hidden]=\'(cuponActivo.length > 0)\' class=\'alertaCupon\' style="background-color:#EC527E">\n      Elige los servicios \n\n    </div>\n\n\n 	  <div [hidden]=\'!(cuponActivo.length > 0)\' class=\'alertaCupon\' style="background-color:#EC527E">\n\n      <!-- 	  	\n      Todos los servicios con un <b> {{cuponActivo[0]?.porcentajeDescuento}}% Descontado</b> por Cupon {{cuponActivo[0]?.codigo}}\n       -->\n\n      <span *ngIf=\'cuponActivo[0]?.tipo=="1"\'> \n         <span  *ngIf=\'cuponActivo[0]?.tipoDescuento=="1"\'> \n          Algunos servicios con {{cuponActivo[0]?.porcentajeDescuento}}% Descontado\n        </span>\n        <span  *ngIf=\'cuponActivo[0]?.tipoDescuento=="2"\'>\n          Algunos servicios con ${{cuponActivo[0]?.porcentajeDescuento}} Descontado\n        </span>\n      </span>\n      <span *ngIf=\'cuponActivo[0]?.tipo=="2"\'>\n        <span  *ngIf=\'favoritos[0]?.tipoDescuento=="1"\'> \n          Todos los servicios con {{cuponActivo[0]?.porcentajeDescuento}}% Descontado\n        </span>\n        <span  *ngIf=\'favoritos[0]?.tipoDescuento=="2"\'>\n          Todos los servicios con ${{cuponActivo[0]?.porcentajeDescuento}} Descontado\n        </span>\n      </span>\n\n\n\n	  </div>\n\n	  <div>\n	  		 <ion-list class="accordion-list">\n    <!-- First Level -->\n    <ion-list-header *ngFor="let item of information; let i = index" no-lines no-padding>\n      <!-- Toggle Button -->\n      <button ion-item (tap)="toggleSection(i)" detail-none [ngClass]="{\'section-active\': item.open, \'section\': !item.open}">\n        <ion-icon class=\'btnList\' item-right  name="ios-add" *ngIf="!item.open"></ion-icon>\n        <ion-icon class=\'btnList\' item-right name="ios-remove" *ngIf="item.open"></ion-icon>\n          {{ item.name }}\n      </button>\n \n      <ion-list *ngIf="item.children && item.open" no-lines >\n        <!-- Second Level -->\n        <ion-list-header  [ngClass]="{\'section-active\': child.open, \'section\': !child.open}"  *ngFor="let child of item.children; let j = index" no-padding>\n          <!-- Toggle Button -->\n          <button ion-item (tap)="toggleSelect(i, j)" *ngIf="child.children" class="child" detail-none>\n<!--             <ion-icon item-left name="add" *ngIf="!child.open"></ion-icon>\n            <ion-icon item-left name="close" *ngIf="child.open"></ion-icon> \n            <ion-icon  class=\'btnList\' item-right  name="ios-add" *ngIf="!child.open"></ion-icon>\n            <ion-icon class=\'btnList\' item-right name="ios-remove" *ngIf="child.open"></ion-icon>-->\n\n            {{ child.name }}\n          </button>\n \n          <!-- Direct Add Button as Fallback -->\n          <ion-item  (tap)="toggleSelect(i, j)"  *ngIf="!child.children" ion-item detail-none class="child-item section-active section" text-wrap >\n\n<!-- \nNEW\n\n<ion-icon *ngIf="child.selected" style=\'position: absolute;\n    right: 10px;\n    font-size: 25px;\n    top: 22px;\n    color: #2FD99B;\' name=\'ios-checkbox\'></ion-icon>\n -->\n\n            <h2>{{ child.nombre }}</h2>\n            <!-- Direct Add Button as Fallback \n            <p text-lowercase>{{ child.information }}</p>\n            -->\n   <p > <span style="  text-transform: none !important;\n    font-size: 15px;\n    margin: 0px;\n    margin-top: 8px;\n    display: block;\n    margin-bottom: 4px;"  >\n                <ion-icon name="ios-time-outline"></ion-icon> {{ child.duracion }}min\n             </span>\n</p>\n             \n\n            <div *ngIf=\'cuponActivo.length>0 || child.oferta\' style="    margin: 4px;\n    font-size: 15px;\n    color: #777;\n    position: absolute;\n    right: 0;\n    margin-right: 58px;\n    margin-top: -20px;\n    text-decoration: line-through;" item-end>\n\n                <span *ngIf=\'cuponActivo.length>0  && !child.oferta\'>\n\n  <span *ngIf="(cuponActivo[0].tipo==\'1\') && (cuponActivo[0].serviciosCupon.split(\',\').includes(child.idServicio.toString()))" >\n                      ${{ child.precio }}\n                    </span>\n\n                      <span *ngIf=\'cuponActivo[0].tipo=="2"\'>\n                      ${{ child.precio }}\n                    </span>\n                     \n              </span>\n\n\n                <span *ngIf=\'child.oferta\'>${{ child.precio }}</span>  \n\n                </div>\n\n\n\n     <div *ngIf=\'cuponActivo.length>0 || child.oferta\' style="font-size: 15px;\n    color: #EC527E;\n    margin-top: 23px;\n    min-width: 60px;\n    margin-left: 0px;" item-end>\n  \n        <span *ngIf="(cuponActivo.length>0) && !(child.oferta)">\n        ${{ getPrecioDescuento(child)}}\n        </span>\n\n        <span *ngIf="child.oferta">\n           <span *ngIf="(cuponActivo.length>0)">\n              ${{ getPrecioDescuento(child)}}\n           </span>\n\n          <span *ngIf="!(cuponActivo.length>0)">\n                ${{child.oferta}}\n           </span>\n         \n<!--           <span style="     background: lightcoral;\n    color: white;\n    padding: 2px;\n    border-radius: 4px;\n    font-size: 13px;\n    position: absolute;\n    top: 35px;\n    right: 82px;">\n          oferta</span> -->\n        </span>\n\n    </div>\n\n         <div *ngIf=\'!(cuponActivo.length>0) && !child.oferta\' style="margin: 4px;\n     margin-right: 41px;\n    font-size: 15px;\n    color: #EC527E;" item-end>${{ child.precio }}</div>\n\n\n\n          </ion-item>\n\n          <div  style="    width: 100%;\n    height: 2px;\n    background-color: #2FD99B;" ><div style="width: 100%;\n    height: 2px;\n    background-color: #f1f1f1;\n    margin-left: 7px;"></div>\n    </div>\n\n\n\n\n\n\n\n \n          <ion-list *ngIf="child.children && child.open" >\n            <!-- Third Level -->\n            <ion-item   *ngFor="let item of child.children; let k = index" detail-none class="child-item " text-wrap>\n              <h2>{{ item.name }}</h2>\n              <p text-lowercase>{{ item.information }}</p>\n              <!-- Direct Add Button -->\n              <button ion-button outline item-end (tap)="buyItem(item)">{{ item.precio }}</button>\n            </ion-item>\n          </ion-list>\n \n        </ion-list-header>\n      </ion-list>\n      \n    </ion-list-header>\n    <div style="width:100%;height:60px"></div>\n\n\n  </ion-list>\n    <div style="width: 100%;\n    position: fixed;\n    bottom: 0px;\n    background: rgb(247,248,249);\n    padding-bottom: 6px;\n">\n         \n\n\n    </div>\n\n	  </div>\n<!-- \n <button (tap)=\'goReserva()\' ion-button class="botonVerdeFull">Agendar Cita<ion-icon style=\'    margin-left: 10px !important;\' name="md-arrow-forward"></ion-icon> </button>\n -->\n\n    </ion-list>\n\n\n    <ion-list  mode="md" *ngSwitchCase="\'two\'">\n\n\n<div style="\n    padding: 12px 20px;\n    border-bottom: solid 1px lightgray;\n">\n    <span style="color:#EC527E;font-size: 17px;font-weight: 800;">Direccion</span>\n    <p style="\n    margin: 5px 0px;\n    font-size: 15px;\n    color: #888;\n">{{dataCentro.direccion || \'No especificado\'}}</p>\n    </div>\n\n<div style="\n    padding: 12px 20px;\n    border-bottom: solid 1px lightgray;    background: white;\n">\n    <span style="color:#EC527E;font-size: 17px;font-weight: 800;">Sobre nosotros</span>\n    <p style="\n    margin: 5px 0px;\n    font-size: 15px;\n    color: #888;    line-height: 22px;\n">{{dataCentro.sobreNosotros || \'No especificado\'}}</p>\n    </div>\n\n<div style="\n    padding: 12px 20px;\n    \n">\n    <span style="color:#EC527E;font-size: 17px;font-weight: 800;">Horario de atencion</span>\n    <p style="\n    margin: 5px 0px;\n    font-size: 15px;\n    color: #888;\n">{{dataCentro.horarioDetalle || \'No especificado\'}}</p>\n    </div>\n\n\n\n <div style="    width: 100%;\n    text-align: center;\n margin-top: 20px; margin-bottom: 30px;">\n\n  <button  (tap)=\'comoLlegar()\'  color=\'headerColor\' ion-button  style="    width: 40%;\n    margin-right: 5%;\n    border-radius: 70px;" > COMO LLEGAR</button> \n\n  <button  [disabled]="!dataCentro.telefono" (tap)=\'llamar()\' style=" border-radius: 70px;   width: 40%;\n    margin-left: 5%;"  color=\'verdeApp\' ion-button> LLAMAR </button>\n\n\n\n</div>\n\n\n\n\n\n    </ion-list>\n     <ion-list  mode="md" *ngSwitchCase="\'tres\'">\n\n\n\n\n<div *ngFor="let n of comentarios" style="margin-top:30px;\n    width: 100%;\n    display: inline-block;    padding-left: 15px;\n    padding-right: 15px;\n">\n  \n  <img src="http://50.116.17.150:3000/{{n.fotoUsuario}}" \n        onError="this.src=\'assets/imgs/usuario.png\';"   style="\n    display: inline-block;\n    vertical-align: top;\n    height: 54px;\n    width: 54px;\n">\n  <div style="\n    display: inline-block;\n    width: calc(100% - 83px);\n    margin-left: 22px;\n">\n<span style="\n    color: #888;\n    font-size: 13px;\n    float: right;\n    margin-right: 47px;\n    margin-top: 6px;\n    ">{{n.timeAgo || \'\'}}</span>\n\n    <span style="\n    font-size: 19px;\n    color:  #333;\n">{{n.nombreUsuario || \'\'}}\n\n\n\n    </span>\n    <div style="    margin-top: 7px;">\n      \n          <span style="\n    display: block;\n    font-size: 17px;\n    margin-top: 4px;\n    color: #999;\n    ">\n\n                  <ion-icon [ngClass]="{\'ratingStar\': n.puntuacion>= 1}"  class=" icon icon-ios ion-ios-star" name="star" role="img" aria-label="star" ng-reflect-name="star"></ion-icon>\n                  <ion-icon [ngClass]="{\'ratingStar\': n.puntuacion>= 2}" class=" icon icon-ios ion-ios-star" name="star" role="img" aria-label="star" ng-reflect-name="star"></ion-icon>\n                  <ion-icon [ngClass]="{\'ratingStar\': n.puntuacion>= 3}" class=" icon icon-ios ion-ios-star" name="star" role="img" aria-label="star" ng-reflect-name="star"></ion-icon>\n                  <ion-icon [ngClass]="{\'ratingStar\': n.puntuacion>= 4}" class=" icon icon-ios ion-ios-star" name="star" role="img" aria-label="star" ng-reflect-name="star"></ion-icon>\n                  <ion-icon [ngClass]="{\'ratingStar\': n.puntuacion>= 5}" class=" icon icon-ios ion-ios-star" name="star" role="img" aria-label="star" ng-reflect-name="star"></ion-icon>\n                  </span>  \n\n\n    </div>\n\n<!--     <p style="\n    margin-right: 35px;\n    line-height: 19px;\n    color: #999;\n">{{n.comentario || \'\'}}</p> -->\n  </div>\n  \n            <div style="margin-top: 13px;color: darkgray">{{n.comentario}}</div>\n          <div style="margin-top: 13px;color: darkgray;display: inline-flex;padding-left: 20px;" *ngIf=\'n.respuestaCentro\' >\n              <img src="http://50.116.17.150:3000/{{n.idFoto}}" \n              onError="this.src=\'assets/imgs/fotoComercio.png\';" style="\n              display: inline-block;\n              vertical-align: top;\n              height: 25px;\n              width: 25px;\n              "> <div style="    padding-left: 15px;">{{n.respuestaCentro}}</div>\n          </div>\n<div class="separator"></div>\n</div>\n\n\n\n\n\n\n\n\n\n\n\n\n     </ion-list>\n\n</div>\n\n\n</ion-content>\n\n\n\n\n\n\n\n\n'/*ion-inline-end:"/Users/jose/Documents/beyouApp/beYou/src/pages/perfil-centro/perfil-centro.html"*/
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["NavController"], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["NavParams"], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["ViewController"], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["Events"], __WEBPACK_IMPORTED_MODULE_3__angular_http__["a" /* Http */], __WEBPACK_IMPORTED_MODULE_2__providers_api_api__["a" /* ApiProvider */]])
-    ], ModalServicesPage);
-    return ModalServicesPage;
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["NavController"], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["NavParams"], __WEBPACK_IMPORTED_MODULE_2__angular_http__["a" /* Http */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["ModalController"], __WEBPACK_IMPORTED_MODULE_4__providers_api_api__["a" /* ApiProvider */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["LoadingController"], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["Events"]])
+    ], PerfilCentroPage);
+    return PerfilCentroPage;
 }());
 
-//# sourceMappingURL=modal-services.js.map
+//# sourceMappingURL=perfil-centro.js.map
 
 /***/ })
 
