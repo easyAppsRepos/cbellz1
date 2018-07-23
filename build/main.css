@@ -1,3 +1,4 @@
+@charset "UTF-8";
 .ion-ios-add:before {
   content: "\f102";
 }
@@ -32067,8 +32068,50 @@ page-detalle-reserva .separator {
   margin: 18px 32px;
 }
 
+.select-alertless .alert-head {
+  background-color: #2FD99B !important;
+  color: white !important;
+}
+
+.select-alertless .alert-title {
+  font-size: 15px !important;
+}
+
+.select-alertless .alert-message {
+  background-color: #2FD99B !important;
+  color: white !important;
+}
+
+page-inicio .remove-ok .alert-button:nth-child(2) {
+  display: none;
+}
+
+page-inicio .select-alertless .alert-button-group {
+  display: none;
+}
+
+page-inicio .select-alertless .alert-button:nth-child(2) {
+  display: none  !important;
+}
+
+page-inicio .select-alertless .alert-button-group {
+  display: none !important;
+}
+
+page-inicio .sliderImg {
+  width: 375px;
+  height: 210px;
+  max-height: 210px;
+  background-size: cover;
+  background-position: center;
+}
+
 page-inicio .imagenCategoria {
   height: 45px;
+}
+
+page-lista-servicios .select-icon {
+  display: none;
 }
 
 page-lista-servicios .scroll-content {
@@ -32297,6 +32340,11 @@ page-opiniones .separator {
   margin: 18px 32px;
 }
 
+page-perfil-centro .my-loading ion-backdrop {
+  top: 15%;
+  height: 70%;
+}
+
 page-perfil-centro .content-ios {
   background-color: #f7f8f9;
 }
@@ -32505,4 +32553,17 @@ page-resultados .tagResultado {
   padding: 11px;
   margin: 2px;
   border-radius: 3px;
+}
+
+.select-alertless .alert-button-group {
+  display: none;
+}
+
+select-alertless {
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: -webkit-box;
+  display: flex;
+  overflow: hidden;
+  max-width: 45%;
 }

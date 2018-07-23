@@ -1,6 +1,6 @@
 webpackJsonp([2],{
 
-/***/ 443:
+/***/ 440:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -8,7 +8,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "OfertasPageModule", function() { return OfertasPageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(14);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ofertas__ = __webpack_require__(474);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ofertas__ = __webpack_require__(471);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__pipes_pipes_module__ = __webpack_require__(450);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -113,7 +113,7 @@ var FiltrofavPipe = (function () {
 
 /***/ }),
 
-/***/ 474:
+/***/ 471:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -144,7 +144,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
  * Ionic pages and navigation.
  */
 var OfertasPage = (function () {
-    function OfertasPage(navCtrl, navParams, modalCtrl, loadingCtrl, events, apiProvider, alertCtrl) {
+    function OfertasPage(navCtrl, navParams, modalCtrl, loadingCtrl, events, apiProvider, alertCtrl, zone) {
         var _this = this;
         this.navCtrl = navCtrl;
         this.navParams = navParams;
@@ -153,6 +153,7 @@ var OfertasPage = (function () {
         this.events = events;
         this.apiProvider = apiProvider;
         this.alertCtrl = alertCtrl;
+        this.zone = zone;
         this.subcategorias = [];
         this.categorias = [];
         this.filterFav = function (user) {
@@ -260,7 +261,9 @@ var OfertasPage = (function () {
             .then(function (data) {
             console.log(data);
             if (data) {
-                _this.favoritos = data || [];
+                _this.zone.run(function () {
+                    _this.favoritos = data || [];
+                });
             }
             else {
                 console.log('Ha ocurrido un error');
@@ -336,9 +339,9 @@ var OfertasPage = (function () {
     };
     OfertasPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-            selector: 'page-ofertas',template:/*ion-inline-start:"/Users/jose/Documents/beyouApp/beYou/src/pages/ofertas/ofertas.html"*/'<ion-header>\n  <ion-navbar  color="headerColor">\n\n    <ion-buttons start>\n    <button ion-button menuToggle>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n    </ion-buttons>\n\n    <ion-title>\nOfertas\n\n\n    </ion-title>\n\n          <ion-buttons end>\n<!--       <button (tap)=\'filtroCategoria()\' ion-button icon-only>\n        <ion-icon name="ios-options"></ion-icon>\n      </button>\n -->\n\n       \n\n      </ion-buttons>\n\n\n\n  </ion-navbar>\n</ion-header>\n\n<ion-content >\n\n  <ion-grid>\n  <ion-row>\n\n    <ion-col col-6>\n      <ion-select  placeholder="Categoria" style=\'    -webkit-box-shadow: 0 2px 9px rgba(0, 0, 0, 0.3) !important;\n    box-shadow: 0 2px 9px rgba(0, 0, 0, 0.3) !important;\n\n    width: 100%;\n    max-width: 100%;\' [(ngModel)]="categoriaSeleccionada" (ionChange)="subcategorias=[];getSubCat($event,true)" multiple="false" okText="Filtrar"  cancelText="Cerrar">\n\n <ion-option   [value]="0" \n      >Todas</ion-option>\n\n\n <ion-option  *ngFor="let n of categorias; let idx = index" [selected]=\'true\'  [value]="n.idCategoria" \n      >{{n.nombre}}</ion-option>\n  </ion-select>\n\n    </ion-col>\n    <ion-col col-6>\n\n      <ion-select   placeholder="Sub Categoria" [disabled]=\'subcategorias?.length<1\' style=\'    -webkit-box-shadow: 0 2px 9px rgba(0, 0, 0, 0.3) !important;\n    box-shadow: 0 2px 9px rgba(0, 0, 0, 0.3) !important;\n\n    width: 100%;\n    max-width: 100%;\' [(ngModel)]="subCategoriaSeleccionada" (ionChange)="filtrarSubCategorias($event,true)" multiple="true" okText="Filtrar"  cancelText="Cerrar">\n\n\n\n <ion-option  *ngFor="let n of subcategorias; let idx = index" [selected]=\'true\'  [value]="n.idSubcategoria" \n      >{{n.nombre}}</ion-option>\n  </ion-select>\n\n    </ion-col>\n\n  </ion-row>\n</ion-grid>\n\n\n\n\n\n\n    <ion-list mode="md" >\n\n\n        <div class=\'noResultado\' \n        *ngIf="((favoritos)?.length == 0) || ((favoritos | filtrofav: filterFav)?.length == 0)" >No se han encontrado negocios</div> \n\n    <ion-card *ngFor="let n of favoritos | filtrofav: filterFav"  (tap)=\'goCentro(n.idCentro,n.idCategoria)\' >\n    <ion-card-content>\n        <div style="\n        display: inline-block;    width: 100%;\n        ">\n        <img src="http://50.116.17.150:3000/{{n.imagenCentro}}" \n        onError="this.src=\'assets/imgs/fotoComercio.png\';" style="\n        display: inline-block;\n        height: 90px;\n        width: 90px !important;\n        vertical-align: top;\n        ">\n        <div style="    display: inline-block;\n    width: calc(100% - 105px);\n    margin-left: 10px;\n        ">\n        <span style="margin: 2px 0px 0px 0px;\n        font-size: 19px;\n        color: #333;">{{n.nombre}} </span><br>\n         <span style="margin: 2px 0px 0px 0px;\n        font-size: 14px;\n        color: #2FD99B;">{{n.nombreCategoria}}</span>\n\n        <span style="    display: block;\n    font-size: 16px;\n    margin: 10px 0px;\n    font-weight: 800;\n   "><span style="text-decoration: line-through;">${{n.precio}} </span><span style=" color: #EC527E;">  ${{n.precio2}}</span></span>\n\n        <span class="itemComercio" >\n\n<!--           <span style="  margin-right: 21px;  color: #888;\n    font-size: 15px;"><ion-icon [ngClass]="{\'colorGris\': n.cantRate==0}"  style=\'    margin-right: 8px;\n    color: rgb(249,199,53);\n    font-size: 21px;\n    vertical-align: middle;\' name="md-star"></ion-icon>{{n.rate  | number:\'1.1-2\'}} ({{n.cantRate\n}})</span>\n\n          <span style="     color: #888;\n    font-size: 15px;  "><ion-icon style=\'  margin-right: 8px;      vertical-align: middle;   font-size: 21px;color:#2FD99B;\' name="ios-pin"></ion-icon>{{n.distance | number:\'1.1-2\'}} Km</span>\n -->\n   <span style="     color: #888;\n    font-size: 15px;  ">\n\n    {{n.nombreCentro}}\n  </span>\n\n        </span>\n\n        </div>\n        </div>\n\n    </ion-card-content>\n    </ion-card>\n\n\n\n\n\n\n\n\n\n    </ion-list>\n\n\n</ion-content>\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n'/*ion-inline-end:"/Users/jose/Documents/beyouApp/beYou/src/pages/ofertas/ofertas.html"*/,
+            selector: 'page-ofertas',template:/*ion-inline-start:"/Users/jose/Documents/beyouApp/beYou/src/pages/ofertas/ofertas.html"*/'<ion-header>\n  <ion-navbar  color="headerColor">\n\n    <ion-buttons start>\n    <button ion-button menuToggle>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n    </ion-buttons>\n\n    <ion-title>\nOfertas\n\n\n    </ion-title>\n\n          <ion-buttons end>\n<!--       <button (tap)=\'filtroCategoria()\' ion-button icon-only>\n        <ion-icon name="ios-options"></ion-icon>\n      </button>\n -->\n\n       \n\n      </ion-buttons>\n\n\n\n  </ion-navbar>\n</ion-header>\n\n<ion-content style=\'background: #fafafa !important;\'>\n\n  \n\n\n  <ion-grid>\n  <ion-row>\n\n    <ion-col col-6>\n      <ion-select  placeholder="Categoria" style=\'    -webkit-box-shadow: 0 2px 9px rgba(0, 0, 0, 0.3) !important;\n    box-shadow: 0 2px 9px rgba(0, 0, 0, 0.3) !important;\n\n    width: 100%;\n    max-width: 100%;\' [(ngModel)]="categoriaSeleccionada" (ionChange)="subcategorias=[];getSubCat($event,true)" multiple="false" okText="Filtrar"  cancelText="Cerrar">\n\n <ion-option   [value]="0" \n      >Todas</ion-option>\n\n\n <ion-option  *ngFor="let n of categorias; let idx = index" [selected]=\'true\'  [value]="n.idCategoria" \n      >{{n.nombre}}</ion-option>\n  </ion-select>\n\n    </ion-col>\n    <ion-col col-6>\n\n      <ion-select   placeholder="Sub Categoria" [disabled]=\'subcategorias?.length<1\' style=\'    -webkit-box-shadow: 0 2px 9px rgba(0, 0, 0, 0.3) !important;\n    box-shadow: 0 2px 9px rgba(0, 0, 0, 0.3) !important;\n\n    width: 100%;\n    max-width: 100%;\' [(ngModel)]="subCategoriaSeleccionada" (ionChange)="filtrarSubCategorias($event,true)" multiple="true" okText="Filtrar"  cancelText="Cerrar">\n\n\n\n <ion-option  *ngFor="let n of subcategorias; let idx = index" [selected]=\'true\'  [value]="n.idSubcategoria" \n      >{{n.nombre}}</ion-option>\n  </ion-select>\n\n    </ion-col>\n\n  </ion-row>\n</ion-grid>\n\n\n\n\n\n\n    <ion-list mode="md" >\n\n\n        <div class=\'noResultado\' \n        *ngIf="((favoritos)?.length == 0) || ((favoritos | filtrofav: filterFav)?.length == 0)" >No se han encontrado negocios</div> \n\n    <ion-card *ngFor="let n of favoritos | filtrofav: filterFav"  (tap)=\'goCentro(n.idCentro,n.idCategoria)\' >\n    <ion-card-content>\n        <div style="\n        display: inline-block;    width: 100%;\n        ">\n        <img src="http://50.116.17.150:3000/{{n.imagenCentro}}" \n        onError="this.src=\'assets/imgs/fotoComercio.png\';" style="\n        display: inline-block;\n        height: 90px;\n        width: 90px !important;\n        vertical-align: top;\n        ">\n        <div style="    display: inline-block;\n    width: calc(100% - 105px);\n    margin-left: 10px;\n        ">\n        <span style="margin: 2px 0px 0px 0px;\n        font-size: 19px;\n        color: #333;">{{n.nombre}} </span><br>\n         <span style="margin: 2px 0px 0px 0px;\n        font-size: 14px;\n        color: #2FD99B;">{{n.nombreCategoria}}</span>\n\n        <span style="    display: block;\n    font-size: 16px;\n    margin: 10px 0px;\n    font-weight: 800;\n   "><span style="text-decoration: line-through;">${{n.precio}} </span><span style=" color: #EC527E;">  ${{n.precio2}}</span></span>\n\n        <span class="itemComercio" >\n\n<!--           <span style="  margin-right: 21px;  color: #888;\n    font-size: 15px;"><ion-icon [ngClass]="{\'colorGris\': n.cantRate==0}"  style=\'    margin-right: 8px;\n    color: rgb(249,199,53);\n    font-size: 21px;\n    vertical-align: middle;\' name="md-star"></ion-icon>{{n.rate  | number:\'1.1-2\'}} ({{n.cantRate\n}})</span>\n\n          <span style="     color: #888;\n    font-size: 15px;  "><ion-icon style=\'  margin-right: 8px;      vertical-align: middle;   font-size: 21px;color:#2FD99B;\' name="ios-pin"></ion-icon>{{n.distance | number:\'1.1-2\'}} Km</span>\n -->\n   <span style="     color: #888;\n    font-size: 15px;  ">\n\n    {{n.nombreCentro}}\n  </span>\n\n        </span>\n\n        </div>\n        </div>\n\n    </ion-card-content>\n    </ion-card>\n\n\n\n\n\n\n\n\n\n    </ion-list>\n\n  <div *ngIf=\'categorias?.length==0\' style="text-align: center;padding-top: 25%;">\n        <ion-spinner name="bubbles"></ion-spinner>\n      </div>\n</ion-content>\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n'/*ion-inline-end:"/Users/jose/Documents/beyouApp/beYou/src/pages/ofertas/ofertas.html"*/,
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["NavController"], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["NavParams"], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["ModalController"], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["LoadingController"], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["Events"], __WEBPACK_IMPORTED_MODULE_2__providers_api_api__["a" /* ApiProvider */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["AlertController"]])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["NavController"], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["NavParams"], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["ModalController"], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["LoadingController"], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["Events"], __WEBPACK_IMPORTED_MODULE_2__providers_api_api__["a" /* ApiProvider */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["AlertController"], __WEBPACK_IMPORTED_MODULE_0__angular_core__["NgZone"]])
     ], OfertasPage);
     return OfertasPage;
 }());
