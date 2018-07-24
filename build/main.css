@@ -31867,6 +31867,14 @@ page-ayuda .faqRespuesta {
   font-family: unset;
 }
 
+.alertCustomCss .alert-title {
+  color: white !important;
+}
+
+page-buscar-modal .alertCustomCss .alert-title {
+  color: white !important;
+}
+
 page-buscar-modal .content-ios {
   background-color: #f7f8f9;
 }

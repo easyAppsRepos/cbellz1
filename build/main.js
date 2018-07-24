@@ -275,6 +275,18 @@ var ApiProvider = (function () {
             });
         });
     };
+    ApiProvider.prototype.horaMinMax = function () {
+        var _this = this;
+        return new Promise(function (resolve) {
+            _this.http.get(_this.api2 + '/horaMinMax').subscribe(function (data) {
+                console.log('d');
+                resolve(data);
+            }, function (err) {
+                resolve(false);
+                console.log(err);
+            });
+        });
+    };
     ApiProvider.prototype.getCentroInfo = function (data) {
         var _this = this;
         return new Promise(function (resolve) {
@@ -532,15 +544,15 @@ var map = {
 		26
 	],
 	"../pages/ajustes/ajustes.module": [
-		426,
+		424,
 		25
 	],
 	"../pages/ayuda/ayuda.module": [
-		425,
+		426,
 		24
 	],
 	"../pages/buscar-modal/buscar-modal.module": [
-		424,
+		425,
 		23
 	],
 	"../pages/calificar/calificar.module": [
@@ -548,15 +560,15 @@ var map = {
 		22
 	],
 	"../pages/centrocupones/centrocupones.module": [
-		428,
+		429,
 		21
 	],
 	"../pages/confirmar-reserva/confirmar-reserva.module": [
-		429,
+		428,
 		20
 	],
 	"../pages/cuenta/cuenta.module": [
-		434,
+		430,
 		19
 	],
 	"../pages/cupones/cupones.module": [
@@ -564,43 +576,43 @@ var map = {
 		6
 	],
 	"../pages/demo/demo.module": [
-		430,
+		444,
 		18
 	],
 	"../pages/detalle-reserva/detalle-reserva.module": [
-		449,
+		432,
 		17
 	],
 	"../pages/favoritos/favoritos.module": [
-		432,
+		433,
 		5
 	],
 	"../pages/inicio/inicio.module": [
-		448,
+		434,
 		9
 	],
 	"../pages/lista-servicios/lista-servicios.module": [
-		433,
+		435,
 		4
 	],
 	"../pages/login/login.module": [
-		435,
+		436,
 		16
 	],
 	"../pages/mapa/mapa.module": [
-		438,
+		437,
 		15
 	],
 	"../pages/mis-reservas/mis-reservas.module": [
-		437,
+		439,
 		3
 	],
 	"../pages/modal-services/modal-services.module": [
-		436,
+		438,
 		8
 	],
 	"../pages/negocioregistro/negocioregistro.module": [
-		439,
+		440,
 		14
 	],
 	"../pages/nosotros/nosotros.module": [
@@ -608,11 +620,11 @@ var map = {
 		13
 	],
 	"../pages/ofertas/ofertas.module": [
-		440,
+		442,
 		2
 	],
 	"../pages/opiniones/opiniones.module": [
-		442,
+		449,
 		1
 	],
 	"../pages/perfil-centro/perfil-centro.module": [
@@ -620,19 +632,19 @@ var map = {
 		7
 	],
 	"../pages/recuperar/recuperar.module": [
-		446,
+		447,
 		12
 	],
 	"../pages/reserva-hecha/reserva-hecha.module": [
-		444,
+		445,
 		11
 	],
 	"../pages/reserva/reserva.module": [
-		445,
+		446,
 		0
 	],
 	"../pages/resultados/resultados.module": [
-		447,
+		448,
 		10
 	]
 };
@@ -817,32 +829,32 @@ var AppModule = (function () {
                 __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["IonicModule"].forRoot(__WEBPACK_IMPORTED_MODULE_3__app_component__["a" /* MyApp */], { mode: 'ios', backButtonText: '' }, {
                     links: [
                         { loadChildren: '../pages/addservicios/addservicios.module#AddserviciosPageModule', name: 'AddserviciosPage', segment: 'addservicios', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/ajustes/ajustes.module#AjustesPageModule', name: 'AjustesPage', segment: 'ajustes', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/buscar-modal/buscar-modal.module#BuscarModalPageModule', name: 'BuscarModalPage', segment: 'buscar-modal', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/ayuda/ayuda.module#AyudaPageModule', name: 'AyudaPage', segment: 'ayuda', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/ajustes/ajustes.module#AjustesPageModule', name: 'AjustesPage', segment: 'ajustes', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/calificar/calificar.module#CalificarPageModule', name: 'CalificarPage', segment: 'calificar', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/centrocupones/centrocupones.module#CentrocuponesPageModule', name: 'CentrocuponesPage', segment: 'centrocupones', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/confirmar-reserva/confirmar-reserva.module#ConfirmarReservaPageModule', name: 'ConfirmarReservaPage', segment: 'confirmar-reserva', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/demo/demo.module#DemoPageModule', name: 'DemoPage', segment: 'demo', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/cupones/cupones.module#CuponesPageModule', name: 'CuponesPage', segment: 'cupones', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/favoritos/favoritos.module#FavoritosPageModule', name: 'FavoritosPage', segment: 'favoritos', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/lista-servicios/lista-servicios.module#ListaServiciosPageModule', name: 'ListaServiciosPage', segment: 'lista-servicios', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/centrocupones/centrocupones.module#CentrocuponesPageModule', name: 'CentrocuponesPage', segment: 'centrocupones', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/cuenta/cuenta.module#CuentaPageModule', name: 'CuentaPage', segment: 'cuenta', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/cupones/cupones.module#CuponesPageModule', name: 'CuponesPage', segment: 'cupones', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/detalle-reserva/detalle-reserva.module#DetalleReservaPageModule', name: 'DetalleReservaPage', segment: 'detalle-reserva', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/favoritos/favoritos.module#FavoritosPageModule', name: 'FavoritosPage', segment: 'favoritos', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/inicio/inicio.module#InicioPageModule', name: 'InicioPage', segment: 'inicio', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/lista-servicios/lista-servicios.module#ListaServiciosPageModule', name: 'ListaServiciosPage', segment: 'lista-servicios', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/login/login.module#LoginPageModule', name: 'LoginPage', segment: 'login', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/mapa/mapa.module#MapaPageModule', name: 'MapaPage', segment: 'mapa', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/modal-services/modal-services.module#ModalServicesPageModule', name: 'ModalServicesPage', segment: 'modal-services', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/mis-reservas/mis-reservas.module#MisReservasPageModule', name: 'MisReservasPage', segment: 'mis-reservas', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/mapa/mapa.module#MapaPageModule', name: 'MapaPage', segment: 'mapa', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/negocioregistro/negocioregistro.module#NegocioregistroPageModule', name: 'NegocioregistroPage', segment: 'negocioregistro', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/ofertas/ofertas.module#OfertasPageModule', name: 'OfertasPage', segment: 'ofertas', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/nosotros/nosotros.module#NosotrosPageModule', name: 'NosotrosPage', segment: 'nosotros', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/opiniones/opiniones.module#OpinionesPageModule', name: 'OpinionesPage', segment: 'opiniones', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/ofertas/ofertas.module#OfertasPageModule', name: 'OfertasPage', segment: 'ofertas', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/perfil-centro/perfil-centro.module#PerfilCentroPageModule', name: 'PerfilCentroPage', segment: 'perfil-centro', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/demo/demo.module#DemoPageModule', name: 'DemoPage', segment: 'demo', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/reserva-hecha/reserva-hecha.module#ReservaHechaPageModule', name: 'ReservaHechaPage', segment: 'reserva-hecha', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/reserva/reserva.module#ReservaPageModule', name: 'ReservaPage', segment: 'reserva', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/recuperar/recuperar.module#RecuperarPageModule', name: 'RecuperarPage', segment: 'recuperar', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/resultados/resultados.module#ResultadosPageModule', name: 'ResultadosPage', segment: 'resultados', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/inicio/inicio.module#InicioPageModule', name: 'InicioPage', segment: 'inicio', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/detalle-reserva/detalle-reserva.module#DetalleReservaPageModule', name: 'DetalleReservaPage', segment: 'detalle-reserva', priority: 'low', defaultHistory: [] }
+                        { loadChildren: '../pages/opiniones/opiniones.module#OpinionesPageModule', name: 'OpinionesPage', segment: 'opiniones', priority: 'low', defaultHistory: [] }
                     ]
                 }),
                 __WEBPACK_IMPORTED_MODULE_7__ionic_storage__["a" /* IonicStorageModule */].forRoot()
@@ -1441,7 +1453,7 @@ var MyApp = (function () {
             //init Push tasks
             // if(this.platform.is('android') || this.platform.is('ios')){
             if (_this.platform.is('android') || _this.platform.is('ios')) {
-                // if(false){
+                //if(false){
                 console.log('amhere1');
                 //PUSH FUNCIONANDO
                 var push = PushNotification.init({
