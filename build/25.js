@@ -8,7 +8,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AjustesPageModule", function() { return AjustesPageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(14);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ajustes__ = __webpack_require__(455);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ajustes__ = __webpack_require__(456);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -38,7 +38,7 @@ var AjustesPageModule = (function () {
 
 /***/ }),
 
-/***/ 455:
+/***/ 456:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -107,6 +107,9 @@ var AjustesPage = (function () {
     AjustesPage.prototype.goSobre = function () {
         this.navCtrl.push('NosotrosPage');
     };
+    AjustesPage.prototype.goBYN = function () {
+        this.navCtrl.push('NegocioregistroPage');
+    };
     AjustesPage.prototype.envioOK = function () {
         var alert = this.alertCtrl.create({
             title: 'Exito',
@@ -154,7 +157,7 @@ var AjustesPage = (function () {
     };
     AjustesPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-            selector: 'page-ajustes',template:/*ion-inline-start:"/Users/jose/Documents/beyouApp/beYou/src/pages/ajustes/ajustes.html"*/'<!--\n  Generated template for the AjustesPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar>\n\n   <ion-buttons start>\n    <button ion-button menuToggle>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n    </ion-buttons>\n\n    \n    <ion-title>Ajustes</ion-title>\n\n\n\n  </ion-navbar>\n\n</ion-header>\n\n\n\n<ion-content style=\'background-color: #fafafa; \' >\n\n\n          <ion-list>\n<!-- \n    <ion-item class="claseItem " [color]=\'verdeApp\'>\n    <ion-label>Notificaciones</ion-label>\n    <ion-toggle (ionChange)="notisVerificar(notis)" [color]=\'verdeApp\' [(ngModel)]="notis" ></ion-toggle>\n  </ion-item>\n -->\n\n\n                    <button  (tap)=\'goSobre()\'  class="claseItem"  ion-item  >\n          Sobre Beyou\n          <img style=\'float: right;width: 20px;\' src="assets/imgs/ofertasVerde.png">\n          </button>\n\n          <button  (tap)=\'goUso()\' class="claseItem"  ion-item  >\n          Terminos de uso\n          <img style=\'float: right;width: 20px;\' src="assets/imgs/ofertasVerde.png">\n          </button>\n\n<!-- \n          <button  class="claseItem"  ion-item  >\n          Evalua el app en la tienda\n          <img style=\'float: right;width: 20px;\' src="assets/imgs/ofertasVerde.png">\n          </button>\n -->\n\n                    <button (tap)=\'enviarMensaje()\' class="claseItem"  ion-item  >\n          Envianos un mensaje\n          <img style=\'float: right;width: 20px;\' src="assets/imgs/ofertasVerde.png">\n          </button>\n\n                    <button  (tap)=\'bnegocios()\' class="claseItem"  ion-item  >\n          BeYou para negocios\n          <img style=\'float: right;width: 20px;\' src="assets/imgs/ofertasVerde.png">\n          </button>\n\n\n\n      \n\n\n\n\n          </ion-list>\n\n\n</ion-content>\n'/*ion-inline-end:"/Users/jose/Documents/beyouApp/beYou/src/pages/ajustes/ajustes.html"*/,
+            selector: 'page-ajustes',template:/*ion-inline-start:"/Users/jose/Documents/beyouApp/beYou/src/pages/ajustes/ajustes.html"*/'<!--\n  Generated template for the AjustesPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar>\n\n   <ion-buttons start>\n    <button ion-button menuToggle>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n    </ion-buttons>\n\n    \n    <ion-title>Ajustes</ion-title>\n\n\n\n  </ion-navbar>\n\n</ion-header>\n\n\n\n<ion-content style=\'background-color: #fafafa; \' >\n\n\n          <ion-list>\n<!-- \n    <ion-item class="claseItem " [color]=\'verdeApp\'>\n    <ion-label>Notificaciones</ion-label>\n    <ion-toggle (ionChange)="notisVerificar(notis)" [color]=\'verdeApp\' [(ngModel)]="notis" ></ion-toggle>\n  </ion-item>\n -->\n\n\n                    <button  (click)=\'goSobre()\'  class="claseItem"  ion-item  >\n          Sobre <span style="font-style: italic;">Yourbeauty</span>\n          <img style=\'float: right;width: 20px;\' src="assets/imgs/ofertasVerde.png">\n          </button>\n\n     \n\n<!-- \n          <button  class="claseItem"  ion-item  >\n          Evalua el app en la tienda\n          <img style=\'float: right;width: 20px;\' src="assets/imgs/ofertasVerde.png">\n          </button>\n -->\n\n                    <button (click)=\'bnegocios()\' class="claseItem"  ion-item  >\n          Contáctar con Nosotros\n          <img style=\'float: right;width: 20px;\' src="assets/imgs/ofertasVerde.png">\n          </button>\n\n                    <button  (click)=\'goBYN()\' class="claseItem"  ion-item  >\n          <span style="font-style: italic;">Yourbeauty</span> para negocios\n          <img style=\'float: right;width: 20px;\' src="assets/imgs/ofertasVerde.png">\n          </button>\n\n\n     <button  (click)=\'goUso()\' class="claseItem"  ion-item  >\n          Terminos de uso\n          <img style=\'float: right;width: 20px;\' src="assets/imgs/ofertasVerde.png">\n          </button>\n      \n\n\n\n\n          </ion-list>\n\n\n</ion-content>\n'/*ion-inline-end:"/Users/jose/Documents/beyouApp/beYou/src/pages/ajustes/ajustes.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["AlertController"], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["NavController"], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["NavParams"], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["ModalController"], __WEBPACK_IMPORTED_MODULE_2__providers_api_api__["a" /* ApiProvider */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["LoadingController"], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["Events"]])
     ], AjustesPage);
