@@ -1,14 +1,14 @@
 webpackJsonp([15],{
 
-/***/ 438:
+/***/ 441:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MapaPageModule", function() { return MapaPageModule; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "NegocioregistroPageModule", function() { return NegocioregistroPageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(14);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__mapa__ = __webpack_require__(470);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__negocioregistro__ = __webpack_require__(474);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -18,35 +18,36 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
-var MapaPageModule = (function () {
-    function MapaPageModule() {
+var NegocioregistroPageModule = (function () {
+    function NegocioregistroPageModule() {
     }
-    MapaPageModule = __decorate([
+    NegocioregistroPageModule = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["NgModule"])({
             declarations: [
-                __WEBPACK_IMPORTED_MODULE_2__mapa__["a" /* MapaPage */],
+                __WEBPACK_IMPORTED_MODULE_2__negocioregistro__["a" /* NegocioregistroPage */],
             ],
             imports: [
-                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["IonicPageModule"].forChild(__WEBPACK_IMPORTED_MODULE_2__mapa__["a" /* MapaPage */]),
+                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["IonicPageModule"].forChild(__WEBPACK_IMPORTED_MODULE_2__negocioregistro__["a" /* NegocioregistroPage */]),
             ],
         })
-    ], MapaPageModule);
-    return MapaPageModule;
+    ], NegocioregistroPageModule);
+    return NegocioregistroPageModule;
 }());
 
-//# sourceMappingURL=mapa.module.js.map
+//# sourceMappingURL=negocioregistro.module.js.map
 
 /***/ }),
 
-/***/ 470:
+/***/ 474:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MapaPage; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return NegocioregistroPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(14);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_api_api__ = __webpack_require__(105);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_storage__ = __webpack_require__(53);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_forms__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_api_api__ = __webpack_require__(105);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_platform_browser__ = __webpack_require__(30);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -65,350 +66,90 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 /**
- * Generated class for the MapaPage page.
+ * Generated class for the LoginPage page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
  */
-var MapaPage = (function () {
-    function MapaPage(navCtrl, navParams, modalCtrl, loadingCtrl, events, apiProvider, alertCtrl, storage, plt, ngZone) {
-        /*
-        if(this.map){
-        console.log('setVisible false');
-        this.map.setVisible(false);
-        }
-        */
-        var _this = this;
+/**
+ * Generated class for the NegocioregistroPage page.
+ *
+ * See https://ionicframework.com/docs/components/#navigation for more info on
+ * Ionic pages and navigation.
+ */
+var NegocioregistroPage = (function () {
+    function NegocioregistroPage(navCtrl, navParams, modalCtrl, formBuilder, loadingCtrl, events, sanitizer, alertCtrl, viewCtrl, apiProvider) {
         this.navCtrl = navCtrl;
         this.navParams = navParams;
         this.modalCtrl = modalCtrl;
+        this.formBuilder = formBuilder;
         this.loadingCtrl = loadingCtrl;
         this.events = events;
-        this.apiProvider = apiProvider;
+        this.sanitizer = sanitizer;
         this.alertCtrl = alertCtrl;
-        this.storage = storage;
-        this.plt = plt;
-        this.ngZone = ngZone;
-        this.dataMarcas = [];
-        this.myPosition = {};
-        this.markers = [
-            {
-                position: {
-                    latitude: -17.3666745,
-                    longitude: -66.2387878,
-                },
-                title: 'Point 1'
-            },
-            {
-                position: {
-                    latitude: -17.3706884,
-                    longitude: -66.2397749,
-                },
-                title: 'Point 2'
-            },
-            {
-                position: {
-                    latitude: -17.391398,
-                    longitude: -66.2407904,
-                },
-                title: 'Point 3'
-            },
-            {
-                position: {
-                    latitude: -17.3878887,
-                    longitude: -66.223664,
-                },
-                title: 'Point 4'
-            },
-        ];
-        this.addMarker = function (options) {
-            var markerOptions = {
-                position: new LatLng(options.position.latitude, options.position.longitude),
-                title: options.title
-            };
-            _this.map.addMarker(markerOptions);
-        };
-        this.getCentrosCercanos = function () {
-            _this.apiProvider.getCentrosMapa({ lat: _this.myPosition.latitude, lon: _this.myPosition.longitude })
-                .then(function (data) {
-                console.log(data);
-                _this.dataMarcas = data || [];
-            });
-        };
-        this.goTo = function (idCentro) { console.log(idCentro); };
-        this.loadMap = function () {
-            //let loading3 = this.loadingCtrl.create({content : "Buscando negocios cercanos"});
-            //loading3.present();
-            var element = document.getElementById('map');
-            _this.map = plugin.google.maps.Map.getMap(element, {
-                controls: {
-                    'zoom': true // android only
-                },
-                'camera': {
-                    target: { lat: _this.myPosition.latitude, lng: _this.myPosition.longitude },
-                    zoom: 15
-                },
-                'preferences': {
-                    'zoom': {
-                        'minZoom': 13,
-                        'maxZoom': 17
-                    },
-                    padding: {
-                        left: 10,
-                        top: 10,
-                        bottom: 53,
-                        right: 10
-                    }
-                }
-            });
-            // create CameraPosition
-            var position = {
-                target: { lat: _this.myPosition.latitude, lng: _this.myPosition.longitude },
-                zoom: 16,
-                tilt: 30
-            };
-            _this.map.one(plugin.google.maps.event.MAP_READY, function () {
-                //this.map.setVisible(false);
-                _this.apiProvider.getCentrosMapa({ lat: _this.myPosition.latitude, lon: _this.myPosition.longitude })
-                    .then(function (data) {
-                    console.log(data);
-                    _this.dataMarcas = data;
-                    data.forEach(function (element, index) {
-                        var imagenLink = element.idFoto ? 'http://50.116.17.150:3000/' + element.idFoto : 'assets/imgs/fotoComercio.png';
-                        var htmlInfoWindow = new plugin.google.maps.HtmlInfoWindow();
-                        var frame = document.createElement('div');
-                        frame.className = 'centradoTexto';
-                        frame.innerHTML = ["<span style='color: #555;font-size: 17px;'><b>" + element.nombre + "</b></span><br>",
-                            "<span style=\"display: block;margin: 3px 0px;color: lightgray;font-size: 15px;\">",
-                            _this.getEstrella(1, element.rate),
-                            _this.getEstrella(2, element.rate),
-                            _this.getEstrella(3, element.rate),
-                            _this.getEstrella(4, element.rate),
-                            _this.getEstrella(5, element.rate),
-                            "</span>",
-                            "<span style='color: #888;font-size: 16px;  '><ion-icon name='ios-pin' role='img' style='  margin-right: 8px;      vertical-align: middle;   font-size: 21px;color:#2FD99B;' class='icon icon-ios ion-ios-pin' aria-label='pin' ng-reflect-name='ios-pin'></ion-icon>a " + (element.distance ? element.distance.toFixed(1) : '-') + "km aprox.</span><br>",
-                            "<button  style='margin: 6px 0px; padding: 5px;background-color: #2FD99B;color: white;font-weight: 900;' >Mas Informacion</button>"].join("");
-                        var button = frame.getElementsByTagName("button")[0];
-                        button.addEventListener("click", function () {
-                            _this.ngZone.run(function () {
-                                _this.navCtrl.push('PerfilCentroPage', { 'idCentro': element.idCentro, 'idServicioSeleccionado': 0 });
-                            });
-                        });
-                        htmlInfoWindow.setContent(frame, {
-                            width: "180px",
-                            height: "110px"
-                        });
-                        _this.map.addMarker({
-                            'position': { lng: element.longitud, lat: element.latitud },
-                            'icon': {
-                                'url': imagenLink,
-                                size: {
-                                    width: 35,
-                                    height: 35
-                                }
-                            }
-                        }, function (marker) {
-                            marker.on(plugin.google.maps.event.MARKER_CLICK, function () {
-                                htmlInfoWindow.open(marker);
-                            });
-                            //marker.trigger(plugin.google.maps.event.MARKER_CLICK);
-                        });
-                    });
-                    _this.loading.dismissAll();
-                });
-                console.log('Map is ready!');
-                // move the map's camera to position
-                //this.map.moveCamera(position);
-                //loading3.dismissAll();
-                /*
-                this.map.addMarker({
-                position: {lng: -84.212576, lat: 10.0028923},
-                title: "Marcador ejemplo"
-                });
-                */
-            });
-        };
+        this.viewCtrl = viewCtrl;
+        this.apiProvider = apiProvider;
+        this.authForm = formBuilder.group({
+            nombre: ['', __WEBPACK_IMPORTED_MODULE_2__angular_forms__["Validators"].compose([__WEBPACK_IMPORTED_MODULE_2__angular_forms__["Validators"].required])],
+            nombre2: ['', __WEBPACK_IMPORTED_MODULE_2__angular_forms__["Validators"].compose([__WEBPACK_IMPORTED_MODULE_2__angular_forms__["Validators"].required])],
+            telefono: [''],
+            comentario: [''],
+            email: ['', __WEBPACK_IMPORTED_MODULE_2__angular_forms__["Validators"].compose([__WEBPACK_IMPORTED_MODULE_2__angular_forms__["Validators"].required])]
+        });
     }
-    MapaPage.prototype.ionViewDidLoad = function () {
-        this.loading = this.loadingCtrl.create({ content: "Buscando negocios cercanos" });
-        this.loading.present();
-        this.getServiciosGPS();
+    NegocioregistroPage.prototype.ionViewDidLoad = function () {
+        console.log('ionViewDidLoad LoginPage');
     };
-    MapaPage.prototype.ionViewDidEnter = function () {
-        // this.loading = this.loadingCtrl.create({content : "Buscando negocios cercanos"});
-        //  this.loading.present();
-        //  this.getServiciosGPS();
-        // create a new map by passing HTMLElement
-        //verificar si sirve en ionviewdidenter
-        //verificar reduciendo widj
-        //verificar con push y setRoot
-        //cambiar fondo oclor
-        //this.gpsServices();
-        console.log('ionViewDidLoad MapaPage');
+    NegocioregistroPage.prototype.closeModal = function () {
+        //	this.events.publish('modalServices');
+        this.viewCtrl.dismiss();
     };
-    MapaPage.prototype.regresawe = function () {
-        this.navCtrl.setRoot('InicioPage');
-    };
-    MapaPage.prototype.getEstrella = function (numero, rate) {
-        if (rate && rate >= numero) {
-            return "<ion-icon name='md-star' role='img' class='icon icon-ios ion-md-star ratingStar'> </ion-icon>";
-        }
-        else {
-            return "<ion-icon name='md-star' role='img' class='icon icon-ios ion-md-star'> </ion-icon>";
-        }
-    };
-    MapaPage.prototype.presentAlert = function () {
+    NegocioregistroPage.prototype.presentAlert = function (titulo, mensaje) {
         var alert = this.alertCtrl.create({
-            title: 'GPS desactivado',
-            subTitle: 'Activa el GPS para filtrar por distancia',
+            title: titulo,
+            subTitle: mensaje,
             buttons: ['Cerrar']
         });
         alert.present();
     };
-    MapaPage.prototype.getServiciosGPS = function () {
-        //let loading = this.loadingCtrl.create({content : "Obteniendo ubicacion"});
-        //loading.present();
+    NegocioregistroPage.prototype.presentAlert2 = function (mensaje) {
+        var alert = this.alertCtrl.create({
+            subTitle: this.sanitizer.bypassSecurityTrustHtml(mensaje),
+            buttons: ['Cerrar']
+        });
+        alert.present();
+    };
+    NegocioregistroPage.prototype.crearUsuario = function (data) {
+        //
         var _this = this;
-        //loading.present();
-        navigator.geolocation.getCurrentPosition(function (pos) {
-            _this.myPosition = {
-                latitude: pos.coords.latitude,
-                longitude: pos.coords.longitude
-            };
-            var fechaExpiracion = new Date();
-            fechaExpiracion.setHours(fechaExpiracion.getHours() + 1);
-            _this.storage.set('coorLBY', { 'lat': pos.coords.latitude,
-                'lng': pos.coords.longitude,
-                'expirationDate': fechaExpiracion });
-            // setTimeout(() => {
-            //loading.dismissAll();
-            _this.loadMap();
-            //   },2000);
-            //   loading.dismissAll();
-            //  this.loadMap();
-        }, function (error) {
-            console.log('storageme err');
-            console.log(error);
-            //setTimeout(() => {
-            _this.loading.dismissAll();
-            _this.requestLocationAccuracy();
-            // },2000);
-            // loading.dismissAll();
-            // this.requestLocationAccuracy();
-        }, { enableHighAccuracy: true, timeout: 30000 });
-    };
-    MapaPage.prototype.gpsServices = function () {
-    };
-    MapaPage.prototype.onError = function (error) {
-        console.error("The following error occurred: " + error);
-    };
-    MapaPage.prototype.requestLocationAuthorization = function () {
-        var _this = this;
-        cordova.plugins.diagnostic.requestLocationAuthorization(function (status) {
-            switch (status) {
-                case cordova.plugins.diagnostic.permissionStatus.GRANTED:
-                    if (_this.plt.is('ios')) {
-                        _this.onError("Location services is already switched ON");
-                    }
-                    else {
-                        _this._makeRequest();
-                    }
-                    break;
-                case cordova.plugins.diagnostic.permissionStatus.NOT_REQUESTED:
-                    _this.requestLocationAuthorization();
-                    break;
-                case cordova.plugins.diagnostic.permissionStatus.DENIED:
-                    if (_this.plt.is('android')) {
-                        _this.onError("User denied permission to use location");
-                    }
-                    else {
-                        _this._makeRequest();
-                    }
-                    break;
-                case cordova.plugins.diagnostic.permissionStatus.DENIED_ALWAYS:
-                    // Android only
-                    _this.onError("User denied permission to use location");
-                    break;
-                case cordova.plugins.diagnostic.permissionStatus.GRANTED_WHEN_IN_USE:
-                    // iOS only
-                    _this.onError("Location services is already switched ON");
-                    break;
-            }
-        }, this.onError());
-    };
-    MapaPage.prototype.requestLocationAccuracy = function () {
-        var _this = this;
-        cordova.plugins.diagnostic.getLocationAuthorizationStatus(function (status) {
-            switch (status) {
-                case cordova.plugins.diagnostic.permissionStatus.GRANTED:
-                    if (_this.plt.is('ios')) {
-                        _this.onError("Location services is already switched ON");
-                    }
-                    else {
-                        _this._makeRequest();
-                    }
-                    break;
-                case cordova.plugins.diagnostic.permissionStatus.NOT_REQUESTED:
-                    _this.requestLocationAuthorization();
-                    break;
-                case cordova.plugins.diagnostic.permissionStatus.DENIED:
-                    if (_this.plt.is('android')) {
-                        _this.onError("User denied permission to use location");
-                    }
-                    else {
-                        _this._makeRequest();
-                    }
-                    break;
-                case cordova.plugins.diagnostic.permissionStatus.DENIED_ALWAYS:
-                    // Android only
-                    _this.onError("User denied permission to use location");
-                    break;
-                case cordova.plugins.diagnostic.permissionStatus.GRANTED_WHEN_IN_USE:
-                    // iOS only
-                    _this.onError("Location services is already switched ON");
-                    break;
-            }
-        }, this.onError());
-    };
-    MapaPage.prototype._makeRequest = function () {
-        var _this = this;
-        cordova.plugins.locationAccuracy.canRequest(function (canRequest) {
-            if (canRequest) {
-                cordova.plugins.locationAccuracy.request(function () {
-                    console.log("Location accuracy request successful");
-                    _this.getServiciosGPS();
-                }, function (error) {
-                    _this.onError("Error requesting location accuracy: " + JSON.stringify(error));
-                    if (error) {
-                        // Android only
-                        _this.onError("error code=" + error.code + "; error message=" + error.message);
-                        if (_this.plt.is('android') && error.code !== cordova.plugins.locationAccuracy.ERROR_USER_DISAGREED) {
-                            if (window.confirm("Failed to automatically set Location Mode to 'High Accuracy'. Would you like to switch to the Location Settings page and do this manually?")) {
-                                cordova.plugins.diagnostic.switchToLocationSettings();
-                            }
-                        }
-                    }
-                }, cordova.plugins.locationAccuracy.REQUEST_PRIORITY_HIGH_ACCURACY // iOS will ignore this
-                );
+        var loading = this.loadingCtrl.create({ content: "Registrando solicitud" });
+        loading.present();
+        this.apiProvider.addNegocio(data)
+            .then(function (data) {
+            console.log(data);
+            if (data.insertId > 0) {
+                loading.dismissAll();
+                _this.closeModal();
+                _this.presentAlert2("<img  src=\"assets/imgs/confirmarf.png\"> <div stye=\"line-height: 25px;\n    font-size: 16px;color: #888;\"> Estas a un paso de formar parte de BeYou. Te contactaremos a la brevedad posible</div>");
             }
             else {
-                // On iOS, this will occur if Location Services is currently on OR a request is currently in progress.
-                // On Android, this will occur if the app doesn't have authorization to use location.
-                _this.onError("Cannot request location accurac // android");
+                loading.dismissAll();
+                _this.presentAlert('Ups!', 'No se ha podido completar tu solicitud');
             }
         });
     };
-    MapaPage = __decorate([
+    NegocioregistroPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-            selector: 'page-mapa',template:/*ion-inline-start:"/Users/jose/Documents/beyouApp/beYou/src/pages/mapa/mapa.html"*/'<!--\n  Generated template for the MapaPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n  <ion-navbar >\n<!--   	    <ion-buttons start>\n    <button ion-button style="    width: 33px;" (click)=\'regresawe()\'>\n      <ion-icon name="arrow-back"  ></ion-icon>\n    </button>\n    </ion-buttons> -->\n\n    <ion-title>\n      Negocios cercanos\n    </ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content>\n  <div id="map" ></div>  \n</ion-content>'/*ion-inline-end:"/Users/jose/Documents/beyouApp/beYou/src/pages/mapa/mapa.html"*/,
+            selector: 'page-negocioregistro',template:/*ion-inline-start:"/Users/jose/Documents/beyouApp/beYou/src/pages/negocioregistro/negocioregistro.html"*/'<!--\n  Generated template for the LoginPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar>\n    <ion-title>BeYou para negocios</ion-title>\n\n\n\n    <ion-buttons end>\n    <button style="    font-size: 34px;" ion-button (click)="closeModal()"><ion-icon ios="ios-close"></ion-icon></button>\n\n\n    </ion-buttons>\n\n\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content >\n\n\n\n\n  <div>\n<!--     <div style="background-color:#36609F;margin: 20px 17px;border-radius: 30px;color: white;text-align: center;font-size: 15px;">\n    <img src="assets/imgs/Facebook.png" style="\n    vertical-align: middle;\n    margin-right: 10px;\n    ">\n    <img src="assets/imgs/Sep.png" style="\n    vertical-align: middle;\n    padding-top:  10px;\n    padding-bottom: 10px;\n    ">\n    <span (click)=\'loginApp()\' style="\n    ">Continuar con Facebook</span>\n    </div>\n\n<div style="\n    margin: 0px 17px;\n    text-align: center;\n    /* height: 300px; */\n">\n         <img src="assets/imgs/Sep2.png" style="\n    width: 40%;\n    display: inline-block;\n    height: 2px;\n    vertical-align: middle;\n"><span style="\n    display: inline-block;\n    margin: 0px 10px;\n">OR</span> <img src="assets/imgs/Sep2.png" style="\n    width: 40%;\n    display: inline-block;\n    height: 2px;\n    vertical-align: middle;\n">\n    </div>\n -->\n    <div style="\n    margin: 0px 17px;">\n\n    <form style=\'margin-top: 20px;\' [formGroup]="authForm" (ngSubmit)="crearUsuario(authForm.value)">\n\n\n\n            <ion-item style=\'    padding: 0px 13px 0px 0px;\n    background-color: white !important;\n    border-radius: 60px;\n    border: solid 1px #EC527E;\n    margin: 26px 0px;\'>\n            <ion-label style=\' color: #e6e6e6;   position: absolute;\n    right: 16px;\n    font-size: 21px;\'>\n                  <ion-icon   ios="md-paper" md="md-paper" ></ion-icon>\n            </ion-label>\n\n\n\n            <ion-input class=\'inputT\' placeholder=\'Nombre del Negocio\' formControlName="nombre" type="text"></ion-input>\n        </ion-item>\n<ion-item *ngIf="authForm.controls.nombre.hasError(\'required\') && authForm.controls.nombre.touched">\n            <p>Este campo es requerido</p>\n        </ion-item>\n\n \n       \n            <ion-item style=\'    padding: 0px 13px 0px 0px;\n    background-color: white !important;\n    border-radius: 60px;\n    border: solid 1px #EC527E;\n    margin: 26px 0px;\'>\n            <ion-label style=\' color: #e6e6e6;   position: absolute;\n    right: 16px;\n    font-size: 21px;\'>\n                  <ion-icon   ios="md-contact" md="md-contact" ></ion-icon>\n            </ion-label>\n\n\n\n            <ion-input class=\'inputT\' placeholder=\'Nombre de Contacto\' formControlName="nombre2" type="text"></ion-input>\n        </ion-item>\n<ion-item *ngIf="authForm.controls.nombre2.hasError(\'required\') && authForm.controls.nombre2.touched">\n            <p>Este campo es requerido</p>\n        </ion-item>\n\n\n      \n\n\n\n\n       \n            <ion-item style=\'    padding: 0px 13px 0px 0px;\n    background-color: white !important;\n    border-radius: 60px;\n    border: solid 1px #EC527E;\n    margin: 26px 0px;\'>\n            <ion-label style=\' color: #e6e6e6;   position: absolute;\n    right: 16px;\n    font-size: 21px;\'>\n                  <ion-icon   ios="md-mail" md="md-mail" ></ion-icon>\n            </ion-label>\n\n            <ion-input class=\'inputT\' placeholder=\'Email\' formControlName="email" type="email"></ion-input>\n        </ion-item>\n  \n        <ion-item *ngIf="authForm.controls.email.hasError(\'required\') && authForm.controls.email.touched">\n            <p>Este campo es requerido</p>\n        </ion-item>\n      \n            <ion-item style=\'    padding: 0px 13px 0px 0px;\n    background-color: white !important;\n    border-radius: 60px;\n    border: solid 1px #EC527E;\n    margin: 26px 0px;\'>\n            <ion-label style=\' color: #e6e6e6;   position: absolute;\n    right: 16px;\n    font-size: 21px;\'>\n                  <ion-icon   ios="md-call" md="md-call" ></ion-icon>\n            </ion-label>\n\n            <ion-input class=\'inputT\' placeholder=\'Telefono de contacto\'  formControlName="telefono" type="text"></ion-input>\n        </ion-item>\n      \n            <ion-item style=\'    padding: 0px 13px 0px 0px;\n    background-color: white !important;\n    border-radius: 60px;\n    border: solid 1px #EC527E;\n    margin: 26px 0px;\'>\n            <ion-label style=\' color: #e6e6e6;   position: absolute;\n    right: 16px;\n    font-size: 21px;\'>\n                  <ion-icon   ios="md-chatboxes" md="md-chatboxes" ></ion-icon>\n            </ion-label>\n\n            <ion-input class=\'inputT\' placeholder=\'Comentario\'  formControlName="comentario" type="text"></ion-input>\n        </ion-item>\n\n\n  <!-- \n        <ion-item [ngClass]="{\'error-border\':!authForm.controls.password.valid && authForm.controls.password.touched}">\n            <ion-label floating>Password</ion-label>\n            <ion-input formControlName="password" type="password"></ion-input>\n        </ion-item>\n        <ion-item *ngIf="authForm.controls.password.hasError(\'required\') && authForm.controls.password.touched">\n            <p>Este campo es requerido</p>\n        </ion-item>\n        <ion-item *ngIf="authForm.controls.password.hasError(\'minlength\') && authForm.controls.password.touched">\n            <p>Este campo requiere al menos 6 caracteres</p>\n        </ion-item>        -->         \n  \n        <button ion-button full color="verdeApp" [disabled]="!authForm.valid" style="    border-radius: 40px;margin-top: 20px;" type="submit">Contactar</button>        \n    </form>\n<p style="    text-align: center;\n    font-size: 16px;\n    color: #555;\n    line-height: 27px;\n    margin-top: 40px;\n    opacity: 0.5;">Asegurate de brindar un email valido <br> Al registrarte en beYou aceptas los terminos y condiciones de uso</p>\n\n    </div>\n\n  </div>\n\n\n\n</ion-content>\n'/*ion-inline-end:"/Users/jose/Documents/beyouApp/beYou/src/pages/negocioregistro/negocioregistro.html"*/,
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["NavController"], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["NavParams"], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["ModalController"], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["LoadingController"], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["Events"], __WEBPACK_IMPORTED_MODULE_2__providers_api_api__["a" /* ApiProvider */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["AlertController"], __WEBPACK_IMPORTED_MODULE_3__ionic_storage__["b" /* Storage */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["Platform"], __WEBPACK_IMPORTED_MODULE_0__angular_core__["NgZone"]])
-    ], MapaPage);
-    return MapaPage;
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["NavController"], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["NavParams"], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["ModalController"], __WEBPACK_IMPORTED_MODULE_2__angular_forms__["FormBuilder"], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["LoadingController"], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["Events"], __WEBPACK_IMPORTED_MODULE_4__angular_platform_browser__["c" /* DomSanitizer */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["AlertController"], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["ViewController"], __WEBPACK_IMPORTED_MODULE_3__providers_api_api__["a" /* ApiProvider */]])
+    ], NegocioregistroPage);
+    return NegocioregistroPage;
 }());
 
-//# sourceMappingURL=mapa.js.map
+//# sourceMappingURL=negocioregistro.js.map
 
 /***/ })
 

@@ -8,8 +8,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CuponesPageModule", function() { return CuponesPageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(14);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__cupones__ = __webpack_require__(463);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__pipes_pipes_module__ = __webpack_require__(450);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__cupones__ = __webpack_require__(464);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__pipes_pipes_module__ = __webpack_require__(451);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -41,13 +41,13 @@ var CuponesPageModule = (function () {
 
 /***/ }),
 
-/***/ 450:
+/***/ 451:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return PipesModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__filtrofav_filtrofav__ = __webpack_require__(451);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__filtrofav_filtrofav__ = __webpack_require__(452);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -73,7 +73,7 @@ var PipesModule = (function () {
 
 /***/ }),
 
-/***/ 451:
+/***/ 452:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -113,7 +113,7 @@ var FiltrofavPipe = (function () {
 
 /***/ }),
 
-/***/ 463:
+/***/ 464:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -195,8 +195,8 @@ var CuponesPage = (function () {
         alert.present();
     };
     CuponesPage.prototype.filtroDisponible = function (user) {
-        console.log(user);
-        return user.estado == 1;
+        var cc = new Date(user.fechaExpira);
+        return user.estado == 1 && cc > Date.now();
     };
     CuponesPage.prototype.usarTicket = function (id) {
         // this.navCtrl.push('PerfilCentroPage');  
@@ -214,7 +214,8 @@ var CuponesPage = (function () {
     };
     CuponesPage.prototype.filtroUsado = function (user) {
         console.log(user);
-        return user.estado == 2;
+        var cc = new Date(user.fechaExpira);
+        return user.estado == 2 && cc > Date.now();
     };
     CuponesPage.prototype.canjear = function (codigo) {
         console.log(codigo);
@@ -243,8 +244,8 @@ var CuponesPage = (function () {
         });
     };
     CuponesPage.prototype.filtroExpirado = function (user) {
-        console.log(user);
-        return user.estado == 3;
+        var cc = new Date(user.fechaExpira);
+        return cc < Date.now();
     };
     CuponesPage.prototype.filtroCategoria = function () {
         //console.log('ionViewDidLoad FavoritosPage');
