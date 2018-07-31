@@ -1261,6 +1261,23 @@ var MyApp = (function () {
                             .then(function (data) {
                             console.log(data);
                             if (data.data.length > 0) {
+                                _this.storage.get('pushKeyBY').then(function (value) {
+                                    if (value) {
+                                        console.log(value);
+                                        var pushState = {
+                                            pushK: value,
+                                            device: device.platform,
+                                            deviceId: device.uuid,
+                                            login: Date.now(),
+                                            user: data.data[0].idCliente
+                                        };
+                                        console.log(pushState);
+                                        _this.apiProvider.addPush(pushState).then(function (data) {
+                                            console.log(data);
+                                        });
+                                    }
+                                    //value;
+                                });
                                 _this.storage.set("usr_tok_by", data.data[0]);
                                 _this.userDataProfile = data.data[0];
                                 _this.menuActivo = true;
@@ -1276,6 +1293,23 @@ var MyApp = (function () {
                             .then(function (data) {
                             console.log(data);
                             if (data.data.length > 0) {
+                                _this.storage.get('pushKeyBY').then(function (value) {
+                                    if (value) {
+                                        console.log(value);
+                                        var pushState = {
+                                            pushK: value,
+                                            device: device.platform,
+                                            deviceId: device.uuid,
+                                            login: Date.now(),
+                                            user: data.data[0].idCliente
+                                        };
+                                        console.log(pushState);
+                                        _this.apiProvider.addPush(pushState).then(function (data) {
+                                            console.log(data);
+                                        });
+                                    }
+                                    //value;
+                                });
                                 _this.storage.set("usr_tok_by", data.data[0]);
                                 _this.userDataProfile = data.data[0];
                                 _this.menuActivo = true;
@@ -1487,7 +1521,7 @@ var MyApp = (function () {
             //init Push tasks
             // if(this.platform.is('android') || this.platform.is('ios')){
             if (_this.platform.is('android') || _this.platform.is('ios')) {
-                //if(false){
+                // if(false){
                 console.log('amhere1');
                 //PUSH FUNCIONANDO
                 var push = PushNotification.init({
@@ -1607,6 +1641,23 @@ var MyApp = (function () {
                     .then(function (data) {
                     console.log(data);
                     if (data.data.length > 0) {
+                        _this.storage.get('pushKeyBY').then(function (value) {
+                            if (value) {
+                                console.log(value);
+                                var pushState = {
+                                    pushK: value,
+                                    device: device.platform,
+                                    deviceId: device.uuid,
+                                    login: Date.now(),
+                                    user: data.data[0].idCliente
+                                };
+                                console.log(pushState);
+                                _this.apiProvider.addPush(pushState).then(function (data) {
+                                    console.log(data);
+                                });
+                            }
+                            //value;
+                        });
                         console.log('mas0len');
                         _this.storage.set("usr_tok_by", data.data[0]);
                         _this.userDataProfile = data.data[0];
