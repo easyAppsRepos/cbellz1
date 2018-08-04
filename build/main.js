@@ -1,4 +1,4 @@
-webpackJsonp([28],{
+webpackJsonp([29],{
 
 /***/ 105:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -529,10 +529,9 @@ var ApiProvider = (function () {
     };
     ApiProvider = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["Injectable"])(),
-        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_0__angular_common_http__["a" /* HttpClient */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__angular_common_http__["a" /* HttpClient */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__ionic_storage__["b" /* Storage */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__ionic_storage__["b" /* Storage */]) === "function" && _b || Object])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_0__angular_common_http__["a" /* HttpClient */], __WEBPACK_IMPORTED_MODULE_2__ionic_storage__["b" /* Storage */]])
     ], ApiProvider);
     return ApiProvider;
-    var _a, _b;
 }());
 
 //# sourceMappingURL=api.js.map
@@ -561,31 +560,35 @@ webpackEmptyAsyncContext.id = 118;
 
 var map = {
 	"../pages/addservicios/addservicios.module": [
+		426,
+		28
+	],
+	"../pages/ajustes/ajustes.module": [
 		424,
 		27
 	],
-	"../pages/ajustes/ajustes.module": [
+	"../pages/ayuda/ayuda.module": [
 		425,
 		26
 	],
-	"../pages/ayuda/ayuda.module": [
-		426,
+	"../pages/buscar-modal/buscar-modal.module": [
+		430,
 		25
 	],
-	"../pages/buscar-modal/buscar-modal.module": [
+	"../pages/calificar/calificar.module": [
 		427,
 		24
 	],
-	"../pages/calificar/calificar.module": [
+	"../pages/centrocupones/centrocupones.module": [
 		428,
 		23
 	],
-	"../pages/centrocupones/centrocupones.module": [
+	"../pages/confirmar-reserva/confirmar-reserva.module": [
 		429,
 		22
 	],
-	"../pages/confirmar-reserva/confirmar-reserva.module": [
-		430,
+	"../pages/congrats/congrats.module": [
+		431,
 		21
 	],
 	"../pages/cuenta/cuenta.module": [
@@ -593,11 +596,11 @@ var map = {
 		20
 	],
 	"../pages/cupones/cupones.module": [
-		431,
+		433,
 		6
 	],
 	"../pages/demo/demo.module": [
-		433,
+		435,
 		19
 	],
 	"../pages/detalle-reserva/detalle-reserva.module": [
@@ -605,7 +608,7 @@ var map = {
 		18
 	],
 	"../pages/favoritos/favoritos.module": [
-		435,
+		437,
 		5
 	],
 	"../pages/inicio/inicio.module": [
@@ -617,31 +620,31 @@ var map = {
 		4
 	],
 	"../pages/login/login.module": [
-		437,
+		439,
 		17
 	],
 	"../pages/mapa/mapa.module": [
-		440,
+		438,
 		16
 	],
 	"../pages/mis-reservas/mis-reservas.module": [
-		439,
+		447,
 		3
 	],
 	"../pages/modal-services/modal-services.module": [
-		438,
+		441,
 		8
 	],
 	"../pages/negocioregistro/negocioregistro.module": [
-		441,
+		440,
 		15
 	],
 	"../pages/nosotros/nosotros.module": [
-		443,
+		442,
 		14
 	],
 	"../pages/ofertas/ofertas.module": [
-		442,
+		443,
 		2
 	],
 	"../pages/opiniones/opiniones.module": [
@@ -657,7 +660,7 @@ var map = {
 		13
 	],
 	"../pages/reserva-hecha/reserva-hecha.module": [
-		447,
+		450,
 		12
 	],
 	"../pages/reserva/reserva.module": [
@@ -665,11 +668,11 @@ var map = {
 		0
 	],
 	"../pages/resultados/resultados.module": [
-		450,
+		449,
 		11
 	],
 	"../pages/verificacion/verificacion.module": [
-		449,
+		451,
 		10
 	]
 };
@@ -817,11 +820,16 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__ionic_native_splash_screen__ = __webpack_require__(330);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__providers_api_api__ = __webpack_require__(105);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_12_ionic2_rating__ = __webpack_require__(334);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__transitions_on_enter_scale_transition__ = __webpack_require__(487);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__transitions_on_leave_scale_transition__ = __webpack_require__(486);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 
 
@@ -836,9 +844,18 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
+
+
+
 var AppModule = (function () {
-    function AppModule() {
+    function AppModule(config) {
+        this.config = config;
+        this.setCustomTransitions();
     }
+    AppModule.prototype.setCustomTransitions = function () {
+        this.config.setTransition('modal-scale-up-enter', __WEBPACK_IMPORTED_MODULE_13__transitions_on_enter_scale_transition__["a" /* ModalScaleEnterTransition */]);
+        this.config.setTransition('modal-scale-up-leave', __WEBPACK_IMPORTED_MODULE_14__transitions_on_leave_scale_transition__["a" /* ModalScaleLeaveTransition */]);
+    };
     AppModule = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["NgModule"])({
             declarations: [
@@ -853,34 +870,35 @@ var AppModule = (function () {
                 __WEBPACK_IMPORTED_MODULE_8__angular_common_http__["b" /* HttpClientModule */],
                 __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["IonicModule"].forRoot(__WEBPACK_IMPORTED_MODULE_3__app_component__["a" /* MyApp */], { mode: 'ios', backButtonText: '' }, {
                     links: [
-                        { loadChildren: '../pages/addservicios/addservicios.module#AddserviciosPageModule', name: 'AddserviciosPage', segment: 'addservicios', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/ajustes/ajustes.module#AjustesPageModule', name: 'AjustesPage', segment: 'ajustes', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/ayuda/ayuda.module#AyudaPageModule', name: 'AyudaPage', segment: 'ayuda', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/buscar-modal/buscar-modal.module#BuscarModalPageModule', name: 'BuscarModalPage', segment: 'buscar-modal', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/addservicios/addservicios.module#AddserviciosPageModule', name: 'AddserviciosPage', segment: 'addservicios', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/calificar/calificar.module#CalificarPageModule', name: 'CalificarPage', segment: 'calificar', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/centrocupones/centrocupones.module#CentrocuponesPageModule', name: 'CentrocuponesPage', segment: 'centrocupones', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/confirmar-reserva/confirmar-reserva.module#ConfirmarReservaPageModule', name: 'ConfirmarReservaPage', segment: 'confirmar-reserva', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/cupones/cupones.module#CuponesPageModule', name: 'CuponesPage', segment: 'cupones', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/buscar-modal/buscar-modal.module#BuscarModalPageModule', name: 'BuscarModalPage', segment: 'buscar-modal', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/congrats/congrats.module#CongratsPageModule', name: 'CongratsPage', segment: 'congrats', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/cuenta/cuenta.module#CuentaPageModule', name: 'CuentaPage', segment: 'cuenta', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/demo/demo.module#DemoPageModule', name: 'DemoPage', segment: 'demo', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/cupones/cupones.module#CuponesPageModule', name: 'CuponesPage', segment: 'cupones', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/detalle-reserva/detalle-reserva.module#DetalleReservaPageModule', name: 'DetalleReservaPage', segment: 'detalle-reserva', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/favoritos/favoritos.module#FavoritosPageModule', name: 'FavoritosPage', segment: 'favoritos', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/inicio/inicio.module#InicioPageModule', name: 'InicioPage', segment: 'inicio', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/demo/demo.module#DemoPageModule', name: 'DemoPage', segment: 'demo', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/lista-servicios/lista-servicios.module#ListaServiciosPageModule', name: 'ListaServiciosPage', segment: 'lista-servicios', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/login/login.module#LoginPageModule', name: 'LoginPage', segment: 'login', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/modal-services/modal-services.module#ModalServicesPageModule', name: 'ModalServicesPage', segment: 'modal-services', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/mis-reservas/mis-reservas.module#MisReservasPageModule', name: 'MisReservasPage', segment: 'mis-reservas', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/favoritos/favoritos.module#FavoritosPageModule', name: 'FavoritosPage', segment: 'favoritos', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/mapa/mapa.module#MapaPageModule', name: 'MapaPage', segment: 'mapa', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/login/login.module#LoginPageModule', name: 'LoginPage', segment: 'login', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/negocioregistro/negocioregistro.module#NegocioregistroPageModule', name: 'NegocioregistroPage', segment: 'negocioregistro', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/ofertas/ofertas.module#OfertasPageModule', name: 'OfertasPage', segment: 'ofertas', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/modal-services/modal-services.module#ModalServicesPageModule', name: 'ModalServicesPage', segment: 'modal-services', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/nosotros/nosotros.module#NosotrosPageModule', name: 'NosotrosPage', segment: 'nosotros', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/ofertas/ofertas.module#OfertasPageModule', name: 'OfertasPage', segment: 'ofertas', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/opiniones/opiniones.module#OpinionesPageModule', name: 'OpinionesPage', segment: 'opiniones', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/perfil-centro/perfil-centro.module#PerfilCentroPageModule', name: 'PerfilCentroPage', segment: 'perfil-centro', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/recuperar/recuperar.module#RecuperarPageModule', name: 'RecuperarPage', segment: 'recuperar', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/reserva-hecha/reserva-hecha.module#ReservaHechaPageModule', name: 'ReservaHechaPage', segment: 'reserva-hecha', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/mis-reservas/mis-reservas.module#MisReservasPageModule', name: 'MisReservasPage', segment: 'mis-reservas', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/reserva/reserva.module#ReservaPageModule', name: 'ReservaPage', segment: 'reserva', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/verificacion/verificacion.module#VerificacionPageModule', name: 'VerificacionPage', segment: 'verificacion', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/resultados/resultados.module#ResultadosPageModule', name: 'ResultadosPage', segment: 'resultados', priority: 'low', defaultHistory: [] }
+                        { loadChildren: '../pages/resultados/resultados.module#ResultadosPageModule', name: 'ResultadosPage', segment: 'resultados', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/reserva-hecha/reserva-hecha.module#ReservaHechaPageModule', name: 'ReservaHechaPage', segment: 'reserva-hecha', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/verificacion/verificacion.module#VerificacionPageModule', name: 'VerificacionPage', segment: 'verificacion', priority: 'low', defaultHistory: [] }
                     ]
                 }),
                 __WEBPACK_IMPORTED_MODULE_7__ionic_storage__["a" /* IonicStorageModule */].forRoot()
@@ -897,263 +915,265 @@ var AppModule = (function () {
                 { provide: __WEBPACK_IMPORTED_MODULE_1__angular_core__["ErrorHandler"], useClass: __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["IonicErrorHandler"] },
                 __WEBPACK_IMPORTED_MODULE_11__providers_api_api__["a" /* ApiProvider */]
             ]
-        })
+        }),
+        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["Config"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["Config"]) === "function" && _a || Object])
     ], AppModule);
     return AppModule;
+    var _a;
 }());
 
 //# sourceMappingURL=app.module.js.map
 
 /***/ }),
 
-/***/ 392:
+/***/ 393:
 /***/ (function(module, exports, __webpack_require__) {
 
 var map = {
-	"./af": 161,
-	"./af.js": 161,
-	"./ar": 162,
-	"./ar-dz": 163,
-	"./ar-dz.js": 163,
-	"./ar-kw": 164,
-	"./ar-kw.js": 164,
-	"./ar-ly": 165,
-	"./ar-ly.js": 165,
-	"./ar-ma": 166,
-	"./ar-ma.js": 166,
-	"./ar-sa": 167,
-	"./ar-sa.js": 167,
-	"./ar-tn": 168,
-	"./ar-tn.js": 168,
-	"./ar.js": 162,
-	"./az": 169,
-	"./az.js": 169,
-	"./be": 170,
-	"./be.js": 170,
-	"./bg": 171,
-	"./bg.js": 171,
-	"./bm": 172,
-	"./bm.js": 172,
-	"./bn": 173,
-	"./bn.js": 173,
-	"./bo": 174,
-	"./bo.js": 174,
-	"./br": 175,
-	"./br.js": 175,
-	"./bs": 176,
-	"./bs.js": 176,
-	"./ca": 177,
-	"./ca.js": 177,
-	"./cs": 178,
-	"./cs.js": 178,
-	"./cv": 179,
-	"./cv.js": 179,
-	"./cy": 180,
-	"./cy.js": 180,
-	"./da": 181,
-	"./da.js": 181,
-	"./de": 182,
-	"./de-at": 183,
-	"./de-at.js": 183,
-	"./de-ch": 184,
-	"./de-ch.js": 184,
-	"./de.js": 182,
-	"./dv": 185,
-	"./dv.js": 185,
-	"./el": 186,
-	"./el.js": 186,
-	"./en-au": 187,
-	"./en-au.js": 187,
-	"./en-ca": 188,
-	"./en-ca.js": 188,
-	"./en-gb": 189,
-	"./en-gb.js": 189,
-	"./en-ie": 190,
-	"./en-ie.js": 190,
-	"./en-il": 191,
-	"./en-il.js": 191,
-	"./en-nz": 192,
-	"./en-nz.js": 192,
-	"./eo": 193,
-	"./eo.js": 193,
-	"./es": 194,
-	"./es-do": 195,
-	"./es-do.js": 195,
-	"./es-us": 196,
-	"./es-us.js": 196,
-	"./es.js": 194,
-	"./et": 197,
-	"./et.js": 197,
-	"./eu": 198,
-	"./eu.js": 198,
-	"./fa": 199,
-	"./fa.js": 199,
-	"./fi": 200,
-	"./fi.js": 200,
-	"./fo": 201,
-	"./fo.js": 201,
-	"./fr": 202,
-	"./fr-ca": 203,
-	"./fr-ca.js": 203,
-	"./fr-ch": 204,
-	"./fr-ch.js": 204,
-	"./fr.js": 202,
-	"./fy": 205,
-	"./fy.js": 205,
-	"./gd": 206,
-	"./gd.js": 206,
-	"./gl": 207,
-	"./gl.js": 207,
-	"./gom-latn": 208,
-	"./gom-latn.js": 208,
-	"./gu": 209,
-	"./gu.js": 209,
-	"./he": 210,
-	"./he.js": 210,
-	"./hi": 211,
-	"./hi.js": 211,
-	"./hr": 212,
-	"./hr.js": 212,
-	"./hu": 213,
-	"./hu.js": 213,
-	"./hy-am": 214,
-	"./hy-am.js": 214,
-	"./id": 215,
-	"./id.js": 215,
-	"./is": 216,
-	"./is.js": 216,
-	"./it": 217,
-	"./it.js": 217,
-	"./ja": 218,
-	"./ja.js": 218,
-	"./jv": 219,
-	"./jv.js": 219,
-	"./ka": 220,
-	"./ka.js": 220,
-	"./kk": 221,
-	"./kk.js": 221,
-	"./km": 222,
-	"./km.js": 222,
-	"./kn": 223,
-	"./kn.js": 223,
-	"./ko": 224,
-	"./ko.js": 224,
-	"./ky": 225,
-	"./ky.js": 225,
-	"./lb": 226,
-	"./lb.js": 226,
-	"./lo": 227,
-	"./lo.js": 227,
-	"./lt": 228,
-	"./lt.js": 228,
-	"./lv": 229,
-	"./lv.js": 229,
-	"./me": 230,
-	"./me.js": 230,
-	"./mi": 231,
-	"./mi.js": 231,
-	"./mk": 232,
-	"./mk.js": 232,
-	"./ml": 233,
-	"./ml.js": 233,
-	"./mr": 234,
-	"./mr.js": 234,
-	"./ms": 235,
-	"./ms-my": 236,
-	"./ms-my.js": 236,
-	"./ms.js": 235,
-	"./mt": 237,
-	"./mt.js": 237,
-	"./my": 238,
-	"./my.js": 238,
-	"./nb": 239,
-	"./nb.js": 239,
-	"./ne": 240,
-	"./ne.js": 240,
-	"./nl": 241,
-	"./nl-be": 242,
-	"./nl-be.js": 242,
-	"./nl.js": 241,
-	"./nn": 243,
-	"./nn.js": 243,
-	"./pa-in": 244,
-	"./pa-in.js": 244,
-	"./pl": 245,
-	"./pl.js": 245,
-	"./pt": 246,
-	"./pt-br": 247,
-	"./pt-br.js": 247,
-	"./pt.js": 246,
-	"./ro": 248,
-	"./ro.js": 248,
-	"./ru": 249,
-	"./ru.js": 249,
-	"./sd": 250,
-	"./sd.js": 250,
-	"./se": 251,
-	"./se.js": 251,
-	"./si": 252,
-	"./si.js": 252,
-	"./sk": 253,
-	"./sk.js": 253,
-	"./sl": 254,
-	"./sl.js": 254,
-	"./sq": 255,
-	"./sq.js": 255,
-	"./sr": 256,
-	"./sr-cyrl": 257,
-	"./sr-cyrl.js": 257,
-	"./sr.js": 256,
-	"./ss": 258,
-	"./ss.js": 258,
-	"./sv": 259,
-	"./sv.js": 259,
-	"./sw": 260,
-	"./sw.js": 260,
-	"./ta": 261,
-	"./ta.js": 261,
-	"./te": 262,
-	"./te.js": 262,
-	"./tet": 263,
-	"./tet.js": 263,
-	"./tg": 264,
-	"./tg.js": 264,
-	"./th": 265,
-	"./th.js": 265,
-	"./tl-ph": 266,
-	"./tl-ph.js": 266,
-	"./tlh": 267,
-	"./tlh.js": 267,
-	"./tr": 268,
-	"./tr.js": 268,
-	"./tzl": 269,
-	"./tzl.js": 269,
-	"./tzm": 270,
-	"./tzm-latn": 271,
-	"./tzm-latn.js": 271,
-	"./tzm.js": 270,
-	"./ug-cn": 272,
-	"./ug-cn.js": 272,
-	"./uk": 273,
-	"./uk.js": 273,
-	"./ur": 274,
-	"./ur.js": 274,
-	"./uz": 275,
-	"./uz-latn": 276,
-	"./uz-latn.js": 276,
-	"./uz.js": 275,
-	"./vi": 277,
-	"./vi.js": 277,
-	"./x-pseudo": 278,
-	"./x-pseudo.js": 278,
-	"./yo": 279,
-	"./yo.js": 279,
-	"./zh-cn": 280,
-	"./zh-cn.js": 280,
-	"./zh-hk": 281,
-	"./zh-hk.js": 281,
-	"./zh-tw": 282,
-	"./zh-tw.js": 282
+	"./af": 162,
+	"./af.js": 162,
+	"./ar": 163,
+	"./ar-dz": 164,
+	"./ar-dz.js": 164,
+	"./ar-kw": 165,
+	"./ar-kw.js": 165,
+	"./ar-ly": 166,
+	"./ar-ly.js": 166,
+	"./ar-ma": 167,
+	"./ar-ma.js": 167,
+	"./ar-sa": 168,
+	"./ar-sa.js": 168,
+	"./ar-tn": 169,
+	"./ar-tn.js": 169,
+	"./ar.js": 163,
+	"./az": 170,
+	"./az.js": 170,
+	"./be": 171,
+	"./be.js": 171,
+	"./bg": 172,
+	"./bg.js": 172,
+	"./bm": 173,
+	"./bm.js": 173,
+	"./bn": 174,
+	"./bn.js": 174,
+	"./bo": 175,
+	"./bo.js": 175,
+	"./br": 176,
+	"./br.js": 176,
+	"./bs": 177,
+	"./bs.js": 177,
+	"./ca": 178,
+	"./ca.js": 178,
+	"./cs": 179,
+	"./cs.js": 179,
+	"./cv": 180,
+	"./cv.js": 180,
+	"./cy": 181,
+	"./cy.js": 181,
+	"./da": 182,
+	"./da.js": 182,
+	"./de": 183,
+	"./de-at": 184,
+	"./de-at.js": 184,
+	"./de-ch": 185,
+	"./de-ch.js": 185,
+	"./de.js": 183,
+	"./dv": 186,
+	"./dv.js": 186,
+	"./el": 187,
+	"./el.js": 187,
+	"./en-au": 188,
+	"./en-au.js": 188,
+	"./en-ca": 189,
+	"./en-ca.js": 189,
+	"./en-gb": 190,
+	"./en-gb.js": 190,
+	"./en-ie": 191,
+	"./en-ie.js": 191,
+	"./en-il": 192,
+	"./en-il.js": 192,
+	"./en-nz": 193,
+	"./en-nz.js": 193,
+	"./eo": 194,
+	"./eo.js": 194,
+	"./es": 195,
+	"./es-do": 196,
+	"./es-do.js": 196,
+	"./es-us": 197,
+	"./es-us.js": 197,
+	"./es.js": 195,
+	"./et": 198,
+	"./et.js": 198,
+	"./eu": 199,
+	"./eu.js": 199,
+	"./fa": 200,
+	"./fa.js": 200,
+	"./fi": 201,
+	"./fi.js": 201,
+	"./fo": 202,
+	"./fo.js": 202,
+	"./fr": 203,
+	"./fr-ca": 204,
+	"./fr-ca.js": 204,
+	"./fr-ch": 205,
+	"./fr-ch.js": 205,
+	"./fr.js": 203,
+	"./fy": 206,
+	"./fy.js": 206,
+	"./gd": 207,
+	"./gd.js": 207,
+	"./gl": 208,
+	"./gl.js": 208,
+	"./gom-latn": 209,
+	"./gom-latn.js": 209,
+	"./gu": 210,
+	"./gu.js": 210,
+	"./he": 211,
+	"./he.js": 211,
+	"./hi": 212,
+	"./hi.js": 212,
+	"./hr": 213,
+	"./hr.js": 213,
+	"./hu": 214,
+	"./hu.js": 214,
+	"./hy-am": 215,
+	"./hy-am.js": 215,
+	"./id": 216,
+	"./id.js": 216,
+	"./is": 217,
+	"./is.js": 217,
+	"./it": 218,
+	"./it.js": 218,
+	"./ja": 219,
+	"./ja.js": 219,
+	"./jv": 220,
+	"./jv.js": 220,
+	"./ka": 221,
+	"./ka.js": 221,
+	"./kk": 222,
+	"./kk.js": 222,
+	"./km": 223,
+	"./km.js": 223,
+	"./kn": 224,
+	"./kn.js": 224,
+	"./ko": 225,
+	"./ko.js": 225,
+	"./ky": 226,
+	"./ky.js": 226,
+	"./lb": 227,
+	"./lb.js": 227,
+	"./lo": 228,
+	"./lo.js": 228,
+	"./lt": 229,
+	"./lt.js": 229,
+	"./lv": 230,
+	"./lv.js": 230,
+	"./me": 231,
+	"./me.js": 231,
+	"./mi": 232,
+	"./mi.js": 232,
+	"./mk": 233,
+	"./mk.js": 233,
+	"./ml": 234,
+	"./ml.js": 234,
+	"./mr": 235,
+	"./mr.js": 235,
+	"./ms": 236,
+	"./ms-my": 237,
+	"./ms-my.js": 237,
+	"./ms.js": 236,
+	"./mt": 238,
+	"./mt.js": 238,
+	"./my": 239,
+	"./my.js": 239,
+	"./nb": 240,
+	"./nb.js": 240,
+	"./ne": 241,
+	"./ne.js": 241,
+	"./nl": 242,
+	"./nl-be": 243,
+	"./nl-be.js": 243,
+	"./nl.js": 242,
+	"./nn": 244,
+	"./nn.js": 244,
+	"./pa-in": 245,
+	"./pa-in.js": 245,
+	"./pl": 246,
+	"./pl.js": 246,
+	"./pt": 247,
+	"./pt-br": 248,
+	"./pt-br.js": 248,
+	"./pt.js": 247,
+	"./ro": 249,
+	"./ro.js": 249,
+	"./ru": 250,
+	"./ru.js": 250,
+	"./sd": 251,
+	"./sd.js": 251,
+	"./se": 252,
+	"./se.js": 252,
+	"./si": 253,
+	"./si.js": 253,
+	"./sk": 254,
+	"./sk.js": 254,
+	"./sl": 255,
+	"./sl.js": 255,
+	"./sq": 256,
+	"./sq.js": 256,
+	"./sr": 257,
+	"./sr-cyrl": 258,
+	"./sr-cyrl.js": 258,
+	"./sr.js": 257,
+	"./ss": 259,
+	"./ss.js": 259,
+	"./sv": 260,
+	"./sv.js": 260,
+	"./sw": 261,
+	"./sw.js": 261,
+	"./ta": 262,
+	"./ta.js": 262,
+	"./te": 263,
+	"./te.js": 263,
+	"./tet": 264,
+	"./tet.js": 264,
+	"./tg": 265,
+	"./tg.js": 265,
+	"./th": 266,
+	"./th.js": 266,
+	"./tl-ph": 267,
+	"./tl-ph.js": 267,
+	"./tlh": 268,
+	"./tlh.js": 268,
+	"./tr": 269,
+	"./tr.js": 269,
+	"./tzl": 270,
+	"./tzl.js": 270,
+	"./tzm": 271,
+	"./tzm-latn": 272,
+	"./tzm-latn.js": 272,
+	"./tzm.js": 271,
+	"./ug-cn": 273,
+	"./ug-cn.js": 273,
+	"./uk": 274,
+	"./uk.js": 274,
+	"./ur": 275,
+	"./ur.js": 275,
+	"./uz": 276,
+	"./uz-latn": 277,
+	"./uz-latn.js": 277,
+	"./uz.js": 276,
+	"./vi": 278,
+	"./vi.js": 278,
+	"./x-pseudo": 279,
+	"./x-pseudo.js": 279,
+	"./yo": 280,
+	"./yo.js": 280,
+	"./zh-cn": 281,
+	"./zh-cn.js": 281,
+	"./zh-hk": 282,
+	"./zh-hk.js": 282,
+	"./zh-tw": 283,
+	"./zh-tw.js": 283
 };
 function webpackContext(req) {
 	return __webpack_require__(webpackContextResolve(req));
@@ -1169,7 +1189,7 @@ webpackContext.keys = function webpackContextKeys() {
 };
 webpackContext.resolve = webpackContextResolve;
 module.exports = webpackContext;
-webpackContext.id = 392;
+webpackContext.id = 393;
 
 /***/ }),
 
@@ -1520,8 +1540,8 @@ var MyApp = (function () {
             //end init demo verification
             //init Push tasks
             // if(this.platform.is('android') || this.platform.is('ios')){
-            if (_this.platform.is('android') || _this.platform.is('ios')) {
-                // if(false){
+            //if(this.platform.is('android') || this.platform.is('ios')){
+            if (false) {
                 console.log('amhere1');
                 //PUSH FUNCIONANDO
                 var push = PushNotification.init({
@@ -1713,7 +1733,7 @@ var MyApp = (function () {
         __metadata("design:type", Object)
     ], MyApp.prototype, "slider", void 0);
     MyApp = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({template:/*ion-inline-start:"/Users/jose/Documents/beyouApp/beYou/src/app/app.html"*/'<ion-menu [content]="content" type=\'overlay\'>\n<!--   <ion-header>\n    <ion-toolbar>\n      <ion-title>Menu</ion-title>\n    </ion-toolbar>\n  </ion-header> -->\n\n  <ion-content style=\'    background-color: #fafafa;\'>\n\n  <div *ngIf=\'!menuActivo\'>\n  <div>\n    <div style="background-color:#36609F;margin: 20px 17px;border-radius: 30px;color: white;text-align: center;font-size: 15px;">\n    <img src="assets/imgs/Facebook.png" style="\n    vertical-align: middle;\n    margin-right: 10px;\n    ">\n    <img src="assets/imgs/Sep.png" style="\n    vertical-align: middle;\n    padding-top:  10px;\n    padding-bottom: 10px;\n    ">\n    <span (click)=\'facebookLogin()\' style="\n    ">Continuar con Facebook</span>\n    </div>\n\n<div style="\n    margin: 0px 17px;\n    text-align: center;\n    /* height: 300px; */\n">\n         <img src="assets/imgs/Sep2.png" style="\n    width: 40%;\n    display: inline-block;\n    height: 2px;\n    vertical-align: middle;\n"><span style="\n    display: inline-block;\n    margin: 0px 10px;\n">OR</span> <img src="assets/imgs/Sep2.png" style="\n    width: 40%;\n    display: inline-block;\n    height: 2px;\n    vertical-align: middle;\n">\n    </div>\n\n    <div style="\n    margin: 0px 17px;">\n\n    <form [formGroup]="authForm" (ngSubmit)="doLogin(authForm.value)">\n\n              <ion-item style=\'    padding: 0px 13px 0px 0px;\n    background-color: white !important;\n    border-radius: 60px;\n    border: solid 1px #EC527E;\n    margin: 26px 0px;\'>\n            <ion-label style=\' color: #e6e6e6;   position: absolute;\n    right: 16px;\n    font-size: 21px;\'>\n                  <ion-icon   ios="md-mail" md="md-mail" ></ion-icon>\n            </ion-label>\n            <ion-input placeholder=\'Email\' class=\'inputT\'  formControlName="username" type="text"></ion-input>\n        </ion-item>\n  \n        <ion-item *ngIf="authForm.controls.username.hasError(\'required\') && authForm.controls.username.touched">\n            <p>Email invalido</p>\n        </ion-item>\n        <ion-item *ngIf="authForm.controls.username.hasError(\'pattern\') && authForm.controls.username.touched">\n            <p>Email invalido</p>\n        </ion-item>        \n        <ion-item *ngIf="authForm.controls.username.hasError(\'minlength\') && authForm.controls.username.touched">\n            <p>Sorry, minimum username length is 8!</p>\n        </ion-item>\n        <ion-item *ngIf="authForm.controls.username.hasError(\'maxlength\') && authForm.controls.username.touched">\n            <p>Sorry, maximum username length is 30!</p>\n        </ion-item>\n  \n                   <ion-item style=\'    padding: 0px 13px 0px 0px;\n    background-color: white !important;\n    border-radius: 60px;\n    border: solid 1px #EC527E;\n    margin: 26px 0px;\'>\n            <ion-label style=\' color: #e6e6e6;   position: absolute;\n    right: 16px;\n    font-size: 21px;\'>\n                  <ion-icon   ios="md-lock" md="md-lock" ></ion-icon>\n            </ion-label>\n            <ion-input placeholder=\'Contraseña\' class=\'inputT\'  formControlName="password" type="password"></ion-input>\n        </ion-item>\n        <ion-item *ngIf="authForm.controls.password.hasError(\'required\') && authForm.controls.password.touched">\n            <p>Contraseña invalida</p>\n        </ion-item>\n        <ion-item *ngIf="authForm.controls.password.hasError(\'minlength\') && authForm.controls.password.touched">\n            <p>Contraseña invalida</p>\n        </ion-item>                \n  \n        <button ion-button full color="verdeApp" [disabled]="!authForm.valid" style="    border-radius: 40px;margin-top: 20px;" type="submit">Login</button>        \n    </form>\n\n\n    </div>\n\n  </div>\n\n\n    <ion-list style=\'margin-top:30px\'>\n\n<!--       <button style="background-color: #fafafa;margin-top: 10px; font-size: 15px;    border-bottom: solid 0.5px #80808045; color:#3d3f4a" menuClose ion-item *ngFor="let p of [\'Olvidé mi contraseña\']">\n       {{p}}\n\n      \n\n      </button>\n -->\n      <button (click)=\'recupeCon()\' style="background-color: #fafafa;margin-top: 10px; font-size: 15px;    border-bottom: solid 0.5px #80808045; color:#3d3f4a" menuClose ion-item >\n       Olvidé mi contraseña\n      \n\n      </button>\n\n\n\n      <button  (click)=\'registroNegocio()\' style="background-color: #fafafa;margin-top: 10px; font-size: 15px;    border-bottom: solid 0.5px #80808045; color:#3d3f4a" menuClose ion-item >\n       YOURBEAUTY para negocios\n      \n\n      </button>\n\n\n      <button (click)=\'presentProfileModal2()\' style="background-color: #fafafa;margin-top: 10px; font-size: 15px;    border-bottom: solid 0.5px #80808045; color:#3d3f4a" menuClose ion-item >\n       Registrate en YOURBEAUTY\n      \n\n      </button>\n\n\n\n\n\n    </ion-list>\n<div style="width:100%; height:40px"></div>\n\n\n    <div style="padding-left: 16px;\n    padding-right: 16px;\n     padding-bottom: 10px;\n    color: darkgray;\n    font-size: 15px;\n    position: fixed;\n    bottom: 0;\n    background: #fafafa;\n    z-index: 10;">Al registrarte e iniciar sesion en YOURBEAUTY aceptas nuestros <a>terminos y condiciones de servicio</a></div>\n\n    </div>\n\n    <div *ngIf=\'menuActivo\'>\n        <ion-item style=\'margin-top: 0px;\' class=\'fixProfileMargin\' menuClose (click)=\'goPagina("CuentaPage")\' >\n          <ion-avatar item-start>\n\n          <img [hidden]=\'userDataProfile?.imagenFb\'  style=\'width:75px; height: 75px\'  src="http://50.116.17.150:3000/{{userDataProfile?.idFoto}}" \n        onError="this.src=\'assets/imgs/usuario.png\';">\n\n         <img *ngIf="userDataProfile?.imagenFb"   style=\'width:75px; height: 75px\' src="{{userDataProfile?.imagenFb}}" \n        onError="this.src=\'assets/imgs/usuario.png\';" />\n\n\n          </ion-avatar>\n          <h2 style="margin-bottom: 23px;">{{userDataProfile?.nombre || \'Desconocido\'}}</h2>\n          <div class="barraContainer">\n            <div class="barraProgress" [ngStyle]="{\'width\': porcenBarra}"  ><span>{{(userDataProfile?.exp) || 0}}/{{userDataProfile?.appexp || 0}}</span></div>\n          </div>\n        </ion-item>\n\n          <ion-list>\n          <button (click)=\'goPagina(p.pagina)\' style="background-color: #fafafa; font-size: 14px;    border-bottom: solid 1px rgb(226, 226, 226) !important; color:#3d3f4a" menuClose ion-item *ngFor="let p of [{nombre:\'Servicios\', img:\'listVerde.png\', pagina: \'InicioPage\'},{nombre:\'Reservaciones\', img:\'reservation.png\', pagina: \'MisReservasPage\'},\n          {nombre:\'Favoritos\', img:\'corazonVerde.png\', pagina: \'FavoritosPage\'},\n          {nombre:\'Opiniones\', img:\'opiniones.png\', pagina: \'OpinionesPage\'},\n          {nombre:\'Cupones / Regalos\', img:\'cupones.png\',  pagina: \'CuponesPage\'},\n          {nombre:\'Ofertas\', img:\'ofertas.png\', pagina: \'OfertasPage\' }]" >\n\n          {{p.nombre}}\n\n          <img style=\'float: right;\' src="assets/imgs/{{p.img}}">\n\n          </button>\n\n\n\n\n          </ion-list>\n\n\n          <ion-list style=\'    margin-top: 0px !important;\n    position: absolute;\n    width: 100%;\n    bottom: 0px;\n    margin-bottom: 0px !important;\'>\n          <button   (click)=\'goPagina(p.pagina)\' style="background-color: #fafafa; font-size: 14px;    border-bottom: solid 1px rgb(226, 226, 226) !important; color:#3d3f4a" menuClose ion-item *ngFor="let p of [\n          {nombre:\'Ajustes\', img:\'ajustes.png\', pagina: \'AjustesPage\'},\n          {nombre:\'Ayuda\', img:\'ayuda.png\', pagina: \'AyudaPage\'},\n          {nombre:\'Mi Cuenta\', img:\'perfil.png\', pagina: \'CuentaPage\'},\n          {nombre:\'Salir\', img:\'salir.png\', pagina: \'logout\' }]" >\n\n          {{p.nombre}}\n\n          <img style=\'float: right;\' src="assets/imgs/{{p.img}}">\n\n          </button>\n\n\n\n          </ion-list>\n\n\n\n\n\n    </div>\n\n\n  </ion-content>\n\n</ion-menu>\n\n<!-- Disable swipe-to-go-back because it\'s poor UX to combine STGB with side menus -->\n<ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>'/*ion-inline-end:"/Users/jose/Documents/beyouApp/beYou/src/app/app.html"*/
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({template:/*ion-inline-start:"/Users/jose/Documents/beyouApp/beYou/src/app/app.html"*/'<ion-menu [content]="content" type=\'overlay\'>\n<!--   <ion-header>\n    <ion-toolbar>\n      <ion-title>Menu</ion-title>\n    </ion-toolbar>\n  </ion-header> -->\n  <ion-content style=\'    background-color: #fafafa;\'>\n\n  <div *ngIf=\'!menuActivo\'>\n  <div>\n    <div style="background-color:#36609F;margin: 20px 17px;border-radius: 30px;color: white;text-align: center;font-size: 15px;">\n    <img src="assets/imgs/Facebook.png" style="\n    vertical-align: middle;\n    margin-right: 10px;\n    ">\n    <img src="assets/imgs/Sep.png" style="\n    vertical-align: middle;\n    padding-top:  10px;\n    padding-bottom: 10px;\n    ">\n    <span (click)=\'facebookLogin()\' style="\n    ">Continuar con Facebook</span>\n    </div>\n\n<div style="\n    margin: 0px 17px;\n    text-align: center;\n    /* height: 300px; */\n">\n         <img src="assets/imgs/Sep2.png" style="\n    width: 40%;\n    display: inline-block;\n    height: 2px;\n    vertical-align: middle;\n"><span style="\n    display: inline-block;\n    margin: 0px 10px;\n">OR</span> <img src="assets/imgs/Sep2.png" style="\n    width: 40%;\n    display: inline-block;\n    height: 2px;\n    vertical-align: middle;\n">\n    </div>\n\n    <div style="\n    margin: 0px 17px;">\n\n    <form [formGroup]="authForm" (ngSubmit)="doLogin(authForm.value)">\n\n              <ion-item style=\'    padding: 0px 13px 0px 0px;\n    background-color: white !important;\n    border-radius: 60px;\n    border: solid 1px #EC527E;\n    margin: 26px 0px;\'>\n            <ion-label style=\' color: #e6e6e6;   position: absolute;\n    right: 16px;\n    font-size: 21px;\'>\n                  <ion-icon   ios="md-mail" md="md-mail" ></ion-icon>\n            </ion-label>\n            <ion-input placeholder=\'Email\' class=\'inputT\'  formControlName="username" type="text"></ion-input>\n        </ion-item>\n  \n        <ion-item *ngIf="authForm.controls.username.hasError(\'required\') && authForm.controls.username.touched">\n            <p>Email invalido</p>\n        </ion-item>\n        <ion-item *ngIf="authForm.controls.username.hasError(\'pattern\') && authForm.controls.username.touched">\n            <p>Email invalido</p>\n        </ion-item>        \n        <ion-item *ngIf="authForm.controls.username.hasError(\'minlength\') && authForm.controls.username.touched">\n            <p>Sorry, minimum username length is 8!</p>\n        </ion-item>\n        <ion-item *ngIf="authForm.controls.username.hasError(\'maxlength\') && authForm.controls.username.touched">\n            <p>Sorry, maximum username length is 30!</p>\n        </ion-item>\n  \n                   <ion-item style=\'    padding: 0px 13px 0px 0px;\n    background-color: white !important;\n    border-radius: 60px;\n    border: solid 1px #EC527E;\n    margin: 26px 0px;\'>\n            <ion-label style=\' color: #e6e6e6;   position: absolute;\n    right: 16px;\n    font-size: 21px;\'>\n                  <ion-icon   ios="md-lock" md="md-lock" ></ion-icon>\n            </ion-label>\n            <ion-input placeholder=\'Contraseña\' class=\'inputT\'  formControlName="password" type="password"></ion-input>\n        </ion-item>\n        <ion-item *ngIf="authForm.controls.password.hasError(\'required\') && authForm.controls.password.touched">\n            <p>Contraseña invalida</p>\n        </ion-item>\n        <ion-item *ngIf="authForm.controls.password.hasError(\'minlength\') && authForm.controls.password.touched">\n            <p>Contraseña invalida</p>\n        </ion-item>                \n  \n        <button ion-button full color="verdeApp" [disabled]="!authForm.valid" style="    border-radius: 40px;margin-top: 20px;" type="submit">Login</button>        \n    </form>\n\n\n    </div>\n\n  </div>\n\n\n    <ion-list style=\'margin-top:30px\'>\n\n<!--       <button style="background-color: #fafafa;margin-top: 10px; font-size: 15px;    border-bottom: solid 0.5px #80808045; color:#3d3f4a" menuClose ion-item *ngFor="let p of [\'Olvidé mi contraseña\']">\n       {{p}}\n\n      \n\n      </button>\n -->\n      <button (click)=\'recupeCon()\' style="background-color: #fafafa;margin-top: 10px; font-size: 15px;    border-bottom: solid 0.5px #80808045; color:#3d3f4a" menuClose ion-item >\n       Olvidé mi contraseña\n      \n\n      </button>\n\n\n\n      <button  (click)=\'registroNegocio()\' style="background-color: #fafafa;margin-top: 10px; font-size: 15px;    border-bottom: solid 0.5px #80808045; color:#3d3f4a" menuClose ion-item >\n       YOURBEAUTY para negocios\n      \n\n      </button>\n\n\n      <button (click)=\'presentProfileModal2()\' style="background-color: #fafafa;margin-top: 10px; font-size: 15px;    border-bottom: solid 0.5px #80808045; color:#3d3f4a" menuClose ion-item >\n       Registrate en YOURBEAUTY\n      \n\n      </button>\n\n\n\n\n\n    </ion-list>\n<div style="width:100%; height:40px"></div>\n\n\n    <div style="padding-left: 16px;\n    padding-right: 16px;\n     padding-bottom: 10px;\n    color: darkgray;\n    font-size: 15px;\n    position: fixed;\n    bottom: 0;\n    background: #fafafa;\n    z-index: 10;">Al registrarte e iniciar sesion en YOURBEAUTY aceptas nuestros <a>terminos y condiciones de servicio</a></div>\n\n    </div>\n\n    <div *ngIf=\'menuActivo\'>\n        <ion-item style=\'margin-top: 0px;\' class=\'fixProfileMargin\' menuClose (click)=\'goPagina("CuentaPage")\' >\n          <ion-avatar item-start>\n\n          <img [hidden]=\'userDataProfile?.imagenFb\'  style=\'width:75px; height: 75px\'  src="http://50.116.17.150:3000/{{userDataProfile?.idFoto}}" \n        onError="this.src=\'assets/imgs/usuario.png\';">\n\n         <img *ngIf="userDataProfile?.imagenFb"   style=\'width:75px; height: 75px\' src="{{userDataProfile?.imagenFb}}" \n        onError="this.src=\'assets/imgs/usuario.png\';" />\n\n\n          </ion-avatar>\n          <h2 style="margin-bottom: 23px;">{{userDataProfile?.nombre || \'Desconocido\'}}</h2>\n          <div class="barraContainer">\n            <div class="barraProgress" [ngStyle]="{\'width\': porcenBarra}"  ><span>{{(userDataProfile?.exp) || 0}}/{{userDataProfile?.appexp || 0}}</span></div>\n          </div>\n        </ion-item>\n\n          <ion-list>\n          <button (click)=\'goPagina(p.pagina)\' style="background-color: #fafafa; font-size: 14px;    border-bottom: solid 1px rgb(226, 226, 226) !important; color:#3d3f4a" menuClose ion-item *ngFor="let p of [{nombre:\'Servicios\', img:\'listVerde.png\', pagina: \'InicioPage\'},{nombre:\'Reservaciones\', img:\'reservation.png\', pagina: \'MisReservasPage\'},\n          {nombre:\'Favoritos\', img:\'corazonVerde.png\', pagina: \'FavoritosPage\'},\n          {nombre:\'Opiniones\', img:\'opiniones.png\', pagina: \'OpinionesPage\'},\n          {nombre:\'Cupones / Regalos\', img:\'cupones.png\',  pagina: \'CuponesPage\'},\n          {nombre:\'Ofertas\', img:\'ofertas.png\', pagina: \'OfertasPage\' }]" >\n\n          {{p.nombre}}\n\n          <img style=\'float: right;\' src="assets/imgs/{{p.img}}">\n\n          </button>\n\n\n\n\n          </ion-list>\n\n\n          <ion-list style=\'    margin-top: 0px !important;\n    position: absolute;\n    width: 100%;\n    bottom: 0px;\n    margin-bottom: 0px !important;\'>\n          <button   (click)=\'goPagina(p.pagina)\' style="background-color: #fafafa; font-size: 14px;    border-bottom: solid 1px rgb(226, 226, 226) !important; color:#3d3f4a" menuClose ion-item *ngFor="let p of [\n          {nombre:\'Ajustes\', img:\'ajustes.png\', pagina: \'AjustesPage\'},\n          {nombre:\'Ayuda\', img:\'ayuda.png\', pagina: \'AyudaPage\'},\n          {nombre:\'Mi Cuenta\', img:\'perfil.png\', pagina: \'CuentaPage\'},\n          {nombre:\'Salir\', img:\'salir.png\', pagina: \'logout\' }]" >\n\n          {{p.nombre}}\n\n          <img style=\'float: right;\' src="assets/imgs/{{p.img}}">\n\n          </button>\n\n\n\n          </ion-list>\n\n\n\n\n\n    </div>\n\n\n  </ion-content>\n\n</ion-menu>\n\n<!-- Disable swipe-to-go-back because it\'s poor UX to combine STGB with side menus -->\n<ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>'/*ion-inline-end:"/Users/jose/Documents/beyouApp/beYou/src/app/app.html"*/
         }),
         __metadata("design:paramtypes", [typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["Platform"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["Platform"]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__["a" /* StatusBar */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__["a" /* StatusBar */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["AlertController"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["AlertController"]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["MenuController"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["MenuController"]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__["a" /* SplashScreen */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__["a" /* SplashScreen */]) === "function" && _f || Object, typeof (_g = typeof __WEBPACK_IMPORTED_MODULE_4__angular_forms__["FormBuilder"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__angular_forms__["FormBuilder"]) === "function" && _g || Object, typeof (_h = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["Events"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["Events"]) === "function" && _h || Object, typeof (_j = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["LoadingController"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["LoadingController"]) === "function" && _j || Object, typeof (_k = typeof __WEBPACK_IMPORTED_MODULE_6__ionic_storage__["b" /* Storage */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_6__ionic_storage__["b" /* Storage */]) === "function" && _k || Object, typeof (_l = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["ModalController"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["ModalController"]) === "function" && _l || Object, typeof (_m = typeof __WEBPACK_IMPORTED_MODULE_5__providers_api_api__["a" /* ApiProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5__providers_api_api__["a" /* ApiProvider */]) === "function" && _m || Object])
     ], MyApp);
@@ -1722,6 +1742,91 @@ var MyApp = (function () {
 }());
 
 //# sourceMappingURL=app.component.js.map
+
+/***/ }),
+
+/***/ 486:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ModalScaleLeaveTransition; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_ionic_angular__ = __webpack_require__(14);
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+
+var ModalScaleLeaveTransition = (function (_super) {
+    __extends(ModalScaleLeaveTransition, _super);
+    function ModalScaleLeaveTransition() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    ModalScaleLeaveTransition.prototype.init = function () {
+        var ele = this.leavingView.pageRef().nativeElement;
+        var wrapper = new __WEBPACK_IMPORTED_MODULE_0_ionic_angular__["Animation"](this.plt, ele.querySelector('.modal-wrapper'));
+        var contentWrapper = new __WEBPACK_IMPORTED_MODULE_0_ionic_angular__["Animation"](this.plt, ele.querySelector('.wrapper'));
+        wrapper.beforeStyles({ 'transform': 'scale(1.0)', 'opacity': 1 });
+        wrapper.fromTo('transform', 'scale(1.0)', 'scale(0)');
+        wrapper.fromTo('opacity', 1, 1);
+        contentWrapper.fromTo('opacity', 1, 0);
+        this
+            .element(this.leavingView.pageRef())
+            .duration(500)
+            .easing('cubic-bezier(.1, .7, .1, 1)')
+            .add(contentWrapper)
+            .add(wrapper);
+    };
+    return ModalScaleLeaveTransition;
+}(__WEBPACK_IMPORTED_MODULE_0_ionic_angular__["PageTransition"]));
+
+//# sourceMappingURL=on-leave-scale.transition.js.map
+
+/***/ }),
+
+/***/ 487:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ModalScaleEnterTransition; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_ionic_angular__ = __webpack_require__(14);
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+
+var ModalScaleEnterTransition = (function (_super) {
+    __extends(ModalScaleEnterTransition, _super);
+    function ModalScaleEnterTransition() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    ModalScaleEnterTransition.prototype.init = function () {
+        var ele = this.enteringView.pageRef().nativeElement;
+        var wrapper = new __WEBPACK_IMPORTED_MODULE_0_ionic_angular__["Animation"](this.plt, ele.querySelector('.modal-wrapper'));
+        wrapper.beforeStyles({ 'transform': 'scale(0)', 'opacity': 1 });
+        wrapper.fromTo('transform', 'scale(0)', 'scale(1.0)');
+        wrapper.fromTo('opacity', 1, 1);
+        this
+            .element(this.enteringView.pageRef())
+            .duration(500)
+            .easing('cubic-bezier(.1, .7, .1, 1)')
+            .add(wrapper);
+    };
+    return ModalScaleEnterTransition;
+}(__WEBPACK_IMPORTED_MODULE_0_ionic_angular__["PageTransition"]));
+
+//# sourceMappingURL=on-enter-scale.transition.js.map
 
 /***/ })
 
