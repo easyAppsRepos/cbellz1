@@ -787,15 +787,16 @@ var ReservaPage = (function () {
                 _this.loading.dismissAll();
                 if (data) {
                     if (data.horasDispo.length > 0) {
-                        _this.horasDisponibles = data.horasDispo.filter(function (word) { return word[0].disponibles > 0; });
-                        if (_this.horasDisponibles.length > 0) {
-                            _this.information[0].open = false;
-                            _this.cdr.detectChanges();
-                            _this.abrirSelect();
-                        }
-                        else {
-                            _this.presentAlert();
-                        }
+                        _this.zone.run(function () {
+                            _this.horasDisponibles = data.horasDispo.filter(function (word) { return word[0].disponibles > 0; });
+                            if (_this.horasDisponibles.length > 0) {
+                                _this.information[0].open = false;
+                                _this.abrirSelect();
+                            }
+                            else {
+                                _this.presentAlert();
+                            }
+                        });
                     }
                     else {
                         _this.presentAlert();
