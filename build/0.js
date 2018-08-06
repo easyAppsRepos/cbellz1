@@ -778,6 +778,7 @@ var ReservaPage = (function () {
             */
         };
         this.abrirSelect = function () {
+            _this.cdr.detectChanges();
             _this.selectH.open();
         };
         this.getHorasDispo = function (data) {
