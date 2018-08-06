@@ -125,7 +125,7 @@
 <gap:plugin name="cordova-plugin-inappbrowser" source="npm"  />
 
 
-  <plugin name="cordova-plugin-googlemaps" spec="2.2.8">
+  <plugin name="cordova-plugin-googlemaps" spec="2.2.7">
 
       <variable name="API_KEY_FOR_ANDROID" value="AIzaSyAT-tTbOja69paXaiAgAtNi9nGHRh75bzk" />
     <variable name="API_KEY_FOR_IOS" value="AIzaSyDjyHD9s5AzGciXjVHuney4MzKtduyHIPc" />
