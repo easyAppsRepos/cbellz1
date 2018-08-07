@@ -1279,17 +1279,17 @@ var MyApp = (function () {
                 elem.innerHTML = text + ' / ' + (total);
         };
         this.goAnimacion2 = function (puntosV, totalV, puntosActual) {
-            var puntos = parseInt(puntosV);
-            var totall = parseInt(totalV);
+            var puntos = puntosV;
+            var totall = totalV;
+            var expUserM = puntosActual;
             var tiempo = 3000 / (puntos / 6);
             console.log(tiempo);
-            var expUserM = parseInt(puntosActual);
             _this.presentAlert2("\n      <div class=\"meter\">\n      <span style=\"width:" + (((puntos + expUserM) * 100) / totall) + "%;\"><span class=\"progress\"></span></span>\n      </div>\n\n<div class=\" itemCa\">\n \n</div>\n\n<div class=\"floating itemFlo\">\n  + " + puntos + " exp\n</div>\n\n      <div class=\"leyendaAlert\">\n\n      <img  style='display: flex;' src=\"assets/imgs/complete.png\">\n\n      <span style='display: flex;'>\n      Tu cita fue completada con exito, has ganado " + puntos + " de experiencia\n      </span>\n\n      </div>");
             var interval = setInterval(function () {
                 puntos -= 6;
                 expUserM += 6;
-                _this.setLoadingText(expUserM, totall);
-                if (puntos == 0)
+                _this.setLoadingText(expUserM.toString(), totall.toString());
+                if (puntos <= 0)
                     clearInterval(interval);
             }, tiempo);
         };
@@ -1610,7 +1610,10 @@ var MyApp = (function () {
                 push.on('registration', function (data) { return _this.registrarDevice(data); });
                 push.on('notification', function (data) {
                     if (data.additionalData.tipoNoti == "2" || data.additionalData.tipoNoti == 2) {
-                        _this.goAnimacion2(data.additionalData.puntosGanados, data.additionalData.totalExc, data.additionalData.puntosActual);
+                        var ga = Number(data.additionalData.puntosGanados);
+                        var ge = Number(data.additionalData.totalExc);
+                        var gi = Number(data.additionalData.puntosActual);
+                        _this.goAnimacion2(ga, ge, gi);
                     }
                     console.log(data);
                 });
