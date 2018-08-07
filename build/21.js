@@ -1,14 +1,14 @@
 webpackJsonp([21],{
 
-/***/ 433:
+/***/ 435:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CongratsPageModule", function() { return CongratsPageModule; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CuentaPageModule", function() { return CuentaPageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(11);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__congrats__ = __webpack_require__(467);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__cuenta__ = __webpack_require__(470);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -18,34 +18,36 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
-var CongratsPageModule = (function () {
-    function CongratsPageModule() {
+var CuentaPageModule = (function () {
+    function CuentaPageModule() {
     }
-    CongratsPageModule = __decorate([
+    CuentaPageModule = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["NgModule"])({
             declarations: [
-                __WEBPACK_IMPORTED_MODULE_2__congrats__["a" /* CongratsPage */],
+                __WEBPACK_IMPORTED_MODULE_2__cuenta__["a" /* CuentaPage */],
             ],
             imports: [
-                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["IonicPageModule"].forChild(__WEBPACK_IMPORTED_MODULE_2__congrats__["a" /* CongratsPage */]),
+                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["IonicPageModule"].forChild(__WEBPACK_IMPORTED_MODULE_2__cuenta__["a" /* CuentaPage */]),
             ],
         })
-    ], CongratsPageModule);
-    return CongratsPageModule;
+    ], CuentaPageModule);
+    return CuentaPageModule;
 }());
 
-//# sourceMappingURL=congrats.module.js.map
+//# sourceMappingURL=cuenta.module.js.map
 
 /***/ }),
 
-/***/ 467:
+/***/ 470:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CongratsPage; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CuentaPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(11);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_api_api__ = __webpack_require__(105);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_storage__ = __webpack_require__(53);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_platform_browser__ = __webpack_require__(27);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_api_api__ = __webpack_require__(105);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -59,60 +61,196 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
+
+
+
+
 /**
- * Generated class for the CongratsPage page.
+ * Generated class for the CuentaPage page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
  */
-var CongratsPage = (function () {
-    function CongratsPage(viewCtrl, apiProvider, navCtrl, navParams) {
-        this.viewCtrl = viewCtrl;
-        this.apiProvider = apiProvider;
+var CuentaPage = (function () {
+    function CuentaPage(DomSanitizer, navCtrl, navParams, modalCtrl, alertCtrl, loadingCtrl, events, zone, apiProvider, storage) {
+        var _this = this;
+        this.DomSanitizer = DomSanitizer;
         this.navCtrl = navCtrl;
         this.navParams = navParams;
-        this.cuponP = {};
-        this.st1 = true;
-        this.st2 = false;
-        this.st3 = false;
-        this.st4 = false;
+        this.modalCtrl = modalCtrl;
+        this.alertCtrl = alertCtrl;
+        this.loadingCtrl = loadingCtrl;
+        this.events = events;
+        this.zone = zone;
+        this.apiProvider = apiProvider;
+        this.storage = storage;
+        this.porcenBarra = 0;
+        this.getImages = function () {
+            var options = {
+                quality: 100,
+                destinationType: navigator.camera.DestinationType.FILE_URI,
+                sourceType: navigator.camera.PictureSourceType.PHOTOLIBRARY
+            };
+            navigator.camera.getPicture(function (imageData) {
+                console.log(imageData);
+                _this.zone.run(function () { _this.imageFileName = imageData; });
+            }, function (err) {
+                console.log(err);
+            }, options);
+        };
+        this.uploadFile = function (datak) {
+            var loader = _this.loadingCtrl.create({
+                content: "Guardando..."
+            });
+            loader.present();
+            //const fileTransfer: FileTransferObject = this.transfer.create();
+            /*
+              let options = new FileUploadOptions();' = {
+                fileKey: 'ionicfile',
+                fileName: 'ionicfile',
+                chunkedMode: false,
+                mimeType: "image/jpeg",
+                headers: {}
+              };
+            */
+            var options = new FileUploadOptions();
+            options.fileKey = "ionicfile";
+            options.fileName = 'ionicfile2';
+            options.mimeType = "image/jpeg";
+            options.chunkedMode = false;
+            options.headers = {};
+            options.params = datak;
+            var ft = new FileTransfer();
+            ft.upload(_this.imageFileName, 'http://50.116.17.150:3000/editarCF', function (datag) {
+                console.log(datag);
+                //this.imageFileName = "http://192.168.0.7:8080/static/images/ionicfile.jpg"
+                //this.presentToast("Image uploaded successfully");
+                var data = JSON.parse(datag.response);
+                console.log(data);
+                if (data.data && data.data.affectedRows > 0) {
+                    //this.storage.set(`usr_tok_by`, this.dataUser);
+                    _this.storage.get('usr_tok_by').then(function (value) {
+                        // console.log(value);
+                        var da = value;
+                        da.genero = _this.dataUser.genero;
+                        da.telefono = _this.dataUser.telefono;
+                        da.nombre = _this.dataUser.nombre;
+                        da.idFoto = data.idFoto;
+                        console.log(da);
+                        _this.storage.set("usr_tok_by", da);
+                    }).catch(function () { return resolve(false); });
+                    loader.dismiss();
+                    _this.agregadoOk();
+                    //console.log('borrada');
+                    _this.editarData = true;
+                }
+                else {
+                    loader.dismiss();
+                    _this.errorSu();
+                    console.log('Ha ocurrido un error');
+                }
+            }, function (err) {
+                console.log(err);
+                loader.dismiss();
+                // this.presentToast(err);
+            }, options);
+        };
+        this.editarData = true;
+        this.dataUserInput = {};
+        this.dataUser = {};
     }
-    CongratsPage.prototype.ionViewDidLoad = function () {
+    CuentaPage.prototype.ionViewDidLoad = function () {
         var _this = this;
-        console.log('ionViewDidLoad CongratsPage');
-        // this.navParams.get('idCuponCliente');
-        var dataE = { idCuponCliente: this.navParams.get('idCuponCliente') };
-        console.log(dataE);
-        this.apiProvider.getCuponPremio(dataE)
+        console.log('ionViewDidLoad CuentaPage');
+        this.apiProvider.verificarLogin()
             .then(function (data) {
             console.log(data);
             if (data) {
-                _this.cuponP = data[0] || {};
+                _this.dataUserInput = JSON.parse(JSON.stringify(data));
+                ;
+                _this.dataUser = data;
+                _this.porcenBarra = ((_this.dataUser.appexp) / (_this.dataUser.exp)) + '%';
+                //this.menuActivo = true;
             }
             else {
-                console.log('Ha ocurrido un error');
+                console.log('error');
+                // this.menuActivo = false;
             }
         });
     };
-    CongratsPage.prototype.animacion1 = function () {
-        this.st1 = false;
-        this.st2 = true;
-        this.st4 = true;
+    CuentaPage.prototype.agregadoOk = function () {
+        var alert = this.alertCtrl.create({
+            title: 'Editado correctamente',
+            subTitle: 'Sus datos han sido editados correctamente',
+            buttons: ['Cerrar']
+        });
+        alert.present();
     };
-    CongratsPage.prototype.closeModals = function () {
-        this.viewCtrl.dismiss();
+    CuentaPage.prototype.errorSu = function () {
+        var alert = this.alertCtrl.create({
+            title: 'Error',
+            subTitle: 'Ha ocurrido un error',
+            buttons: ['Cerrar']
+        });
+        alert.present();
     };
-    CongratsPage = __decorate([
+    CuentaPage.prototype.getPorcentaje = function () {
+        var enviar = ((900) / (this.dataUser.completadas * 100)) + '%';
+        console.log(enviar);
+        return enviar;
+    };
+    CuentaPage.prototype.guardarCambios = function () {
+        var _this = this;
+        if (this.imageFileName) {
+            this.uploadFile(this.dataUser);
+        }
+        else {
+            var loading_1 = this.loadingCtrl.create({ content: "Cargando ..." });
+            loading_1.present();
+            this.apiProvider.editarUsuario(this.dataUser)
+                .then(function (data) {
+                loading_1.dismissAll();
+                console.log(data);
+                if (data.affectedRows > 0) {
+                    //this.storage.set(`usr_tok_by`, this.dataUser);
+                    _this.storage.get('usr_tok_by').then(function (value) {
+                        // console.log(value);
+                        var da = value;
+                        da.genero = _this.dataUser.genero;
+                        da.telefono = _this.dataUser.telefono;
+                        da.nombre = _this.dataUser.nombre;
+                        da.fechaNacimiento = _this.dataUser.fechaNacimiento;
+                        console.log(da);
+                        _this.storage.set("usr_tok_by", da);
+                        _this.events.publish('userCH');
+                    }).catch(function () { return resolve(false); });
+                    _this.agregadoOk();
+                    //console.log('borrada');
+                    _this.editarData = true;
+                }
+                else {
+                    console.log('Ha ocurrido un error');
+                }
+            });
+        }
+        //console.log(this.dataUser);
+    };
+    CuentaPage.prototype.cancelarEdicion = function () {
+        this.dataUser = this.dataUserInput;
+        this.editarData = true;
+        this.imageFileName = undefined;
+    };
+    CuentaPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-            selector: 'page-congrats',template:/*ion-inline-start:"/Users/jose/Documents/beyouApp/beYou/src/pages/congrats/congrats.html"*/'\n\n\n\n<ion-content style=\'    background-color: #84EDC8;\'>\n\n\n   <button style="    position: absolute;\n    background: transparent;\n    color: #444;\n    font-size: 27px;\n    height: 45px;\n    right: 10px;\n    top: 10px" ion-button class=\'button\' (click)="closeModals()"><ion-icon ios="ios-close"></ion-icon></button>\n\n\n\n<div *ngIf=\'st4\' [ngClass]="{ \'cannon\': st4 }">\n\n\n		<div class="cannon__path cannon__path--sm cannon__path--angle-7">\n		<div class="cannon__confetti cannon__confetti--flake cannon__confetti--color-3"></div>\n		<div class="cannon__confetti cannon__confetti--ribbon cannon__confetti--color-1"></div>\n		<div class="cannon__confetti cannon__confetti--ribbon cannon__confetti--color-2"></div>\n		<div class="cannon__confetti cannon__confetti--flake cannon__confetti--color-1"></div>\n		<div class="cannon__confetti-spacer"></div>\n	</div>\n\n		<div class="cannon__path cannon__path--sm cannon__path--angle-6">\n		<div class="cannon__confetti cannon__confetti--ribbon cannon__confetti--color-2"></div>\n		<div class="cannon__confetti cannon__confetti--flake cannon__confetti--color-3"></div>\n		<div class="cannon__confetti cannon__confetti--flake cannon__confetti--color-4"></div>\n		<div class="cannon__confetti cannon__confetti--ribbon cannon__confetti--color-1"></div>\n		<div class="cannon__confetti-spacer"></div>\n	</div>\n\n		<div class="cannon__path cannon__path--sm cannon__path--angle-5">\n		<div class="cannon__confetti cannon__confetti--ribbon cannon__confetti--color-2"></div>\n		<div class="cannon__confetti cannon__confetti--flake cannon__confetti--color-2"></div>\n		<div class="cannon__confetti cannon__confetti--flake cannon__confetti--color-3"></div>\n		<div class="cannon__confetti cannon__confetti--ribbon cannon__confetti--color-1"></div>\n		<div class="cannon__confetti cannon__confetti--flake cannon__confetti--color-4"></div>\n		<div class="cannon__confetti-spacer"></div>\n	</div>\n\n\n	<div class="cannon__path cannon__path--sm cannon__path--angle-2">\n		<div class="cannon__confetti cannon__confetti--flake cannon__confetti--color-3"></div>\n		<div class="cannon__confetti cannon__confetti--ribbon cannon__confetti--color-1"></div>\n		<div class="cannon__confetti cannon__confetti--ribbon cannon__confetti--color-2"></div>\n		<div class="cannon__confetti cannon__confetti--flake cannon__confetti--color-1"></div>\n		<div class="cannon__confetti-spacer"></div>\n	</div>\n	<div class="cannon__path cannon__path--md cannon__path--angle-1">\n		<div class="cannon__confetti cannon__confetti--ribbon cannon__confetti--color-2"></div>\n		<div class="cannon__confetti cannon__confetti--flake cannon__confetti--color-2"></div>\n		<div class="cannon__confetti cannon__confetti--flake cannon__confetti--color-3"></div>\n		<div class="cannon__confetti cannon__confetti--ribbon cannon__confetti--color-1"></div>\n		<div class="cannon__confetti cannon__confetti--flake cannon__confetti--color-4"></div>\n		<div class="cannon__confetti-spacer"></div>\n	</div>\n	<div class="cannon__path cannon__path--lg cannon__path--angle0">\n		<div class="cannon__confetti cannon__confetti--ribbon cannon__confetti--color-1"></div>\n		<div class="cannon__confetti cannon__confetti--ribbon cannon__confetti--color-4"></div>\n		<div class="cannon__confetti cannon__confetti--ribbon cannon__confetti--color-2"></div>\n		<div class="cannon__confetti cannon__confetti--flake cannon__confetti--color-3"></div>\n		<div class="cannon__confetti-spacer"></div>\n	</div>\n	<div class="cannon__path cannon__path--md cannon__path--angle1">\n		<div class="cannon__confetti cannon__confetti--flake cannon__confetti--color-3"></div>\n		<div class="cannon__confetti cannon__confetti--ribbon cannon__confetti--color-1"></div>\n		<div class="cannon__confetti cannon__confetti--ribbon cannon__confetti--color-4"></div>\n		<div class="cannon__confetti cannon__confetti--flake cannon__confetti--color-3"></div>\n		<div class="cannon__confetti cannon__confetti--ribbon cannon__confetti--color-2"></div>\n		<div class="cannon__confetti-spacer"></div>\n	</div>\n	<div class="cannon__path cannon__path--sm cannon__path--angle2">\n		<div class="cannon__confetti cannon__confetti--ribbon cannon__confetti--color-2"></div>\n		<div class="cannon__confetti cannon__confetti--flake cannon__confetti--color-3"></div>\n		<div class="cannon__confetti cannon__confetti--flake cannon__confetti--color-4"></div>\n		<div class="cannon__confetti cannon__confetti--ribbon cannon__confetti--color-1"></div>\n		<div class="cannon__confetti-spacer"></div>\n	</div>\n\n\n\n		<div class="cannon__path cannon__path--sm cannon__path--angle-7c">\n		<div class="cannon__confetti cannon__confetti--flake cannon__confetti--color-3"></div>\n		<div class="cannon__confetti cannon__confetti--ribbon cannon__confetti--color-1"></div>\n		<div class="cannon__confetti cannon__confetti--ribbon cannon__confetti--color-2"></div>\n		<div class="cannon__confetti cannon__confetti--flake cannon__confetti--color-1"></div>\n		<div class="cannon__confetti-spacer"></div>\n	</div>\n\n		<div class="cannon__path cannon__path--sm cannon__path--angle-6c">\n		<div class="cannon__confetti cannon__confetti--ribbon cannon__confetti--color-2"></div>\n		<div class="cannon__confetti cannon__confetti--flake cannon__confetti--color-3"></div>\n		<div class="cannon__confetti cannon__confetti--flake cannon__confetti--color-4"></div>\n		<div class="cannon__confetti cannon__confetti--ribbon cannon__confetti--color-1"></div>\n		<div class="cannon__confetti-spacer"></div>\n	</div>\n\n\n		<div class="cannon__path cannon__path--sm cannon__path--angle-5c">\n		<div class="cannon__confetti cannon__confetti--ribbon cannon__confetti--color-2"></div>\n		<div class="cannon__confetti cannon__confetti--flake cannon__confetti--color-2"></div>\n		<div class="cannon__confetti cannon__confetti--flake cannon__confetti--color-3"></div>\n		<div class="cannon__confetti cannon__confetti--ribbon cannon__confetti--color-1"></div>\n		<div class="cannon__confetti cannon__confetti--flake cannon__confetti--color-4"></div>\n		<div class="cannon__confetti-spacer"></div>\n	</div>\n\n\n</div>\n\n\n<!-- \n<canvas #canvas style="background-color: transparent;" ></canvas>\n -->\n <div *ngIf=\'st1\' style="    position: absolute;\n    width: 100%;\n    text-align: center;\n    top: 90px;\n    color:white;\n    font-weight: 600;\n    font-size: 20px;">\n    	Cita Finalizada, has completado la barra de experiencia.\n<br>\n    	Abre el regalo!\n    </div>\n\n<div *ngIf=\'!st1\' style="    position: absolute;\n    width: 100%;\n    text-align: center;\n    bottom: 50px;\n    color:white;\n    font-weight: 600;\n    font-size: 20px;">\n<span>	Has Ganado un cupon</span>\n<ion-card style=\'margin-top: 35px\'  >\n\n		<ion-card-content>\n				<div style="\n				display: inline-block;    width: 100%;\n				">\n				<img src="assets/imgs/fotocupon.png" style="\n				display: inline-block;\n				height: 65px;\n				width: 65px !important;\n				vertical-align: top;\n				">\n				<div style="    display: inline-block;\n    width: calc(100% - 105px);\n    margin-left: 10px;\n				">\n				\n				<span style="    display: block;\n    font-size: 16px;\n\n    font-weight: 800;\n    color: #EC527E;">{{cuponP.nombreCupon}}</span>\n\n    <span *ngIf=\'cuponP.nombresCentro\' style="margin: 2px 0px 0px 0px;\n				font-size: 14px;\n				color: #999;display:block">Aplica en {{cuponP.nombresCentro.split(\',\').length}} Centros</span>\n\n				<span class="itemComercio" style="    margin-top: 3px;\n    display: block;\n}">\n\n\n\n<!-- 	<button  (click)=\'usarTicket(n.idCupon)\' style=\'background-color: #2FD99B\' ion-button small >Usar Ahora</button>	 -->\n	\n\n\n				</span>\n\n				</div>\n				</div>\n\n		</ion-card-content>\n		</ion-card>\n\n\n\n\n\n</div>\n	<div id="merrywrap" class="merrywrap " \n\n	[ngClass]="{ \'step-1\': st1, \'step-2\': st2, \'step-3\': st3 }">\n\n\n				<div class="giftbox " (click)=\'animacion1()\'>\n					<div class="cover">\n						<div></div>\n					</div>\n					<div class="box"></div>\n				</div>\n<!-- 				<div class="icons">\n					<div class="row">\n						<span>\n							<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" preserveAspectRatio="xMidYMid meet" viewBox="0 0 50 50">\n								<path d="M25,12.655c-6.196,0-11.236,5.04-11.236,11.235c0,3.393,1.517,6.431,3.9,8.492c0.376-0.318,0.859-0.522,1.395-0.533\n									l1.771-3.541c-1.175-1.11-1.913-2.678-1.913-4.418c0-3.354,2.729-6.083,6.084-6.083s6.084,2.729,6.084,6.083\n									c0,0.653-0.106,1.281-0.297,1.871l0.289,0.254c0.296-0.131,0.619-0.201,0.948-0.201c1.305,0,2.366,1.062,2.366,2.365\n									c0,1.305-1.062,2.366-2.366,2.366c-1.087,0-2.006-0.737-2.281-1.738l-0.207-0.035l1.538,3.078c0.503,0.01,0.959,0.19,1.324,0.476\n									c2.347-2.061,3.838-5.074,3.838-8.436C36.236,17.695,31.195,12.655,25,12.655z M16.344,25.201c-0.713,0-1.289-0.576-1.289-1.288\n									c-0.008-0.713,0.576-1.289,1.28-1.289c0.713-0.008,1.288,0.567,1.296,1.28C17.631,24.617,17.057,25.192,16.344,25.201z\n									M19.778,18.691c-0.259,0.249-0.583,0.378-0.919,0.378c-0.326,0-0.652-0.12-0.91-0.369c-0.498-0.507-0.508-1.322,0-1.829\n									c0.498-0.498,1.314-0.498,1.82,0c0.508,0.498,0.508,1.313,0,1.82H19.778z M24.975,16.519c-0.713,0-1.289-0.575-1.289-1.288\n									c0-0.704,0.576-1.288,1.28-1.288c0.713,0,1.296,0.575,1.296,1.288S25.688,16.519,24.975,16.519z M32.016,18.648\n									c-0.248,0.258-0.583,0.387-0.918,0.387c-0.326,0-0.653-0.129-0.902-0.378c-0.506-0.498-0.506-1.313-0.008-1.82\n									c0.497-0.508,1.314-0.508,1.82-0.01C32.515,17.335,32.515,18.15,32.016,18.648z M34.945,23.87c0,0.008,0,0.018,0,0.018\n									c0,0.713-0.576,1.288-1.289,1.288s-1.287-0.575-1.287-1.288c0,0,0-0.01,0-0.018v-0.009c0-0.713,0.574-1.297,1.287-1.297\n									c0.705,0,1.289,0.576,1.289,1.279c0,0,0,0,0,0.01C34.945,23.861,34.945,23.861,34.945,23.87z"/>\n								<path d="M32.024,29.546c0.755,0,1.366-0.612,1.366-1.366s-0.611-1.365-1.366-1.365c-0.408,0-0.771,0.184-1.021,0.468l-5.937-5.212\n									l-5.163,10.326h10.326l-2.469-4.938l2.921,0.493c-0.013,0.074-0.023,0.149-0.023,0.228C30.658,28.934,31.271,29.546,32.024,29.546z\n									"/>\n								<path d="M31.029,32.846H19.104c-0.655,0-1.192,0.505-1.192,1.122v2.245c0,0.617,0.537,1.122,1.192,1.122h11.926\n									c0.655,0,1.192-0.505,1.192-1.122v-2.245C32.222,33.351,31.685,32.846,31.029,32.846z"/>\n							</svg>\n						</span>\n\n					</div>\n				</div> -->\n			</div>\n</ion-content>'/*ion-inline-end:"/Users/jose/Documents/beyouApp/beYou/src/pages/congrats/congrats.html"*/,
+            selector: 'page-cuenta',template:/*ion-inline-start:"/Users/jose/Documents/beyouApp/beYou/src/pages/cuenta/cuenta.html"*/'<!--\n  Generated template for the AjustesPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar>\n\n   <ion-buttons start>\n    <button ion-button menuToggle>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n    </ion-buttons>\n\n    \n    <ion-title>Cuenta</ion-title>\n\n\n\n  </ion-navbar>\n\n</ion-header>\n\n\n\n<ion-content style=\'background-color: #fafafa; \' >\n\n        <ion-item style=\'    margin-top: 0px;\n    background-color: white !important;\n    padding: 20px;\' class=\'fixProfileMargin\'>\n          <ion-avatar item-start>\n\n          <img *ngIf="!imageFileName && editarData && !dataUser.fbId"  [hidden]=\'imageFileName\' style=\'width:75px; height: 75px\' src="http://50.116.17.150:3000/{{dataUser?.idFoto}}" \n        onError="this.src=\'assets/imgs/usuario.png\';" />\n\n          <img *ngIf="!imageFileName && editarData && dataUser.fbId"  [hidden]=\'imageFileName\' style=\'width:75px; height: 75px\' src="{{dataUser?.imagenFb}}" \n        onError="this.src=\'assets/imgs/usuario.png\';" />\n\n\n\n            <img  (click)=\'getImages()\' *ngIf="!imageFileName && !editarData" [hidden]=\'imageFileName\' style=\'width:75px; height: 75px\' src="assets/imgs/editImage.png"   />\n\n        <img [src]="DomSanitizer.bypassSecurityTrustUrl(imageFileName)"  *ngIf="imageFileName" style=\'width:75px; height: 75px\' />\n\n          </ion-avatar>\n          <h2 style="margin-bottom: 23px;">{{dataUser?.nombre}}</h2>\n          <div class="barraContainer">\n\n\n\n            <div class="barraProgress" [ngStyle]="{\'width\': porcenBarra}"  ><span>{{(dataUser?.exp) || 0}}/{{dataUser?.appexp}}</span></div>\n\n          </div>\n        </ion-item>\n\n\n\n\n          <ion-list>\n<!-- \n\n\n          <button  class="claseItem"  ion-item  >\n          {{dataUser?.nombre || \'no especificado\'}}\n    \n          </button>       <button  class="claseItem"  ion-item  >\n          {{dataUser?.email || \'no especificado\'}}\n        \n          </button>\n          <button  class="claseItem"  ion-item  >\n          {{dataUser?.telefono || \'no especificado\'}}\n        \n          </button>\n\n          <button  class="claseItem"  ion-item  >\n          Genero: {{dataUser?.genero || \'no especificado\'}}\n        \n          </button>\n-->\n\n\n  <ion-item style=\'margin-top: 20px\'  >\n    <ion-label color="headerColor" stacked>Nombre</ion-label>\n    <ion-input  [ngClass]="{\'itemActi\':!editarData}"   [disabled]=\'editarData\' [(ngModel)]="dataUser.nombre"  type="text" placeholder="nombre"></ion-input>\n  </ion-item>\n\n  <ion-item  style=\'margin-top: 20px\'>\n    <ion-label color="headerColor" stacked>Email</ion-label>\n    <ion-input  [disabled]=\'true\' [(ngModel)]="dataUser.email"  type="text" placeholder="correo electronico"></ion-input>\n  </ion-item>\n\n  <ion-item  style=\'margin-top: 20px\'>\n    <ion-label color="headerColor" stacked>Telefono</ion-label>\n    <ion-input  [ngClass]="{\'itemActi\':!editarData}"  [disabled]=\'editarData\' [(ngModel)]="dataUser.telefono"  type="tel" placeholder="telefono"></ion-input>\n  </ion-item>\n\n\n  <ion-item  style=\'margin-top: 20px\'>\n    <ion-label color="headerColor" stacked>Genero</ion-label>\n    <ion-input   [ngClass]="{\'itemActi\':!editarData}"  [disabled]=\'editarData\' [(ngModel)]="dataUser.genero"  type="text" placeholder=""></ion-input>\n  </ion-item>\n\n    \n\n<ion-item   style=\'    height: 75px;\'>\n  <ion-label class=\'headerColor\' style=\'    font-size: 1.2rem;\n    color: #EC527E;\n    opacity: 1; \' >Fecha Nacimiento</ion-label><br>\n <ion-datetime [disabled]=\'editarData\' [(ngModel)]="dataUser.fechaNacimiento" displayFormat="YYYY-MM-DD"  style=\'     position: absolute;\n    margin-top: 24px;\n    border: solid 2px lightgray;\n    padding: 0px 15px;\n    min-width: 50px;\' > </ion-datetime> \n\n</ion-item>\n\n\n\n\n\n          </ion-list>\n\n\n\n              <div [hidden]=\'!editarData\'  style="width: 100%;\n    position: fixed;\n    bottom: 0px;\n    background: rgb(247,248,249);\n    padding-bottom: 6px;\n">\n          <button (click)=\'editarData=false\' ion-button class="botonVerdeFull">Actualizar informacion<ion-icon style=\'    margin-left: 10px !important;\' name="md-arrow-forward"></ion-icon> \n\n          </button>\n </div>\n\n<div  style="width: 100%;\n    position: fixed;\n    bottom: 0px;\n    background: rgb(247,248,249);\n    padding-bottom: 6px;\n" [hidden]=\'editarData\'>\n    \n\n    <button (click)=\'guardarCambios()\'  style=" border-radius: 70px;   width: 40%;\n    margin-left: 5%;float:left"  color=\'verdeApp\' ion-button> Guardar cambio</button> \n\n    <button (click)=\'cancelarEdicion()\'  color=\'headerColor\' ion-button  style="    width: 40%;\n    margin-right: 5%;\n    border-radius: 70px;float:right" >Deshacer</button>\n\n\n</div>\n\n\n\n\n   \n\n\n\n\n\n</ion-content>\n'/*ion-inline-end:"/Users/jose/Documents/beyouApp/beYou/src/pages/cuenta/cuenta.html"*/,
         }),
-        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["ViewController"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["ViewController"]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__providers_api_api__["a" /* ApiProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__providers_api_api__["a" /* ApiProvider */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["NavController"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["NavController"]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["NavParams"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["NavParams"]) === "function" && _d || Object])
-    ], CongratsPage);
-    return CongratsPage;
-    var _a, _b, _c, _d;
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_3__angular_platform_browser__["c" /* DomSanitizer */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["NavController"], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["NavParams"], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["ModalController"], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["AlertController"], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["LoadingController"], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["Events"], __WEBPACK_IMPORTED_MODULE_0__angular_core__["NgZone"], __WEBPACK_IMPORTED_MODULE_4__providers_api_api__["a" /* ApiProvider */], __WEBPACK_IMPORTED_MODULE_2__ionic_storage__["b" /* Storage */]])
+    ], CuentaPage);
+    return CuentaPage;
 }());
 
-//# sourceMappingURL=congrats.js.map
+//# sourceMappingURL=cuenta.js.map
 
 /***/ })
 
