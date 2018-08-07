@@ -1615,6 +1615,11 @@ var MyApp = (function () {
                         var gi = Number(data.additionalData.puntosActual);
                         _this.goAnimacion2(ga, ge, gi);
                     }
+                    if (data.additionalData.tipoNoti == "1" || data.additionalData.tipoNoti == 1) {
+                        var id = Number(data.additionalData.idCita);
+                        _this.nav.push('DetalleReservaPage', { idCita: id });
+                        _this.presentAlert(data.additionalData.title, data.additionalData.message);
+                    }
                     console.log(data);
                 });
                 push.on('error', function (e) {
