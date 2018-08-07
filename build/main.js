@@ -175,6 +175,16 @@ var ApiProvider = (function () {
             });
         });
     };
+    ApiProvider.prototype.getCuponPremio = function (da) {
+        var _this = this;
+        return new Promise(function (resolve) {
+            _this.http.post(_this.api2 + '/getCuponPremio', JSON.stringify(da), { headers: { 'Content-Type': 'application/json' } }).subscribe(function (data) {
+                resolve(data);
+            }, function (err) {
+                console.log(err);
+            });
+        });
+    };
     ApiProvider.prototype.getCC = function (da) {
         var _this = this;
         return new Promise(function (resolve) {
@@ -551,9 +561,10 @@ var ApiProvider = (function () {
     };
     ApiProvider = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["Injectable"])(),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_0__angular_common_http__["a" /* HttpClient */], __WEBPACK_IMPORTED_MODULE_2__ionic_storage__["b" /* Storage */]])
+        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_0__angular_common_http__["a" /* HttpClient */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__angular_common_http__["a" /* HttpClient */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__ionic_storage__["b" /* Storage */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__ionic_storage__["b" /* Storage */]) === "function" && _b || Object])
     ], ApiProvider);
     return ApiProvider;
+    var _a, _b;
 }());
 
 //# sourceMappingURL=api.js.map
