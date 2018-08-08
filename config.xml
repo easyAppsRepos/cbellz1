@@ -97,7 +97,7 @@
  
 </plugin>
 
-
+<gap:plugin name="cordova-plugin-x-socialsharing" source="npm" />
 
   <plugin name="ionic-plugin-keyboard" version="2.2.1" src="https://github.com/driftyco/ionic-plugin-keyboard" />
 
