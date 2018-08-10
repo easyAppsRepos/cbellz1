@@ -1,14 +1,14 @@
 webpackJsonp([12],{
 
-/***/ 451:
+/***/ 458:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ReservaHechaPageModule", function() { return ReservaHechaPageModule; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "VerificacionPageModule", function() { return VerificacionPageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(11);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__reserva_hecha__ = __webpack_require__(486);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__verificacion__ = __webpack_require__(496);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -18,33 +18,35 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
-var ReservaHechaPageModule = (function () {
-    function ReservaHechaPageModule() {
+var VerificacionPageModule = (function () {
+    function VerificacionPageModule() {
     }
-    ReservaHechaPageModule = __decorate([
+    VerificacionPageModule = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["NgModule"])({
             declarations: [
-                __WEBPACK_IMPORTED_MODULE_2__reserva_hecha__["a" /* ReservaHechaPage */],
+                __WEBPACK_IMPORTED_MODULE_2__verificacion__["a" /* VerificacionPage */],
             ],
             imports: [
-                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["IonicPageModule"].forChild(__WEBPACK_IMPORTED_MODULE_2__reserva_hecha__["a" /* ReservaHechaPage */]),
+                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["IonicPageModule"].forChild(__WEBPACK_IMPORTED_MODULE_2__verificacion__["a" /* VerificacionPage */]),
             ],
         })
-    ], ReservaHechaPageModule);
-    return ReservaHechaPageModule;
+    ], VerificacionPageModule);
+    return VerificacionPageModule;
 }());
 
-//# sourceMappingURL=reserva-hecha.module.js.map
+//# sourceMappingURL=verificacion.module.js.map
 
 /***/ }),
 
-/***/ 486:
+/***/ 496:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ReservaHechaPage; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return VerificacionPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_api_api__ = __webpack_require__(105);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_storage__ = __webpack_require__(53);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -56,34 +58,91 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 
 
+
+
+
+
+
+
 /**
- * Generated class for the ReservaHechaPage page.
+ * Generated class for the VerificacionPage page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
  */
-var ReservaHechaPage = (function () {
-    function ReservaHechaPage(navCtrl, navParams) {
+var VerificacionPage = (function () {
+    function VerificacionPage(navCtrl, navParams, modalCtrl, loadingCtrl, storage, events, apiProvider, alertCtrl) {
+        var _this = this;
         this.navCtrl = navCtrl;
         this.navParams = navParams;
+        this.modalCtrl = modalCtrl;
+        this.loadingCtrl = loadingCtrl;
+        this.storage = storage;
+        this.events = events;
+        this.apiProvider = apiProvider;
+        this.alertCtrl = alertCtrl;
+        this.verificacionOK = function () {
+            _this.storage.get('pushKeyBY').then(function (value) {
+                if (value) {
+                    console.log(value);
+                    var pushState = {
+                        pushK: value,
+                        device: device.platform,
+                        deviceId: device.uuid,
+                        login: Date.now(),
+                        user: _this.navParams.get("idCliente")
+                    };
+                    console.log(pushState);
+                    _this.apiProvider.addPush(pushState).then(function (data) {
+                        console.log(data);
+                    });
+                }
+                //value;
+            });
+            _this.storage.set("usr_tok_by", _this.navParams.data);
+            _this.events.publish('userCreated', _this.navParams.data);
+            _this.events.publish('loginOK');
+            _this.navCtrl.pop();
+        };
     }
-    ReservaHechaPage.prototype.ionViewDidLoad = function () {
-        console.log('ionViewDidLoad ReservaHechaPage');
+    VerificacionPage.prototype.ionViewDidLoad = function () {
+        console.log('ionViewDidLoad RecuperarPage');
+        console.log(this.navParams.data);
     };
-    ReservaHechaPage.prototype.goPagina = function (pagina) {
-        this.navCtrl.setRoot(pagina);
-        //this.navCtrl.push('PerfilCentroPage');
+    VerificacionPage.prototype.actualizarContra = function (emails) {
+        var _this = this;
+        var loading = this.loadingCtrl.create({ content: "Verificando ..." });
+        loading.present();
+        console.log(emails);
+        this.apiProvider.verificarCuenta({ codigo: emails, email: this.navParams.get("idCliente") })
+            .then(function (data) {
+            console.log(data);
+            if (data && data.data && data.data.affectedRows > 0) {
+                console.log(data);
+                loading.dismissAll();
+                _this.verificacionOK();
+            }
+            else {
+                loading.dismissAll();
+                var alert_1 = _this.alertCtrl.create({
+                    title: 'Codigo invalido',
+                    subTitle: 'La cuenta no ha podido ser verificada',
+                    buttons: ['Cerrar']
+                });
+                alert_1.present();
+            }
+        });
     };
-    ReservaHechaPage = __decorate([
+    VerificacionPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-            selector: 'page-reserva-hecha',template:/*ion-inline-start:"/Users/jose/Documents/beyouApp/beYou/src/pages/reserva-hecha/reserva-hecha.html"*/'<!--\n  Generated template for the ReservaHechaPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar>\n    <ion-title>ReservaHecha</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content padding>\n\n\n\n<div style="\n    padding-left: 40px;\n    text-align: center;\n    padding-right: 40px;\n    margin-top: 30px;\n">\n	<img src="assets/imgs/fotoComercio.png" style="\n   height: 90px;\n   width: 90px;\n   ">\n\n	<span style="\n    display: block;\n    font-size: 20px;\n    color: #333;\n    margin-top: 15px;\n    margin-bottom:  15px;\n">Completado!</span>\n\n	<span style="\n    display: block;\n    color: #999;\n    font-size: 15px;\n    margin-bottom: 40px;\n        line-height: 24px;\n">Tu reserva esta siendo confirmada en este momento. Te notificaremos cuando hayamos procesado tu reserva</span>\n\n\n</div>\n\n\n<div style="    width: 100%;\n    text-align: center;\n    position: fixed;\n    left: 0;\n    bottom: 40px;">\n\n<button (click)=\'goPagina("MisReservasPage")\' color=\'verdeApp\' ion-button>Ver mi Reserva</button>\n\n<button (click)=\'goPagina("InicioPage")\' color=\'headerColor\' ion-button>Volver al Inicio</button>\n\n\n\n\n</div>\n\n</ion-content>\n'/*ion-inline-end:"/Users/jose/Documents/beyouApp/beYou/src/pages/reserva-hecha/reserva-hecha.html"*/,
+            selector: 'page-verificacion',template:/*ion-inline-start:"/Users/jose/Documents/beyouApp/beYou/src/pages/verificacion/verificacion.html"*/'<!--\n  Generated template for the RecuperarPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar>\n    <ion-title style=\'padding-left: 0px !important;padding-right: 0px !important;\'>Confirma tu cuenta</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content padding style=\'    background-color: #fafafa !important;\'>\n\n<div style="    text-align: center;\n    color: darkgray;\n    margin-top: 12px;">Ingresa el codigo de verificación enviado a {{navParams.get(\'email\')}}</div>\n\n\n            <ion-item style=\'    padding: 0px 13px 0px 0px;\n    background-color: white !important;\n    border-radius: 60px;\n    border: solid 1px #EC527E;\n    margin: 26px 0px;\'>\n     		<ion-label style=\' color: #e6e6e6;   position: absolute;\n    right: 16px;\n    font-size: 21px;\'>\n     			  <ion-icon   ios="md-mail" md="md-mail" ></ion-icon>\n     		</ion-label>\n\n            <ion-input [(ngModel)]="emailN" class=\'inputT\' name="nombre" type="email" placeholder=\'codigo\'></ion-input>\n\n\n        </ion-item>\n\n\n<div  >\n     <button  (click)=\'emailN=""\'   style=" border-radius: 70px;   width: 40%;\n    margin-left: 5%; float:left"  color=\'verdeApp\' ion-button> Cancelar</button>\n\n\n    <button   color=\'headerColor\' ion-button  style="    width: 40%;\n    margin-right: 5%;\n    border-radius: 70px;float:right" [disabled]=\'!emailN\' (click)=\'actualizarContra(emailN)\'>Ok</button> \n\n\n</div>\n\n\n\n</ion-content>\n'/*ion-inline-end:"/Users/jose/Documents/beyouApp/beYou/src/pages/verificacion/verificacion.html"*/,
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["NavController"], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["NavParams"]])
-    ], ReservaHechaPage);
-    return ReservaHechaPage;
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["NavController"], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["NavParams"], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["ModalController"], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["LoadingController"], __WEBPACK_IMPORTED_MODULE_3__ionic_storage__["b" /* Storage */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["Events"], __WEBPACK_IMPORTED_MODULE_2__providers_api_api__["a" /* ApiProvider */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["AlertController"]])
+    ], VerificacionPage);
+    return VerificacionPage;
 }());
 
-//# sourceMappingURL=reserva-hecha.js.map
+//# sourceMappingURL=verificacion.js.map
 
 /***/ })
 

@@ -1,14 +1,15 @@
 webpackJsonp([11],{
 
-/***/ 453:
+/***/ 426:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ResultadosPageModule", function() { return ResultadosPageModule; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "InicioPageModule", function() { return InicioPageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(11);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__resultados__ = __webpack_require__(488);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__inicio__ = __webpack_require__(461);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__select_selectalertless__ = __webpack_require__(462);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -18,34 +19,37 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
-var ResultadosPageModule = (function () {
-    function ResultadosPageModule() {
+
+var InicioPageModule = (function () {
+    function InicioPageModule() {
     }
-    ResultadosPageModule = __decorate([
+    InicioPageModule = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["NgModule"])({
             declarations: [
-                __WEBPACK_IMPORTED_MODULE_2__resultados__["a" /* ResultadosPage */],
+                __WEBPACK_IMPORTED_MODULE_2__inicio__["a" /* InicioPage */], __WEBPACK_IMPORTED_MODULE_3__select_selectalertless__["a" /* SelectAlertless */]
             ],
             imports: [
-                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["IonicPageModule"].forChild(__WEBPACK_IMPORTED_MODULE_2__resultados__["a" /* ResultadosPage */]),
+                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["IonicPageModule"].forChild(__WEBPACK_IMPORTED_MODULE_2__inicio__["a" /* InicioPage */]),
             ],
+            exports: [__WEBPACK_IMPORTED_MODULE_3__select_selectalertless__["a" /* SelectAlertless */]]
         })
-    ], ResultadosPageModule);
-    return ResultadosPageModule;
+    ], InicioPageModule);
+    return InicioPageModule;
 }());
 
-//# sourceMappingURL=resultados.module.js.map
+//# sourceMappingURL=inicio.module.js.map
 
 /***/ }),
 
-/***/ 488:
+/***/ 461:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ResultadosPage; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return InicioPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(11);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_api_api__ = __webpack_require__(105);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_platform_browser__ = __webpack_require__(27);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -61,47 +65,535 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
+
+
+
+
+
+
 /**
- * Generated class for the ResultadosPage page.
+ * Generated class for the InicioPage page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
  */
-var ResultadosPage = (function () {
-    function ResultadosPage(navCtrl, navParams, modalCtrl, apiProvider, loadingController, events) {
+var InicioPage = (function () {
+    function InicioPage(menuCtrl, navCtrl, navParams, apiProvider, sanitizer, alertCtrl, loadingController, events, modalCtrl, zone, cdr) {
+        var _this = this;
+        this.menuCtrl = menuCtrl;
         this.navCtrl = navCtrl;
         this.navParams = navParams;
-        this.modalCtrl = modalCtrl;
         this.apiProvider = apiProvider;
+        this.sanitizer = sanitizer;
+        this.alertCtrl = alertCtrl;
         this.loadingController = loadingController;
         this.events = events;
-        this.filtro = {};
-        this.resultados = [];
-        this.categorias = ['Peluqueria', 'Rostro y Cuerpo', 'Uñas', 'Masaje', 'Depilacion', 'Bienestar', 'Paquetes', 'Ofertas'];
-        this.categoriaSeleccionada = 0;
-        this.cargaData = false;
+        this.modalCtrl = modalCtrl;
+        this.zone = zone;
+        this.cdr = cdr;
+        this.inicioSesion = false;
+        this.optionSubcategorias = [];
+        this.subcategoriasT = {};
+        this.setLoadingText = function (text, total) {
+            var elem = document.querySelector("div.itemCa");
+            if (elem)
+                elem.innerHTML = text + ' / ' + (total);
+        };
+        /*
+        goFF(){
+          
+        
+           let profileModal = this.modalCtrl.create('LogindPage',{'total':120});
+           profileModal.present();
+        
+        
+        }
+        */
+        this.goAnimacion = function () {
+            var profileModal = _this.modalCtrl.create('CongratsPage', { 'idCuponCliente': 56 }, {
+                enterAnimation: 'modal-scale-up-enter',
+                leaveAnimation: 'modal-scale-up-leave'
+            });
+            profileModal.present();
+        };
+        /*
+        <div class=" itemCa">
+         
+        </div>
+        
+        */
+        this.goAnimacion2 = function () {
+            var puntos = 120;
+            var totall = 1500;
+            var tiempo = 4000 / (puntos / 3);
+            console.log(tiempo);
+            var expUserM = 140;
+            _this.presentAlert2("\n      <div class=\"meter\">\n      <span style=\"width:" + (((puntos + expUserM) * 100) / totall) + "%;\"><span class=\"progress\"></span></span>\n      </div>\n\n<div class=\" itemCa\">\n \n</div>\n\n<div class=\"floating itemFlo\">\n  + " + puntos + " exp\n</div>\n\n      <div class=\"leyendaAlert\">\n\n      <img  style='display: flex;' src=\"assets/imgs/complete.png\">\n\n      <span style='display: flex;'>\n      Tu cita fue completada con exito, has ganado " + puntos + " de experiencia\n      </span>\n\n      </div>");
+            var interval = setInterval(function () {
+                puntos -= 3;
+                expUserM += 3;
+                _this.setLoadingText(expUserM, totall);
+                if (puntos == 0)
+                    clearInterval(interval);
+            }, tiempo);
+        };
+        this.printOption = function (ee) {
+            console.log(ee);
+            if (ee.length < 1) {
+                return true;
+            }
+            else {
+                var fs = { 'nombre': _this.seleccionCategoria, 'sub': ee };
+                console.log(fs);
+                _this.navCtrl.push('ListaServiciosPage', fs);
+            }
+        };
+        this.categorias = [];
+        this.expUser = 254;
+        events.subscribe('loginOK', function () {
+            // user and time are the same arguments passed in `events.publish(user, time)`
+            _this.apiProvider.verificarLogin()
+                .then(function (data) {
+                console.log(data);
+                if (data) {
+                    _this.inicioSesion = false;
+                    _this.userDataProfile = data;
+                }
+                else {
+                    _this.inicioSesion = true;
+                }
+            });
+        });
+        this.selectOptions = {
+            title: 'Selecciona una Subcategoria',
+            cssClass: 'select-alertless'
+        };
     }
-    ResultadosPage.prototype.ionViewDidLoad = function () {
-        console.log('ionViewDidLoad ResultadosPage');
-        this.resultados = this.navParams.get('resultados');
-        this.filtro = this.navParams.get('filtro');
-        console.log(this.navParams.get('filtro'));
-        this.cargaData = true;
+    InicioPage.prototype.ionViewDidLoad = function () {
+        var _this = this;
+        console.log('ionViewDidLoad InicioPage');
+        this.apiProvider.categoriasHome()
+            .then(function (data) {
+            console.log(data);
+            if (data) {
+                _this.categorias = data['categorias'] || [];
+                _this.subcategoriasT = data['subcategorias'] || {};
+            }
+            else {
+                console.log('Ha ocurrido un error');
+            }
+        });
     };
-    ResultadosPage.prototype.goCentro = function (idCentro) {
-        // this.navCtrl.push('PerfilCentroPage');  
-        this.navCtrl.push('PerfilCentroPage', { 'idCentro': idCentro, 'idServicioSeleccionado': this.categoriaSeleccionada });
+    InicioPage.prototype.ionViewDidEnter = function () {
+        var _this = this;
+        this.slides.autoplayDisableOnInteraction = false;
+        this.apiProvider.verificarLogin()
+            .then(function (data) {
+            console.log(data);
+            if (data) {
+                _this.inicioSesion = false;
+            }
+            else {
+                _this.inicioSesion = true;
+            }
+        });
     };
-    ResultadosPage = __decorate([
+    InicioPage.prototype.presentAlert2 = function (mensaje) {
+        var alert = this.alertCtrl.create({
+            subTitle: this.sanitizer.bypassSecurityTrustHtml(mensaje)
+        });
+        alert.present();
+    };
+    InicioPage.prototype.goServicio = function (nombreServicio) {
+        console.log(nombreServicio);
+        this.seleccionCategoria = nombreServicio;
+        this.optionSubcategorias = this.subcategoriasT[nombreServicio];
+        this.option2 = null;
+        this.cdr.detectChanges();
+        // this.zone.run(()=>{  
+        this.select5.open();
+        // }); 
+        //this.navCtrl.push('ListaServiciosPage', {'nombre':nombreServicio});
+    };
+    InicioPage.prototype.goMapa = function () {
+        //console.log(nombreServicio);
+        //this.navCtrl.setRoot('MapaPage');
+        this.navCtrl.push('MapaPage');
+    };
+    InicioPage.prototype.openMenu = function () {
+        var profileModal = this.modalCtrl.create('LoginPage');
+        profileModal.present();
+    };
+    InicioPage.prototype.setDefaultPic = function (nombre) {
+        console.log(nombre);
+        return "assets/imgs/" + nombre;
+    };
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewChild"])(__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["Slides"]),
+        __metadata("design:type", __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["Slides"])
+    ], InicioPage.prototype, "slides", void 0);
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewChild"])('select5'),
+        __metadata("design:type", __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["Select"])
+    ], InicioPage.prototype, "select5", void 0);
+    InicioPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-            selector: 'page-resultados',template:/*ion-inline-start:"/Users/jose/Documents/beyouApp/beYou/src/pages/resultados/resultados.html"*/'<!--\n  Generated template for the ListaServiciosPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n  <ion-navbar>\n    <ion-title>\n<ion-item style=\'background-color: transparent !important;\'>\n  <ion-label style=\'    text-align: center;\n    color: white;\n    font-weight: bold;\' >Resultados</ion-label>\n</ion-item>\n  </ion-title>\n  </ion-navbar>\n</ion-header>\n\n\n\n\n<ion-content >\n\n\n\n\n\n<div [ngSwitch]="section" *ngIf=\'cargaData\'>\n\n	<div style="margin: 15px">\n\n		<div *ngIf=\'filtro.palabra\' class="tagResultado">{{filtro.palabra}}</div>\n		<div  *ngIf=\'filtro.lat\' class="tagResultado">{{filtro.stringPlace}}</div>\n		<div  *ngIf=\'filtro.abierto\' class="tagResultado">Abierto Ahora</div>\n		<div  *ngIf=\'filtro.filtroHora\' class="tagResultado">Abierto en horario {{filtro.filtroHora}}</div>\n<div  *ngIf=\'filtro.fecha\' class="tagResultado">Abierto dia {{filtro.filtroFecha}}</div>\n		\n\n		<div  *ngIf=\'filtro.orden && filtro.orden=="ASC"\' class="tagResultado">Precio: De Menor a Mayor</div>\n		<div  *ngIf=\'filtro.orden && filtro.orden=="DESC"\' class="tagResultado">Precio: De Mayor a Menor</div>\n\n		<div  *ngIf=\'filtro.ordenOpiniones\' class="tagResultado">Opiniones altas</div>\n\n\n		<div  *ngIf=\'filtro.disponible\' class="tagResultado">Disponible Hoy</div>\n\n\n\n\n		<div *ngFor="let s of filtro.servicios; let i = index"  class="tagResultado">\n		{{categorias[s-1]}}</div>\n\n\n<div style="text-align: center;\n    color: #444;\n    font-size: 16px;\n    margin: 15px;">Resultados de la Busqueda</div>\n\n	</div>\n\n    <ion-list mode="md" >\n    	<div *ngIf="!(resultados?.length > 0)" style="    text-align: center;">\n    		\n    		<img  style=\'    margin: 30px;\' src="assets/imgs/busquedaNula.png">\n    		<p style="    text-align: center;\n    font-size: 16px;\n    margin: 34px;\n    line-height: 23px;"> <span style="    font-size: 22px !important;\n    color: #333 !important;\n    line-height: 2;">Lo sentimos </span><br>  <b style="color:#666"> No se han encontrado centros cerca. Intenta nuevamente con filtros de busqueda diferentes o explora en otras categorias</b></p>\n    	</div>\n		<ion-card *ngFor="let n of resultados" (click)=\'goCentro(n.idCentro)\' >\n		<ion-card-content>\n				<div style="\n				display: inline-block;    width: 100%;\n				">\n				<img src="http://50.116.17.150:3000/{{n.idFoto}}" \n        onError="this.src=\'assets/imgs/fotoComercio.png\';" style="\n				display: inline-block;\n				height: 90px;\n				width: 90px !important;\n				vertical-align: top;\n				">\n				<div style="    display: inline-block;\n    width: calc(100% - 105px);\n    margin-left: 10px;\n				">\n				<span style="margin: 2px 0px 0px 0px;\n				font-size: 19px;\n				color: #333;">{{n.nombre}}</span>\n				<span style="    display: block;\n    font-size: 16px;\n    margin: 10px 0px;\n    font-weight: 800;\n    color: #EC527E;">${{n.pMin}} <span [hidden]=\'n.pMin == n.pMax\'>- ${{n.pMax}}</span></span>\n\n				<span class="itemComercio" >\n\n					<span style="  margin-right: 21px;  color: #888;\n    font-size: 15px;"><ion-icon [ngClass]="{\'colorGris\': n.cantRate==0}"  style=\'    margin-right: 8px;\n    color: rgb(249,199,53);\n    font-size: 21px;\n    vertical-align: middle;\' name="md-star"></ion-icon>{{n.rate  | number:\'1.1-2\'}} ({{n.cantRate\n}})</span>\n\n				 	<span style="     color: #888;\n    font-size: 15px;  "><ion-icon style=\'  margin-right: 8px;      vertical-align: middle;   font-size: 21px;color:#2FD99B;\' name="ios-pin"></ion-icon>{{n.distance | number:\'1.1-2\'}} Km</span> \n\n				</span>\n\n				</div>\n				</div>\n		</ion-card-content>\n		</ion-card>\n    </ion-list>\n</div>\n\n\n\n\n\n\n    	<div *ngIf=\'!cargaData\' style="text-align: center;padding-top: 25%;">\n    		<ion-spinner name="bubbles"></ion-spinner>\n    	</div>\n\n\n\n</ion-content>\n'/*ion-inline-end:"/Users/jose/Documents/beyouApp/beYou/src/pages/resultados/resultados.html"*/,
+            selector: 'page-inicio',template:/*ion-inline-start:"/Users/jose/Documents/beyouApp/beYou/src/pages/inicio/inicio.html"*/'<ion-header>\n  <ion-navbar  color="headerColor">\n\n    <ion-buttons start>\n    <button ion-button menuToggle>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n    </ion-buttons>\n\n\n    <ion-title >\n<img src="assets/imgs/logoMenu.png">\n    </ion-title>\n\n      <ion-buttons end>\n\n        <button  (click)=\'goMapa()\'   ion-button icon-only>\n        <ion-icon name="ios-pin" style=\'font-color:white;color:white\'></ion-icon>\n      </button>\n\n\n<!--       <button  ion-button icon-only>\n        <ion-icon name="pin"></ion-icon>\n      </button> -->\n\n\n    <!--      (click)=\'goMapa()\'   <button ion-button icon-only>\n        <ion-icon name="search"></ion-icon>\n      </button> -->\n\n\n      </ion-buttons>\n\n  </ion-navbar>\n</ion-header>\n\n<ion-content >\n\n  <div *ngIf=\'true\'>\n<!-- \n    <div style="width: 100%;" >\n    <img src="assets/imgs/imagenLogo.png" style="height: 100%; width:100%;margin-top:-75px;">\n    </div>\n -->\n  <div style="width: 100%;" >\n<ion-slides  class="slide-css"  autoplay="5000" loop="true" speed="700" \n                 pager="true" autoplayDisableOnInteraction = "false">\n\n  <ion-slide class=\'sliderImg\' style=\'background-image: url(http://50.116.17.150:3000/uploads/1banner)\' >\n   \n  </ion-slide> \n\n   <ion-slide class=\'sliderImg\' style=\'background-image: url(http://50.116.17.150:3000/uploads/2banner)\'>\n\n  </ion-slide>  \n\n  <ion-slide class=\'sliderImg\' style=\'background-image: url(http://50.116.17.150:3000/uploads/3banner)\' >\n  \n  </ion-slide>\n\n\n    </ion-slides>\n\n</div>\n\n    <div>\n      <div class="tituloSeccion">\n      Selecciona una Categoría\n      </div>\n\n<ion-grid style=\'margin-bottom: 50px\' >\n\n \n      <div *ngIf=\'categorias.length<1\' style="text-align: center;padding-top: 25%;">\n        <ion-spinner name="bubbles" style=\'color:darkgray\'></ion-spinner>\n      </div>\n\n\n\n  <div *ngFor="let n of categorias; let i = index">\n  <ion-row *ngIf=" i % 4 === 0" style=\'text-align: center;    max-width: 500px;\n    margin: 15px auto;\' > \n    <ion-col  *ngFor="let item of categorias.slice(i,i+4)" col-3 (click)=\'goServicio(item.idCategoria)\'>\n\n\n\n      <img  class=\'imagenCategoria\'  src="http://50.116.17.150:3000/{{item.idFoto}}" \n          onError="this.src=\'assets/imgs/ofertasVerde.png\';"  (load)="loaded = true"> \n          <span style="    display: block;">{{item.nombre}}</span>\n    </ion-col>\n\n  </ion-row>\n</div>\n</ion-grid>\n\n<select-alertless   #select5  style=\'display:none\' [selectOptions]="selectOptions" (ionChange)=\'printOption($event)\' [(ngModel)]="option2">\n\n      <ion-option *ngFor="let d of optionSubcategorias"  value=\'{{d.idSubcategoria}}\' >{{d.nombre}}</ion-option>\n\n</select-alertless>\n\n<!-- nuevo\n\n    <ion-select     #select5  style=\'display:none\' [selectOptions]="selectOptions" \n     >\n      <ion-option  value="f" selected="true">Female</ion-option>\n      <ion-option value="m">Male</ion-option>\n    </ion-select>\n\nnuevo -->\n    </div>\n\n  </div>\n</ion-content>\n\n\n\n<ion-footer>\n <div style="text-align: center;">\n   \n    <button *ngIf=\'inicioSesion\' (click)=\'openMenu()\' ion-button style="background-color: #2FD99B;width: 80%; max-width: 500px;    border-radius: 35px;">Crear Cuenta</button>\n\n  </div>\n</ion-footer>\n\n\n\n\n\n\n\n\n\n\n\n\n\n'/*ion-inline-end:"/Users/jose/Documents/beyouApp/beYou/src/pages/inicio/inicio.html"*/,
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["NavController"], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["NavParams"], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["ModalController"], __WEBPACK_IMPORTED_MODULE_2__providers_api_api__["a" /* ApiProvider */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["LoadingController"], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["Events"]])
-    ], ResultadosPage);
-    return ResultadosPage;
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["MenuController"], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["NavController"], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["NavParams"], __WEBPACK_IMPORTED_MODULE_2__providers_api_api__["a" /* ApiProvider */], __WEBPACK_IMPORTED_MODULE_3__angular_platform_browser__["c" /* DomSanitizer */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["AlertController"], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["LoadingController"], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["Events"], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["ModalController"], __WEBPACK_IMPORTED_MODULE_0__angular_core__["NgZone"], __WEBPACK_IMPORTED_MODULE_0__angular_core__["ChangeDetectorRef"]])
+    ], InicioPage);
+    return InicioPage;
 }());
 
-//# sourceMappingURL=resultados.js.map
+//# sourceMappingURL=inicio.js.map
+
+/***/ }),
+
+/***/ 462:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* unused harmony export SELECT_VALUE_ACCESSOR */
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SelectAlertless; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_forms__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_ionic_angular_util_util__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_ionic_angular_util_base_input__ = __webpack_require__(22);
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var __param = (this && this.__param) || function (paramIndex, decorator) {
+    return function (target, key) { decorator(target, key, paramIndex); }
+};
+
+
+
+
+
+var SELECT_VALUE_ACCESSOR = {
+    provide: __WEBPACK_IMPORTED_MODULE_2__angular_forms__["NG_VALUE_ACCESSOR"],
+    useExisting: Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["forwardRef"])(function () { return SelectAlertless; }),
+    multi: true
+};
+var SelectAlertless = (function (_super) {
+    __extends(SelectAlertless, _super);
+    function SelectAlertless(_app, form, config, elementRef, renderer, item, deepLinker, events) {
+        var _this = _super.call(this, config, elementRef, renderer, 'select', [], form, item, null) || this;
+        _this._app = _app;
+        _this.config = config;
+        _this.deepLinker = deepLinker;
+        _this._disabled = false;
+        _this._multi = false;
+        _this._values = [];
+        _this._texts = [];
+        _this._text = '';
+        _this._isOpen = false;
+        _this._compareWith = __WEBPACK_IMPORTED_MODULE_3_ionic_angular_util_util__["isCheckedProperty"];
+        _this.cancelText = 'Cancel';
+        _this.okText = 'OK';
+        _this.selectOptions = {};
+        _this.interface = '';
+        _this.selectedText = '';
+        _this.ionChange = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["EventEmitter"]();
+        _this.ionCancel = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["EventEmitter"]();
+        _this.close = function () { return (_this.overlay ? _this.overlay.dismiss() : ''); };
+        events.unsubscribe('select:close', _this.close);
+        events.subscribe('select:close', _this.close);
+        return _this;
+    }
+    SelectAlertless_1 = SelectAlertless;
+    Object.defineProperty(SelectAlertless.prototype, "compareWith", {
+        set: function (fn) {
+            if (typeof fn !== 'function') {
+                throw new Error("compareWith must be a function, but received " + JSON.stringify(fn));
+            }
+            this._compareWith = fn;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    SelectAlertless.prototype._click = function (ev) {
+        ev.preventDefault();
+        ev.stopPropagation();
+        this.open(ev);
+    };
+    SelectAlertless.prototype._keyup = function () {
+        this.open();
+    };
+    /**
+     * @hidden
+     */
+    SelectAlertless.prototype.getValues = function () {
+        var values = Array.isArray(this._value) ? this._value : [this._value];
+        Object(__WEBPACK_IMPORTED_MODULE_3_ionic_angular_util_util__["assert"])(this._multi || values.length <= 1, 'single only can have one value');
+        return values;
+    };
+    Object.defineProperty(SelectAlertless.prototype, "_options", {
+        get: function () {
+            return this.__options;
+        },
+        set: function (val) {
+            var _this = this;
+            this.__options = val;
+            if (!this._multi) {
+                this.__options.forEach(function (option) {
+                    if (option.ionSelect.observers.some(function (d) { return d.closed === false; }))
+                        return;
+                    option.ionSelect.subscribe(function (selectedValues) {
+                        _this.value = selectedValues;
+                        _this._isOpen = false;
+                        _this.overlay.dismiss();
+                    });
+                });
+            }
+        },
+        enumerable: true,
+        configurable: true
+    });
+    SelectAlertless.prototype.open = function (ev) {
+        var _this = this;
+        if (this.isFocus() || this._disabled) {
+            return;
+        }
+        // the user may have assigned some options specifically for the alert
+        var selectOptions = Object(__WEBPACK_IMPORTED_MODULE_3_ionic_angular_util_util__["deepCopy"])(this.selectOptions);
+        // make sure their buttons array is removed from the options
+        // and we create a new array for the alert's two buttons
+        selectOptions.buttons = [{
+                text: this.cancelText,
+                role: 'cancel',
+                handler: function () {
+                    _this.ionCancel.emit(null);
+                },
+            }];
+        // if the selectOptions didn't provide a title then use the label's text
+        if (!selectOptions.title) {
+            selectOptions.title = this.placeholder;
+        }
+        var options = this._options.toArray();
+        // default to use the alert interface
+        this.interface = 'alert';
+        // user cannot provide inputs from selectOptions
+        // alert inputs must be created by ionic from ion-options
+        selectOptions.inputs = this._options.map(function (input) {
+            return {
+                type: (_this._multi ? 'checkbox' : 'radio'),
+                label: input.text,
+                value: input.value,
+                title: _this.placeholder,
+                checked: input.selected,
+                disabled: input.disabled,
+                handler: function (selectedOption) {
+                    // Only emit the select event if it is being checked
+                    // For multi selects this won't emit when unchecking
+                    if (selectedOption.checked) {
+                        input.ionSelect.emit(input.value);
+                    }
+                },
+            };
+        });
+        var selectCssClass = 'select-alert';
+        // create the alert instance from our built up selectOptions
+        this.overlay = new __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["Alert"](this._app, selectOptions, this._config);
+        if (this._multi) {
+            // use checkboxes
+            selectCssClass += ' multiple-select-alert';
+        }
+        else {
+            // use radio buttons
+            selectCssClass += ' single-select-alert select-alertless';
+        }
+        // If the user passed a cssClass for the select, add it
+        selectCssClass += selectOptions.cssClass ? ' ' + selectOptions.cssClass : '';
+        this.overlay.setCssClass(selectCssClass);
+        this.overlay.addButton({
+            text: this.okText,
+            handler: function (selectedValues) { return _this.value = selectedValues; }
+        });
+        this.overlay.present(selectOptions);
+        this._isOpen = true;
+        this.overlay.onDidDismiss(function () {
+            _this._isOpen = false;
+        });
+    };
+    Object.defineProperty(SelectAlertless.prototype, "multiple", {
+        get: function () {
+            return this._multi;
+        },
+        set: function (val) {
+            this._multi = Object(__WEBPACK_IMPORTED_MODULE_3_ionic_angular_util_util__["isTrueProperty"])(val);
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(SelectAlertless.prototype, "text", {
+        get: function () {
+            return (this._multi ? this._texts : this._texts.join());
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(SelectAlertless.prototype, "options", {
+        /**
+         * @private
+         */
+        set: function (val) {
+            this._options = val;
+            var values = this.getValues();
+            if (values.length === 0) {
+                // there are no values set at this point
+                // so check to see who should be selected
+                // we use writeValue() because we don't want to update ngModel
+                this.writeValue(val.filter(function (o) { return o.selected; }).map(function (o) { return o.value; }));
+            }
+            else {
+                this._inputUpdated();
+            }
+        },
+        enumerable: true,
+        configurable: true
+    });
+    SelectAlertless.prototype._inputShouldChange = function (val) {
+        return !Object(__WEBPACK_IMPORTED_MODULE_3_ionic_angular_util_util__["deepEqual"])(this._value, val);
+    };
+    /**
+     * TODO: REMOVE THIS
+     * @hidden
+     */
+    SelectAlertless.prototype._inputChangeEvent = function () {
+        return this.value;
+    };
+    /**
+     * @hidden
+     */
+    SelectAlertless.prototype._inputUpdated = function () {
+        var _this = this;
+        this._texts.length = 0;
+        if (this._options) {
+            this._options.forEach(function (option) {
+                // check this option if the option's value is in the values array
+                option.selected = _this.getValues().some(function (selectValue) {
+                    return _this._compareWith(selectValue, option.value);
+                });
+                if (option.selected) {
+                    _this._texts.push(option.text);
+                }
+            });
+        }
+        this._text = this._texts.join(', ');
+        _super.prototype._inputUpdated.call(this);
+    };
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
+        __metadata("design:type", String)
+    ], SelectAlertless.prototype, "cancelText", void 0);
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
+        __metadata("design:type", String)
+    ], SelectAlertless.prototype, "okText", void 0);
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
+        __metadata("design:type", String)
+    ], SelectAlertless.prototype, "placeholder", void 0);
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
+        __metadata("design:type", Object)
+    ], SelectAlertless.prototype, "selectOptions", void 0);
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
+        __metadata("design:type", String)
+    ], SelectAlertless.prototype, "interface", void 0);
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
+        __metadata("design:type", String)
+    ], SelectAlertless.prototype, "selectedText", void 0);
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
+        __metadata("design:type", Function),
+        __metadata("design:paramtypes", [Function])
+    ], SelectAlertless.prototype, "compareWith", null);
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Output"])(),
+        __metadata("design:type", __WEBPACK_IMPORTED_MODULE_0__angular_core__["EventEmitter"])
+    ], SelectAlertless.prototype, "ionChange", void 0);
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Output"])(),
+        __metadata("design:type", __WEBPACK_IMPORTED_MODULE_0__angular_core__["EventEmitter"])
+    ], SelectAlertless.prototype, "ionCancel", void 0);
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["HostListener"])('click', ['$event']),
+        __metadata("design:type", Function),
+        __metadata("design:paramtypes", [UIEvent]),
+        __metadata("design:returntype", void 0)
+    ], SelectAlertless.prototype, "_click", null);
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["HostListener"])('keyup.space'),
+        __metadata("design:type", Function),
+        __metadata("design:paramtypes", []),
+        __metadata("design:returntype", void 0)
+    ], SelectAlertless.prototype, "_keyup", null);
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
+        __metadata("design:type", Object),
+        __metadata("design:paramtypes", [Object])
+    ], SelectAlertless.prototype, "multiple", null);
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["ContentChildren"])(__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["Option"]),
+        __metadata("design:type", __WEBPACK_IMPORTED_MODULE_0__angular_core__["QueryList"]),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_0__angular_core__["QueryList"]])
+    ], SelectAlertless.prototype, "options", null);
+    SelectAlertless = SelectAlertless_1 = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
+            selector: 'select-alertless',
+            template: '<div *ngIf="!_text" class="select-placeholder select-text">{{placeholder}}</div>' +
+                '<div *ngIf="_text" class="select-text">{{selectedText || _text}}</div>' +
+                '<div class="select-icon"><div class="select-icon-inner"></div></div>' +
+                '<button aria-haspopup="true" ' +
+                '[id]="id" ' +
+                'ion-button="item-cover" ' +
+                '[attr.aria-labelledby]="_labelId" ' +
+                '[attr.aria-disabled]="_disabled" ' +
+                'class="item-cover">' +
+                '</button>',
+            host: {
+                '[class.select-disabled]': '_disabled'
+            },
+            providers: [{ provide: __WEBPACK_IMPORTED_MODULE_2__angular_forms__["NG_VALUE_ACCESSOR"], useExisting: SelectAlertless_1, multi: true }],
+            encapsulation: __WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewEncapsulation"].None,
+        }),
+        __param(5, Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Optional"])()),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["App"],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["Form"],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["Config"],
+            __WEBPACK_IMPORTED_MODULE_0__angular_core__["ElementRef"],
+            __WEBPACK_IMPORTED_MODULE_0__angular_core__["Renderer"],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["Item"],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["DeepLinker"],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["Events"]])
+    ], SelectAlertless);
+    return SelectAlertless;
+    var SelectAlertless_1;
+}(__WEBPACK_IMPORTED_MODULE_4_ionic_angular_util_base_input__["a" /* BaseInput */]));
+
+//# sourceMappingURL=selectalertless.js.map
 
 /***/ })
 

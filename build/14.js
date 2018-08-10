@@ -1,14 +1,14 @@
 webpackJsonp([14],{
 
-/***/ 446:
+/***/ 454:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "NosotrosPageModule", function() { return NosotrosPageModule; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ReservaHechaPageModule", function() { return ReservaHechaPageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(11);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__nosotros__ = __webpack_require__(481);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__reserva_hecha__ = __webpack_require__(492);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -18,31 +18,31 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
-var NosotrosPageModule = (function () {
-    function NosotrosPageModule() {
+var ReservaHechaPageModule = (function () {
+    function ReservaHechaPageModule() {
     }
-    NosotrosPageModule = __decorate([
+    ReservaHechaPageModule = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["NgModule"])({
             declarations: [
-                __WEBPACK_IMPORTED_MODULE_2__nosotros__["a" /* NosotrosPage */],
+                __WEBPACK_IMPORTED_MODULE_2__reserva_hecha__["a" /* ReservaHechaPage */],
             ],
             imports: [
-                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["IonicPageModule"].forChild(__WEBPACK_IMPORTED_MODULE_2__nosotros__["a" /* NosotrosPage */]),
+                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["IonicPageModule"].forChild(__WEBPACK_IMPORTED_MODULE_2__reserva_hecha__["a" /* ReservaHechaPage */]),
             ],
         })
-    ], NosotrosPageModule);
-    return NosotrosPageModule;
+    ], ReservaHechaPageModule);
+    return ReservaHechaPageModule;
 }());
 
-//# sourceMappingURL=nosotros.module.js.map
+//# sourceMappingURL=reserva-hecha.module.js.map
 
 /***/ }),
 
-/***/ 481:
+/***/ 492:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return NosotrosPage; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ReservaHechaPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(11);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -57,29 +57,33 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 /**
- * Generated class for the NosotrosPage page.
+ * Generated class for the ReservaHechaPage page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
  */
-var NosotrosPage = (function () {
-    function NosotrosPage(navCtrl, navParams) {
+var ReservaHechaPage = (function () {
+    function ReservaHechaPage(navCtrl, navParams) {
         this.navCtrl = navCtrl;
         this.navParams = navParams;
     }
-    NosotrosPage.prototype.ionViewDidLoad = function () {
-        console.log('ionViewDidLoad NosotrosPage');
+    ReservaHechaPage.prototype.ionViewDidLoad = function () {
+        console.log('ionViewDidLoad ReservaHechaPage');
     };
-    NosotrosPage = __decorate([
+    ReservaHechaPage.prototype.goPagina = function (pagina) {
+        this.navCtrl.setRoot(pagina);
+        //this.navCtrl.push('PerfilCentroPage');
+    };
+    ReservaHechaPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-            selector: 'page-nosotros',template:/*ion-inline-start:"/Users/jose/Documents/beyouApp/beYou/src/pages/nosotros/nosotros.html"*/'<!--\n  Generated template for the NosotrosPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar>\n    <ion-title>Sobre YOURBEAUTY</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content padding style=\'background-color: #EC527E;    color: white;\'> \n\n\n\n\n\n\n<div style="    text-align: center;">\n   \n   <img style=\'     display: inline-block;   width: 30px; height: 30px\' src="assets/imgs/logoMenu.png" >\n  <div> YOURBEAUTY </div>\n\n  <div style="    margin-top: 35px;">Nulla vel diam facilis, donec libero non, sit iaculis congue turpis volutpat, officia urna et sit felis. Facilisi non urna tellus pellentesque felis, ut integer ullamcorper lorem mauris, suspendisse dapibus nulla, id interdum, aenean quis. Vel suspendisse ultrices, tellus tempor non eu habitasse vestibulum quisque, velit semper, lectus tempus suspendisse quis. Suspendisse tempus risus ac tincidunt ac eros, est nullam quis eget ante tellus. Imperdiet vestibulum libero est arcu, tellus turpis.</div>\n </div>\n\n      \n<div style="text-align: center;\n    font-size: 30px; margin-top: 30px">\n\n<ion-icon class=\'linkRedes\'  ios="logo-facebook" md="logo-facebook"></ion-icon>\n<ion-icon class=\'linkRedes\' name="logo-twitter"></ion-icon>\n <ion-icon class=\'linkRedes\' name="globe"></ion-icon>\n</div>\n\n    <div style="  text-align: center;\nfont-size: 16px;\ncolor: #777;\nwidth: 80%;\nmargin-left: 10%;\nmargin-top: 25px;">\n      \n\n    </div>\n\n\n</ion-content>\n'/*ion-inline-end:"/Users/jose/Documents/beyouApp/beYou/src/pages/nosotros/nosotros.html"*/,
+            selector: 'page-reserva-hecha',template:/*ion-inline-start:"/Users/jose/Documents/beyouApp/beYou/src/pages/reserva-hecha/reserva-hecha.html"*/'<!--\n  Generated template for the ReservaHechaPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar>\n    <ion-title>ReservaHecha</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content padding>\n\n\n\n<div style="\n    padding-left: 40px;\n    text-align: center;\n    padding-right: 40px;\n    margin-top: 30px;\n">\n	<img src="assets/imgs/fotoComercio.png" style="\n   height: 90px;\n   width: 90px;\n   ">\n\n	<span style="\n    display: block;\n    font-size: 20px;\n    color: #333;\n    margin-top: 15px;\n    margin-bottom:  15px;\n">Completado!</span>\n\n	<span style="\n    display: block;\n    color: #999;\n    font-size: 15px;\n    margin-bottom: 40px;\n        line-height: 24px;\n">Tu reserva esta siendo confirmada en este momento. Te notificaremos cuando hayamos procesado tu reserva</span>\n\n\n</div>\n\n\n<div style="    width: 100%;\n    text-align: center;\n    position: fixed;\n    left: 0;\n    bottom: 40px;">\n\n<button (click)=\'goPagina("MisReservasPage")\' color=\'verdeApp\' ion-button>Ver mi Reserva</button>\n\n<button (click)=\'goPagina("InicioPage")\' color=\'headerColor\' ion-button>Volver al Inicio</button>\n\n\n\n\n</div>\n\n</ion-content>\n'/*ion-inline-end:"/Users/jose/Documents/beyouApp/beYou/src/pages/reserva-hecha/reserva-hecha.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["NavController"], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["NavParams"]])
-    ], NosotrosPage);
-    return NosotrosPage;
+    ], ReservaHechaPage);
+    return ReservaHechaPage;
 }());
 
-//# sourceMappingURL=nosotros.js.map
+//# sourceMappingURL=reserva-hecha.js.map
 
 /***/ })
 

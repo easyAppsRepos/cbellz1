@@ -1,14 +1,14 @@
 webpackJsonp([27],{
 
-/***/ 429:
+/***/ 432:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AyudaPageModule", function() { return AyudaPageModule; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CentrocuponesPageModule", function() { return CentrocuponesPageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(11);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ayuda__ = __webpack_require__(464);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__centrocupones__ = __webpack_require__(470);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -18,33 +18,34 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
-var AyudaPageModule = (function () {
-    function AyudaPageModule() {
+var CentrocuponesPageModule = (function () {
+    function CentrocuponesPageModule() {
     }
-    AyudaPageModule = __decorate([
+    CentrocuponesPageModule = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["NgModule"])({
             declarations: [
-                __WEBPACK_IMPORTED_MODULE_2__ayuda__["a" /* AyudaPage */],
+                __WEBPACK_IMPORTED_MODULE_2__centrocupones__["a" /* CentrocuponesPage */],
             ],
             imports: [
-                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["IonicPageModule"].forChild(__WEBPACK_IMPORTED_MODULE_2__ayuda__["a" /* AyudaPage */]),
+                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["IonicPageModule"].forChild(__WEBPACK_IMPORTED_MODULE_2__centrocupones__["a" /* CentrocuponesPage */]),
             ],
         })
-    ], AyudaPageModule);
-    return AyudaPageModule;
+    ], CentrocuponesPageModule);
+    return CentrocuponesPageModule;
 }());
 
-//# sourceMappingURL=ayuda.module.js.map
+//# sourceMappingURL=centrocupones.module.js.map
 
 /***/ }),
 
-/***/ 464:
+/***/ 470:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AyudaPage; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CentrocuponesPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_api_api__ = __webpack_require__(105);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -56,44 +57,152 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 
 
-/**
- * Generated class for the AyudaPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
-var AyudaPage = (function () {
-    function AyudaPage(navCtrl, navParams) {
+
+
+
+
+
+var CentrocuponesPage = (function () {
+    function CentrocuponesPage(navCtrl, navParams, modalCtrl, loadingCtrl, events, apiProvider, alertCtrl) {
         this.navCtrl = navCtrl;
         this.navParams = navParams;
-        this.information = [];
+        this.modalCtrl = modalCtrl;
+        this.loadingCtrl = loadingCtrl;
+        this.events = events;
+        this.apiProvider = apiProvider;
+        this.alertCtrl = alertCtrl;
+        this.latitudePerson = 0;
+        this.longitudePerson = 0;
+        this.idCuponActivo = 0;
+        this.favoritos = [];
     }
-    AyudaPage.prototype.ionViewDidLoad = function () {
-        console.log('ionViewDidLoad AyudaPage');
-        this.information = [{ nombre: 'Reservas y Citas', id: 1, respuesta: 'Puedes ver el estado de tus reservaciones en la pestaña Reservaciones', open: false },
-            { nombre: 'Uso de cupones', id: 2, respuesta: 'Para hacer uso de nuestros cupones solo debes ingresar uno y el descuento se aplicará automaticamente en tu proxima reserva', open: false },
-            { nombre: 'Como puedo formar parte de YOURBEAUTY', id: 3, respuesta: 'Para formar parte de YOURBEAUTY negocios debes contactarnos al email email@contacto.com o por medio del telefono 39393939', open: false }];
-        //this.fechaSeleccionada = new Date(Date.now());
-    };
-    AyudaPage.prototype.toggleSection = function (i) {
+    CentrocuponesPage.prototype.ionViewDidLoad = function () {
         var _this = this;
-        this.information[i].open = !this.information[i].open;
-        this.information.forEach(function (item, index) {
-            if (index !== i) {
-                _this.information[index].open = false;
+        this.idCuponActivo = this.navParams.get('idCupon');
+        this.apiProvider.verificarLogin()
+            .then(function (data) {
+            console.log(data);
+            if (data) {
+                _this.dataUser = data;
+            }
+            else {
+                console.log('error');
+            }
+            _this.getCC();
+        });
+    };
+    CentrocuponesPage.prototype.getServiciosGPS = function () {
+        /*
+           this.latitudePerson = 9.9931605;
+           this.longitudePerson = -84.2307427;
+       */
+        var _this = this;
+        var loading = this.loadingCtrl.create({ content: "Obteniendo ubicacion" });
+        loading.present();
+        console.log('gps');
+        navigator.geolocation.getCurrentPosition(function (pos) {
+            console.log(pos.coords.latitude + ' Long: ' + pos.coords.longitude);
+            _this.latitudePerson = pos.coords.latitude;
+            _this.longitudePerson = pos.coords.longitude;
+            loading.dismissAll();
+        }, function (error) {
+            console.log('some err');
+            console.log(error);
+            loading.dismissAll();
+        }, { enableHighAccuracy: true, timeout: 30000 });
+    };
+    CentrocuponesPage.prototype.getCC = function () {
+        var _this = this;
+        var dataE = { idCupon: this.idCuponActivo };
+        console.log(dataE);
+        this.apiProvider.getCC(dataE)
+            .then(function (data) {
+            console.log(data);
+            if (data) {
+                _this.favoritos = data || [];
+            }
+            else {
+                console.log('Ha ocurrido un error');
             }
         });
     };
-    AyudaPage = __decorate([
+    CentrocuponesPage.prototype.filtroCategoria = function () {
+        //console.log('ionViewDidLoad FavoritosPage');
+        this.showCheckbox();
+    };
+    CentrocuponesPage.prototype.showCheckbox = function () {
+        var _this = this;
+        var alert = this.alertCtrl.create({ cssClass: 'alertCustomCss' });
+        alert.setTitle('Filtra por categoria');
+        alert.addInput({
+            type: 'checkbox',
+            label: 'Rostro y Cuerpo',
+            value: 'Rostro y Cuerpo',
+            checked: true
+        });
+        alert.addInput({
+            type: 'checkbox',
+            label: 'Peluqueria',
+            value: 'Peluqueria'
+        });
+        alert.addInput({
+            type: 'checkbox',
+            label: 'Uñas',
+            value: 'Uñas'
+        });
+        alert.addInput({
+            type: 'checkbox',
+            label: 'Masaje',
+            value: 'Masaje',
+            checked: true
+        });
+        alert.addInput({
+            type: 'checkbox',
+            label: 'Depilacion',
+            value: 'Depilacion'
+        });
+        alert.addInput({
+            type: 'checkbox',
+            label: 'Bienestar',
+            value: 'Bienestar'
+        });
+        alert.addInput({
+            type: 'checkbox',
+            label: 'Paquetes',
+            value: 'Paquetes',
+            checked: true
+        });
+        alert.addInput({
+            type: 'checkbox',
+            label: 'Ofertas',
+            value: 'Ofertas'
+        });
+        alert.addButton('Cancel');
+        alert.addButton({
+            text: 'Seleccionar',
+            handler: function (data) {
+                console.log('Checkbox data:', data);
+                _this.testCheckboxOpen = false;
+                _this.testCheckboxResult = data;
+            }
+        });
+        alert.present();
+    };
+    CentrocuponesPage.prototype.goCentro = function (idCentro) {
+        // this.navCtrl.push('PerfilCentroPage');  
+        //  this.navCtrl.push('PerfilCentroPage', {'idCentro':idCentro, 'idServicioSeleccionado':this.categoriaSeleccionada});
+        this.navCtrl.push('PerfilCentroPage', { 'idCentro': idCentro, 'idServicioSeleccionado': 0 });
+    };
+    CentrocuponesPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-            selector: 'page-ayuda',template:/*ion-inline-start:"/Users/jose/Documents/beyouApp/beYou/src/pages/ayuda/ayuda.html"*/'<!--\n  Generated template for the AjustesPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar>\n\n   <ion-buttons start>\n    <button ion-button menuToggle>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n    </ion-buttons>\n\n    \n    <ion-title>Ayuda</ion-title>\n\n\n\n  </ion-navbar>\n\n</ion-header>\n\n\n\n\n<ion-content style=\'background-color: #fafafa; \' >\n\n\n\n		<ion-list class="accordion-list">\n			<ion-list-header  [ngClass]="{\'borderSelected\': item.open, \'borderSelected2\': item.open && item.id==1}" *ngFor="let item of information; let i = index" no-lines no-padding>\n\n\n			<button style=\'        white-space: normal !important;\n    color: #777;background: transparent !important;\n    border-bottom: solid 1px #d3d3d352\'  ion-item (click)="toggleSection(i)" detail-none [ngClass]="{\'section-active\': item.open, \'section\': !item.open}">\n			<ion-icon class=\'btnList\' item-right  name="ios-add" *ngIf="!item.open"></ion-icon>\n			<ion-icon class=\'btnList\' item-right name="ios-remove" *ngIf="item.open"></ion-icon>\n\n			{{ item.nombre }}\n\n			</button>\n\n			<ion-list class=\'faqRespuesta\' *ngIf="item.open" no-lines >\n			{{item.respuesta}}\n			</ion-list>\n\n			</ion-list-header>\n		</ion-list>\n\n\n\n</ion-content>\n'/*ion-inline-end:"/Users/jose/Documents/beyouApp/beYou/src/pages/ayuda/ayuda.html"*/,
+            selector: 'page-centrocupones',template:/*ion-inline-start:"/Users/jose/Documents/beyouApp/beYou/src/pages/centrocupones/centrocupones.html"*/'<ion-header>\n  <ion-navbar  color="headerColor">\n\n    <ion-buttons start>\n    <button ion-button menuToggle>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n    </ion-buttons>\n\n    <ion-title>\nUsar Cupon\n\n\n    </ion-title>\n\n          <ion-buttons end>\n\n       \n\n      </ion-buttons>\n\n\n\n  </ion-navbar>\n\n\n   \n\n\n</ion-header>\n\n<ion-content >\n  <div class=\'alertaCupon\' style="background-color:#EC527E">\n\n  		<span *ngIf=\'favoritos[0]?.tipo=="1"\'> \n  			\n  			 <span  *ngIf=\'favoritos[0]?.tipoDescuento=="1"\'> \n  				Algunos servicios con {{favoritos[0]?.porcentajeDescuento}}% Descontado\n  			</span>\n  			<span  *ngIf=\'favoritos[0]?.tipoDescuento=="2"\'>\n  				Algunos servicios con ${{favoritos[0]?.porcentajeDescuento}} Descontado\n  			</span>\n\n  		</span>\n\n  		<span *ngIf=\'favoritos[0]?.tipo=="2"\'>\n\n  			<span  *ngIf=\'favoritos[0]?.tipoDescuento=="1"\'> \n  				Todos los servicios con {{favoritos[0]?.porcentajeDescuento}}% Descontado\n  			</span>\n  			<span  *ngIf=\'favoritos[0]?.tipoDescuento=="2"\'>\n  				Todos los servicios con ${{favoritos[0]?.porcentajeDescuento}} Descontado\n  			</span>\n  			\n\n  		</span>\n\n\n	  	\n\n	  </div>\n	\n\n    <ion-list mode="md" >\n\n\n        <div class=\'noResultado\' *ngIf="(favoritos)?.length === 0" >\n\n       <!--  No has marcado ningun negocio como favorito \n\n       	PONER ESPINER !!!!\n\n       -->\n\n    	</div> \n\n		<ion-card *ngFor="let n of favoritos" (click)=\'goCentro(n.idCentro)\' >\n		<ion-card-content>\n				<div style="\n				display: inline-block;    width: 100%;\n				">\n				<img src="http://50.116.17.150:3000/{{n.idFoto}}" \n        onError="this.src=\'assets/imgs/fotoComercio.png\';" style="\n				display: inline-block;\n				height: 90px;\n				width: 90px !important;\n				vertical-align: top;\n				">\n				<div style="    display: inline-block;\n    width: calc(100% - 105px);\n    margin-left: 10px;\n				">\n				<span style="margin: 2px 0px 0px 0px;\n				font-size: 19px;\n				color: #333;">{{n.nombreCentro}}</span>\n				<span style="    display: block;\n    font-size: 16px;\n    margin: 10px 0px;\n    font-weight: 800;\n    color: #EC527E;">${{n.pMin}} <span [hidden]=\'n.pMin == n.pMax\'>- ${{n.pMax}}</span></span>\n\n				<span class="itemComercio" >\n\n					<span style="  margin-right: 21px;  color: #888;\n    font-size: 15px;"><ion-icon [ngClass]="{\'colorGris\': n.cantRate==0}"  style=\'    margin-right: 8px;\n    color: rgb(249,199,53);\n    font-size: 21px;\n    vertical-align: middle;\' name="md-star"></ion-icon>{{n.rate  | number:\'1.1-2\'}} ({{n.cantRate\n}})</span>\n\n<!-- 					<span style="     color: #888;\n    font-size: 15px;  "><ion-icon style=\'  margin-right: 8px;      vertical-align: middle;   font-size: 21px;color:#2FD99B;\' name="ios-pin"></ion-icon>{{n.distance | number:\'1.1-2\'}} Km</span> -->\n\n				</span>\n\n				</div>\n				</div>\n\n		</ion-card-content>\n		</ion-card>\n\n\n\n\n\n\n\n\n\n    </ion-list>\n\n\n</ion-content>\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n'/*ion-inline-end:"/Users/jose/Documents/beyouApp/beYou/src/pages/centrocupones/centrocupones.html"*/,
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["NavController"], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["NavParams"]])
-    ], AyudaPage);
-    return AyudaPage;
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["NavController"], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["NavParams"], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["ModalController"], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["LoadingController"], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["Events"], __WEBPACK_IMPORTED_MODULE_2__providers_api_api__["a" /* ApiProvider */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["AlertController"]])
+    ], CentrocuponesPage);
+    return CentrocuponesPage;
 }());
 
-//# sourceMappingURL=ayuda.js.map
+//# sourceMappingURL=centrocupones.js.map
 
 /***/ })
 

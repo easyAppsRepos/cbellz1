@@ -1,14 +1,14 @@
 webpackJsonp([23],{
 
-/***/ 434:
+/***/ 436:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ConfirmarReservaPageModule", function() { return ConfirmarReservaPageModule; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CuentaPageModule", function() { return CuentaPageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(11);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__confirmar_reserva__ = __webpack_require__(469);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__cuenta__ = __webpack_require__(474);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -18,36 +18,36 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
-var ConfirmarReservaPageModule = (function () {
-    function ConfirmarReservaPageModule() {
+var CuentaPageModule = (function () {
+    function CuentaPageModule() {
     }
-    ConfirmarReservaPageModule = __decorate([
+    CuentaPageModule = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["NgModule"])({
             declarations: [
-                __WEBPACK_IMPORTED_MODULE_2__confirmar_reserva__["a" /* ConfirmarReservaPage */],
+                __WEBPACK_IMPORTED_MODULE_2__cuenta__["a" /* CuentaPage */],
             ],
             imports: [
-                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["IonicPageModule"].forChild(__WEBPACK_IMPORTED_MODULE_2__confirmar_reserva__["a" /* ConfirmarReservaPage */]),
+                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["IonicPageModule"].forChild(__WEBPACK_IMPORTED_MODULE_2__cuenta__["a" /* CuentaPage */]),
             ],
         })
-    ], ConfirmarReservaPageModule);
-    return ConfirmarReservaPageModule;
+    ], CuentaPageModule);
+    return CuentaPageModule;
 }());
 
-//# sourceMappingURL=confirmar-reserva.module.js.map
+//# sourceMappingURL=cuenta.module.js.map
 
 /***/ }),
 
-/***/ 469:
+/***/ 474:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ConfirmarReservaPage; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CuentaPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(11);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_api_api__ = __webpack_require__(105);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_moment__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_moment___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_moment__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_storage__ = __webpack_require__(53);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_platform_browser__ = __webpack_require__(27);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_api_api__ = __webpack_require__(105);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -65,109 +65,192 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 /**
- * Generated class for the ConfirmarReservaPage page.
+ * Generated class for the CuentaPage page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
  */
-var ConfirmarReservaPage = (function () {
-    function ConfirmarReservaPage(navCtrl, navParams, modalCtrl, menuCtrl, loadingCtrl, events, apiProvider) {
+var CuentaPage = (function () {
+    function CuentaPage(DomSanitizer, navCtrl, navParams, modalCtrl, alertCtrl, loadingCtrl, events, zone, apiProvider, storage) {
         var _this = this;
+        this.DomSanitizer = DomSanitizer;
         this.navCtrl = navCtrl;
         this.navParams = navParams;
         this.modalCtrl = modalCtrl;
-        this.menuCtrl = menuCtrl;
+        this.alertCtrl = alertCtrl;
         this.loadingCtrl = loadingCtrl;
         this.events = events;
+        this.zone = zone;
         this.apiProvider = apiProvider;
-        this.confirmacionLista = function () {
-            _this.apiProvider.verificarLogin()
-                .then(function (data) {
+        this.storage = storage;
+        this.porcenBarra = 0;
+        this.getImages = function () {
+            var options = {
+                quality: 100,
+                destinationType: navigator.camera.DestinationType.FILE_URI,
+                sourceType: navigator.camera.PictureSourceType.PHOTOLIBRARY
+            };
+            navigator.camera.getPicture(function (imageData) {
+                console.log(imageData);
+                _this.zone.run(function () { _this.imageFileName = imageData; });
+            }, function (err) {
+                console.log(err);
+            }, options);
+        };
+        this.uploadFile = function (datak) {
+            var loader = _this.loadingCtrl.create({
+                content: "Guardando..."
+            });
+            loader.present();
+            //const fileTransfer: FileTransferObject = this.transfer.create();
+            /*
+              let options = new FileUploadOptions();' = {
+                fileKey: 'ionicfile',
+                fileName: 'ionicfile',
+                chunkedMode: false,
+                mimeType: "image/jpeg",
+                headers: {}
+              };
+            */
+            var options = new FileUploadOptions();
+            options.fileKey = "ionicfile";
+            options.fileName = 'ionicfile2';
+            options.mimeType = "image/jpeg";
+            options.chunkedMode = false;
+            options.headers = {};
+            options.params = datak;
+            var ft = new FileTransfer();
+            ft.upload(_this.imageFileName, 'http://50.116.17.150:3000/editarCF', function (datag) {
+                console.log(datag);
+                //this.imageFileName = "http://192.168.0.7:8080/static/images/ionicfile.jpg"
+                //this.presentToast("Image uploaded successfully");
+                var data = JSON.parse(datag.response);
                 console.log(data);
-                if (data) {
-                    var loading_1 = _this.loadingCtrl.create({ content: "Creando Cita..." });
-                    loading_1.present();
-                    _this.dataCentro.idCliente = data.idCliente;
-                    console.log(_this.dataCentro);
-                    _this.apiProvider.addCita(_this.dataCentro)
-                        .then(function (data) {
-                        if (data) {
-                            console.log(data);
-                            if (data.insertId > 0) {
-                                _this.navCtrl.setRoot('ReservaHechaPage');
-                            }
-                        }
-                        else {
-                            console.log('Ha ocurrido un error');
-                        }
-                        loading_1.dismissAll();
-                    });
+                if (data.data && data.data.affectedRows > 0) {
+                    //this.storage.set(`usr_tok_by`, this.dataUser);
+                    _this.storage.get('usr_tok_by').then(function (value) {
+                        // console.log(value);
+                        var da = value;
+                        da.genero = _this.dataUser.genero;
+                        da.telefono = _this.dataUser.telefono;
+                        da.nombre = _this.dataUser.nombre;
+                        da.idFoto = data.idFoto;
+                        console.log(da);
+                        _this.storage.set("usr_tok_by", da);
+                    }).catch(function () { return resolve(false); });
+                    loader.dismiss();
+                    _this.agregadoOk();
+                    //console.log('borrada');
+                    _this.editarData = true;
                 }
                 else {
-                    var profileModal = _this.modalCtrl.create('LogindPage', { 'total': _this.dataCentro.total });
-                    profileModal.present();
-                    //this.menuCtrl.open();
+                    loader.dismiss();
+                    _this.errorSu();
+                    console.log('Ha ocurrido un error');
                 }
-            });
+            }, function (err) {
+                console.log(err);
+                loader.dismiss();
+                // this.presentToast(err);
+            }, options);
         };
-        this.dataCentro = {};
-        this.idCliente = 0;
+        this.editarData = true;
+        this.dataUserInput = {};
+        this.dataUser = {};
     }
-    ConfirmarReservaPage.prototype.ionViewDidLoad = function () {
+    CuentaPage.prototype.ionViewDidLoad = function () {
         var _this = this;
-        console.log('ionViewDidLoad ConfirmarReservaPage');
-        this.apiProvider.getCarrito()
-            .then(function (data) {
-            console.log(data);
-            _this.dataCentro.servicios = data;
-        });
-        this.apiProvider.getTotal()
-            .then(function (data) {
-            console.log(data);
-            _this.dataCentro.total = data.toFixed(2);
-        });
+        console.log('ionViewDidLoad CuentaPage');
         this.apiProvider.verificarLogin()
             .then(function (data) {
             console.log(data);
             if (data) {
-                _this.idCliente = data.idCliente;
-                console.log(_this.idCliente);
+                _this.dataUserInput = JSON.parse(JSON.stringify(data));
+                ;
+                _this.dataUser = data;
+                _this.porcenBarra = ((_this.dataUser.appexp) / (_this.dataUser.exp)) + '%';
+                //this.menuActivo = true;
             }
             else {
-                _this.idCliente = 0;
+                console.log('error');
+                // this.menuActivo = false;
             }
-            _this.dataCentro.fecha = _this.navParams.get('fecha');
-            _this.dataCentro.nombreStaff = _this.navParams.get('nombreStaff');
-            _this.dataCentro.fechaInicio = _this.navParams.get('fechaInicio');
-            _this.dataCentro.fechaFinal = _this.navParams.get('fechaFinal');
-            _this.dataCentro.hora = _this.navParams.get('hora');
-            _this.dataCentro.horaF = _this.navParams.get('horaF');
-            _this.dataCentro.idCuponCliente = _this.navParams.get('idCuponCliente');
-            _this.dataCentro.data = _this.navParams.get('centro');
-            _this.dataCentro.idEmpleado = _this.navParams.get('idEmpleado');
-            _this.dataCentro.idCliente = _this.idCliente;
         });
-        console.log(this.dataCentro);
     };
-    ConfirmarReservaPage.prototype.getDattt = function (str) {
-        if (str) {
-            return __WEBPACK_IMPORTED_MODULE_3_moment__["utc"](str).format('h:mm a');
+    CuentaPage.prototype.agregadoOk = function () {
+        var alert = this.alertCtrl.create({
+            title: 'Editado correctamente',
+            subTitle: 'Sus datos han sido editados correctamente',
+            buttons: ['Cerrar']
+        });
+        alert.present();
+    };
+    CuentaPage.prototype.errorSu = function () {
+        var alert = this.alertCtrl.create({
+            title: 'Error',
+            subTitle: 'Ha ocurrido un error',
+            buttons: ['Cerrar']
+        });
+        alert.present();
+    };
+    CuentaPage.prototype.getPorcentaje = function () {
+        var enviar = ((900) / (this.dataUser.completadas * 100)) + '%';
+        console.log(enviar);
+        return enviar;
+    };
+    CuentaPage.prototype.guardarCambios = function () {
+        var _this = this;
+        if (this.imageFileName) {
+            this.uploadFile(this.dataUser);
         }
         else {
-            return ' ';
+            var loading_1 = this.loadingCtrl.create({ content: "Cargando ..." });
+            loading_1.present();
+            this.apiProvider.editarUsuario(this.dataUser)
+                .then(function (data) {
+                loading_1.dismissAll();
+                console.log(data);
+                if (data.affectedRows > 0) {
+                    //this.storage.set(`usr_tok_by`, this.dataUser);
+                    _this.storage.get('usr_tok_by').then(function (value) {
+                        // console.log(value);
+                        var da = value;
+                        da.genero = _this.dataUser.genero;
+                        da.telefono = _this.dataUser.telefono;
+                        da.nombre = _this.dataUser.nombre;
+                        da.fechaNacimiento = _this.dataUser.fechaNacimiento;
+                        console.log(da);
+                        _this.storage.set("usr_tok_by", da);
+                        _this.events.publish('userCH');
+                    }).catch(function () { return resolve(false); });
+                    _this.agregadoOk();
+                    //console.log('borrada');
+                    _this.editarData = true;
+                }
+                else {
+                    console.log('Ha ocurrido un error');
+                }
+            });
         }
+        //console.log(this.dataUser);
     };
-    ConfirmarReservaPage = __decorate([
+    CuentaPage.prototype.cancelarEdicion = function () {
+        this.dataUser = this.dataUserInput;
+        this.editarData = true;
+        this.imageFileName = undefined;
+    };
+    CuentaPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-            selector: 'page-confirmar-reserva',template:/*ion-inline-start:"/Users/jose/Documents/beyouApp/beYou/src/pages/confirmar-reserva/confirmar-reserva.html"*/'<!--\n  Generated template for the ConfirmarReservaPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar>\n    <ion-title>Confirmar Reserva</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content style=\'    background-color: #fafafa !important; \' >\n\n\n\n<div style="\n    display: inline-block;    width: 100%;padding: 10px;    border-bottom: solid 2px #ececec;\n">\n	<img src="http://50.116.17.150:3000/{{dataCentro.data?.idFoto}}" \n        onError="this.src=\'assets/imgs/fotoComercio.png\';"  style="\n    display: inline-block;\n    height: 90px;\n    width: 90px !important;\n    vertical-align: top;\n">\n	<div style="\n    display: inline-block;\n/*    width: calc(100% - 114px);*/\n    margin-left:  10px;\n">\n		<span style="margin: 2px 0px 0px 0px;\n    font-size: 18px;\n    color: #333;">{{dataCentro.data?.nombre}}</span>\n    <span class="itemComercio"></span>\n		<span class="itemComercio">{{dataCentro.data?.direccion}}</span>\n\n            <span class="itemComercio" style="margin-top:10px !important">\n       <ion-icon style=\'margin-right: 5px\' name="contact"></ion-icon>\n        <span style="color:#666 !important">{{dataCentro?.nombreStaff}}</span>\n    </span>\n\n\n		<!-- <span class="itemComercio">City Name, Country</span> -->\n		<span class="itemComercio" style="margin-top:10px !important">Fecha <span style="margin-left: 10px;color:#EC527E !important">{{dataCentro?.fecha}}</span></span>\n    <span *ngIf="dataCentro.fechaInicio && dataCentro.fechaFinal"  class="itemComercio" style="margin-top:10px !important">\n      Hora \n        <span style="margin-left: 10px;color:#EC527E !important;    font-size: 12px;">\n      {{getDattt(dataCentro.fechaInicio)}} - {{getDattt(dataCentro.fechaFinal)}}\n      </span>\n     </span>\n\n \n\n\n\n\n\n   <!--              <span class="itemComercio" style="margin-top:10px !important">Hora Inicio<span style="margin-left: 10px;color:#EC527E !important">{{dataCentro?.hora}}</span></span>\n\n                 <span class="itemComercio" style="margin-top:10px !important">Finalizacion aprox. <span style="margin-left: 10px;color:#EC527E !important">{{dataCentro?.horaF}}</span></span> -->\n\n\n\n\n	</div>\n\n\n	</div>\n\n\n\n\n\n\n<div *ngFor="let n of dataCentro.servicios;let index=index; let odd=odd; let even=even;" \nstyle="width: 100%; display: inline-block;" [ngClass]="{ odd: odd, even: even }">\n	\n\n	<div style="\n    display: inline-block;\n    width: 100%;padding: 16px;    border-bottom: solid 2px #ececec;\n \n">\n\n\n\n\n		<span style="\n    font-size: 18px;\n    color:  #333;\n">{{n.nombre}}</span>\n\n	<div style="    margin-top: 10px;">\n\n    <span *ngIf=\'n.oferta\' style="color: #555 !important;font-size: 16px;  text-decoration: line-through;">${{n.precio}}</span>\n    <span style="color: #EC527E !important;font-size: 15px;">${{n.precioFinal}}</span>\n\n    <span style="margin-right: 20px;     margin-left: 24px;   color: #333;\n    font-size: 12px;">\n    <ion-icon style=\'margin-right: 5px\' name="ios-time-outline"></ion-icon>\n    {{n.duracion}} min\n    </span>\n\n    </div>\n\n	</div>\n\n\n\n\n</div>\n\n\n\n\n	<div style="\n   padding: 16px;\n"><span style="\n    font-size: 16px;\n    color: #999;\n">Total</span> <span style="\n    color: #EC527E !important;\n    font-size: 16px;\n    float: right;\n\n">${{dataCentro?.total}}</span>\n\n\n\n</div>\n\n	 <ion-item style=\'padding: 0px !important;\'>\n  <ion-textarea  style=\'      color: #777;\n    background: white;\n    height: 136px;\n    margin: 16px;\n    font-size: 14px;\n    padding: 12px;\' placeholder="Nota para {{dataCentro.data?.nombre}} (opcional)" \n      [(ngModel)]="dataCentro.notaCita" name="note" autocomplete="on" autocorrect="on"></ion-textarea>\n </ion-item>\n\n\n\n\n\n\n\n\n\n\n\n\n</ion-content>\n\n<ion-footer style=\'padding: 16px;\'>\n    <button (click)=\'confirmacionLista()\' style=" " ion-button class="botonVerdeFulls">Confirmar Reserva</button>\n\n\n\n</ion-footer>\n'/*ion-inline-end:"/Users/jose/Documents/beyouApp/beYou/src/pages/confirmar-reserva/confirmar-reserva.html"*/,
+            selector: 'page-cuenta',template:/*ion-inline-start:"/Users/jose/Documents/beyouApp/beYou/src/pages/cuenta/cuenta.html"*/'<!--\n  Generated template for the AjustesPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar>\n\n   <ion-buttons start>\n    <button ion-button menuToggle>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n    </ion-buttons>\n\n    \n    <ion-title>Cuenta</ion-title>\n\n\n\n  </ion-navbar>\n\n</ion-header>\n\n\n\n<ion-content style=\'background-color: #fafafa; \' >\n\n        <ion-item style=\'    margin-top: 0px;\n    background-color: white !important;\n    padding: 20px;\' class=\'fixProfileMargin\'>\n          <ion-avatar item-start>\n\n          <img *ngIf="!imageFileName && editarData && !dataUser.fbId"  [hidden]=\'imageFileName\' style=\'width:75px; height: 75px\' src="http://50.116.17.150:3000/{{dataUser?.idFoto}}" \n        onError="this.src=\'assets/imgs/usuario.png\';" />\n\n          <img *ngIf="!imageFileName && editarData && dataUser.fbId"  [hidden]=\'imageFileName\' style=\'width:75px; height: 75px\' src="{{dataUser?.imagenFb}}" \n        onError="this.src=\'assets/imgs/usuario.png\';" />\n\n\n\n            <img  (click)=\'getImages()\' *ngIf="!imageFileName && !editarData" [hidden]=\'imageFileName\' style=\'width:75px; height: 75px\' src="assets/imgs/editImage.png"   />\n\n        <img [src]="DomSanitizer.bypassSecurityTrustUrl(imageFileName)"  *ngIf="imageFileName" style=\'width:75px; height: 75px\' />\n\n          </ion-avatar>\n          <h2 style="margin-bottom: 23px;">{{dataUser?.nombre}}</h2>\n          <div class="barraContainer">\n\n\n\n            <div class="barraProgress" [ngStyle]="{\'width\': porcenBarra}"  ><span>{{(dataUser?.exp) || 0}}/{{dataUser?.appexp}}</span></div>\n\n          </div>\n        </ion-item>\n\n\n\n\n          <ion-list>\n<!-- \n\n\n          <button  class="claseItem"  ion-item  >\n          {{dataUser?.nombre || \'no especificado\'}}\n    \n          </button>       <button  class="claseItem"  ion-item  >\n          {{dataUser?.email || \'no especificado\'}}\n        \n          </button>\n          <button  class="claseItem"  ion-item  >\n          {{dataUser?.telefono || \'no especificado\'}}\n        \n          </button>\n\n          <button  class="claseItem"  ion-item  >\n          Genero: {{dataUser?.genero || \'no especificado\'}}\n        \n          </button>\n-->\n\n\n  <ion-item style=\'margin-top: 20px\'  >\n    <ion-label color="headerColor" stacked>Nombre</ion-label>\n    <ion-input  [ngClass]="{\'itemActi\':!editarData}"   [disabled]=\'editarData\' [(ngModel)]="dataUser.nombre"  type="text" placeholder="nombre"></ion-input>\n  </ion-item>\n\n  <ion-item  style=\'margin-top: 20px\'>\n    <ion-label color="headerColor" stacked>Email</ion-label>\n    <ion-input  [disabled]=\'true\' [(ngModel)]="dataUser.email"  type="text" placeholder="correo electronico"></ion-input>\n  </ion-item>\n\n  <ion-item  style=\'margin-top: 20px\'>\n    <ion-label color="headerColor" stacked>Telefono</ion-label>\n    <ion-input  [ngClass]="{\'itemActi\':!editarData}"  [disabled]=\'editarData\' [(ngModel)]="dataUser.telefono"  type="tel" placeholder="telefono"></ion-input>\n  </ion-item>\n\n\n  <ion-item  style=\'margin-top: 20px\'>\n    <ion-label color="headerColor" stacked>Genero</ion-label>\n    <ion-input   [ngClass]="{\'itemActi\':!editarData}"  [disabled]=\'editarData\' [(ngModel)]="dataUser.genero"  type="text" placeholder=""></ion-input>\n  </ion-item>\n\n    \n\n<ion-item   style=\'    height: 75px;\'>\n  <ion-label class=\'headerColor\' style=\'    font-size: 1.2rem;\n    color: #EC527E;\n    opacity: 1; \' >Fecha Nacimiento</ion-label><br>\n <ion-datetime [disabled]=\'editarData\' [(ngModel)]="dataUser.fechaNacimiento" displayFormat="YYYY-MM-DD"  style=\'     position: absolute;\n    margin-top: 24px;\n    border: solid 2px lightgray;\n    padding: 0px 15px;\n    min-width: 50px;\' > </ion-datetime> \n\n</ion-item>\n\n\n\n\n\n          </ion-list>\n\n\n\n              <div [hidden]=\'!editarData\'  style="width: 100%;\n    position: fixed;\n    bottom: 0px;\n    background: rgb(247,248,249);\n    padding-bottom: 6px;\n">\n          <button (click)=\'editarData=false\' ion-button class="botonVerdeFull">Actualizar informacion<ion-icon style=\'    margin-left: 10px !important;\' name="md-arrow-forward"></ion-icon> \n\n          </button>\n </div>\n\n<div  style="width: 100%;\n    position: fixed;\n    bottom: 0px;\n    background: rgb(247,248,249);\n    padding-bottom: 6px;\n" [hidden]=\'editarData\'>\n    \n\n    <button (click)=\'guardarCambios()\'  style=" border-radius: 70px;   width: 40%;\n    margin-left: 5%;float:left"  color=\'verdeApp\' ion-button> Guardar cambio</button> \n\n    <button (click)=\'cancelarEdicion()\'  color=\'headerColor\' ion-button  style="    width: 40%;\n    margin-right: 5%;\n    border-radius: 70px;float:right" >Deshacer</button>\n\n\n</div>\n\n\n\n\n   \n\n\n\n\n\n</ion-content>\n'/*ion-inline-end:"/Users/jose/Documents/beyouApp/beYou/src/pages/cuenta/cuenta.html"*/,
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["NavController"], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["NavParams"], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["ModalController"], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["MenuController"], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["LoadingController"], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["Events"], __WEBPACK_IMPORTED_MODULE_2__providers_api_api__["a" /* ApiProvider */]])
-    ], ConfirmarReservaPage);
-    return ConfirmarReservaPage;
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_3__angular_platform_browser__["c" /* DomSanitizer */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["NavController"], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["NavParams"], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["ModalController"], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["AlertController"], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["LoadingController"], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["Events"], __WEBPACK_IMPORTED_MODULE_0__angular_core__["NgZone"], __WEBPACK_IMPORTED_MODULE_4__providers_api_api__["a" /* ApiProvider */], __WEBPACK_IMPORTED_MODULE_2__ionic_storage__["b" /* Storage */]])
+    ], CuentaPage);
+    return CuentaPage;
 }());
 
-//# sourceMappingURL=confirmar-reserva.js.map
+//# sourceMappingURL=cuenta.js.map
 
 /***/ })
 

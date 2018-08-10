@@ -1,14 +1,14 @@
 webpackJsonp([13],{
 
-/***/ 452:
+/***/ 457:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RecuperarPageModule", function() { return RecuperarPageModule; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ResultadosPageModule", function() { return ResultadosPageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(11);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__recuperar__ = __webpack_require__(487);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__resultados__ = __webpack_require__(495);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -18,31 +18,31 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
-var RecuperarPageModule = (function () {
-    function RecuperarPageModule() {
+var ResultadosPageModule = (function () {
+    function ResultadosPageModule() {
     }
-    RecuperarPageModule = __decorate([
+    ResultadosPageModule = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["NgModule"])({
             declarations: [
-                __WEBPACK_IMPORTED_MODULE_2__recuperar__["a" /* RecuperarPage */],
+                __WEBPACK_IMPORTED_MODULE_2__resultados__["a" /* ResultadosPage */],
             ],
             imports: [
-                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["IonicPageModule"].forChild(__WEBPACK_IMPORTED_MODULE_2__recuperar__["a" /* RecuperarPage */]),
+                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["IonicPageModule"].forChild(__WEBPACK_IMPORTED_MODULE_2__resultados__["a" /* ResultadosPage */]),
             ],
         })
-    ], RecuperarPageModule);
-    return RecuperarPageModule;
+    ], ResultadosPageModule);
+    return ResultadosPageModule;
 }());
 
-//# sourceMappingURL=recuperar.module.js.map
+//# sourceMappingURL=resultados.module.js.map
 
 /***/ }),
 
-/***/ 487:
+/***/ 495:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return RecuperarPage; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ResultadosPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(11);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_api_api__ = __webpack_require__(105);
@@ -61,75 +61,47 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-
 /**
- * Generated class for the RecuperarPage page.
+ * Generated class for the ResultadosPage page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
  */
-var RecuperarPage = (function () {
-    function RecuperarPage(navCtrl, navParams, modalCtrl, loadingCtrl, events, apiProvider, alertCtrl) {
+var ResultadosPage = (function () {
+    function ResultadosPage(navCtrl, navParams, modalCtrl, apiProvider, loadingController, events) {
         this.navCtrl = navCtrl;
         this.navParams = navParams;
         this.modalCtrl = modalCtrl;
-        this.loadingCtrl = loadingCtrl;
-        this.events = events;
         this.apiProvider = apiProvider;
-        this.alertCtrl = alertCtrl;
+        this.loadingController = loadingController;
+        this.events = events;
+        this.filtro = {};
+        this.resultados = [];
+        this.categorias = ['Peluqueria', 'Rostro y Cuerpo', 'Uñas', 'Masaje', 'Depilacion', 'Bienestar', 'Paquetes', 'Ofertas'];
+        this.categoriaSeleccionada = 0;
+        this.cargaData = false;
     }
-    RecuperarPage.prototype.ionViewDidLoad = function () {
-        console.log('ionViewDidLoad RecuperarPage');
+    ResultadosPage.prototype.ionViewDidLoad = function () {
+        console.log('ionViewDidLoad ResultadosPage');
+        this.resultados = this.navParams.get('resultados');
+        this.filtro = this.navParams.get('filtro');
+        console.log(this.navParams.get('filtro'));
+        this.cargaData = true;
     };
-    RecuperarPage.prototype.actualizarContra = function (emails) {
-        var _this = this;
-        var loading = this.loadingCtrl.create({ content: "Recuperando ..." });
-        loading.present();
-        console.log(emails);
-        this.apiProvider.recuperarPass({ email: emails })
-            .then(function (data) {
-            console.log(data);
-            if (data.data) {
-                if (data && data.data.affectedRows > 0) {
-                    loading.dismissAll();
-                    var alert_1 = _this.alertCtrl.create({
-                        title: 'Contraseña Restablecida',
-                        subTitle: 'Te hemos enviado la contraseña nueva a tu correo',
-                        buttons: ['Cerrar']
-                    });
-                    alert_1.present();
-                }
-                else {
-                    loading.dismissAll();
-                    var alert_2 = _this.alertCtrl.create({
-                        title: 'Error',
-                        subTitle: 'Email Invalido',
-                        buttons: ['Cerrar']
-                    });
-                    alert_2.present();
-                }
-            }
-            else {
-                loading.dismissAll();
-                var alert_3 = _this.alertCtrl.create({
-                    title: 'Error',
-                    subTitle: 'Error inesperado',
-                    buttons: ['Cerrar']
-                });
-                alert_3.present();
-            }
-        });
+    ResultadosPage.prototype.goCentro = function (idCentro) {
+        // this.navCtrl.push('PerfilCentroPage');  
+        this.navCtrl.push('PerfilCentroPage', { 'idCentro': idCentro, 'idServicioSeleccionado': this.categoriaSeleccionada });
     };
-    RecuperarPage = __decorate([
+    ResultadosPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-            selector: 'page-recuperar',template:/*ion-inline-start:"/Users/jose/Documents/beyouApp/beYou/src/pages/recuperar/recuperar.html"*/'<!--\n  Generated template for the RecuperarPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar>\n    <ion-title style=\'padding-left: 0px !important;padding-right: 0px !important;\'>Recupearar tu contraseña</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content padding style=\'    background-color: #fafafa !important;\'>\n\n<div style="    text-align: center;\n    color: darkgray;\n    margin-top: 12px;">Ingresa el email relacionado con tu cuenta YOURBEAUTY</div>\n\n\n            <ion-item style=\'    padding: 0px 13px 0px 0px;\n    background-color: white !important;\n    border-radius: 60px;\n    border: solid 1px #EC527E;\n    margin: 26px 0px;\'>\n     		<ion-label style=\' color: #e6e6e6;   position: absolute;\n    right: 16px;\n    font-size: 21px;\'>\n     			  <ion-icon   ios="md-mail" md="md-mail" ></ion-icon>\n     		</ion-label>\n\n            <ion-input [(ngModel)]="emailN" class=\'inputT\' name="nombre" type="email" placeholder=\'email\'></ion-input>\n\n\n        </ion-item>\n\n\n<div  >\n     <button  (click)=\'emailN=""\'   style=" border-radius: 70px;   width: 40%;\n    margin-left: 5%; float:left"  color=\'verdeApp\' ion-button> Cancelar</button>\n\n\n    <button   color=\'headerColor\' ion-button  style="    width: 40%;\n    margin-right: 5%;\n    border-radius: 70px;float:right" [disabled]=\'!emailN\' (click)=\'actualizarContra(emailN)\'>Ok</button> \n\n\n</div>\n\n\n\n</ion-content>\n'/*ion-inline-end:"/Users/jose/Documents/beyouApp/beYou/src/pages/recuperar/recuperar.html"*/,
+            selector: 'page-resultados',template:/*ion-inline-start:"/Users/jose/Documents/beyouApp/beYou/src/pages/resultados/resultados.html"*/'<!--\n  Generated template for the ListaServiciosPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n  <ion-navbar>\n    <ion-title>\n<ion-item style=\'background-color: transparent !important;\'>\n  <ion-label style=\'    text-align: center;\n    color: white;\n    font-weight: bold;\' >Resultados</ion-label>\n</ion-item>\n  </ion-title>\n  </ion-navbar>\n</ion-header>\n\n\n\n\n<ion-content >\n\n\n\n\n\n<div [ngSwitch]="section" *ngIf=\'cargaData\'>\n\n	<div style="margin: 15px">\n\n		<div *ngIf=\'filtro.palabra\' class="tagResultado">{{filtro.palabra}}</div>\n		<div  *ngIf=\'filtro.lat\' class="tagResultado">{{filtro.stringPlace}}</div>\n		<div  *ngIf=\'filtro.abierto\' class="tagResultado">Abierto Ahora</div>\n		<div  *ngIf=\'filtro.filtroHora\' class="tagResultado">Abierto en horario {{filtro.filtroHora}}</div>\n<div  *ngIf=\'filtro.fecha\' class="tagResultado">Abierto dia {{filtro.filtroFecha}}</div>\n		\n\n		<div  *ngIf=\'filtro.orden && filtro.orden=="ASC"\' class="tagResultado">Precio: De Menor a Mayor</div>\n		<div  *ngIf=\'filtro.orden && filtro.orden=="DESC"\' class="tagResultado">Precio: De Mayor a Menor</div>\n\n		<div  *ngIf=\'filtro.ordenOpiniones\' class="tagResultado">Opiniones altas</div>\n\n\n		<div  *ngIf=\'filtro.disponible\' class="tagResultado">Disponible Hoy</div>\n\n\n\n\n		<div *ngFor="let s of filtro.servicios; let i = index"  class="tagResultado">\n		{{categorias[s-1]}}</div>\n\n\n<div style="text-align: center;\n    color: #444;\n    font-size: 16px;\n    margin: 15px;">Resultados de la Busqueda</div>\n\n	</div>\n\n    <ion-list mode="md" >\n    	<div *ngIf="!(resultados?.length > 0)" style="    text-align: center;">\n    		\n    		<img  style=\'    margin: 30px;\' src="assets/imgs/busquedaNula.png">\n    		<p style="    text-align: center;\n    font-size: 16px;\n    margin: 34px;\n    line-height: 23px;"> <span style="    font-size: 22px !important;\n    color: #333 !important;\n    line-height: 2;">Lo sentimos </span><br>  <b style="color:#666"> No se han encontrado centros cerca. Intenta nuevamente con filtros de busqueda diferentes o explora en otras categorias</b></p>\n    	</div>\n		<ion-card *ngFor="let n of resultados" (click)=\'goCentro(n.idCentro)\' >\n		<ion-card-content>\n				<div style="\n				display: inline-block;    width: 100%;\n				">\n				<img src="http://50.116.17.150:3000/{{n.idFoto}}" \n        onError="this.src=\'assets/imgs/fotoComercio.png\';" style="\n				display: inline-block;\n				height: 90px;\n				width: 90px !important;\n				vertical-align: top;\n				">\n				<div style="    display: inline-block;\n    width: calc(100% - 105px);\n    margin-left: 10px;\n				">\n				<span style="margin: 2px 0px 0px 0px;\n				font-size: 19px;\n				color: #333;">{{n.nombre}}</span>\n				<span style="    display: block;\n    font-size: 16px;\n    margin: 10px 0px;\n    font-weight: 800;\n    color: #EC527E;">${{n.pMin}} <span [hidden]=\'n.pMin == n.pMax\'>- ${{n.pMax}}</span></span>\n\n				<span class="itemComercio" >\n\n					<span style="  margin-right: 21px;  color: #888;\n    font-size: 15px;"><ion-icon [ngClass]="{\'colorGris\': n.cantRate==0}"  style=\'    margin-right: 8px;\n    color: rgb(249,199,53);\n    font-size: 21px;\n    vertical-align: middle;\' name="md-star"></ion-icon>{{n.rate  | number:\'1.1-2\'}} ({{n.cantRate\n}})</span>\n\n				 	<span style="     color: #888;\n    font-size: 15px;  "><ion-icon style=\'  margin-right: 8px;      vertical-align: middle;   font-size: 21px;color:#2FD99B;\' name="ios-pin"></ion-icon>{{n.distance | number:\'1.1-2\'}} Km</span> \n\n				</span>\n\n				</div>\n				</div>\n		</ion-card-content>\n		</ion-card>\n    </ion-list>\n</div>\n\n\n\n\n\n\n    	<div *ngIf=\'!cargaData\' style="text-align: center;padding-top: 25%;">\n    		<ion-spinner name="bubbles"></ion-spinner>\n    	</div>\n\n\n\n</ion-content>\n'/*ion-inline-end:"/Users/jose/Documents/beyouApp/beYou/src/pages/resultados/resultados.html"*/,
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["NavController"], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["NavParams"], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["ModalController"], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["LoadingController"], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["Events"], __WEBPACK_IMPORTED_MODULE_2__providers_api_api__["a" /* ApiProvider */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["AlertController"]])
-    ], RecuperarPage);
-    return RecuperarPage;
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["NavController"], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["NavParams"], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["ModalController"], __WEBPACK_IMPORTED_MODULE_2__providers_api_api__["a" /* ApiProvider */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["LoadingController"], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["Events"]])
+    ], ResultadosPage);
+    return ResultadosPage;
 }());
 
-//# sourceMappingURL=recuperar.js.map
+//# sourceMappingURL=resultados.js.map
 
 /***/ })
 

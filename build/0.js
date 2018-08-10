@@ -1,4 +1,4 @@
-webpackJsonp([0,9],{
+webpackJsonp([0,11],{
 
 /***/ 426:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -8,8 +8,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "InicioPageModule", function() { return InicioPageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(11);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__inicio__ = __webpack_require__(459);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__select_selectalertless__ = __webpack_require__(460);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__inicio__ = __webpack_require__(461);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__select_selectalertless__ = __webpack_require__(462);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -41,16 +41,16 @@ var InicioPageModule = (function () {
 
 /***/ }),
 
-/***/ 454:
+/***/ 456:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ReservaPageModule", function() { return ReservaPageModule; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ReservapaquetePageModule", function() { return ReservapaquetePageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(11);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__reserva__ = __webpack_require__(489);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__pipes_pipes_module__ = __webpack_require__(456);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__reservapaquete__ = __webpack_require__(494);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__pipes_pipes_module__ = __webpack_require__(459);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_ion2_calendar__ = __webpack_require__(334);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_ion2_calendar___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_ion2_calendar__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__inicio_inicio_module__ = __webpack_require__(426);
@@ -66,35 +66,35 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
  //<--- here
 
 
-var ReservaPageModule = (function () {
-    function ReservaPageModule() {
+var ReservapaquetePageModule = (function () {
+    function ReservapaquetePageModule() {
     }
-    ReservaPageModule = __decorate([
+    ReservapaquetePageModule = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["NgModule"])({
             declarations: [
-                __WEBPACK_IMPORTED_MODULE_2__reserva__["a" /* ReservaPage */]
+                __WEBPACK_IMPORTED_MODULE_2__reservapaquete__["a" /* ReservapaquetePage */],
             ],
             imports: [
                 __WEBPACK_IMPORTED_MODULE_4_ion2_calendar__["CalendarModule"],
-                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["IonicPageModule"].forChild(__WEBPACK_IMPORTED_MODULE_2__reserva__["a" /* ReservaPage */]),
+                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["IonicPageModule"].forChild(__WEBPACK_IMPORTED_MODULE_2__reservapaquete__["a" /* ReservapaquetePage */]),
                 __WEBPACK_IMPORTED_MODULE_3__pipes_pipes_module__["a" /* PipesModule */], __WEBPACK_IMPORTED_MODULE_5__inicio_inicio_module__["InicioPageModule"]
             ],
         })
-    ], ReservaPageModule);
-    return ReservaPageModule;
+    ], ReservapaquetePageModule);
+    return ReservapaquetePageModule;
 }());
 
-//# sourceMappingURL=reserva.module.js.map
+//# sourceMappingURL=reservapaquete.module.js.map
 
 /***/ }),
 
-/***/ 456:
+/***/ 459:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return PipesModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__filtrofav_filtrofav__ = __webpack_require__(457);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__filtrofav_filtrofav__ = __webpack_require__(460);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -120,7 +120,7 @@ var PipesModule = (function () {
 
 /***/ }),
 
-/***/ 457:
+/***/ 460:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -160,7 +160,7 @@ var FiltrofavPipe = (function () {
 
 /***/ }),
 
-/***/ 459:
+/***/ 461:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -369,7 +369,7 @@ var InicioPage = (function () {
 
 /***/ }),
 
-/***/ 460:
+/***/ 462:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -716,11 +716,11 @@ var SelectAlertless = (function (_super) {
 
 /***/ }),
 
-/***/ 489:
+/***/ 494:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ReservaPage; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ReservapaquetePage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(11);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_api_api__ = __webpack_require__(105);
@@ -750,13 +750,13 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 /**
- * Generated class for the ReservaPage page.
+ * Generated class for the ReservapaquetePage page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
  */
-var ReservaPage = (function () {
-    function ReservaPage(navCtrl, navParams, modalCtrl, alertCtrl, loadingCtrl, events, apiProvider, cdr, zone) {
+var ReservapaquetePage = (function () {
+    function ReservapaquetePage(navCtrl, navParams, modalCtrl, alertCtrl, loadingCtrl, events, apiProvider, cdr, zone) {
         var _this = this;
         this.navCtrl = navCtrl;
         this.navParams = navParams;
@@ -825,7 +825,7 @@ var ReservaPage = (function () {
                 }
             });
         };
-        this.tipoReserva = 1;
+        this.tipoReserva = 2;
         this.diasCerrado = [];
         this.reprogra = false;
         this.options = {
@@ -856,57 +856,37 @@ var ReservaPage = (function () {
         this.loading = this.loadingCtrl.create({
             cssClass: "my-loading"
         });
-        events.subscribe('actualizarDataServicios', function () {
-            _this.apiProvider.getCarrito()
-                .then(function (data) {
-                console.log(data);
-                _this.serviciosCarro = data;
-                console.log(_this.serviciosCarro);
-                //if(this.horaSeleccionada){this.actualizarHora(this.horaSeleccionada);}
-                if (_this.fechaSeleccionada) {
-                    _this.onChange(_this.fechaSeleccionada);
-                }
-            });
-        });
-        events.subscribe('modalServices', function () {
-            // user and time are the same arguments passed in `events.publish(user, time)`
-            console.log('recargarServicios');
-            _this.loading.dismiss();
-            _this.loading = _this.loadingCtrl.create({
-                cssClass: "my-loading"
-            });
-        });
         this.information = [{ nombre: 'Seleccionar Fecha', id: 1, open: true },
-            { nombre: 'Seleccionar Hora', id: 2 },
-            { nombre: 'Seleccionar Personal', id: 3 }];
+            { nombre: 'Seleccionar Hora', id: 2 }];
         //this.fechaSeleccionada = new Date(Date.now());
     }
-    ReservaPage.prototype.openServices = function () {
+    ReservapaquetePage.prototype.openServices = function () {
         var dataE = { idCategoria: this.navParams.get('idCategoria'),
             idCentro: this.navParams.get('idCentro') };
         var profileModal = this.modalCtrl.create('ModalServicesPage', dataE);
         profileModal.present();
         //  this.presentLoadingDefault();
     };
-    ReservaPage.prototype.ionViewDidLoad = function () {
+    ReservapaquetePage.prototype.ionViewDidLoad = function () {
         // this.selectActi = this.navParams.get('servicios');
         //this.selectActi = this.navParams.get('servicios');
-        var _this = this;
-        this.apiProvider.getCarrito()
-            .then(function (data) {
-            console.log(data);
-            _this.serviciosCarro = data;
-            console.log(_this.serviciosCarro);
-        });
-        if (this.navParams.get('reprogra') == true) {
-            this.reprogra = true;
-        }
+        /*
+              this.apiProvider.getCarrito()
+              .then(data => {
+              console.log(data);
+                  this.serviciosCarro = data;
+                  console.log(this.serviciosCarro);
+        
+              });
+        */
+        this.serviciosCarro = this.navParams.get('servicios');
+        //if(this.navParams.get('reprogra')==true){this.reprogra=true;}
         this.getCentroInfo(this.navParams.get('idCentro'));
     };
-    ReservaPage.prototype.presentLoadingDefault = function () {
+    ReservapaquetePage.prototype.presentLoadingDefault = function () {
         this.loading.present();
     };
-    ReservaPage.prototype.getDattts = function (str) {
+    ReservapaquetePage.prototype.getDattts = function (str) {
         if (str) {
             return __WEBPACK_IMPORTED_MODULE_4_moment__(str, 'YYYY-MM-DD HH:mm:ss').format('h:mm a');
         }
@@ -914,14 +894,14 @@ var ReservaPage = (function () {
             return ' ';
         }
     };
-    ReservaPage.prototype.getServiciosCategoria = function () {
+    ReservapaquetePage.prototype.getServiciosCategoria = function () {
         var dataE = { idCategoria: this.navParams.get('idCategoria'),
             idCentro: this.navParams.get('idCentro') };
         this.apiProvider.getServiciosCategoria(dataE).then(function (data) {
             console.log(data);
         });
     };
-    ReservaPage.prototype.getEmpleadosDisponibles = function (data) {
+    ReservapaquetePage.prototype.getEmpleadosDisponibles = function (data) {
         var _this = this;
         this.apiProvider.getEmpleadosDisponibles(data).then(function (data) {
             console.log(data);
@@ -930,7 +910,7 @@ var ReservaPage = (function () {
             }
         });
     };
-    ReservaPage.prototype.getDattt = function (str) {
+    ReservapaquetePage.prototype.getDattt = function (str) {
         if (str) {
             var gg = str + '.000';
             return gg.replace(/\s/g, "T");
@@ -939,7 +919,7 @@ var ReservaPage = (function () {
             return ' ';
         }
     };
-    ReservaPage.prototype.getCentroInfo = function (idCentro) {
+    ReservapaquetePage.prototype.getCentroInfo = function (idCentro) {
         var _this = this;
         var dataPost = { idCentro: idCentro };
         console.log(dataPost);
@@ -947,17 +927,10 @@ var ReservaPage = (function () {
             .then(function (data) {
             if (data) {
                 _this.serviciosAll = data['servicios'];
-                _this.tipoReserva = data['tipoReserva'][0].tipoReserva;
+                // this.tipoReserva = data['tipoReserva'][0].tipoReserva;
                 //  this.empleados = data['empleados'];
                 _this.horario = data['horario'];
                 console.log(_this.tipoReserva);
-                /*
-                var sources2 = [{
-                        date: new Date(2018, 7, 25),
-                         disable:true,
-                          subTitle: 'Sin espacio'
-                      }];
-                */
                 var sources2 = data['horarioEspecial'].filter(function (dia) { return dia.abierto == 0; }).map(function (item) {
                     var base = (item.fecha.split('T')[0].split('-'));
                     var ano = parseInt(base[0]);
@@ -999,7 +972,7 @@ var ReservaPage = (function () {
             console.log(data);
         });
     };
-    ReservaPage.prototype.getMinH = function (dia) {
+    ReservapaquetePage.prototype.getMinH = function (dia) {
         var horarioFix = '00:00';
         if (this.horario.find(function (x) { return x.diaSemana == dia; })) {
             this.diaCerrado = false;
@@ -1007,14 +980,14 @@ var ReservaPage = (function () {
         }
         return horarioFix;
     };
-    ReservaPage.prototype.getMaxH = function (dia) {
+    ReservapaquetePage.prototype.getMaxH = function (dia) {
         var horarioFix = '00:00';
         if (this.horario.find(function (x) { return x.diaSemana == dia; })) {
             horarioFix = this.horario.find(function (x) { return x.diaSemana == dia; }).horaCerrar;
         }
         return horarioFix;
     };
-    ReservaPage.prototype.quitarItem = function (idServicio) {
+    ReservapaquetePage.prototype.quitarItem = function (idServicio) {
         var _this = this;
         if (this.serviciosCarro.length < 2) {
             return true;
@@ -1034,44 +1007,34 @@ var ReservaPage = (function () {
             });
         }
     };
-    ReservaPage.prototype.goAddServicios = function () {
+    ReservapaquetePage.prototype.goAddServicios = function () {
         //this.navCtrl.push('AddserviciosPage');
         //this.openServices();
         this.navCtrl.pop();
     };
-    ReservaPage.prototype.getMinutosCita = function (hora) {
+    ReservapaquetePage.prototype.getMinutosCita = function (hora) {
         var duracionMinutos = 0;
         this.serviciosCarro.forEach(function (item) {
             duracionMinutos += item.duracion;
         });
         return duracionMinutos;
     };
-    ReservaPage.prototype.formatTime = function (n) {
+    ReservapaquetePage.prototype.formatTime = function (n) {
         return n > 9 ? "" + n : "0" + n;
     };
     //n > 9 ? "" + n: "0" + n;
-    ReservaPage.prototype.actualizarHora = function (hora) {
+    ReservapaquetePage.prototype.actualizarHora = function (hora) {
         console.log(hora);
-        this.staffSeleccionado = 0;
+        this.staffSeleccionado = -1;
         this.empleados = [];
         var theAdd = new Date();
         theAdd.setHours(hora.split(':')[0], hora.split(':')[1], 0, 0);
-        theAdd.setMinutes(theAdd.getMinutes() + this.getMinutosCita());
+        theAdd.setMinutes(theAdd.getMinutes() + this.serviciosCarro[0].duracionPaquete);
         this.horaFinalizacion = this.formatTime(theAdd.getHours()) + ":" + this.formatTime(theAdd.getMinutes()) + ':00';
-        var dataEmpleados = { idCategoria: this.navParams.get('idCategoria'),
-            idCentro: this.navParams.get('idCentro'),
-            fecha: (this.fechaSeleccionada + ' ' + hora + ':00'),
-            fechaF: (this.fechaSeleccionada + ' ' + this.horaFinalizacion),
-            diaN: this.diaNSeleccionado,
-            soloHI: hora + ':00',
-            soloHF: this.horaFinalizacion };
-        console.log(dataEmpleados);
-        this.getEmpleadosDisponibles(dataEmpleados);
         //cerrar cuando se selecciona
         this.information[1].open = true;
-        this.information[2].open = true;
     };
-    ReservaPage.prototype.goReserva3 = function (fechaSeleccionada, horaSeleccionada) {
+    ReservapaquetePage.prototype.goReserva3 = function (fechaSeleccionada, horaSeleccionada) {
         var _this = this;
         //console.log((this.serviciosAll));
         var fechaInicio = fechaSeleccionada + ' ' + horaSeleccionada + ':00';
@@ -1093,14 +1056,15 @@ var ReservaPage = (function () {
             loading.dismissAll();
         });
     };
-    ReservaPage.prototype.goReserva = function (fechaSeleccionada, horaSeleccionada) {
+    ReservapaquetePage.prototype.goReserva = function (fechaSeleccionada, horaSeleccionada) {
         //console.log((this.serviciosAll));
         var fechaInicio = fechaSeleccionada + ' ' + horaSeleccionada + ':00';
         var fechaFinal = fechaSeleccionada + ' ' + this.horaFinalizacion;
-        var dataE = { 'idCuponCliente': this.navParams.get('cupon'), 'fechaInicio': fechaInicio, 'fechaFinal': fechaFinal, 'fecha': fechaSeleccionada, 'hora': horaSeleccionada, 'horaF': this.horaFinalizacion, 'centro': this.navParams.get('centro'), 'idEmpleado': this.staffSeleccionado || 0, 'nombreStaff': this.nombreStaff || '' };
-        this.navCtrl.push('ConfirmarReservaPage', dataE);
+        var dataE = { 'idCuponCliente': null, 'fechaInicio': fechaInicio, 'fechaFinal': fechaFinal, 'fecha': fechaSeleccionada, 'hora': horaSeleccionada,
+            'idCentro': this.navParams.get('idCentro'), 'horaF': this.horaFinalizacion, 'servicios': this.serviciosCarro, 'idEmpleado': this.staffSeleccionado || 0, 'nombreStaff': this.nombreStaff || '' };
+        this.navCtrl.push('ConfirmacionpaquetePage', dataE);
     };
-    ReservaPage.prototype.openCalendar = function () {
+    ReservapaquetePage.prototype.openCalendar = function () {
         var _daysConfig = [];
         //  for (let i = 0; i < 31; i++) {
         _daysConfig.push({
@@ -1120,7 +1084,7 @@ var ReservaPage = (function () {
             console.log(date);
         });
     };
-    ReservaPage.prototype.onChange = function ($event) {
+    ReservapaquetePage.prototype.onChange = function ($event) {
         var _this = this;
         this.loading = this.loadingCtrl.create({ content: "Verificando Disponibilidad" });
         this.loading.present();
@@ -1199,7 +1163,7 @@ var ReservaPage = (function () {
             this.getHorasDispo(env);
         }
     };
-    ReservaPage.prototype.presentAlert = function () {
+    ReservapaquetePage.prototype.presentAlert = function () {
         var alert = this.alertCtrl.create({
             title: 'Ocupacion llena',
             subTitle: 'No hay empleados elegibles, intenta otra fecha',
@@ -1207,7 +1171,7 @@ var ReservaPage = (function () {
         });
         alert.present();
     };
-    ReservaPage.prototype.toggleSection = function (i) {
+    ReservapaquetePage.prototype.toggleSection = function (i) {
         if (i == 1) {
             if (this.tipoReserva == 2 || this.tipoReserva == '2') {
                 this.information[i].open = !this.information[i].open;
@@ -1225,27 +1189,28 @@ var ReservaPage = (function () {
             this.information[i].open = !this.information[i].open;
         }
     };
-    ReservaPage.prototype.toggleItem = function (i, j) {
+    ReservapaquetePage.prototype.toggleItem = function (i, j) {
         this.information[i].children[j].open = !this.information[i].children[j].open;
     };
-    ReservaPage.prototype.radioChecked = function (checkE) {
+    ReservapaquetePage.prototype.radioChecked = function (checkE) {
         this.nombreStaff = checkE;
         console.log(checkE);
     };
     __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewChild"])('selectH'),
-        __metadata("design:type", __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["Select"])
-    ], ReservaPage.prototype, "selectH", void 0);
-    ReservaPage = __decorate([
+        __metadata("design:type", typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["Select"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["Select"]) === "function" && _a || Object)
+    ], ReservapaquetePage.prototype, "selectH", void 0);
+    ReservapaquetePage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-            selector: 'page-reserva',template:/*ion-inline-start:"/Users/jose/Documents/beyouApp/beYou/src/pages/reserva/reserva.html"*/'<!--\n  Generated template for the ReservaPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  	<ion-navbar  >\n    <ion-title>Reserva</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content >\n<div>\n\n\n<!-- <div class="itemReserva" *ngFor="let n of serviciosAll | filtrofav: filterFav"  > -->\n	<div class="itemReserva" *ngFor="let n of serviciosCarro"  >\n	<img src="http://50.116.17.150:3000/{{n.imagenCategoria}}" \n        onError="this.src=\'assets/imgs/reservation.png\';" style="    max-height: 40px;\n    margin-right: 13px;">\n	<div style="\n    display: inline-block;\n    width: 70%;\n    margin-top: 10px;\n    margin-bottom: 10px;\n">\n		<span style="    font-size: 17px;\n    color: #444;">{{n.nombre}}</span>\n		<p style="\n    margin-top:  1px;\n    margin-bottom: 1px;    color: #777;\n">{{n.descripcion}}</p>\n\n		<span style=" color: #EC527E;\n    margin-top: 8px;\n    display: inline-block;\n    margin-right: 14px;">${{n.precioFinal}}</span>\n\n\n    		<span style="    color: darkgrey;\n    margin-top: 8px;\n    display: inline-block;">{{n.duracion}}min</span>\n\n\n\n    <button [hidden]=\'reprogra\' (click)=\'quitarItem(n.idServicio)\' ion-button style="    position: absolute;\n    top: 0;\n    right: 0px;\n    margin-right: 13px;\n    margin-top: 5px;\n    font-size: 27px;\n    width: 30px;\n    background: none;height: 30px;padding: 6px;\n    color: #888;"><ion-icon ios="ios-close"></ion-icon></button>\n	</div>\n\n</div>\n\n\n\n\n    <button (click)=\'openServices()\' ion-button class="botonVerdeFull" [hidden]=\'reprogra\'>Agregar mas servicios </button>\n\n\n</div>\n<div style="margin-top:20px;width:90%; margin-left:5%">\n\n\n\n		<ion-list class="accordion-list">\n			<!-- First Level -->\n			<ion-list-header  [ngClass]="{\'borderSelected\': item.open, \'borderSelected2\': item.open && item.id==1}" *ngFor="let item of information; let i = index" no-lines no-padding\n			 [hidden]=\'(!fechaSeleccionada && (item.id == 2 || item.id == 3)) || \n			 		   (!horaSeleccionada && (item.id == 3))\' >\n			<!-- Toggle Button -->\n			<button style=\'    background: white !important;\n    border-bottom: solid 1px #d3d3d352\'  ion-item (click)="toggleSection(i)" detail-none [ngClass]="{\'section-active\': item.open, \'section\': !item.open}">\n			<ion-icon class=\'btnList\' item-right  name="ios-add" *ngIf="!item.open"></ion-icon>\n			<ion-icon class=\'btnList\' item-right name="ios-remove" *ngIf="item.open"></ion-icon>\n\n			{{ item.id == 1 ? (fechaSeleccionada || item.nombre) : \n			   item.id == 2 ? ( item.nombre) : \n			   item.id == 3 ? ( item.nombre) : item.nombre }}\n\n			</button>\n\n			<ion-list style=\'margin:0px !important\' *ngIf="item.open && item.id == 1" no-lines >\n			<!-- Second Level -->\n			\n				 <ion-calendar [(ngModel)]="date"\n	                  (onChange)="onChange($event)"\n	                  [options]="options"\n	                  type="string"\n\n	                  format="YYYY-MM-DD">\n	   			 </ion-calendar>\n			</ion-list>\n\n\n			<ion-list class=\'backItem\' style=\'width: 100%;\n    display: table;\n    white-space: normal;\'  [hidden]=\'!fechaSeleccionada\' *ngIf="item.open && item.id == 2 "  radio-group [(ngModel)]="horaSeleccionada">\n\n<div [hidden]=\'diaCerrado\'>\n\n\n\n<ion-item  *ngIf=\'(tipoReserva==2 || tipoReserva=="2")\'  style=\'background: white !important;     padding-top: 6px;\n    padding-bottom: 10px;  border-top: solid 1px lightgray;\'>\n  <ion-label style=\'    color: #444 !important;\'>Hora de Inicio</ion-label>\n <ion-datetime (ionChange)=\'actualizarHora(horaSeleccionada)\' style=\'    color: #444 !important;\' [(ngModel)]="horaSeleccionada" displayFormat="hh:mm A" pickerFormat="HH:mm"  minuteValues="0,30"  max="{{maxH}}" min="{{minH}}"> </ion-datetime> \n\n</ion-item>\n\n<!-- <ion-item (click)=\'abrirSelect()\'   *ngIf=\'true\'  style=\'background: white !important;     padding-top: 6px;\n    padding-bottom: 10px;  border-top: solid 1px lightgray;\'>\n  <ion-label style=\'    color: #444 !important;\'>Hora de Inicio</ion-label>\n\n\n\n</ion-item> -->\n\n<ion-item *ngIf=\'horaSeleccionada && (tipoReserva==1 || tipoReserva=="1")\'  style=\'     background: white !important;     padding-top: 6px;\n    padding-bottom: 10px;  border-top: solid 1px lightgray;\'>\n  <ion-label style=\'    color: #444 !important;\'>Hora Inicio</ion-label>\n <ion-datetime [disabled]=\'true\' style=\'    color: #444 !important;\' [(ngModel)]="horaSeleccionada" displayFormat="hh:mm A"> </ion-datetime> \n\n</ion-item>\n<ion-item *ngIf=\'horaSeleccionada\'  style=\'     background: white !important;     padding-top: 6px;\n    padding-bottom: 10px;  border-top: solid 1px lightgray;\'>\n  <ion-label style=\'    color: #444 !important;\'>Finaliza aprox.</ion-label>\n <ion-datetime [disabled]=\'true\' style=\'    color: #444 !important;\' [(ngModel)]="horaFinalizacion" displayFormat="hh:mm A" > </ion-datetime> \n\n</ion-item>\n\n\n</div>\n<div style="    margin: 25px;\n    text-align: center;\n    font-size: 16px;\n    font-family: sans-serif;\n    font-weight: 400;\n    color: lightcoral;" [hidden]=\'!diaCerrado\'>\n	\n	Centro cerrado este dia\n</div>\n\n\n	<!-- 			<ion-item class=\'itemHora\'>\n				<ion-label>11:25am</ion-label>\n				<ion-radio mode=\'wp\' value="11:25am" checked></ion-radio>\n				</ion-item>\n				<ion-item class=\'itemHora\' >\n				<ion-label>11:35am</ion-label>\n				<ion-radio mode=\'wp\' value="11:35am"></ion-radio>\n				</ion-item>\n				<ion-item class=\'itemHora\'>\n				<ion-label>11:55am</ion-label>\n				<ion-radio mode=\'wp\' value="11:55am" [disabled]="isDisabled"></ion-radio>\n				</ion-item> -->\n\n\n\n\n\n			</ion-list>\n\n\n\n						<ion-list class=\'backItem\' style=\'width: 100%;\n    display: table;\n    white-space: normal;\'  *ngIf="item.open && item.id == 3 "  radio-group [(ngModel)]="staffSeleccionado">\n\n\n<!-- *ngIf=\'(tipoReserva==2 || tipoReserva=="2")\' -->\n\n				<ion-item class=\'avatarSelect\' *ngFor="let n of empleados" >\n				<ion-label>\n				<ion-avatar item-start>\n				<img src="http://50.116.17.150:3000/{{n.idFoto}}" \n        onError="this.src=\'assets/imgs/usuario.png\';" style="display: inline-block;">\n				<div style="    width: 100%;display: inline-block;margin-left: 7px;">\n				<h2  style="margin-bottom: 4px;">{{n.nombre}}</h2>\n				<p style="    white-space: normal;\n    width: calc(100% - 50px);">{{n.descripcion}}</p>\n				</div>\n				</ion-avatar>\n				</ion-label>\n				\n				<ion-radio mode=\'wp\' value="{{n.idEmpleado}}" (ionSelect)="radioChecked(n.nombre)"></ion-radio>\n				</ion-item>\n\n				<ion-item class=\'avatarSelect\' *ngIf=\'(tipoReserva==2 || tipoReserva=="2")\' >\n				<ion-label>\n				<ion-avatar item-start>\n				<img src="assets/imgs/usuario.png" style="display: inline-block;">\n				<div style="    width: 100%;display: inline-block;margin-left: 7px;">\n				<h2  style="margin-bottom: 4px;">Cualquier Personal</h2>\n\n				</div>\n				</ion-avatar>\n				</ion-label>\n				\n				<ion-radio mode=\'wp\' value="-1" (ionSelect)="radioChecked(\'Cualquier Personal\')"></ion-radio>\n				</ion-item>\n\n\n\n<div style="    margin: 25px;\n    text-align: center;\n    font-size: 16px;\n    font-family: sans-serif;\n    font-weight: 400;\n    color: lightcoral;" *ngIf=\'!(tipoReserva==2 || tipoReserva=="2") && (empleados.length<1) || !(empleados)\'>\n	\n	<ion-spinner name="bubbles"></ion-spinner>\n</div>\n\n\n\n			</ion-list>\n\n\n\n\n\n\n\n			</ion-list-header>\n		</ion-list>\n\n\n<div style="    width: 100%;\n    margin-top: 30px;\n    margin-bottom: 30px;">\n	\n	    <button  *ngIf="!reprogra && fechaSeleccionada && horaSeleccionada && staffSeleccionado && staffSeleccionado !== 0 && (serviciosCarro?.length>0)" (click)=\'goReserva(fechaSeleccionada,horaSeleccionada)\' ion-button class="botonVerdeFulls"\n	    	>Confirmar {{fechaSeleccionada}} - {{getDattts(fechaSeleccionada+\' \'+horaSeleccionada+\':00\') }}</button>\n\n	  <button  *ngIf="reprogra && fechaSeleccionada && horaSeleccionada && staffSeleccionado && staffSeleccionado !== 0 && (serviciosCarro?.length>0)" (click)=\'goReserva3(fechaSeleccionada,horaSeleccionada)\' ion-button class="botonVerdeFulls"\n	  	>REPROGRAMAR {{fechaSeleccionada}} - {{getDattts(fechaSeleccionada+\' \'+horaSeleccionada+\':00\')}}</button>\n\n\n\n</div>\n\n</div>\n\n\n\n<select-alertless   #selectH style=\'display:none\'  [selectOptions]="selectOptions" (ionChange)=\'printOption($event)\' >\n\n      <ion-option *ngFor="let d of horasDisponibles"  value="{{d[0].inicio.split(\' \')[1].substring(0, 5)}}" >\n   		<!--   \n    {{d[0].inicio.split(\' \')[1].substring(0, 5)}} - {{d[0].fin.split(\' \')[1].substring(0, 5)}} \n		-->\n\n\n		   {{getDattts(d[0].inicio)}} - {{getDattts(d[0].fin)}} \n  		</ion-option>\n\n</select-alertless>\n\n</ion-content>\n\n\n<!-- <ion-footer style=\'    background-color: #f7f8f9 !important;\'>\n  <ion-toolbar >\n\n\n    <button (click)=\'goReserva()\' ion-button class="botonVerdeFull">Agendar Cita<ion-icon style=\'    margin-left: 10px !important;\' name="md-arrow-forward"></ion-icon> </button>\n\n  </ion-toolbar>\n</ion-footer>\n\n\n -->\n\n'/*ion-inline-end:"/Users/jose/Documents/beyouApp/beYou/src/pages/reserva/reserva.html"*/,
+            selector: 'page-reservapaquete',template:/*ion-inline-start:"/Users/jose/Documents/beyouApp/beYou/src/pages/reservapaquete/reservapaquete.html"*/'<!--\n  Generated template for the ReservaPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  	<ion-navbar  >\n    <ion-title>Reserva</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content >\n<div>\n<!--   \n		<div style="    height: 30px;\n    margin: 22px;" *ngIf=\'serviciosCarro\' class="paqueteI">\n\n			<span style="float: left;">\n				<b>Paquete </b> {{serviciosCarro[0]?.nombrePaquete}}</span>\n			<span style="float: right;color:#EC527E; margin-right: 10px"> <b>Precio Total </b>${{serviciosCarro[0]?.precioPaquete.toFixed(2)}}</span>\n\n			\n		</div> -->\n\n\n	<div class="itemReserva"  style="text-align: center" >\n	\n	<div style="\n    display: inline-block;\n    width: 70%;\n    margin-top: 10px;\n    margin-bottom: 10px;\n">\n		<span style="    font-size: 16px;\n    color: #444;"><b>Paquete </b> {{serviciosCarro[0]?.nombrePaquete}}</span>\n    <br>\n			<span style="color:#EC527E; font-size: 16px; margin-right: 10px"> <b>Precio Total </b>${{serviciosCarro[0]?.precioPaquete.toFixed(2)}}</span>\n</div>\n\n</div>\n\n\n<!-- <div class="itemReserva" *ngFor="let n of serviciosAll | filtrofav: filterFav"  > -->\n	<div class="itemReserva" *ngFor="let n of serviciosCarro"  >\n	<img src="http://50.116.17.150:3000/{{n.imagenCategoria}}" \n        onError="this.src=\'assets/imgs/reservation.png\';" style="    max-height: 40px;\n    margin-right: 13px;">\n	<div style="\n    display: inline-block;\n    width: 70%;\n    margin-top: 10px;\n    margin-bottom: 10px;\n">\n		<span style="    font-size: 17px;\n    color: #444;">{{n.nombreServicio}}</span>\n<br>\n 		<p style=" color: #888;\n    margin-top: 8px;\n    display: inline-block;\n    margin-right: 14px;text-decoration: line-through">${{n.precioServicio}}</p>\n\n<!--\n    		<span style="    color: darkgrey;\n    margin-top: 8px;\n    display: inline-block;">{{n.duracion}}min</span> -->\n\n\n\n\n	</div>\n\n</div>\n\n\n</div>\n<div style="margin-top:20px;width:90%; margin-left:5%">\n\n\n\n		<ion-list class="accordion-list">\n			<!-- First Level -->\n			<ion-list-header  [ngClass]="{\'borderSelected\': item.open, \'borderSelected2\': item.open && item.id==1}" *ngFor="let item of information; let i = index" no-lines no-padding\n			 [hidden]=\'(!fechaSeleccionada && (item.id == 2 || item.id == 3)) || \n			 		   (!horaSeleccionada && (item.id == 3))\' >\n			<!-- Toggle Button -->\n			<button style=\'    background: white !important;\n    border-bottom: solid 1px #d3d3d352\'  ion-item (click)="toggleSection(i)" detail-none [ngClass]="{\'section-active\': item.open, \'section\': !item.open}">\n			<ion-icon class=\'btnList\' item-right  name="ios-add" *ngIf="!item.open"></ion-icon>\n			<ion-icon class=\'btnList\' item-right name="ios-remove" *ngIf="item.open"></ion-icon>\n\n			{{ item.id == 1 ? (fechaSeleccionada || item.nombre) : \n			   item.id == 2 ? ( item.nombre) : \n			   item.id == 3 ? ( item.nombre) : item.nombre }}\n\n			</button>\n\n			<ion-list style=\'margin:0px !important\' *ngIf="item.open && item.id == 1" no-lines >\n			<!-- Second Level -->\n			\n				 <ion-calendar [(ngModel)]="date"\n	                  (onChange)="onChange($event)"\n	                  [options]="options"\n	                  type="string"\n\n	                  format="YYYY-MM-DD">\n	   			 </ion-calendar>\n			</ion-list>\n\n\n			<ion-list class=\'backItem\' style=\'width: 100%;\n    display: table;\n    white-space: normal;\'  [hidden]=\'!fechaSeleccionada\' *ngIf="item.open && item.id == 2 "  radio-group [(ngModel)]="horaSeleccionada">\n\n<div [hidden]=\'diaCerrado\'>\n\n\n\n<ion-item  *ngIf=\'(tipoReserva==2 || tipoReserva=="2")\'  style=\'background: white !important;     padding-top: 6px;\n    padding-bottom: 10px;  border-top: solid 1px lightgray;\'>\n  <ion-label style=\'    color: #444 !important;\'>Hora de Inicio</ion-label>\n <ion-datetime (ionChange)=\'actualizarHora(horaSeleccionada)\' style=\'    color: #444 !important;\' [(ngModel)]="horaSeleccionada" displayFormat="hh:mm A" pickerFormat="HH:mm"  minuteValues="0,30"  max="{{maxH}}" min="{{minH}}"> </ion-datetime> \n\n</ion-item>\n\n<!-- <ion-item (click)=\'abrirSelect()\'   *ngIf=\'true\'  style=\'background: white !important;     padding-top: 6px;\n    padding-bottom: 10px;  border-top: solid 1px lightgray;\'>\n  <ion-label style=\'    color: #444 !important;\'>Hora de Inicio</ion-label>\n\n\n\n</ion-item> -->\n\n<ion-item *ngIf=\'horaSeleccionada && (tipoReserva==1 || tipoReserva=="1")\'  style=\'     background: white !important;     padding-top: 6px;\n    padding-bottom: 10px;  border-top: solid 1px lightgray;\'>\n  <ion-label style=\'    color: #444 !important;\'>Hora Inicio</ion-label>\n <ion-datetime [disabled]=\'true\' style=\'    color: #444 !important;\' [(ngModel)]="horaSeleccionada" displayFormat="hh:mm A"> </ion-datetime> \n\n</ion-item>\n<ion-item *ngIf=\'horaSeleccionada\'  style=\'     background: white !important;     padding-top: 6px;\n    padding-bottom: 10px;  border-top: solid 1px lightgray;\'>\n  <ion-label style=\'    color: #444 !important;\'>Finaliza aprox.</ion-label>\n <ion-datetime [disabled]=\'true\' style=\'    color: #444 !important;\' [(ngModel)]="horaFinalizacion" displayFormat="hh:mm A" > </ion-datetime> \n\n</ion-item>\n\n\n</div>\n<div style="    margin: 25px;\n    text-align: center;\n    font-size: 16px;\n    font-family: sans-serif;\n    font-weight: 400;\n    color: lightcoral;" [hidden]=\'!diaCerrado\'>\n	\n	Centro cerrado este dia\n</div>\n\n\n	<!-- 			<ion-item class=\'itemHora\'>\n				<ion-label>11:25am</ion-label>\n				<ion-radio mode=\'wp\' value="11:25am" checked></ion-radio>\n				</ion-item>\n				<ion-item class=\'itemHora\' >\n				<ion-label>11:35am</ion-label>\n				<ion-radio mode=\'wp\' value="11:35am"></ion-radio>\n				</ion-item>\n				<ion-item class=\'itemHora\'>\n				<ion-label>11:55am</ion-label>\n				<ion-radio mode=\'wp\' value="11:55am" [disabled]="isDisabled"></ion-radio>\n				</ion-item> -->\n\n\n\n\n\n			</ion-list>\n\n\n\n<!-- 						<ion-list class=\'backItem\' style=\'width: 100%;\n    display: table;\n    white-space: normal;\'  *ngIf="item.open && item.id == 3 "  radio-group [(ngModel)]="staffSeleccionado">\n\n\n\n\n				<ion-item class=\'avatarSelect\' *ngFor="let n of empleados" >\n				<ion-label>\n				<ion-avatar item-start>\n				<img src="http://50.116.17.150:3000/{{n.idFoto}}" \n        onError="this.src=\'assets/imgs/usuario.png\';" style="display: inline-block;">\n				<div style="    width: 100%;display: inline-block;margin-left: 7px;">\n				<h2  style="margin-bottom: 4px;">{{n.nombre}}</h2>\n				<p style="    white-space: normal;\n    width: calc(100% - 50px);">{{n.descripcion}}</p>\n				</div>\n				</ion-avatar>\n				</ion-label>\n				\n				<ion-radio mode=\'wp\' value="{{n.idEmpleado}}" (ionSelect)="radioChecked(n.nombre)"></ion-radio>\n				</ion-item>\n\n				<ion-item class=\'avatarSelect\' *ngIf=\'(tipoReserva==2 || tipoReserva=="2")\' >\n				<ion-label>\n				<ion-avatar item-start>\n				<img src="assets/imgs/usuario.png" style="display: inline-block;">\n				<div style="    width: 100%;display: inline-block;margin-left: 7px;">\n				<h2  style="margin-bottom: 4px;">Cualquier Personal</h2>\n\n				</div>\n				</ion-avatar>\n				</ion-label>\n				\n				<ion-radio mode=\'wp\' value="-1" (ionSelect)="radioChecked(\'Cualquier Personal\')"></ion-radio>\n				</ion-item>\n\n\n\n<div style="    margin: 25px;\n    text-align: center;\n    font-size: 16px;\n    font-family: sans-serif;\n    font-weight: 400;\n    color: lightcoral;" *ngIf=\'!(tipoReserva==2 || tipoReserva=="2") && (empleados.length<1) || !(empleados)\'>\n	\n	<ion-spinner name="bubbles"></ion-spinner>\n</div>\n\n\n\n			</ion-list> -->\n\n\n\n\n\n\n\n			</ion-list-header>\n		</ion-list>\n\n\n<div style="    width: 100%;\n    margin-top: 30px;\n    margin-bottom: 30px;">\n	\n	    <button  *ngIf="!reprogra && fechaSeleccionada && horaSeleccionada && staffSeleccionado && staffSeleccionado !== 0 && (serviciosCarro?.length>0)" (click)=\'goReserva(fechaSeleccionada,horaSeleccionada)\' ion-button class="botonVerdeFulls"\n	    	>Confirmar {{fechaSeleccionada}} - {{getDattts(fechaSeleccionada+\' \'+horaSeleccionada+\':00\') }}</button>\n\n</div>\n\n</div>\n\n\n\n<select-alertless   #selectH style=\'display:none\'  [selectOptions]="selectOptions" (ionChange)=\'printOption($event)\' >\n\n      <ion-option *ngFor="let d of horasDisponibles"  value="{{d[0].inicio.split(\' \')[1].substring(0, 5)}}" >\n   		<!--   \n    {{d[0].inicio.split(\' \')[1].substring(0, 5)}} - {{d[0].fin.split(\' \')[1].substring(0, 5)}} \n		-->\n\n\n		   {{getDattts(d[0].inicio)}} - {{getDattts(d[0].fin)}} \n  		</ion-option>\n\n</select-alertless>\n\n</ion-content>\n\n\n<!-- <ion-footer style=\'    background-color: #f7f8f9 !important;\'>\n  <ion-toolbar >\n\n\n    <button (click)=\'goReserva()\' ion-button class="botonVerdeFull">Agendar Cita<ion-icon style=\'    margin-left: 10px !important;\' name="md-arrow-forward"></ion-icon> </button>\n\n  </ion-toolbar>\n</ion-footer>\n\n\n -->\n\n'/*ion-inline-end:"/Users/jose/Documents/beyouApp/beYou/src/pages/reservapaquete/reservapaquete.html"*/,
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["NavController"], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["NavParams"], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["ModalController"], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["AlertController"], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["LoadingController"], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["Events"], __WEBPACK_IMPORTED_MODULE_2__providers_api_api__["a" /* ApiProvider */], __WEBPACK_IMPORTED_MODULE_0__angular_core__["ChangeDetectorRef"], __WEBPACK_IMPORTED_MODULE_0__angular_core__["NgZone"]])
-    ], ReservaPage);
-    return ReservaPage;
+        __metadata("design:paramtypes", [typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["NavController"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["NavController"]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["NavParams"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["NavParams"]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["ModalController"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["ModalController"]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["AlertController"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["AlertController"]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["LoadingController"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["LoadingController"]) === "function" && _f || Object, typeof (_g = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["Events"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["Events"]) === "function" && _g || Object, typeof (_h = typeof __WEBPACK_IMPORTED_MODULE_2__providers_api_api__["a" /* ApiProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__providers_api_api__["a" /* ApiProvider */]) === "function" && _h || Object, typeof (_j = typeof __WEBPACK_IMPORTED_MODULE_0__angular_core__["ChangeDetectorRef"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__angular_core__["ChangeDetectorRef"]) === "function" && _j || Object, typeof (_k = typeof __WEBPACK_IMPORTED_MODULE_0__angular_core__["NgZone"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__angular_core__["NgZone"]) === "function" && _k || Object])
+    ], ReservapaquetePage);
+    return ReservapaquetePage;
+    var _a, _b, _c, _d, _e, _f, _g, _h, _j, _k;
 }());
 
-//# sourceMappingURL=reserva.js.map
+//# sourceMappingURL=reservapaquete.js.map
 
 /***/ })
 
