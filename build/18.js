@@ -189,6 +189,15 @@ var MapaPage = (function () {
                 _this.dataMarcas = data || [];
             });
         };
+        /*
+        'icon': {
+        'url': imagenLink,
+        size: {
+            width: 35,
+            height: 35
+         }
+        }
+        */
         this.goTo = function (idCentro) { console.log(idCentro); };
         this.loadMap = function () {
             //let loading3 = this.loadingCtrl.create({content : "Buscando negocios cercanos"});
@@ -229,7 +238,7 @@ var MapaPage = (function () {
                     console.log(data);
                     _this.dataMarcas = data;
                     data.forEach(function (element, index) {
-                        var imagenLink = element.idFoto ? 'http://50.116.17.150:3000/' + element.idFoto : 'assets/imgs/fotoComercio.png';
+                        var imagenLink = 'assets/imgs/mdactive.png';
                         var htmlInfoWindow = new plugin.google.maps.HtmlInfoWindow();
                         var frame = document.createElement('div');
                         frame.className = 'centradoTexto';
@@ -255,16 +264,14 @@ var MapaPage = (function () {
                         });
                         _this.map.addMarker({
                             'position': { lng: element.longitud, lat: element.latitud },
-                            'icon': {
-                                'url': imagenLink,
-                                size: {
-                                    width: 35,
-                                    height: 35
-                                }
-                            }
+                            'icon': 'assets/imgs/mdactive.png'
                         }, function (marker) {
                             marker.on(plugin.google.maps.event.MARKER_CLICK, function () {
+                                marker.setIcon('assets/imgs/mactive.png');
                                 htmlInfoWindow.open(marker);
+                            });
+                            marker.on(plugin.google.maps.event.INFO_CLOSE, function () {
+                                marker.setIcon('assets/imgs/mdactive.png');
                             });
                             //marker.trigger(plugin.google.maps.event.MARKER_CLICK);
                         });
