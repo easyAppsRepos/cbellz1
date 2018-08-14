@@ -242,16 +242,7 @@ var MapaPage = (function () {
                         var htmlInfoWindow = new plugin.google.maps.HtmlInfoWindow();
                         var frame = document.createElement('div');
                         frame.className = 'centradoTexto';
-                        frame.innerHTML = ["<span style='color: #555;font-size: 17px;'><b>" + element.nombre + "</b></span><br>",
-                            "<span style=\"display: block;margin: 3px 0px;color: lightgray;font-size: 15px;\">",
-                            _this.getEstrella(1, element.rate),
-                            _this.getEstrella(2, element.rate),
-                            _this.getEstrella(3, element.rate),
-                            _this.getEstrella(4, element.rate),
-                            _this.getEstrella(5, element.rate),
-                            "</span>",
-                            "<span style='color: #888;font-size: 16px;  '><ion-icon name='ios-pin' role='img' style='  margin-right: 8px;      vertical-align: middle;   font-size: 21px;color:#2FD99B;' class='icon icon-ios ion-ios-pin' aria-label='pin' ng-reflect-name='ios-pin'></ion-icon>a " + (element.distance ? element.distance.toFixed(1) : '-') + "km aprox.</span><br>",
-                            "<button  style='margin: 6px 0px; padding: 5px;background-color: #2FD99B;color: white;font-weight: 900;' >Mas Informacion</button>"].join("");
+                        frame.innerHTML = ["<ion-card><ion-card-content><div style=\"display:inline-block;width: 100%;\">\n                <img src=\"http://50.116.17.150:3000/" + element.idFoto + "\" \n        onError=\"this.src='assets/imgs/fotoComercio.png';\"\n        style=\"display: inline-block;height: 90px;width: 90px !important;vertical-align: top;\">\n    <div style=\"display: inline-block;width: calc(100% - 105px);margin-left: 10px;\">\n  <span style=\"margin: 2px 0px 0px 0px;font-size: 19px;color: #333;\">" + element.nombre + "</span>\n        <span style=\"    display: block;font-size: 16px;margin: 10px 0px;font-weight: 800;\n    color: #EC527E;\">$" + element.pMin + "<span [hidden]='" + element.pMin + " == " + element.pMax + "'>- $" + element.pMax + "</span></span><span class=\"itemComercio\"><span style=\"  margin-right: 21px;color:#888;font-size: 15px;\"><ion-icon [ngClass]=\"{'colorGris': " + element.cantRate + "==0}\"style='    margin-right: 8px;color: rgb(249,199,53);font-size: 21px;vertical-align: middle;' name=\"md-star\"></ion-icon>" + element.rate + " | number:'1.1-2'}} (" + element.cantRate + ")</span></span></div></div></ion-card-content></ion-card>"].join("");
                         var button = frame.getElementsByTagName("button")[0];
                         button.addEventListener("click", function () {
                             _this.ngZone.run(function () {
