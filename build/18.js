@@ -1,6 +1,6 @@
 webpackJsonp([18],{
 
-/***/ 444:
+/***/ 442:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -8,7 +8,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MapaPageModule", function() { return MapaPageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(11);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__mapa__ = __webpack_require__(482);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__mapa__ = __webpack_require__(480);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -38,7 +38,7 @@ var MapaPageModule = (function () {
 
 /***/ }),
 
-/***/ 482:
+/***/ 480:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -118,6 +118,63 @@ var MapaPage = (function () {
                 title: 'Point 4'
             },
         ];
+        this.filterFav = function (user) {
+            //console.log(user);
+            if (_this.categoriaSeleccionada == 0) {
+                return true;
+            }
+            if (_this.subcategorias.length > 0) {
+                return [user.idSubcategoria].some(function (r) { return _this.subCategoriaSeleccionada.includes(parseInt(r)); });
+            }
+            else {
+                // return false;
+                // return user.idCategoria == this.categoriaSeleccionada;
+                return [user.idCategoria].includes(String(_this.categoriaSeleccionada));
+            }
+        };
+        this.marcarMapa = function () {
+            _this.dataMarcas.filter(function (item) { return (_this.categoriaSeleccionada == 0 || item.categoriasCentro.split(',').includes(String(_this.categoriaSeleccionada))); }).forEach(function (element, index) {
+                var imagenLink = element.idFoto ? 'http://50.116.17.150:3000/' + element.idFoto : 'assets/imgs/fotoComercio.png';
+                var htmlInfoWindow = new plugin.google.maps.HtmlInfoWindow();
+                var frame = document.createElement('div');
+                frame.className = 'centradoTexto';
+                frame.innerHTML = ["<span style='color: #555;font-size: 17px;'><b>" + element.nombre + "</b></span><br>",
+                    "<span style=\"display: block;margin: 3px 0px;color: lightgray;font-size: 15px;\">",
+                    _this.getEstrella(1, element.rate),
+                    _this.getEstrella(2, element.rate),
+                    _this.getEstrella(3, element.rate),
+                    _this.getEstrella(4, element.rate),
+                    _this.getEstrella(5, element.rate),
+                    "</span>",
+                    "<span style='color: #888;font-size: 16px;  '><ion-icon name='ios-pin' role='img' style='  margin-right: 8px;      vertical-align: middle;   font-size: 21px;color:#2FD99B;' class='icon icon-ios ion-ios-pin' aria-label='pin' ng-reflect-name='ios-pin'></ion-icon>a " + (element.distance ? element.distance.toFixed(1) : '-') + "km aprox.</span><br>",
+                    "<button  style='margin: 6px 0px; padding: 5px;background-color: #2FD99B;color: white;font-weight: 900;' >Mas Informacion</button>"].join("");
+                var button = frame.getElementsByTagName("button")[0];
+                button.addEventListener("click", function () {
+                    _this.ngZone.run(function () {
+                        _this.navCtrl.push('PerfilCentroPage', { 'idCentro': element.idCentro, 'idServicioSeleccionado': 0 });
+                    });
+                });
+                htmlInfoWindow.setContent(frame, {
+                    width: "180px",
+                    height: "110px"
+                });
+                _this.map.addMarker({
+                    'position': { lng: element.longitud, lat: element.latitud },
+                    'icon': {
+                        'url': imagenLink,
+                        size: {
+                            width: 35,
+                            height: 35
+                        }
+                    }
+                }, function (marker) {
+                    marker.on(plugin.google.maps.event.MARKER_CLICK, function () {
+                        htmlInfoWindow.open(marker);
+                    });
+                    //marker.trigger(plugin.google.maps.event.MARKER_CLICK);
+                });
+            });
+        };
         this.addMarker = function (options) {
             var markerOptions = {
                 position: new LatLng(options.position.latitude, options.position.longitude),
@@ -139,6 +196,7 @@ var MapaPage = (function () {
             var element = document.getElementById('map');
             _this.map = plugin.google.maps.Map.getMap(element, {
                 controls: {
+                    'myLocation': true,
                     'zoom': true // android only
                 },
                 'camera': {
@@ -234,6 +292,13 @@ var MapaPage = (function () {
         */
     }
     MapaPage.prototype.ionViewDidLoad = function () {
+        // borrar
+        // borrar
+        // borrar
+        //  this.apiProvider.getCentrosMapa({lat: 9.9930842, lon:  -84.2307235})
+        //  .then(data => {console.log(data) });
+        // borrar
+        // borrar
         this.loading = this.loadingCtrl.create({ content: "Buscando negocios cercanos" });
         this.loading.present();
         this.getServiciosGPS();
@@ -266,8 +331,10 @@ var MapaPage = (function () {
     };
     MapaPage.prototype.getSubCat = function (tt, yy) {
         var _this = this;
-        //this.favoritos = this.favoritos;
-        console.log(tt, yy);
+        console.log(tt);
+        console.log(this.map);
+        this.map.clear();
+        this.marcarMapa();
         this.apiProvider.getSubcategorias({ idCategoria: tt })
             .then(function (data) {
             console.log(data);
