@@ -242,7 +242,7 @@ var MapaPage = (function () {
                         var htmlInfoWindow = new plugin.google.maps.HtmlInfoWindow();
                         var frame = document.createElement('div');
                         frame.className = 'centradoTexto';
-                        frame.innerHTML = ["<ion-card><ion-card-content><div style=\"display:inline-block;width: 100%;\">\n                <img src=\"http://50.116.17.150:3000/" + element.idFoto + "\" \n        onError=\"this.src='assets/imgs/fotoComercio.png';\"\n        style=\"display: inline-block;height: 45px;width: 45px !important;vertical-align: top;\">\n    <div style=\"display: inline-block;\">\n     <span style=\"margin: 2px 0px 0px 0px;font-size: 15px;color: #333;\">" + element.nombre + "</span>\n <span class=\"itemComercio\">\n <span style=\"color:#888;font-size: 14px;\">\n\n <ion-icon style='font-size:16px' name='md-star' role='img' class='icon icon-ios ion-md-star ratingStar'> </ion-icon>" + (element.rate || 0) + "  (" + element.cantRate + ")</span>\n\n\n\n        <span style=\"    display: block;font-size: 14px;font-weight: 800;\n    color: #EC527E;\">$" + element.pMin + "<span [hidden]='" + element.pMin + " == " + element.pMax + "'>- $" + element.pMax + "</span></span>\n</span>\n    </div></div></ion-card-content></ion-card>"].join("");
+                        frame.innerHTML = ["<ion-card><ion-card-content><div style=\"padding:15px;display:inline-block;width: 100%;\">\n                <img src=\"http://50.116.17.150:3000/" + element.idFoto + "\" \n        onError=\"this.src='assets/imgs/fotoComercio.png';\"\n        style=\"display: inline-block;height: 45px;width: 45px !important;vertical-align: top;\">\n    <div style=\"display: inline-block;\">\n     <span style=\"margin: 2px 0px 0px 0px;font-size: 15px;color: #333;\">" + element.nombre + "</span><br>\n <span class=\"itemComercio\">\n <span style=\"color:#888;font-size: 14px;\">\n\n <ion-icon style='font-size:16px' name='md-star' role='img' class='icon icon-ios ion-md-star ratingStar'> </ion-icon>" + (element.rate || 0) + "  (" + element.cantRate + ")</span>\n\n\n\n        <span style=\"    display: block;font-size: 14px;font-weight: 800;\n    color: #EC527E;\">$" + element.pMin + "<span [hidden]='" + element.pMin + " == " + element.pMax + "'>- $" + element.pMax + "</span></span>\n</span>\n    </div></div></ion-card-content></ion-card>"].join("");
                         console.log(frame.getElementsByTagName("DIV"));
                         var button = frame.getElementsByTagName("DIV")[0];
                         button.addEventListener("click", function () {
@@ -251,7 +251,7 @@ var MapaPage = (function () {
                             });
                         });
                         htmlInfoWindow.setContent(frame, {
-                            width: "250px",
+                            width: "200px",
                             height: "80px"
                         });
                         _this.map.addMarker({
