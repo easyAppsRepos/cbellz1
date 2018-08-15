@@ -243,13 +243,21 @@ var MapaPage = (function () {
                         var frame = document.createElement('div');
                         frame.className = 'centradoTexto';
                         frame.innerHTML = [ true ? element.rate.toFixed(1) : 0 + "  (" + element.cantRate + ")</span></span>\n <span style=\"margin: 2px 0px 0px 0px;font-size: 14px;color: #333;\">" + element.nombre + "</span>\n        <span style=\"    display: block;font-size: 13px;font-weight: 800;\n    color: #EC527E;\">$" + element.pMin + "<span [hidden]='" + element.pMin + " == " + element.pMax + "'>- $" + element.pMax + "</span></span>\n    </div></div></ion-card-content></ion-card>"].join("");
-                        console.log(frame.getElementsByTagName("div"));
-                        var button = frame.getElementsByTagName("div")[0];
-                        button.addEventListener("click", function () {
-                            _this.ngZone.run(function () {
-                                _this.navCtrl.push('PerfilCentroPage', { 'idCentro': element.idCentro, 'idServicioSeleccionado': 0 });
-                            });
-                        });
+                        console.log(frame.getElementsByTagName("DIV"));
+                        /*
+                                 var button = frame.getElementsByTagName("div")[0];
+                                 button.addEventListener("click", ()=>{
+                        
+                                  this.ngZone.run(() => {
+                        
+                                  this.navCtrl.push('PerfilCentroPage', {'idCentro':element.idCentro, 'idServicioSeleccionado':0});
+                        
+                                  });
+                        
+                                 
+                        
+                                 });
+                        */
                         htmlInfoWindow.setContent(frame, {
                             width: "250px",
                             height: "110px"
