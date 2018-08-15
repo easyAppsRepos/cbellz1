@@ -251,8 +251,8 @@ var MapaPage = (function () {
                             });
                         });
                         htmlInfoWindow.setContent(frame, {
-                            width: "200px",
-                            height: "80px"
+                            width: "230px",
+                            height: "100px"
                         });
                         _this.map.addMarker({
                             'position': { lng: element.longitud, lat: element.latitud },
