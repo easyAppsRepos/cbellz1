@@ -1246,7 +1246,7 @@ var ReservaPage = (function () {
         var _this = this;
         this.apiProvider.verificarLogin()
             .then(function (data) {
-            console.log(data);
+            console.log(dataE);
             if (data) {
                 var loading_1 = _this.loadingCtrl.create({ content: "Reservando Cita..." });
                 loading_1.present();
@@ -1267,7 +1267,7 @@ var ReservaPage = (function () {
                 });
             }
             else {
-                var profileModal = _this.modalCtrl.create('LogindPage', { 'total': _this.dataCentro.total });
+                var profileModal = _this.modalCtrl.create('LogindPage', { 'total': dataE.total });
                 profileModal.present();
                 //this.menuCtrl.open();
             }
