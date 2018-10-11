@@ -40,10 +40,19 @@
 
   <preference name="BackupWebStorage" value="none"/>
 
-    <feature name="StatusBar">
+
+<edit-config file="*-Info.plist" mode="merge" target="UIStatusBarHidden">
+    <true />
+</edit-config>
+<edit-config file="*-Info.plist" mode="merge" target="UIViewControllerBasedStatusBarAppearance">
+    <false />
+</edit-config>
+
+
+<!--     <feature name="StatusBar">
     <param name="ios-package" value="CDVStatusBar" onload="true"/>
   </feature>
-
+ -->
   
 
 
