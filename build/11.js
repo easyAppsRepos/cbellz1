@@ -140,6 +140,7 @@ var InicioPage = (function () {
             }, tiempo);
         };
         this.printOption = function (ee) {
+            console.log(_this.nombreCat2);
             console.log(ee);
             if (ee.length < 1) {
                 return true;
@@ -154,7 +155,7 @@ var InicioPage = (function () {
             console.log(ee);
             var subCatParam = _this.subcategoriasT[ee].map(function (item) { return item.idSubcategoria; });
             console.log(subCatParam);
-            //this.navCtrl.push('MapaPage',{'idCategoria':ee,'idSubcategoriaS':subCatParam});
+            _this.navCtrl.push('MapaPage', { 'idCategoria': ee, 'idSubcategoriaS': subCatParam });
             /*
               console.log(ee);
               if(ee.length<1){
