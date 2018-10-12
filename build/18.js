@@ -344,7 +344,10 @@ var MapaPage = (function () {
     MapaPage.prototype.getCentrosGPS = function () {
     };
     MapaPage.prototype.goLista = function () {
-        var fs = { 'nombre': this.categoriaSeleccionada, 'sub': 0 };
+        // var fs = {'nombre':this.categoriaSeleccionada,'sub':0};
+        var fs = { 'nombre': this.idCategoriaS,
+            'sub': this.idSubcategoriaS[0],
+            'nombreCat2': this.idCategoriaS };
         console.log(fs);
         this.navCtrl.push('ListaServiciosPage', fs);
     };
