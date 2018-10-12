@@ -1352,6 +1352,7 @@ var MyApp = (function () {
                 elem.innerHTML = text + ' / ' + (total);
         };
         this.goAnimacion2 = function (puntosV, totalV, puntosActual) {
+            console.log(puntosV, totalV, puntosActual);
             var puntos = puntosV;
             var totall = totalV;
             var expUserM = puntosActual;
@@ -1686,9 +1687,9 @@ var MyApp = (function () {
                 push.on('registration', function (data) { return _this.registrarDevice(data); });
                 push.on('notification', function (data) {
                     if (data.additionalData.tipoNoti == "2" || data.additionalData.tipoNoti == 2) {
-                        var ga = Number(data.additionalData.puntosGanados);
-                        var ge = Number(data.additionalData.totalExc);
-                        var gi = Number(data.additionalData.puntosActual);
+                        var ga = Number(data.additionalData.puntosGanados) * 1;
+                        var ge = Number(data.additionalData.totalExc) * 1;
+                        var gi = Number(data.additionalData.puntosActual) * 1;
                         var idCC = Number(data.additionalData.idCC);
                         if (idCC > 0) {
                             var profileModal = _this.modalCtrl.create('CongratsPage', { 'idCuponCliente': idCC }, {
