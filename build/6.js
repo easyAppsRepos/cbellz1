@@ -285,7 +285,11 @@ var ListaServiciosPage = (function () {
         alert.present();
     };
     ListaServiciosPage.prototype.goMapa = function () {
-        this.navCtrl.push('MapaPage');
+        var datasss = { 'idCategoria': this.navParams.get('nombre'),
+            'idSubcategoriaS': this.subcategoriaSeleccionada };
+        console.log(datasss);
+        //this.navCtrl.push('MapaPage');
+        this.navCtrl.push('MapaPage', datasss);
     };
     ListaServiciosPage.prototype.filterFav = function (user) {
         console.log(user);
