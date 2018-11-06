@@ -332,9 +332,49 @@ var MapaPage = (function () {
         });
     };
     MapaPage.prototype.buscarServicios = function () {
+        var _this = this;
+        this.loading = this.loadingCtrl.create({ content: "Buscando negocios cercanos" });
         console.log('cargarMapa');
         this.map.clear();
-        this.loadMap();
+        var dda = { idSubcategoria: this.subCategoriaSeleccionada2, lat: this.myPosition.latitude, lon: this.myPosition.longitude };
+        console.log(dda);
+        this.apiProvider.getCentrosMapa(dda)
+            .then(function (data) {
+            console.log(data);
+            _this.dataMarcas = data;
+            data.forEach(function (element, index) {
+                var imagenLink = 'assets/imgs/mdactive.png';
+                var htmlInfoWindow = new plugin.google.maps.HtmlInfoWindow();
+                var frame = document.createElement('div');
+                frame.className = 'centradoTexto';
+                frame.innerHTML = ["<ion-card><ion-card-content><div style=\"padding:10px;display:inline-block;width: 100%;\">\n                <img src=\"http://50.116.17.150:3000/" + element.idFoto + "\" \n        onError=\"this.src='assets/imgs/fotoComercio.png';\"\n        style=\"display: inline-block;height: 50px;margin-right:5px; width: 50px !important;vertical-align: top;\">\n    <div style=\"display: inline-block;\">\n     <span style=\"margin: 2px 0px 0px 0px;font-size: 15px;color: #333;\">" + element.nombre + "</span><br>\n <span class=\"itemComercio\">\n <span style=\"color:#888;font-size: 14px;\">\n\n <ion-icon style='font-size:16px' name='md-star' role='img' class='icon icon-ios ion-md-star ratingStar'> </ion-icon>" + (element.rate || 0) + "  (" + element.cantRate + ")</span>\n\n\n\n        <span style=\"    display: block;font-size: 14px;font-weight: 800;\n    color: #EC527E;\">$" + element.pMin + "<span [hidden]='" + element.pMin + " == " + element.pMax + "'>- $" + element.pMax + "</span></span>\n</span>\n    </div></div></ion-card-content></ion-card>"].join("");
+                console.log(frame.getElementsByTagName("DIV"));
+                var button = frame.getElementsByTagName("DIV")[0];
+                button.addEventListener("click", function () {
+                    _this.ngZone.run(function () {
+                        _this.navCtrl.push('PerfilCentroPage', { 'idCentro': element.idCentro, 'idServicioSeleccionado': 0 });
+                    });
+                });
+                htmlInfoWindow.setContent(frame, {
+                    width: "230px",
+                    height: "100px"
+                });
+                _this.map.addMarker({
+                    'position': { lng: element.longitud, lat: element.latitud },
+                    'icon': 'assets/imgs/mdactive.png'
+                }, function (marker) {
+                    marker.on(plugin.google.maps.event.MARKER_CLICK, function () {
+                        marker.setIcon('assets/imgs/mactive.png');
+                        htmlInfoWindow.open(marker);
+                    });
+                    marker.on(plugin.google.maps.event.INFO_CLOSE, function () {
+                        marker.setIcon('assets/imgs/mdactive.png');
+                    });
+                    //marker.trigger(plugin.google.maps.event.MARKER_CLICK);
+                });
+            });
+            _this.loading.dismiss();
+        });
     };
     MapaPage.prototype.getSubCat = function (tt, yy) {
         var _this = this;
