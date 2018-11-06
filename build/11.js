@@ -141,13 +141,15 @@ var InicioPage = (function () {
             }, tiempo);
         };
         this.printOption = function (ee) {
+            var eeArra = [];
+            eeArra.push(parseInt(ee));
             console.log(_this.nombreCat2);
             console.log(ee);
             if (ee.length < 1) {
                 return true;
             }
             else {
-                var fs = { 'nombre': _this.seleccionCategoria, 'sub': ee, 'nombreCat2': _this.nombreCat2 };
+                var fs = { 'nombre': _this.seleccionCategoria, 'sub': eeArra, 'nombreCat2': _this.nombreCat2 };
                 console.log(fs);
                 _this.navCtrl.push('ListaServiciosPage', fs);
             }

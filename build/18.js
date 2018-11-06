@@ -416,11 +416,9 @@ var MapaPage = (function () {
     };
     MapaPage.prototype.goLista = function () {
         // var fs = {'nombre':this.categoriaSeleccionada,'sub':0};
-        var _this = this;
-        var nombreD = this.categorias.filter(function (word) { return word.idCategoria == _this.idCategoriaS; }).nombre;
         var fs = { 'nombre': this.idCategoriaS,
-            'sub': this.idSubcategoriaS[0],
-            'nombreCat2': nombreD };
+            'sub': this.subCategoriaSeleccionada2,
+            'nombreCat2': this.nombreCategoriaTitulo };
         console.log(fs);
         this.navCtrl.push('ListaServiciosPage', fs);
     };
