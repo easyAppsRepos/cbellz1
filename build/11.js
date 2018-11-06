@@ -242,8 +242,14 @@ var InicioPage = (function () {
         //this.navCtrl.push('ListaServiciosPage', {'nombre':nombreServicio});
     };
     InicioPage.prototype.goServicio3 = function (ee) {
-        console.log(ee);
-        this.navCtrl.push('MapaPage', { 'idCategoria': this.seleccionCategoria3, 'idSubcategoriaS': [ee] });
+        var _this = this;
+        var nombreD = this.categorias.filter(function (word) { return word.idCategoria == parseInt(_this.seleccionCategoria3); })[0].nombre;
+        var nombreSD = this.optionSubcategorias3.filter(function (word) { return word.idSubcategoria == parseInt(ee); })[0].nombre;
+        var sdd = { 'idCategoria': this.seleccionCategoria3, 'idSubcategoriaS': [ee], 'nombreCat': nombreD,
+            'nombreSub': nombreSD };
+        console.log(this.categorias);
+        console.log(sdd);
+        this.navCtrl.push('MapaPage', sdd);
     };
     InicioPage.prototype.borrarNGM = function () {
         this.option3 = null;
