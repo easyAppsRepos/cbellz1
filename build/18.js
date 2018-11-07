@@ -334,6 +334,7 @@ var MapaPage = (function () {
     MapaPage.prototype.buscarServicios = function () {
         var _this = this;
         this.loading = this.loadingCtrl.create({ content: "Buscando negocios cercanos" });
+        this.loading.present();
         console.log('cargarMapa');
         this.map.clear();
         var dda = { idSubcategoria: this.subCategoriaSeleccionada2, lat: this.myPosition.latitude, lon: this.myPosition.longitude };

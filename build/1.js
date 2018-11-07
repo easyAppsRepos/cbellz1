@@ -329,6 +329,21 @@ var InicioPage = (function () {
                 console.log('Ha ocurrido un error');
             }
         });
+        this.apiProvider.verificarLogin()
+            .then(function (data) {
+            if (data) {
+                _this.apiProvider.getCitaPendientesN({ idCliente: data.idCliente })
+                    .then(function (dataCall) {
+                    console.log(dataCall);
+                    if (dataCall.length > 0) {
+                        _this.navCtrl.push('DetalleReservaPage', { idCita: dataCall[0].idCita });
+                    }
+                });
+            }
+            else {
+                console.log('no pendientes');
+            }
+        });
     };
     InicioPage.prototype.ionViewDidEnter = function () {
         var _this = this;

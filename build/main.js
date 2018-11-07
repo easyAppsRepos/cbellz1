@@ -187,6 +187,16 @@ var ApiProvider = (function () {
             });
         });
     };
+    ApiProvider.prototype.getCitaPendientesN = function (da) {
+        var _this = this;
+        return new Promise(function (resolve) {
+            _this.http.post(_this.api2 + '/getCitaPendientesN', JSON.stringify(da), { headers: { 'Content-Type': 'application/json' } }).subscribe(function (data) {
+                resolve(data);
+            }, function (err) {
+                console.log(err);
+            });
+        });
+    };
     ApiProvider.prototype.agregarOpinion = function (da) {
         var _this = this;
         return new Promise(function (resolve) {
@@ -301,6 +311,16 @@ var ApiProvider = (function () {
         var _this = this;
         return new Promise(function (resolve) {
             _this.http.post(_this.api2 + '/getServiciosCategoria', JSON.stringify(credenciales), { headers: { 'Content-Type': 'application/json' } }).subscribe(function (data) {
+                resolve(data);
+            }, function (err) {
+                console.log(err);
+            });
+        });
+    };
+    ApiProvider.prototype.verificarEmail2 = function (credenciales) {
+        var _this = this;
+        return new Promise(function (resolve) {
+            _this.http.post(_this.api2 + '/verificarEmail3', JSON.stringify(credenciales), { headers: { 'Content-Type': 'application/json' } }).subscribe(function (data) {
                 resolve(data);
             }, function (err) {
                 console.log(err);
@@ -1627,6 +1647,7 @@ var MyApp = (function () {
     MyApp.prototype.initializeApp = function () {
         var _this = this;
         this.platform.ready().then(function () {
+            //navigator.splashscreen.hide();
             // Okay, so the platform is ready and our plugins are available.
             // Here you can do any higher level native things you might need.
             _this.statusBar.styleDefault();
@@ -1669,8 +1690,8 @@ var MyApp = (function () {
                 _this.loader.dismiss();
             });
             // if(this.platform.is('android') || this.platform.is('ios')){
-            if (_this.platform.is('android') || _this.platform.is('ios')) {
-                //if(false){
+            //if(this.platform.is('android') || this.platform.is('ios')){
+            if (false) {
                 console.log('amhere1');
                 //PUSH FUNCIONANDO
                 var push = PushNotification.init({

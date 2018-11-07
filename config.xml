@@ -4,12 +4,12 @@
         xmlns       =    "http://www.w3.org/ns/widgets"
         xmlns:gap   =    "http://phonegap.com/ns/1.0"
         versionCode =   "1">
-  <name>YOURBEAUTY</name>
+  <name>Yourbeauty</name>
   <description>
-        YOURBEAUTY
+        Yourbeauty
     </description>
   <author email="you@example.com" href="http://example.com.com/">
-      YOURBEAUTY
+      Yourbeauty
     </author>
       <access origin="*"/>
   <content src="index.html"/>
@@ -27,10 +27,14 @@
   <preference name="SplashScreen" value="screen"/>
 <preference name="AllowInlineMediaPlayback" value="true" />
 
+
+  <preference name="FadeSplashScreenDuration" value="3000"/>
+  <preference name="SplashScreen" value="screen"/>
    -->
 
 
-  <preference name="FadeSplashScreenDuration" value="3000"/>
+  <preference name="FadeSplashScreenDuration" value="false"/>
+  <preference name="AutoHideSplashScreen" value="false"/>
   <preference name="SplashScreen" value="screen"/>
 
 
