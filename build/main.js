@@ -1647,6 +1647,7 @@ var MyApp = (function () {
     MyApp.prototype.initializeApp = function () {
         var _this = this;
         this.platform.ready().then(function () {
+            navigator.splashscreen.hide();
             //navigator.splashscreen.hide();
             // Okay, so the platform is ready and our plugins are available.
             // Here you can do any higher level native things you might need.
