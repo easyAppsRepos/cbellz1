@@ -128,7 +128,7 @@ var LogindPage = (function () {
                 _this.events.publish('loginRemoto', dataUsuario);
                 /*
                       this.presentAlert2(`<img  src="assets/imgs/confirmarf.png"> <div stye="line-height: 25px;
-              font-size: 16px;color: #888;"> Registro completo! Ya puedes empezar a utlizar YOURBEAUTY</div>`);
+              font-size: 16px;color: #888;"> Registro completo! Ya puedes empezar a utlizar Yourbeauty</div>`);
           
               */
             }
