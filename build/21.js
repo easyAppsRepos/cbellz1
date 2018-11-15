@@ -194,6 +194,7 @@ var DetalleReservaPage = (function () {
                     _this.servicios = data['servicios'] || [];
                     _this.horario = data['horario'];
                     if (_this.dataCita.estado == 5 && window.plugins && window.plugins.NativeAudio) {
+                        console.log('playsonido');
                         window.plugins.NativeAudio.play('bepapp');
                     }
                 });
