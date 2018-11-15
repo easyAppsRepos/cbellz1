@@ -130,6 +130,10 @@
 </plugin>
 
 
+
+<gap:plugin name="cordova-plugin-nativeaudio" source="npm"  />
+
+
 <gap:plugin name="call-number" source="npm"  />
 <gap:plugin name="cordova-plugin-splashscreen" source="npm"  />
 <gap:plugin name="cordova-plugin-statusbar"  source="npm" />
