@@ -1774,7 +1774,7 @@ var MyApp = (function () {
         });
         if (window.plugins && window.plugins.NativeAudio) {
             // Preload audio resources
-            window.plugins.NativeAudio.preloadComplex('bepapp', './bepapp.mp3', 1, 1, 0, function (msg) {
+            window.plugins.NativeAudio.preloadComplex('bepapp', 'bepapp.mp3', 1, 1, 0, function (msg) {
             }, function (msg) {
                 console.log('error: ' + msg);
             });
