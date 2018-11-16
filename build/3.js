@@ -166,11 +166,14 @@ var OpinionesPage = (function () {
         this.alertCtrl = alertCtrl;
         this.sanitizer = sanitizer;
     }
+    /*
+      ionViewDidLoad() {
+    
+        }
+    */
     OpinionesPage.prototype.ionViewDidLoad = function () {
-        this.section = "one";
-    };
-    OpinionesPage.prototype.ionViewDidEnter = function () {
         var _this = this;
+        this.section = "one";
         console.log('ionViewDidLoad OpinionesPage');
         this.apiProvider.verificarLogin()
             .then(function (data) {
