@@ -1,14 +1,14 @@
 webpackJsonp([23],{
 
-/***/ 437:
+/***/ 438:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CuentaPageModule", function() { return CuentaPageModule; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DemoPageModule", function() { return DemoPageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(11);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__cuenta__ = __webpack_require__(475);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__demo__ = __webpack_require__(477);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -18,36 +18,33 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
-var CuentaPageModule = (function () {
-    function CuentaPageModule() {
+var DemoPageModule = (function () {
+    function DemoPageModule() {
     }
-    CuentaPageModule = __decorate([
+    DemoPageModule = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["NgModule"])({
             declarations: [
-                __WEBPACK_IMPORTED_MODULE_2__cuenta__["a" /* CuentaPage */],
+                __WEBPACK_IMPORTED_MODULE_2__demo__["a" /* DemoPage */],
             ],
             imports: [
-                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["IonicPageModule"].forChild(__WEBPACK_IMPORTED_MODULE_2__cuenta__["a" /* CuentaPage */]),
+                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["IonicPageModule"].forChild(__WEBPACK_IMPORTED_MODULE_2__demo__["a" /* DemoPage */]),
             ],
         })
-    ], CuentaPageModule);
-    return CuentaPageModule;
+    ], DemoPageModule);
+    return DemoPageModule;
 }());
 
-//# sourceMappingURL=cuenta.module.js.map
+//# sourceMappingURL=demo.module.js.map
 
 /***/ }),
 
-/***/ 475:
+/***/ 477:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CuentaPage; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return DemoPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(11);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_storage__ = __webpack_require__(53);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_platform_browser__ = __webpack_require__(27);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_api_api__ = __webpack_require__(105);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -59,220 +56,37 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 
 
-
-
-
-
-
-
-
 /**
- * Generated class for the CuentaPage page.
+ * Generated class for the DemoPage page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
  */
-var CuentaPage = (function () {
-    function CuentaPage(DomSanitizer, navCtrl, navParams, modalCtrl, alertCtrl, loadingCtrl, events, zone, apiProvider, storage) {
-        var _this = this;
-        this.DomSanitizer = DomSanitizer;
+var DemoPage = (function () {
+    function DemoPage(navCtrl, navParams) {
         this.navCtrl = navCtrl;
         this.navParams = navParams;
-        this.modalCtrl = modalCtrl;
-        this.alertCtrl = alertCtrl;
-        this.loadingCtrl = loadingCtrl;
-        this.events = events;
-        this.zone = zone;
-        this.apiProvider = apiProvider;
-        this.storage = storage;
-        this.porcenBarra = 0;
-        this.getImages = function () {
-            var options = {
-                quality: 100,
-                destinationType: navigator.camera.DestinationType.FILE_URI,
-                sourceType: navigator.camera.PictureSourceType.PHOTOLIBRARY
-            };
-            navigator.camera.getPicture(function (imageData) {
-                console.log(imageData);
-                _this.zone.run(function () { _this.imageFileName = imageData; });
-            }, function (err) {
-                console.log(err);
-            }, options);
-        };
-        this.uploadFile = function (datak) {
-            var loader = _this.loadingCtrl.create({
-                content: "Guardando..."
-            });
-            loader.present();
-            //const fileTransfer: FileTransferObject = this.transfer.create();
-            /*
-              let options = new FileUploadOptions();' = {
-                fileKey: 'ionicfile',
-                fileName: 'ionicfile',
-                chunkedMode: false,
-                mimeType: "image/jpeg",
-                headers: {}
-              };
-            */
-            var options = new FileUploadOptions();
-            options.fileKey = "ionicfile";
-            options.fileName = 'ionicfile2';
-            options.mimeType = "image/jpeg";
-            options.chunkedMode = false;
-            options.headers = {};
-            options.params = datak;
-            var ft = new FileTransfer();
-            ft.upload(_this.imageFileName, 'http://50.116.17.150:3000/editarCF', function (datag) {
-                console.log(datag);
-                //this.imageFileName = "http://192.168.0.7:8080/static/images/ionicfile.jpg"
-                //this.presentToast("Image uploaded successfully");
-                var data = JSON.parse(datag.response);
-                console.log(data);
-                if (data.data && data.data.affectedRows > 0) {
-                    //this.storage.set(`usr_tok_by`, this.dataUser);
-                    _this.storage.get('usr_tok_by').then(function (value) {
-                        // console.log(value);
-                        var da = value;
-                        da.genero = _this.dataUser.genero;
-                        da.telefono = _this.dataUser.telefono;
-                        da.nombre = _this.dataUser.nombre;
-                        da.idFoto = data.idFoto;
-                        console.log(da);
-                        _this.storage.set("usr_tok_by", da);
-                    }).catch(function () { return resolve(false); });
-                    loader.dismiss();
-                    _this.agregadoOk();
-                    //console.log('borrada');
-                    _this.editarData = true;
-                }
-                else {
-                    loader.dismiss();
-                    _this.errorSu();
-                    console.log('Ha ocurrido un error');
-                }
-            }, function (err) {
-                console.log(err);
-                loader.dismiss();
-                // this.presentToast(err);
-            }, options);
-        };
-        this.editarData = true;
-        this.dataUserInput = {};
-        this.dataUser = {};
     }
-    CuentaPage.prototype.ionViewDidLoad = function () {
-        var _this = this;
-        console.log('ionViewDidLoad CuentaPage');
-        this.apiProvider.verificarLogin()
-            .then(function (data) {
-            console.log(data);
-            if (data) {
-                /*
-                this.dataUserInput = JSON.parse(JSON.stringify(data));
-                this.dataUser = data;
-                this.porcenBarra = (((this.dataUser.exp)/(this.dataUser.appexp))*100) + '%';
-                */
-                var loading_1 = _this.loadingCtrl.create({ content: "Cargando" });
-                loading_1.present();
-                _this.apiProvider.getUserInfo({ idCliente: data.idCliente })
-                    .then(function (datas) {
-                    console.log(datas);
-                    if (datas[0].idCliente == data.idCliente) {
-                        _this.dataUserInput = JSON.parse(JSON.stringify(datas[0]));
-                        _this.dataUser = datas[0];
-                        _this.porcenBarra = (((_this.dataUser.exp) / (_this.dataUser.appexp)) * 100) + '%';
-                    }
-                    else {
-                        console.log('Ha ocurrido un error');
-                    }
-                    loading_1.dismiss();
-                });
-            }
-            else {
-                console.log('error');
-                // this.menuActivo = false;
-            }
-        });
+    DemoPage.prototype.ionViewDidLoad = function () {
+        console.log('ionViewDidLoad DemoPage');
     };
-    CuentaPage.prototype.agregadoOk = function () {
-        var alert = this.alertCtrl.create({
-            title: 'Editado correctamente',
-            subTitle: 'Sus datos han sido editados correctamente',
-            buttons: ['Cerrar']
-        });
-        alert.present();
+    DemoPage.prototype.siguienteSlide = function () {
+        console.log('dasd');
+        this.slider.slideNext();
     };
-    CuentaPage.prototype.errorSu = function () {
-        var alert = this.alertCtrl.create({
-            title: 'Error',
-            subTitle: 'Ha ocurrido un error',
-            buttons: ['Cerrar']
-        });
-        alert.present();
+    DemoPage.prototype.iniciarApp = function () {
+        this.navCtrl.setRoot('InicioPage');
     };
-    CuentaPage.prototype.getPorcentaje = function () {
-        var enviar = ((900) / (this.dataUser.completadas * 100)) + '%';
-        console.log(enviar);
-        return enviar;
-    };
-    CuentaPage.prototype.seleccionarGenero = function (genero) {
-        if (!this.editarData) {
-            this.dataUser.idGenero = genero;
-        }
-    };
-    CuentaPage.prototype.guardarCambios = function () {
-        var _this = this;
-        if (this.imageFileName) {
-            this.uploadFile(this.dataUser);
-        }
-        else {
-            var loading_2 = this.loadingCtrl.create({ content: "Cargando ..." });
-            loading_2.present();
-            this.apiProvider.editarUsuario(this.dataUser)
-                .then(function (data) {
-                loading_2.dismissAll();
-                console.log(data);
-                if (data.affectedRows > 0) {
-                    //this.storage.set(`usr_tok_by`, this.dataUser);
-                    _this.storage.get('usr_tok_by').then(function (value) {
-                        // console.log(value);
-                        var da = value;
-                        da.genero = _this.dataUser.genero;
-                        da.telefono = _this.dataUser.telefono;
-                        da.nombre = _this.dataUser.nombre;
-                        da.idGenero = _this.dataUser.idGenero;
-                        da.fechaNacimiento = _this.dataUser.fechaNacimiento;
-                        console.log(da);
-                        _this.storage.set("usr_tok_by", da);
-                        _this.events.publish('userCH');
-                    }).catch(function () { return resolve(false); });
-                    _this.agregadoOk();
-                    //console.log('borrada');
-                    _this.editarData = true;
-                }
-                else {
-                    console.log('Ha ocurrido un error');
-                }
-            });
-        }
-        //console.log(this.dataUser);
-    };
-    CuentaPage.prototype.cancelarEdicion = function () {
-        this.dataUser = this.dataUserInput;
-        this.editarData = true;
-        this.imageFileName = undefined;
-    };
-    CuentaPage = __decorate([
+    DemoPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-            selector: 'page-cuenta',template:/*ion-inline-start:"/Users/jose/Documents/beyouApp/beYou/src/pages/cuenta/cuenta.html"*/'<!--\n  Generated template for the AjustesPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar>\n\n   <ion-buttons start>\n    <button ion-button menuToggle>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n    </ion-buttons>\n\n    \n    <ion-title>Cuenta</ion-title>\n\n\n\n  </ion-navbar>\n\n</ion-header>\n\n\n\n<ion-content style=\'background-color: #fafafa; \' >\n\n        <ion-item style=\'    margin-top: 0px;\n    background-color: white !important;\n    padding: 20px;\' class=\'fixProfileMargin\'>\n          <ion-avatar item-start>\n\n          <img *ngIf="!imageFileName && editarData && !dataUser.fbId"  [hidden]=\'imageFileName\' style=\'width:75px; height: 75px;object-fit: contain;\' src="http://50.116.17.150:3000/{{dataUser?.idFoto}}" \n        onError="this.src=\'assets/imgs/usuario.png\';" />\n\n          <img *ngIf="!imageFileName && editarData && dataUser.fbId"  [hidden]=\'imageFileName || dataUser.idFoto\' style=\'width:75px; height: 75px;object-fit: contain;\' src="{{dataUser?.imagenFb}}" \n        onError="this.src=\'assets/imgs/usuario.png\';" />\n\n          <img *ngIf="!imageFileName && editarData && dataUser.fbId && dataUser.idFoto"  [hidden]=\'imageFileName\' style=\'width:75px; height: 75px;object-fit: contain;\' src="http://50.116.17.150:3000/{{dataUser?.idFoto}}" \n        onError="this.src=\'assets/imgs/usuario.png\';" />\n\n\n\n            <img  (click)=\'getImages()\' *ngIf="!imageFileName && !editarData" [hidden]=\'imageFileName\' style=\'width:75px; height: 75px\' src="assets/imgs/editImage.png"   />\n\n        <img (click)=\'getImages()\'  [src]="DomSanitizer.bypassSecurityTrustUrl(imageFileName)"  *ngIf="imageFileName" style=\'width:75px; height: 75px;object-fit: contain;\' />\n\n          </ion-avatar>\n          <h2 style="margin-bottom: 23px;">{{dataUser?.nombre}}</h2>\n          <div class="barraContainer">\n\n\n\n            <div class="barraProgress" [ngStyle]="{\'width\': porcenBarra}"  ><span>{{(dataUser?.exp) || 0}}/{{dataUser?.appexp}}</span></div>\n\n          </div>\n        </ion-item>\n\n\n\n\n          <ion-list>\n<!-- \n\n\n          <button  class="claseItem"  ion-item  >\n          {{dataUser?.nombre || \'no especificado\'}}\n    \n          </button>       <button  class="claseItem"  ion-item  >\n          {{dataUser?.email || \'no especificado\'}}\n        \n          </button>\n          <button  class="claseItem"  ion-item  >\n          {{dataUser?.telefono || \'no especificado\'}}\n        \n          </button>\n\n          <button  class="claseItem"  ion-item  >\n          Genero: {{dataUser?.genero || \'no especificado\'}}\n        \n          </button>\n-->\n\n\n  <ion-item style=\'margin-top: 20px\'  >\n    <ion-label color="headerColor" stacked>Nombre</ion-label>\n    <ion-input  [ngClass]="{\'itemActi\':!editarData}"   [disabled]=\'editarData\' [(ngModel)]="dataUser.nombre"  type="text" placeholder="nombre"></ion-input>\n  </ion-item>\n\n  <ion-item  style=\'margin-top: 20px\'>\n    <ion-label color="headerColor" stacked>Email</ion-label>\n    <ion-input  [ngClass]="{\'itemActi\':!editarData}" [disabled]=\'true\' [(ngModel)]="dataUser.email"  type="text" placeholder="correo electronico"></ion-input>\n  </ion-item>\n\n    <ion-item  style=\'margin-top: 20px\'>\n    <ion-label color="headerColor" stacked>Contraseña</ion-label>\n    <ion-input   [ngClass]="{\'itemActi\':!editarData}"   [disabled]=\'editarData\' [(ngModel)]="dataUser.password"  type="password" placeholder="pass"></ion-input>\n  </ion-item>\n\n\n  <ion-item  style=\'margin-top: 20px\'>\n    <ion-label color="headerColor" stacked>Teléfono</ion-label>\n    <ion-input  [ngClass]="{\'itemActi\':!editarData}"  [disabled]=\'editarData\' [(ngModel)]="dataUser.telefono"  type="tel" placeholder="telefono"></ion-input>\n  </ion-item>\n\n\n  \n  \n      <div style="margin-left: 16px;margin-top:10px">\n        <span style="font-size: 1.2rem;\n    color: #EC527E;\n    display: block;" >Género</span>\n\n\n        <ion-icon  name="man" style=\'        font-size: 40px;\n    opacity: 0.5;\n    color: #2FD99B;\n    margin: 10px;\' [ngClass]="{\'iconActive\':dataUser?.idGenero == 1}" \n    (click)=\'seleccionarGenero(1)\'></ion-icon>\n\n\n        <ion-icon name="woman" style=\'    color: #EC527E;\n    margin: 10px;\n        font-size: 40px;\n    opacity: 0.5;\' [ngClass]="{\'iconActive\':dataUser?.idGenero == 2}" \n    (click)=\'seleccionarGenero(2)\'></ion-icon>\n     </div>\n<!--    <ion-item  style=\'margin-top: 20px\'> \n  <ion-label color="headerColor" stacked>Genero</ion-label>\n<ion-input   [ngClass]="{\'itemActi\':!editarData}"  [disabled]=\'editarData\' [(ngModel)]="dataUser.genero"  type="text" placeholder=""></ion-input>\n\n   <ion-select interface=\'popover\' [ngClass]="{\'itemActi\':!editarData}"  [disabled]=\'editarData\' \n   [(ngModel)]="dataUser.genero">\n\n      <ion-option value="Masculino">\n        <span>ion-icon name="man"></ion-icon>\n        \n      </ion-option>\n\n      <ion-option value="Femenino">\n      <ion-icon name="woman"></ion-icon>\n        Femenino\n      </ion-option>\n\n  </ion-select>\n\n  </ion-item>\n -->\n    \n\n<!-- <ion-item   style=\'    height: 75px;\'>\n  <ion-label class=\'headerColor\' style=\'    font-size: 1.2rem;\n    color: #EC527E;\n    opacity: 1; \' >Fecha Nacimiento</ion-label><br>\n <ion-datetime [disabled]=\'editarData\' [(ngModel)]="dataUser.fechaNacimiento" displayFormat="YYYY-MM-DD"  style=\'     position: absolute;\n    margin-top: 24px;\n    border: solid 2px lightgray;\n    padding: 0px 15px;\n    min-width: 50px;\' > </ion-datetime> \n\n</ion-item>\n\n -->\n\n\n  <ion-item  style=\'margin-top: 20px\'>\n    <ion-label color="headerColor" stacked style=\'    opacity: 1 !important;\'>Fecha Nacimiento</ion-label>\n\n\n<ion-datetime placeholder=\'seleccione una fecha\' [ngClass]="{\'itemActi\':!editarData}"  [disabled]=\'editarData\' [(ngModel)]="dataUser.fechaNacimiento" displayFormat="DD-MM-YYYY"  style=\'\' > </ion-datetime>\n\n  </ion-item>\n\n\n\n\n          </ion-list>\n\n\n<!--\n              <div [hidden]=\'!editarData\'  style="width: 100%;\n    position: fixed;\n    bottom: 0px;\n    background: rgb(247,248,249);\n    padding-bottom: 6px;\n">\n          <button (click)=\'editarData=false\' ion-button class="botonVerdeFull">Actualizar informacion<ion-icon style=\'    margin-left: 10px !important;\' name="md-arrow-forward"></ion-icon> \n\n          </button>\n </div>\n\n <div  style="width: 100%;\n    position: fixed;\n    bottom: 0px;\n    background: rgb(247,248,249);\n    padding-bottom: 6px;\n" [hidden]=\'editarData\'>\n    \n\n    <button (click)=\'guardarCambios()\'  style=" border-radius: 70px;   width: 40%;\n    margin-left: 5%;float:left"  color=\'verdeApp\' ion-button> Guardar cambio</button> \n\n    <button (click)=\'cancelarEdicion()\'  color=\'headerColor\' ion-button  style="    width: 40%;\n    margin-right: 5%;\n    border-radius: 70px;float:right" >Deshacer</button>\n\n\n</div> -->\n\n\n\n\n\n   \n\n\n\n\n\n</ion-content>\n\n<ion-footer  style=\'  background-color: #f7f8f9 !important; \'>\n \n\n<div [hidden]=\'editarData\'>\n    <button (click)=\'guardarCambios()\'  style=" border-radius: 70px;   width: 40%;\n    margin-left: 5%;float:left"  color=\'verdeApp\' ion-button> Guardar cambio</button> \n\n    <button (click)=\'cancelarEdicion()\'  color=\'headerColor\' ion-button  style="    width: 40%;\n    margin-right: 5%;\n    border-radius: 70px;float:right" >Deshacer</button>\n    </div>\n    <div [hidden]=\'!editarData\'>\n      \n       <button (click)=\'editarData=false\' ion-button class="botonVerdeFull">Actualizar informacion<ion-icon style=\'    margin-left: 10px !important;\' name="md-arrow-forward"></ion-icon> \n\n          </button>\n\n    </div>\n\n\n</ion-footer>\n'/*ion-inline-end:"/Users/jose/Documents/beyouApp/beYou/src/pages/cuenta/cuenta.html"*/,
+            selector: 'page-demo',template:/*ion-inline-start:"/Users/jose/Documents/beyouApp/beYou/src/pages/demo/demo.html"*/'<ion-content>\n\n<ion-slides   pager="true" style=\'background-image: url(assets/imgs/fondoDemo.png);\' >\n\n\n  <ion-slide>\n  <h1 class="tituloDemo">EL SERVICIO <br> QUE NECESITAS</h1>\n    <img class="imgDemo"  src="assets/imgs/demo1.png" />\n\n    <p class="textoDemo">Busca, Filtra y Reserva en <br>\n    					los mejores centros de belleza</p>\n  </ion-slide>\n \n\n  <ion-slide>\n    <h1  class="tituloDemo">RESERVAS 24/7</h1>\n    <img class="imgDemo" \n   style="    padding-left: 68px;" src="assets/imgs/demo2.png"  />\n    <p class="textoDemo">Programa tus citas en cualquier <br>\n    					momento indicando el dia, hora y el <br>\n    					staff que deseas</p>\n  </ion-slide>\n \n  <ion-slide>\n    <h1  class="tituloDemo">VIVA LA EXPERIENCIA	</h1>\n     <img sclass="imgDemo"  style="    padding-right: 35px;"  src="assets/imgs/demo3.png"  />\n      <p class="textoDemo">Acumula puntos agregando <br>\n    					comentarios, reservando y <br>\n    					compartiendo experiencias YOURBEAUTY</p>\n   \n     <!--    <button ion-button color="light" (click)="goToHome()">Start Using My App</button>\n      -->\n  </ion-slide>\n \n</ion-slides>\n\n\n <button style="    position: fixed;\n    right: 0;\n    margin: 10px;\n    color: white;\n    font-size: 19px;\n    bottom: 0;\n    background: transparent; z-index:20"  (click)=\'iniciarApp()\'>Iniciar</button>\n\n<!-- \n     <button style="    position: absolute;\n    left: 0;\n    margin: 10px;\n    color: white;\n    font-size: 19px;\n    bottom: 0;\n    background: transparent; z-index:20"  (click)=\'siguienteSlide()\' >Siguiente</button>\n\n -->\n\n</ion-content>'/*ion-inline-end:"/Users/jose/Documents/beyouApp/beYou/src/pages/demo/demo.html"*/,
         }),
-        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_3__angular_platform_browser__["c" /* DomSanitizer */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__angular_platform_browser__["c" /* DomSanitizer */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["NavController"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["NavController"]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["NavParams"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["NavParams"]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["ModalController"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["ModalController"]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["AlertController"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["AlertController"]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["LoadingController"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["LoadingController"]) === "function" && _f || Object, typeof (_g = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["Events"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["Events"]) === "function" && _g || Object, typeof (_h = typeof __WEBPACK_IMPORTED_MODULE_0__angular_core__["NgZone"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__angular_core__["NgZone"]) === "function" && _h || Object, typeof (_j = typeof __WEBPACK_IMPORTED_MODULE_4__providers_api_api__["a" /* ApiProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__providers_api_api__["a" /* ApiProvider */]) === "function" && _j || Object, typeof (_k = typeof __WEBPACK_IMPORTED_MODULE_2__ionic_storage__["b" /* Storage */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__ionic_storage__["b" /* Storage */]) === "function" && _k || Object])
-    ], CuentaPage);
-    return CuentaPage;
-    var _a, _b, _c, _d, _e, _f, _g, _h, _j, _k;
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["NavController"], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["NavParams"]])
+    ], DemoPage);
+    return DemoPage;
 }());
 
-//# sourceMappingURL=cuenta.js.map
+//# sourceMappingURL=demo.js.map
 
 /***/ })
 
