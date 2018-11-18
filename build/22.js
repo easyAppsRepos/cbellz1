@@ -196,9 +196,9 @@ var DetalleReservaPage = (function () {
                     if (_this.dataCita.estado == 5 && window.plugins && window.plugins.NativeAudio) {
                         window.plugins.NativeAudio.preloadComplex('bepapp', 'assets/bepapp.mp3', 1, 1, 0, function (msg) {
                             window.plugins.NativeAudio.play('bepapp', function () {
-                                window.plugins.NativeAudio.unload('bepapp').then(function () {
-                                    // Next step
-                                });
+                                setTimeout(function () {
+                                    window.plugins.NativeAudio.unload('bepapp');
+                                }, 2000);
                             });
                         }, function (msg) {
                             console.log('error: ' + msg);
