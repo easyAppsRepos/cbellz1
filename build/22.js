@@ -194,8 +194,16 @@ var DetalleReservaPage = (function () {
                     _this.servicios = data['servicios'] || [];
                     _this.horario = data['horario'];
                     if (_this.dataCita.estado == 5 && window.plugins && window.plugins.NativeAudio) {
+                        window.plugins.NativeAudio.preloadComplex('bepapp', 'assets/bepapp.mp3', 1, 1, 0, function (msg) {
+                            window.plugins.NativeAudio.play('bepapp', function () {
+                                window.plugins.NativeAudio.unload('bepapp').then(function () {
+                                    // Next step
+                                });
+                            });
+                        }, function (msg) {
+                            console.log('error: ' + msg);
+                        });
                         console.log('playsonido');
-                        window.plugins.NativeAudio.play('bepapp');
                     }
                 });
             }
