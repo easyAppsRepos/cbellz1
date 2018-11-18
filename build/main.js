@@ -1786,17 +1786,18 @@ var MyApp = (function () {
             //End push 
         });
         if (window.plugins && window.plugins.NativeAudio) {
-            /*
             // Preload audio resources
-            window.plugins.NativeAudio.preloadComplex( 'bepapp', 'bepapp.mp3', 1, 1, 0, function(msg){
-            }, function(msg){
-                console.log( 'error: ' + msg );
-            });
-            */
-            window.plugins.NativeAudio.preloadSimple('bepapp', 'assets/bepapp.mp3', function (msg) {
+            window.plugins.NativeAudio.preloadComplex('bepapp', 'assets/bepapp.mp3', 1, 1, 0, function (msg) {
             }, function (msg) {
                 console.log('error: ' + msg);
             });
+            /*
+            window.plugins.NativeAudio.preloadSimple( 'bepapp', 'assets/bepapp.mp3', function(msg){
+            console.log('audio:'+msg);
+             }, function(msg){
+                 console.log( 'error: ' + msg );
+             });
+          */
         }
     };
     MyApp.prototype.presentLoading = function () {
