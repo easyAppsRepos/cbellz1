@@ -85,17 +85,20 @@ var AjustesPage = (function () {
         console.log('ionViewDidLoad AjustesPage');
     };
     AjustesPage.prototype.goUso = function () {
-        var alert = this.alertCtrl.create({
+        /*
+          let alert = this.alertCtrl.create({
             title: 'Terminos de Uso del app',
             subTitle: 'Lorem ipsum dolor sit amet, egestas ipsum turpis volutpat, curabitur arcu ac, donec vestibulum integer mi justo facilisis, est fusce nibh aenean id mauris. Tellus ad vitae lacus maxime, purus nec porttitor convallis, proin faucibus, aliquam mauris. Aenean sed sed vivamus amet. Vel ullamcorper morbi consectetuer consectetuer mollis vivamus, tincidunt vestibulum taciti feugiat est, neque nibh et, fringilla tempor amet nulla, id id et. Pede mollis voluptatem, cursus id rutrum sit, erat nulla suspendisse libero eget. Amet urna arcu tristique, rutrum eget ligula. At sed quis lacinia pellentesque vestibulum, duis sed mi voluptatem, libero morbi ridiculus.',
             buttons: ['Cerrar']
-        });
-        alert.present();
+          });
+          alert.present();
+          */
+        window.open("https://www.yourbeauty.com.pa/terminos/", '_system', 'location=yes');
     };
     AjustesPage.prototype.bnegocios = function () {
         var alert = this.alertCtrl.create({
-            title: 'BeYoy Negocios',
-            subTitle: 'Te interesa ser parte de YOURBEAUTY? Ponte en contacto a la brevedad posible! <br><br> Email: email@YOURBEAUTY.com <br>  Telefono: 24242424',
+            title: 'Yourbeauty Panamá',
+            subTitle: '¿Necesitas asistencia? Escríbenos y te contactaremos a la brevedad posible <br><br> Email: info@yourbeauty.com.pa',
             buttons: ['Cerrar']
         });
         alert.present();
@@ -105,10 +108,13 @@ var AjustesPage = (function () {
         this.storage.set("bypush", ite);
     };
     AjustesPage.prototype.goSobre = function () {
-        this.navCtrl.push('NosotrosPage');
+        // this.navCtrl.push('NosotrosPage'); 
+        window.open("https://www.yourbeauty.com.pa/", '_system', 'location=yes');
     };
     AjustesPage.prototype.goBYN = function () {
-        this.navCtrl.push('NegocioregistroPage');
+        //https://www.yourbeauty.com.pa/negocios/
+        window.open("https://www.yourbeauty.com.pa/negocios/", '_system', 'location=yes');
+        //this.navCtrl.push('NegocioregistroPage');
     };
     AjustesPage.prototype.envioOK = function () {
         var alert = this.alertCtrl.create({
@@ -157,11 +163,12 @@ var AjustesPage = (function () {
     };
     AjustesPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-            selector: 'page-ajustes',template:/*ion-inline-start:"/Users/jose/Documents/beyouApp/beYou/src/pages/ajustes/ajustes.html"*/'<!--\n  Generated template for the AjustesPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar>\n\n   <ion-buttons start>\n    <button ion-button menuToggle>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n    </ion-buttons>\n\n    \n    <ion-title>Ajustes</ion-title>\n\n\n\n  </ion-navbar>\n\n</ion-header>\n\n\n\n<ion-content style=\'background-color: #fafafa; \' >\n\n\n          <ion-list>\n<!-- \n    <ion-item class="claseItem " [color]=\'verdeApp\'>\n    <ion-label>Notificaciones</ion-label>\n    <ion-toggle (ionChange)="notisVerificar(notis)" [color]=\'verdeApp\' [(ngModel)]="notis" ></ion-toggle>\n  </ion-item>\n -->\n\n\n                    <button  (click)=\'goSobre()\'  class="claseItem"  ion-item  >\n          Sobre <span style="font-style: italic;">Yourbeauty</span>\n          <img style=\'float: right;width: 20px;\' src="assets/imgs/ofertasVerde.png">\n          </button>\n\n     \n\n<!-- \n          <button  class="claseItem"  ion-item  >\n          Evalua el app en la tienda\n          <img style=\'float: right;width: 20px;\' src="assets/imgs/ofertasVerde.png">\n          </button>\n -->\n\n                    <button (click)=\'bnegocios()\' class="claseItem"  ion-item  >\n          Contáctar con Nosotros\n          <img style=\'float: right;width: 20px;\' src="assets/imgs/ofertasVerde.png">\n          </button>\n\n                    <button  (click)=\'goBYN()\' class="claseItem"  ion-item  >\n          <span style="font-style: italic;">Yourbeauty</span> para negocios\n          <img style=\'float: right;width: 20px;\' src="assets/imgs/ofertasVerde.png">\n          </button>\n\n\n     <button  (click)=\'goUso()\' class="claseItem"  ion-item  >\n          Terminos de uso\n          <img style=\'float: right;width: 20px;\' src="assets/imgs/ofertasVerde.png">\n          </button>\n      \n\n\n\n\n          </ion-list>\n\n\n</ion-content>\n'/*ion-inline-end:"/Users/jose/Documents/beyouApp/beYou/src/pages/ajustes/ajustes.html"*/,
+            selector: 'page-ajustes',template:/*ion-inline-start:"/Users/jose/Documents/beyouApp/beYou/src/pages/ajustes/ajustes.html"*/'<!--\n  Generated template for the AjustesPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar>\n\n   <ion-buttons start>\n    <button ion-button menuToggle>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n    </ion-buttons>\n\n    \n    <ion-title>Ajustes</ion-title>\n\n\n\n  </ion-navbar>\n\n</ion-header>\n\n\n\n<ion-content style=\'background-color: #fafafa; \' >\n\n\n          <ion-list>\n<!-- \n    <ion-item class="claseItem " [color]=\'verdeApp\'>\n    <ion-label>Notificaciones</ion-label>\n    <ion-toggle (ionChange)="notisVerificar(notis)" [color]=\'verdeApp\' [(ngModel)]="notis" ></ion-toggle>\n  </ion-item>\n -->\n\n\n                    <button  (click)=\'goSobre()\'  class="claseItem"  ion-item  >\n          Sobre <span style="font-style: italic;">Yourbeauty</span>\n          <img style=\'float: right;width: 20px;\' src="assets/imgs/ofertasVerde.png">\n          </button>\n\n     \n\n<!-- \n          <button  class="claseItem"  ion-item  >\n          Evalua el app en la tienda\n          <img style=\'float: right;width: 20px;\' src="assets/imgs/ofertasVerde.png">\n          </button>\n -->\n\n                    <button (click)=\'bnegocios()\' class="claseItem"  ion-item  >\n          Contactar con Nosotros\n          <img style=\'float: right;width: 20px;\' src="assets/imgs/ofertasVerde.png">\n          </button>\n\n                    <button  (click)=\'goBYN()\' class="claseItem"  ion-item  >\n          <span style="font-style: italic;">Yourbeauty</span> para negocios\n          <img style=\'float: right;width: 20px;\' src="assets/imgs/ofertasVerde.png">\n          </button>\n\n\n     <button  (click)=\'goUso()\' class="claseItem"  ion-item  >\n          Términos de uso\n          <img style=\'float: right;width: 20px;\' src="assets/imgs/ofertasVerde.png">\n          </button>\n      \n\n\n\n\n          </ion-list>\n\n\n</ion-content>\n'/*ion-inline-end:"/Users/jose/Documents/beyouApp/beYou/src/pages/ajustes/ajustes.html"*/,
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["AlertController"], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["NavController"], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["NavParams"], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["ModalController"], __WEBPACK_IMPORTED_MODULE_2__providers_api_api__["a" /* ApiProvider */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["LoadingController"], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["Events"]])
+        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["AlertController"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["AlertController"]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["NavController"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["NavController"]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["NavParams"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["NavParams"]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["ModalController"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["ModalController"]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_2__providers_api_api__["a" /* ApiProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__providers_api_api__["a" /* ApiProvider */]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["LoadingController"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["LoadingController"]) === "function" && _f || Object, typeof (_g = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["Events"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["Events"]) === "function" && _g || Object])
     ], AjustesPage);
     return AjustesPage;
+    var _a, _b, _c, _d, _e, _f, _g;
 }());
 
 //# sourceMappingURL=ajustes.js.map
