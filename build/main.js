@@ -1471,6 +1471,7 @@ var MyApp = (function () {
                                 _this.storage.set("usr_tok_by", data.data[0]);
                                 _this.userDataProfile = data.data[0];
                                 _this.menuActivo = true;
+                                _this.porcenBarra = (((_this.userDataProfile.exp) / (_this.userDataProfile.appexp)) * 100) + '%';
                                 _this.loading2.dismissAll();
                             }
                             else {
@@ -1502,6 +1503,7 @@ var MyApp = (function () {
                                 });
                                 _this.storage.set("usr_tok_by", data.data[0]);
                                 _this.userDataProfile = data.data[0];
+                                _this.porcenBarra = (((_this.userDataProfile.exp) / (_this.userDataProfile.appexp)) * 100) + '%';
                                 _this.menuActivo = true;
                                 _this.loading2.dismissAll();
                             }
@@ -1535,6 +1537,7 @@ var MyApp = (function () {
                                 console.log('addUserFbinsertplus0');
                                 _this.storage.set("usr_tok_by", data.data[0]);
                                 _this.userDataProfile = data.data[0];
+                                _this.porcenBarra = (((_this.userDataProfile.exp) / (_this.userDataProfile.appexp)) * 100) + '%';
                                 _this.menuActivo = true;
                                 _this.loading2.dismissAll();
                             }
@@ -1552,6 +1555,7 @@ var MyApp = (function () {
                                 _this.storage.set("usr_tok_by", data.data[0]);
                                 _this.userDataProfile = data.data[0];
                                 _this.menuActivo = true;
+                                _this.porcenBarra = (((_this.userDataProfile.exp) / (_this.userDataProfile.appexp)) * 100) + '%';
                                 _this.loading2.dismissAll();
                             }
                             else {
@@ -1943,6 +1947,7 @@ var MyApp = (function () {
                         _this.storage.set("usr_tok_by", data.data[0]);
                         _this.userDataProfile = data.data[0];
                         _this.menuActivo = true;
+                        _this.porcenBarra = (((_this.userDataProfile.exp) / (_this.userDataProfile.appexp)) * 100) + '%';
                         _this.loading2.dismissAll();
                     }
                     else {
