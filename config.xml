@@ -112,7 +112,8 @@
 
 <gap:plugin name="cordova-plugin-x-socialsharing" source="npm" />
 
-  <plugin name="cordova-plugin-ionic-keyboard"  src="npm" />
+  <plugin name="cordova-plugin-ionic-keyboard"  source="npm" />
+    <plugin name="cordova-plugin-ionic-webview"  source="npm" />
 
 <platform name="ios" />
 
