@@ -1856,71 +1856,38 @@ var MyApp = (function () {
         window.open("www.yourbeauty.com.pa/negocios", '_system', 'location=yes');
     };
     MyApp.prototype.compartirApp = function () {
-        var _this = this;
-        var loading = this.loadingCtrl.create();
-        loading.present();
-        this.apiProvider.verificarPremioUs({ idCliente: this.userDataProfile.idCliente })
-            .then(function (data) {
-            console.log(data);
-            loading.dismiss();
-            if (data.compartidoNuevo > 0) {
-                _this.goAnimacion2(data.puntosGanados, data.dataUser[0].appexp, _this.userDataProfile.exp);
-                _this.events.publish('userCreated', data.dataUser[0]);
-            }
-            else {
-                _this.presentAlert('Compartido', 'Gracias por compartir nuestra app!');
-            }
-        }, function (err) {
-            loading.dismiss();
-        });
         // not supported on some apps (Facebook, Instagram)
-        /*
-           var options = {
-             message: 'Yourbeauty. Reserva belleza y bienestar en un sólo click.',
-             subject: 'Yourbeauty', // fi. for email
-             url: 'https://www.yourbeauty.com.pa/',
-             chooserTitle: 'Selecciona un app'
-           };
-            
-           var onSuccess = function(result) {
-       
-             console.log("Share completed? ");
-              console.log(result);
-       
-           let loading = this.loadingCtrl.create();
-           loading.present();
-       
-           this.apiProvider.verificarPremioUs({idCliente:this.userDataProfile.idCliente})
-           .then(data => {
-           console.log(data);
-       
-           loading.dismiss();
-       
-           if(data.compartidoNuevo > 0){
-       
-           this.goAnimacion2(data.puntosGanados,data.dataUser.appexp,this.userDataProfile.exp);
-       
-           this.events.publish('userCreated', data.dataUser);
-         
-       
-           }
-           else{
-           this.presentAlert('Compartido','Gracias por compartir nuestra app!');
-           }
-           
-       
-           },err=>{
-           loading.dismiss();
-           });
-       
-           };
-            
-           var onError = function(msg) {
-             console.log("Sharing failed with message: " + msg);
-           };
-            
-           window.plugins.socialsharing.shareWithOptions(options, onSuccess, onError);
-       */
+        var options = {
+            message: 'Yourbeauty. Reserva belleza y bienestar en un sólo click.',
+            subject: 'Yourbeauty',
+            url: 'https://www.yourbeauty.com.pa/',
+            chooserTitle: 'Selecciona un app'
+        };
+        var onSuccess = function (result) {
+            var _this = this;
+            console.log("Share completed? ");
+            console.log(result);
+            var loading = this.loadingCtrl.create();
+            loading.present();
+            this.apiProvider.verificarPremioUs({ idCliente: this.userDataProfile.idCliente })
+                .then(function (data) {
+                console.log(data);
+                loading.dismiss();
+                if (data.compartidoNuevo > 0) {
+                    _this.goAnimacion2(data.puntosGanados, data.dataUser[0].appexp, _this.userDataProfile.exp);
+                    _this.events.publish('userCreated', data.dataUser[0]);
+                }
+                else {
+                    _this.presentAlert('Compartido', 'Gracias por compartir nuestra app!');
+                }
+            }, function (err) {
+                loading.dismiss();
+            });
+        };
+        var onError = function (msg) {
+            console.log("Sharing failed with message: " + msg);
+        };
+        window.plugins.socialsharing.shareWithOptions(options, onSuccess, onError);
     };
     MyApp.prototype.envioOK = function () {
         var alert = this.alertCtrl.create({
@@ -2055,7 +2022,12 @@ var MyApp = (function () {
             //cerrarS
         }
         else {
-            this.nav.setRoot(pagina);
+            if (pagina == 'OfertasPage' || pagina == 'PaquetesPage') {
+                this.nav.push(pagina);
+            }
+            else {
+                this.nav.setRoot(pagina);
+            }
         }
     };
     __decorate([
