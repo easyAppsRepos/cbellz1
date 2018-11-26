@@ -101,12 +101,13 @@ var InicioPage = (function () {
             var puntos = puntosV;
             var totall = totalV;
             var expUserM = puntosActual;
-            var tiempo = 3000 / (puntos / 6);
+            var tiempo = 3000 / (puntos / 1);
             console.log(tiempo);
-            _this.presentAlert2("\n      <div class=\"meter\">\n      <span style=\"width:" + (((puntos + expUserM) * 100) / totall) + "%;\"><span class=\"progress\"></span></span>\n      </div>\n\n<div class=\" itemCa\">\n \n</div>\n\n<div class=\"floating itemFlo\">\n  + " + puntos + " exp\n</div>\n\n      <div class=\"leyendaAlert\">\n\n      <img  style='display: flex;' src=\"assets/imgs/complete.png\">\n\n      <span style='display: flex;'>\n      Tu cita fue completada con exito, has ganado " + puntos + " de experiencia\n      </span>\n\n      </div>");
+            _this.presentAlert2("\n      <div class=\"meter\">\n      <span style=\"width:" + ((((puntos + expUserM) % 1500) * 100) / totall) + "%;\"><span class=\"progress\"></span></span>\n      </div>\n\n<div class=\" itemCa\">\n \n</div>\n\n<div class=\"floating itemFlo\">\n  + " + puntos + " exp\n</div>\n\n      <div class=\"leyendaAlert\">\n\n      <img  style='display: flex;' src=\"assets/imgs/complete.png\">\n\n      <span style='display: flex;'>\n      Tu cita fue completada con exito, has ganado " + puntos + " de experiencia\n      </span>\n\n      </div>");
             var interval = setInterval(function () {
-                puntos -= 6;
-                expUserM += 6;
+                puntos -= 1;
+                //expUserM+=1;
+                expUserM = (expUserM + 1) % 1500;
                 _this.setLoadingText(expUserM.toString(), totall.toString());
                 if (puntos <= 0)
                     clearInterval(interval);
