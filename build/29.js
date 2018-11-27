@@ -314,6 +314,7 @@ var BuscarModalPage = (function () {
     };
     BuscarModalPage.prototype.filtroBusqueda = function () {
         var _this = this;
+        console.log(this.fechaSeleccionada);
         var loading = this.loadingCtrl.create({ content: "Buscando ..." });
         loading.present();
         var d = new Date(Date.now());
@@ -395,7 +396,7 @@ var BuscarModalPage = (function () {
     };
     BuscarModalPage.prototype.onChange = function ($event) {
         console.log($event);
-        this.fechaSeleccionada = $event;
+        this.fechaSeleccionada = $event.replace(/-/g, "/");
         this.information[0].open = false;
     };
     BuscarModalPage.prototype.toggleSection = function (i) {
