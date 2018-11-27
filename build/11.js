@@ -101,22 +101,35 @@ var InicioPage = (function () {
             var puntos = puntosV;
             var totall = totalV;
             var expUserM = puntosActual;
+            var exp2Cont = 0;
+            var valorInc = (puntosActual * 100) / 1500;
             var tiempo = 3000 / (puntos / 1);
             console.log(tiempo);
-            _this.presentAlert2("\n      <div class=\"meter\">\n      <span style=\"width:" + ((((puntos + expUserM) % 1500) * 100) / totall) + "%;\"><span class=\"progress\"></span></span>\n      </div>\n\n<div class=\" itemCa\">\n \n</div>\n\n<div class=\"floating itemFlo\">\n  + " + puntos + " exp\n</div>\n\n      <div class=\"leyendaAlert\">\n\n      <img  style='display: flex;' src=\"assets/imgs/complete.png\">\n\n      <span style='display: flex;'>\n      Tu cita fue completada con exito, has ganado " + puntos + " de experiencia\n      </span>\n\n      </div>");
+            _this.presentAlert2("\n      <div class=\"meter\">\n      <span class='porcenCrec' style=\"width:" + valorInc + "%;\"><span class=\"progress\"></span></span>\n      </div>\n\n<div class=\" itemCa\">\n \n</div>\n\n<div class=\"floating itemFlo\">\n  + " + puntos + " exp\n</div>\n\n      <div class=\"leyendaAlert\">\n\n      <img  style='display: flex;' src=\"assets/imgs/complete.png\">\n\n      <span style='display: flex;'>\n      Tu cita fue completada con exito, has ganado " + puntos + " de experiencia\n      </span>\n\n      </div>");
             var interval = setInterval(function () {
                 puntos -= 1;
                 //expUserM+=1;
                 expUserM = (expUserM + 1) % 1500;
-                _this.setLoadingText(expUserM.toString(), totall.toString());
+                exp2Cont++;
+                //this.zone.run(()=>{   valorInc = parseInt(((puntosActual+exp2Cont)%1500)*100/1500) });
+                valorInc = parseInt(((puntosActual + exp2Cont) % 1500) * 100 / 1500);
+                _this.setLoadingText(expUserM.toString(), totall.toString(), valorInc.toString());
                 if (puntos <= 0)
                     clearInterval(interval);
             }, tiempo);
         };
-        this.setLoadingText = function (text, total) {
+        this.setLoadingText = function (text, total, inc) {
             var elem = document.querySelector("div.itemCa");
             if (elem)
                 elem.innerHTML = text + ' / ' + (total);
+            var elem2 = document.querySelector("span.porcenCrec");
+            if (elem2)
+                elem2.style.width = inc + '%';
+            /*
+              var el = document.querySelector('div');
+            
+            el.style.backgroundColor = 'green';
+            */
         };
         /*
         goFF(){
