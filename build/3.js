@@ -209,7 +209,7 @@ var PaquetesPage = (function () {
                 _this.getFavoritos();
             }
             else {
-                var loading_1 = _this.loadingCtrl.create({ content: "Obteniendo ubicacion" });
+                var loading_1 = _this.loadingCtrl.create({ content: "Obteniendo ubicacion", enableBackdropDismiss: true });
                 loading_1.present();
                 console.log('gps');
                 navigator.geolocation.getCurrentPosition(function (pos) {
@@ -223,9 +223,9 @@ var PaquetesPage = (function () {
                         'lng': pos.coords.longitude,
                         'expirationDate': fechaExpiracion });
                     _this.getFavoritos();
-                    loading_1.dismissAll();
+                    loading_1.dismiss();
                 }, function (error) {
-                    loading_1.dismissAll();
+                    loading_1.dismiss();
                     console.log('some err');
                     console.log(error);
                     _this.getFavoritos();
@@ -276,18 +276,18 @@ var PaquetesPage = (function () {
            this.longitudePerson = -84.2307427;
        */
         var _this = this;
-        var loading = this.loadingCtrl.create({ content: "Obteniendo ubicacion" });
+        var loading = this.loadingCtrl.create({ content: "Obteniendo ubicacion", enableBackdropDismiss: true });
         loading.present();
         console.log('gps');
         navigator.geolocation.getCurrentPosition(function (pos) {
             console.log(pos.coords.latitude + ' Long: ' + pos.coords.longitude);
             _this.latitudePerson = pos.coords.latitude;
             _this.longitudePerson = pos.coords.longitude;
-            loading.dismissAll();
+            loading.dismiss();
         }, function (error) {
             console.log('some err');
             console.log(error);
-            loading.dismissAll();
+            loading.dismissA();
         }, { enableHighAccuracy: true, timeout: 30000 });
     };
     PaquetesPage.prototype.getFavoritos = function (idCliente) {

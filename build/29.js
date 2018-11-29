@@ -110,7 +110,7 @@ var BuscarModalPage = (function () {
                     _this.filtroSeleccion.long = value.lng;
                 }
                 else {
-                    var loading_1 = _this.loadingCtrl.create({ content: "Obteniendo ubicacion" });
+                    var loading_1 = _this.loadingCtrl.create({ content: "Obteniendo ubicacion", enableBackdropDismiss: true });
                     loading_1.present();
                     navigator.geolocation.getCurrentPosition(function (pos) {
                         _this.filtroSeleccion.lat = pos.coords.latitude;
@@ -120,11 +120,11 @@ var BuscarModalPage = (function () {
                         _this.storage.set('coorLBY', { 'lat': pos.coords.latitude,
                             'lng': pos.coords.longitude,
                             'expirationDate': fechaExpiracion });
-                        loading_1.dismissAll();
+                        loading_1.dismiss();
                     }, function (error) {
                         console.log('some err');
                         console.log(error);
-                        loading_1.dismissAll();
+                        loading_1.dismiss();
                         this.presentAlert();
                     }, { enableHighAccuracy: true, timeout: 30000 });
                 }
@@ -363,7 +363,7 @@ var BuscarModalPage = (function () {
         console.log(this.filtroSeleccion);
         this.apiProvider.buscarServiciosFiltro(this.filtroSeleccion)
             .then(function (data) {
-            loading.dismissAll();
+            loading.dismiss();
             console.log(data);
             _this.resultadosCentro = data;
             _this.navCtrl.push('ResultadosPage', { 'resultados': data, 'filtro': _this.filtroSeleccion });

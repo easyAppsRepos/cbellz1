@@ -213,7 +213,7 @@ var OfertasPage = (function () {
                 _this.getFavoritos();
             }
             else {
-                var loading_1 = _this.loadingCtrl.create({ content: "Obteniendo ubicacion" });
+                var loading_1 = _this.loadingCtrl.create({ content: "Obteniendo ubicacion", enableBackdropDismiss: true });
                 loading_1.present();
                 console.log('gps');
                 navigator.geolocation.getCurrentPosition(function (pos) {
@@ -280,7 +280,7 @@ var OfertasPage = (function () {
            this.longitudePerson = -84.2307427;
        */
         var _this = this;
-        var loading = this.loadingCtrl.create({ content: "Obteniendo ubicacion" });
+        var loading = this.loadingCtrl.create({ content: "Obteniendo ubicacion", enableBackdropDismiss: true });
         loading.present();
         console.log('gps');
         navigator.geolocation.getCurrentPosition(function (pos) {
