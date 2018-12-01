@@ -1,6 +1,6 @@
 webpackJsonp([12],{
 
-/***/ 432:
+/***/ 431:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -8,7 +8,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CalificarPageModule", function() { return CalificarPageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(11);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__calificar__ = __webpack_require__(471);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__calificar__ = __webpack_require__(470);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_ionic2_rating__ = __webpack_require__(335);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_common__ = __webpack_require__(31);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__angular_common_locales_es__ = __webpack_require__(464);
@@ -105,7 +105,7 @@ var CalificarPageModule = (function () {
 
 /***/ }),
 
-/***/ 471:
+/***/ 470:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -139,6 +139,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
  */
 var CalificarPage = (function () {
     function CalificarPage(navCtrl, navParams, modalCtrl, loadingCtrl, events, apiProvider, alertCtrl, sanitizer) {
+        var _this = this;
         this.navCtrl = navCtrl;
         this.navParams = navParams;
         this.modalCtrl = modalCtrl;
@@ -148,12 +149,43 @@ var CalificarPage = (function () {
         this.alertCtrl = alertCtrl;
         this.sanitizer = sanitizer;
         this.readOnly = false;
+        this.setLoadingText = function (text, total, inc) {
+            var elem = document.querySelector("div.itemCa");
+            if (elem)
+                elem.innerHTML = text + ' / ' + (total);
+            var elem2 = document.querySelector("span.porcenCrec");
+            if (elem2)
+                elem2.style.width = inc + '%';
+        };
+        this.goAnimacion2 = function (puntosV, totalV, puntosActual) {
+            console.log(puntosV, totalV, puntosActual);
+            var puntos = puntosV;
+            var totall = totalV;
+            var expUserM = puntosActual;
+            var exp2Cont = 0;
+            var valorInc = (puntosActual * 100) / 1500;
+            var tiempo = 3000 / (puntos / 1);
+            console.log(tiempo);
+            _this.presentAlert2("\n      <div class=\"meter\">\n      <span class='porcenCrec' style=\"width:" + valorInc + "%;\"><span class=\"progress\"></span></span>\n      </div>\n\n<div class=\" itemCa\">\n \n</div>\n\n<div class=\"floating itemFlo\">\n  + " + puntos + " exp\n</div>\n\n      <div class=\"leyendaAlert\">\n\n      <img  style='display: flex;' src=\"assets/imgs/complete.png\">\n\n      <span style='display: flex;'>\n      Gracias por valorar! Has ganado " + puntos + " de experiencia\n      </span>\n\n      </div>");
+            var interval = setInterval(function () {
+                puntos -= 1;
+                //expUserM+=1;
+                expUserM = (expUserM + 1) % 1500;
+                exp2Cont++;
+                //this.zone.run(()=>{   valorInc = parseInt(((puntosActual+exp2Cont)%1500)*100/1500) });
+                valorInc = parseInt(((puntosActual + exp2Cont) % 1500) * 100 / 1500);
+                _this.setLoadingText(expUserM.toString(), totall.toString(), valorInc.toString());
+                if (puntos <= 0)
+                    clearInterval(interval);
+            }, tiempo);
+        };
         this.dataCentro = {};
         this.rate = {};
         this.comentario = '';
         this.botonActivo = false;
     }
     CalificarPage.prototype.ionViewDidLoad = function () {
+        var _this = this;
         console.log(this.navParams.data);
         this.dataCentro = this.navParams.data;
         if (this.dataCentro.tipo == 1) {
@@ -169,12 +201,32 @@ var CalificarPage = (function () {
             this.readOnly = false;
         }
         console.log('ionViewDidLoad CalificarPage');
+        this.apiProvider.verificarLogin()
+            .then(function (data) {
+            console.log(data);
+            if (data) {
+                _this.dataUser = data;
+            }
+            else {
+                console.log('error');
+            }
+        });
     };
     CalificarPage.prototype.agregadoOk = function () {
-        var alert = this.alertCtrl.create({
+        /*
+          let alert = this.alertCtrl.create({
             title: 'Evaluacion agregada',
             subTitle: 'La evaluacion ha sido agregada',
             buttons: ['Cerrar']
+          });
+          alert.present();
+        */
+        this.goAnimacion2(data.puntosGanados, data.dataUser[0].appexp, this.userDataProfile.exp);
+        this.events.publish('userCreated', data.dataUser[0]);
+    };
+    CalificarPage.prototype.presentAlert2 = function (mensaje) {
+        var alert = this.alertCtrl.create({
+            subTitle: this.sanitizer.bypassSecurityTrustHtml(mensaje)
         });
         alert.present();
     };
@@ -191,14 +243,16 @@ var CalificarPage = (function () {
         var dataE = this.rate;
         dataE.idEvaluacionCentro = this.dataCentro.idEvaluacionCentro;
         dataE.comentario = this.comentario;
+        dataE.idCliente = this.dataUser.idCliente;
         dataE.evaluacion = parseInt(acumulado / cantidad);
         console.log(dataE);
         this.apiProvider.agregarOpinion(dataE)
             .then(function (data) {
             loading.dismissAll();
             console.log(data);
-            if (data.affectedRows > 0) {
-                _this.agregadoOk();
+            if (data && data.dataI.affectedRows > 0) {
+                _this.goAnimacion2(data.dataUser[0].puntosG, data.dataUser[0].appexp, (data.dataUser[0].exp - data.dataUser[0].puntosG));
+                _this.events.publish('userCreated', data.dataUser[0]);
                 //console.log('borrada');
                 //this.navCtrl.pop();
                 _this.navCtrl.setRoot('OpinionesPage');

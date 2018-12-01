@@ -665,10 +665,9 @@ var ApiProvider = (function () {
     };
     ApiProvider = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["Injectable"])(),
-        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_0__angular_common_http__["a" /* HttpClient */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__angular_common_http__["a" /* HttpClient */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__ionic_storage__["b" /* Storage */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__ionic_storage__["b" /* Storage */]) === "function" && _b || Object])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_0__angular_common_http__["a" /* HttpClient */], __WEBPACK_IMPORTED_MODULE_2__ionic_storage__["b" /* Storage */]])
     ], ApiProvider);
     return ApiProvider;
-    var _a, _b;
 }());
 
 //# sourceMappingURL=api.js.map
@@ -713,11 +712,11 @@ var map = {
 		29
 	],
 	"../pages/calificar/calificar.module": [
-		432,
+		431,
 		12
 	],
 	"../pages/centrocupones/centrocupones.module": [
-		431,
+		432,
 		28
 	],
 	"../pages/confirmacionpaquete/confirmacionpaquete.module": [
@@ -745,11 +744,11 @@ var map = {
 		23
 	],
 	"../pages/detalle-reserva/detalle-reserva.module": [
-		440,
+		439,
 		22
 	],
 	"../pages/favoritos/favoritos.module": [
-		439,
+		440,
 		7
 	],
 	"../pages/inicio/inicio.module": [
@@ -761,19 +760,19 @@ var map = {
 		6
 	],
 	"../pages/login/login.module": [
-		443,
+		442,
 		21
 	],
 	"../pages/logind/logind.module": [
-		442,
+		443,
 		20
 	],
 	"../pages/mapa/mapa.module": [
-		445,
+		444,
 		19
 	],
 	"../pages/mis-reservas/mis-reservas.module": [
-		444,
+		445,
 		5
 	],
 	"../pages/modal-services/modal-services.module": [
@@ -785,31 +784,31 @@ var map = {
 		18
 	],
 	"../pages/nosotros/nosotros.module": [
-		449,
+		448,
 		17
 	],
 	"../pages/ofertas/ofertas.module": [
-		450,
+		449,
 		4
 	],
 	"../pages/opiniones/opiniones.module": [
-		448,
+		451,
 		2
 	],
 	"../pages/paquetes/paquetes.module": [
-		454,
+		450,
 		3
 	],
 	"../pages/perfil-centro/perfil-centro.module": [
-		451,
+		452,
 		9
 	],
 	"../pages/recuperar/recuperar.module": [
-		452,
+		453,
 		16
 	],
 	"../pages/reserva-hecha/reserva-hecha.module": [
-		453,
+		454,
 		15
 	],
 	"../pages/reserva/reserva.module": [
@@ -1027,31 +1026,31 @@ var AppModule = (function () {
                         { loadChildren: '../pages/ajustes/ajustes.module#AjustesPageModule', name: 'AjustesPage', segment: 'ajustes', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/ayuda/ayuda.module#AyudaPageModule', name: 'AyudaPage', segment: 'ayuda', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/buscar-modal/buscar-modal.module#BuscarModalPageModule', name: 'BuscarModalPage', segment: 'buscar-modal', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/centrocupones/centrocupones.module#CentrocuponesPageModule', name: 'CentrocuponesPage', segment: 'centrocupones', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/calificar/calificar.module#CalificarPageModule', name: 'CalificarPage', segment: 'calificar', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/centrocupones/centrocupones.module#CentrocuponesPageModule', name: 'CentrocuponesPage', segment: 'centrocupones', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/confirmacionpaquete/confirmacionpaquete.module#ConfirmacionpaquetePageModule', name: 'ConfirmacionpaquetePage', segment: 'confirmacionpaquete', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/confirmar-reserva/confirmar-reserva.module#ConfirmarReservaPageModule', name: 'ConfirmarReservaPage', segment: 'confirmar-reserva', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/congrats/congrats.module#CongratsPageModule', name: 'CongratsPage', segment: 'congrats', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/cuenta/cuenta.module#CuentaPageModule', name: 'CuentaPage', segment: 'cuenta', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/cupones/cupones.module#CuponesPageModule', name: 'CuponesPage', segment: 'cupones', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/demo/demo.module#DemoPageModule', name: 'DemoPage', segment: 'demo', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/favoritos/favoritos.module#FavoritosPageModule', name: 'FavoritosPage', segment: 'favoritos', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/detalle-reserva/detalle-reserva.module#DetalleReservaPageModule', name: 'DetalleReservaPage', segment: 'detalle-reserva', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/favoritos/favoritos.module#FavoritosPageModule', name: 'FavoritosPage', segment: 'favoritos', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/inicio/inicio.module#InicioPageModule', name: 'InicioPage', segment: 'inicio', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/lista-servicios/lista-servicios.module#ListaServiciosPageModule', name: 'ListaServiciosPage', segment: 'lista-servicios', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/logind/logind.module#LogindPageModule', name: 'LogindPage', segment: 'logind', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/login/login.module#LoginPageModule', name: 'LoginPage', segment: 'login', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/mis-reservas/mis-reservas.module#MisReservasPageModule', name: 'MisReservasPage', segment: 'mis-reservas', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/logind/logind.module#LogindPageModule', name: 'LogindPage', segment: 'logind', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/mapa/mapa.module#MapaPageModule', name: 'MapaPage', segment: 'mapa', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/mis-reservas/mis-reservas.module#MisReservasPageModule', name: 'MisReservasPage', segment: 'mis-reservas', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/modal-services/modal-services.module#ModalServicesPageModule', name: 'ModalServicesPage', segment: 'modal-services', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/negocioregistro/negocioregistro.module#NegocioregistroPageModule', name: 'NegocioregistroPage', segment: 'negocioregistro', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/opiniones/opiniones.module#OpinionesPageModule', name: 'OpinionesPage', segment: 'opiniones', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/nosotros/nosotros.module#NosotrosPageModule', name: 'NosotrosPage', segment: 'nosotros', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/ofertas/ofertas.module#OfertasPageModule', name: 'OfertasPage', segment: 'ofertas', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/paquetes/paquetes.module#PaquetesPageModule', name: 'PaquetesPage', segment: 'paquetes', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/opiniones/opiniones.module#OpinionesPageModule', name: 'OpinionesPage', segment: 'opiniones', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/perfil-centro/perfil-centro.module#PerfilCentroPageModule', name: 'PerfilCentroPage', segment: 'perfil-centro', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/recuperar/recuperar.module#RecuperarPageModule', name: 'RecuperarPage', segment: 'recuperar', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/reserva-hecha/reserva-hecha.module#ReservaHechaPageModule', name: 'ReservaHechaPage', segment: 'reserva-hecha', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/paquetes/paquetes.module#PaquetesPageModule', name: 'PaquetesPage', segment: 'paquetes', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/reserva/reserva.module#ReservaPageModule', name: 'ReservaPage', segment: 'reserva', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/reservapaquete/reservapaquete.module#ReservapaquetePageModule', name: 'ReservapaquetePage', segment: 'reservapaquete', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/resultados/resultados.module#ResultadosPageModule', name: 'ResultadosPage', segment: 'resultados', priority: 'low', defaultHistory: [] },
@@ -1408,25 +1407,45 @@ var MyApp = (function () {
         this.rootPage = '';
         this.menuActivo = false;
         this.porcenBarra = 0;
-        this.setLoadingText = function (text, total) {
+        /*
+        setLoadingText=(text:string,total:string ) =>{
+          const elem = document.querySelector("div.itemCa");
+          if(elem) elem.innerHTML = text +' / '+(total);
+        
+        }
+        
+        */
+        this.setLoadingText = function (text, total, inc) {
             var elem = document.querySelector("div.itemCa");
             if (elem)
                 elem.innerHTML = text + ' / ' + (total);
+            var elem2 = document.querySelector("span.porcenCrec");
+            if (elem2)
+                elem2.style.width = inc + '%';
+            /*
+              var el = document.querySelector('div');
+            
+            el.style.backgroundColor = 'green';
+            */
         };
         this.goAnimacion2 = function (puntosV, totalV, puntosActual) {
             console.log(puntosV, totalV, puntosActual);
             var puntos = puntosV;
             var totall = totalV;
             var expUserM = puntosActual;
+            var exp2Cont = 0;
+            var valorInc = (puntosActual * 100) / 1500;
             var tiempo = 3000 / (puntos / 1);
             console.log(tiempo);
-            _this.presentAlert2("\n      <div class=\"meter\">\n      <span style=\"width:" + ((((puntos + expUserM) % 1500) * 100) / totall) + "%;\"><span class=\"progress\"></span></span>\n      </div>\n\n<div class=\" itemCa\">\n \n</div>\n\n\n<div class=\"floating itemFlo\">\n  + " + (puntos % 1500) + " exp\n</div>\n\n      <div class=\"leyendaAlert\">\n\n      <img  style='display: flex;' src=\"assets/imgs/complete.png\">\n\n      <span style='display: flex;'>\n      Has compartido el Yourbeauty con exito, has ganado " + puntos + " de experiencia\n      </span>\n\n      </div>");
+            _this.presentAlert2("\n      <div class=\"meter\">\n      <span class='porcenCrec' style=\"width:" + valorInc + "%;\"><span class=\"progress\"></span></span>\n      </div>\n\n<div class=\" itemCa\">\n \n</div>\n\n<div class=\"floating itemFlo\">\n  + " + puntos + " exp\n</div>\n\n      <div class=\"leyendaAlert\">\n\n      <img  style='display: flex;' src=\"assets/imgs/complete.png\">\n\n      <span style='display: flex;'>\n      Tu cita fue completada con exito, has ganado " + puntos + " de experiencia\n      </span>\n\n      </div>");
             var interval = setInterval(function () {
                 puntos -= 1;
-                expUserM = ((expUserM + 1) % 1500);
-                console.log(expUserM);
-                //var stringEnv = expUserM % 1500;
-                _this.setLoadingText(expUserM.toString(), totall.toString());
+                //expUserM+=1;
+                expUserM = (expUserM + 1) % 1500;
+                exp2Cont++;
+                //this.zone.run(()=>{   valorInc = parseInt(((puntosActual+exp2Cont)%1500)*100/1500) });
+                valorInc = parseInt(((puntosActual + exp2Cont) % 1500) * 100 / 1500);
+                _this.setLoadingText(expUserM.toString(), totall.toString(), valorInc.toString());
                 if (puntos <= 0)
                     clearInterval(interval);
             }, tiempo);
@@ -1642,6 +1661,59 @@ var MyApp = (function () {
         });
         alert.present();
     };
+    /*
+    goAnimacion2 = (puntosV,totalV,puntosActual) => {
+    console.log(puntosV,totalV,puntosActual);
+        var puntos = puntosV;
+        var totall=totalV;
+        var expUserM = puntosActual;
+    
+        var tiempo = 3000/(puntos/1);
+        console.log(tiempo);
+    
+    
+    
+          this.presentAlert2(`
+          <div class="meter">
+          <span style="width:`+((((puntos+expUserM)%1500)*100)/totall)+`%;"><span class="progress"></span></span>
+          </div>
+    
+    <div class=" itemCa">
+     
+    </div>
+    
+    
+    <div class="floating itemFlo">
+      + `+(puntos%1500)+` exp
+    </div>
+    
+          <div class="leyendaAlert">
+    
+          <img  style='display: flex;' src="assets/imgs/complete.png">
+    
+          <span style='display: flex;'>
+          Has compartido el Yourbeauty con exito, has ganado `+puntos+` de experiencia
+          </span>
+    
+          </div>`);
+    
+    
+        let interval = setInterval(()=>{
+    
+      puntos-=1;
+      expUserM = ((expUserM+1)%1500);
+      console.log(expUserM);
+      //var stringEnv = expUserM % 1500;
+    
+      this.setLoadingText(expUserM.toString(),totall.toString());
+    
+      if(puntos <= 0) clearInterval(interval);
+    },tiempo)
+    
+    
+    
+    }
+    */
     MyApp.prototype.registrarDevice = function (data) {
         console.log('regsustr');
         console.log(data);
@@ -1857,19 +1929,19 @@ var MyApp = (function () {
     };
     MyApp.prototype.compartirApp = function () {
         // not supported on some apps (Facebook, Instagram)
+        var _this = this;
         var options = {
             message: 'Yourbeauty. Reserva belleza y bienestar en un sólo click.',
             subject: 'Yourbeauty',
             url: 'https://www.yourbeauty.com.pa/',
             chooserTitle: 'Selecciona un app'
         };
-        var onSuccess = function (result) {
-            var _this = this;
+        window.plugins.socialsharing.shareWithOptions(options, function (result) {
             console.log("Share completed? ");
             console.log(result);
-            var loading = this.loadingCtrl.create();
+            var loading = _this.loadingCtrl.create();
             loading.present();
-            this.apiProvider.verificarPremioUs({ idCliente: this.userDataProfile.idCliente })
+            _this.apiProvider.verificarPremioUs({ idCliente: _this.userDataProfile.idCliente })
                 .then(function (data) {
                 console.log(data);
                 loading.dismiss();
@@ -1883,11 +1955,9 @@ var MyApp = (function () {
             }, function (err) {
                 loading.dismiss();
             });
-        };
-        var onError = function (msg) {
+        }, function (msg) {
             console.log("Sharing failed with message: " + msg);
-        };
-        window.plugins.socialsharing.shareWithOptions(options, onSuccess, onError);
+        });
     };
     MyApp.prototype.envioOK = function () {
         var alert = this.alertCtrl.create({
