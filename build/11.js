@@ -105,7 +105,11 @@ var InicioPage = (function () {
             var valorInc = (puntosActual * 100) / 1500;
             var tiempo = 3000 / (puntos / 1);
             console.log(tiempo);
-            _this.presentAlert2("\n      <div class=\"meter\">\n      <span class='porcenCrec' style=\"width:" + valorInc + "%;\"><span class=\"progress\"></span></span>\n      </div>\n\n<div class=\" itemCa\">\n \n</div>\n\n<div class=\"floating itemFlo\">\n  + " + puntos + " exp\n</div>\n\n      <div class=\"leyendaAlert\">\n\n      <img  style='display: flex;' src=\"assets/imgs/complete.png\">\n\n      <span style='display: flex;'>\n      Tu cita fue completada con exito, has ganado " + puntos + " de experiencia\n      </span>\n\n      </div>");
+            var mensaje = "<div class=\"meter\">\n      <span class='porcenCrec' style=\"width:" + valorInc + "%;\"><span class=\"progress\"></span></span>\n      </div>\n\n<div class=\" itemCa\">\n \n</div>\n\n<div class=\"floating itemFlo\">\n  + " + puntos + " exp\n</div>\n\n      <div class=\"leyendaAlert\">\n\n      <img  style='display: flex;' src=\"assets/imgs/complete.png\">\n\n      <span style='display: flex;'>\n      Tu cita fue completada con exito, has ganado " + puntos + " de experiencia\n      </span>\n\n      </div>";
+            var alert = _this.alertCtrl.create({
+                subTitle: _this.sanitizer.bypassSecurityTrustHtml(mensaje)
+            });
+            alert.present();
             var interval = setInterval(function () {
                 puntos -= 1;
                 //expUserM+=1;
@@ -117,6 +121,7 @@ var InicioPage = (function () {
                 if (puntos <= 0) {
                     clearInterval(interval);
                     if (idcc > 0) {
+                        alert.dismiss();
                         var profileModal = _this.modalCtrl.create('CongratsPage', { 'idCuponCliente': idcc }, {
                             enterAnimation: 'modal-scale-up-enter',
                             leaveAnimation: 'modal-scale-up-leave'
