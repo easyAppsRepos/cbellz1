@@ -1773,6 +1773,7 @@ var MyApp = (function () {
         var _this = this;
         this.platform.ready().then(function () {
             navigator.splashscreen.hide();
+            Keyboard.hideFormAccessoryBar(false);
             //navigator.splashscreen.hide();
             // Okay, so the platform is ready and our plugins are available.
             // Here you can do any higher level native things you might need.
@@ -1925,7 +1926,7 @@ var MyApp = (function () {
         //profileModal.present();
         //https://www.yourbeauty.com.pa/terminos/ 
         //this.nav.push('NegocioregistroPage');
-        window.open("www.yourbeauty.com.pa/negocios", '_system', 'location=yes');
+        window.open("https://www.yourbeauty.com.pa/contacto-negocios/", '_system', 'location=yes');
     };
     MyApp.prototype.compartirApp = function () {
         // not supported on some apps (Facebook, Instagram)
