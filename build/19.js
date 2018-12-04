@@ -139,7 +139,7 @@ var MapaPage = (function () {
         };
         this.marcarMapa = function () {
             _this.dataMarcas.filter(function (item) { return (_this.categoriaSeleccionada == 0 || item.categoriasCentro.split(',').includes(String(_this.categoriaSeleccionada))); }).forEach(function (element, index) {
-                var imagenLink = './assets/imgs/mdactive.png';
+                var imagenLink = _this.pathToImg + 'imgs/mdactive.png';
                 var htmlInfoWindow = new plugin.google.maps.HtmlInfoWindow();
                 var frame = document.createElement('div');
                 frame.className = 'centradoTexto';
@@ -157,14 +157,15 @@ var MapaPage = (function () {
                 });
                 _this.map.addMarker({
                     'position': { lng: element.longitud, lat: element.latitud },
-                    'icon': './assets/imgs/mdactive.png'
+                    'icon': _this.pathToImg + 'imgs/mdactive.png'
                 }, function (marker) {
+                    var _this = this;
                     marker.on(plugin.google.maps.event.MARKER_CLICK, function () {
-                        marker.setIcon('assets/imgs/mactive.png');
+                        marker.setIcon(_this.pathToImg + 'imgs/mactive.png');
                         htmlInfoWindow.open(marker);
                     });
                     marker.on(plugin.google.maps.event.INFO_CLOSE, function () {
-                        marker.setIcon('./assets/imgs/mdactive.png');
+                        marker.setIcon(_this.pathToImg + 'imgs/mdactive.png');
                     });
                     //marker.trigger(plugin.google.maps.event.MARKER_CLICK);
                 });
@@ -231,7 +232,7 @@ var MapaPage = (function () {
                     console.log(data);
                     _this.dataMarcas = data;
                     data.forEach(function (element, index) {
-                        var imagenLink = './assets/imgs/mdactive.png';
+                        var imagenLink = _this.pathToImg + 'imgs/mdactive.png';
                         var htmlInfoWindow = new plugin.google.maps.HtmlInfoWindow();
                         var frame = document.createElement('div');
                         frame.className = 'centradoTexto';
@@ -249,14 +250,15 @@ var MapaPage = (function () {
                         });
                         _this.map.addMarker({
                             'position': { lng: element.longitud, lat: element.latitud },
-                            'icon': './assets/imgs/mdactive.png'
+                            'icon': _this.pathToImg + 'imgs/mdactive.png'
                         }, function (marker) {
+                            var _this = this;
                             marker.on(plugin.google.maps.event.MARKER_CLICK, function () {
-                                marker.setIcon('assets/imgs/mactive.png');
+                                marker.setIcon(_this.pathToImg + 'imgs/mactive.png');
                                 htmlInfoWindow.open(marker);
                             });
                             marker.on(plugin.google.maps.event.INFO_CLOSE, function () {
-                                marker.setIcon('./assets/imgs/mdactive.png');
+                                marker.setIcon(_this.pathToImg + 'imgs/mdactive.png');
                             });
                             //marker.trigger(plugin.google.maps.event.MARKER_CLICK);
                         });
@@ -272,6 +274,7 @@ var MapaPage = (function () {
         this.map.setVisible(false);
         }
         */
+        this.pathToImg = this.plt.is('ios') ? 'www/assets/' : this.plt.is('android') ? 'file:///android_asset/www/assets/' : 'assets/';
     }
     MapaPage.prototype.ionViewDidLoad = function () {
         this.idCategoriaS = this.navParams.get('idCategoria');
@@ -345,7 +348,7 @@ var MapaPage = (function () {
             console.log(data);
             _this.dataMarcas = data;
             data.forEach(function (element, index) {
-                var imagenLink = './assets/imgs/mdactive.png';
+                var imagenLink = _this.pathToImg + 'imgs/mdactive.png';
                 var htmlInfoWindow = new plugin.google.maps.HtmlInfoWindow();
                 var frame = document.createElement('div');
                 frame.className = 'centradoTexto';
@@ -363,14 +366,15 @@ var MapaPage = (function () {
                 });
                 _this.map.addMarker({
                     'position': { lng: element.longitud, lat: element.latitud },
-                    'icon': './assets/imgs/mdactive.png'
+                    'icon': _this.pathToImg + 'imgs/mdactive.png'
                 }, function (marker) {
+                    var _this = this;
                     marker.on(plugin.google.maps.event.MARKER_CLICK, function () {
-                        marker.setIcon('assets/imgs/mactive.png');
+                        marker.setIcon(_this.pathToImg + 'imgs/mactive.png');
                         htmlInfoWindow.open(marker);
                     });
                     marker.on(plugin.google.maps.event.INFO_CLOSE, function () {
-                        marker.setIcon('./assets/imgs/mdactive.png');
+                        marker.setIcon(_this.pathToImg + 'imgs/mdactive.png');
                     });
                     //marker.trigger(plugin.google.maps.event.MARKER_CLICK);
                 });
