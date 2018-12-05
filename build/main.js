@@ -1605,10 +1605,11 @@ var MyApp = (function () {
         this.presentLoading();
         this.loading2 = this.loadingCtrl.create({ content: "Ingresando" });
         events.subscribe('userCreated', function (user) {
-            _this.userDataProfile = user;
-            _this.menuActivo = true;
-            _this.porcenBarra = (((_this.userDataProfile.exp % 1500) / (_this.userDataProfile.appexp)) * 100) + '%';
-            _this.cdr.detectChanges();
+            _this.zone.run(function () {
+                _this.userDataProfile = user;
+                _this.menuActivo = true;
+                _this.porcenBarra = (((_this.userDataProfile.exp % 1500) / (_this.userDataProfile.appexp)) * 100) + '%';
+            });
         });
         events.subscribe('loginRemoto', function (data) {
             data.username = data.email;
@@ -1626,11 +1627,15 @@ var MyApp = (function () {
             _this.apiProvider.verificarLogin()
                 .then(function (data) {
                 if (data) {
-                    _this.userDataProfile = data;
-                    _this.porcenBarra = (((_this.userDataProfile.exp % 1500) / (_this.userDataProfile.appexp)) * 100) + '%';
-                    console.log(_this.porcenBarra);
-                    _this.menuActivo = true;
-                    _this.cdr.detectChanges();
+                    _this.zone.run(function () {
+                        //setTimeout(() => { 
+                        _this.userDataProfile = data;
+                        _this.porcenBarra = (((_this.userDataProfile.exp % 1500) / (_this.userDataProfile.appexp)) * 100) + '%';
+                        console.log(_this.porcenBarra);
+                        _this.menuActivo = true;
+                        //  },0) 
+                    });
+                    //this.cdr.detectChanges();
                 }
                 else {
                     _this.menuActivo = false;
