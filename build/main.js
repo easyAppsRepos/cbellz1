@@ -1626,23 +1626,25 @@ var MyApp = (function () {
             //console.log(user);
         });
         this.events.subscribe('userCH', function () {
-            _this.apiProvider.verificarLogin()
-                .then(function (data) {
-                if (data) {
-                    _this.zone.run(function () {
-                        //setTimeout(() => { 
-                        _this.userDataProfile = data;
-                        _this.porcenBarra = (((_this.userDataProfile.exp % 1500) / (_this.userDataProfile.appexp)) * 100) + '%';
-                        console.log(_this.porcenBarra);
-                        _this.menuActivo = true;
-                        //  },0) 
-                    });
-                    //this.cdr.detectChanges();
-                }
-                else {
-                    _this.menuActivo = false;
-                }
-            });
+            setTimeout(function () {
+                _this.apiProvider.verificarLogin()
+                    .then(function (data) {
+                    if (data) {
+                        _this.zone.run(function () {
+                            //setTimeout(() => { 
+                            _this.userDataProfile = data;
+                            _this.porcenBarra = (((_this.userDataProfile.exp % 1500) / (_this.userDataProfile.appexp)) * 100) + '%';
+                            console.log(_this.porcenBarra);
+                            _this.menuActivo = true;
+                            //  },0) 
+                        });
+                        //this.cdr.detectChanges();
+                    }
+                    else {
+                        _this.menuActivo = false;
+                    }
+                });
+            }, 500);
         });
         // used for an example of ngFor and navigation
         this.pages = [
