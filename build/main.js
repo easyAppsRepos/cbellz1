@@ -1780,6 +1780,22 @@ var MyApp = (function () {
     MyApp.prototype.onSubmit = function (data) {
         console.log(data);
     };
+    MyApp.prototype.ionViewDidEnter = function () {
+        var _this = this;
+        this.apiProvider.verificarLogin()
+            .then(function (data) {
+            console.log(data);
+            if (data) {
+                _this.userDataProfile = data;
+                _this.porcenBarra = (((_this.userDataProfile.exp % 1500) / (_this.userDataProfile.appexp)) * 100) + '%';
+                console.log(_this.porcenBarra);
+                _this.menuActivo = true;
+            }
+            else {
+                _this.menuActivo = false;
+            }
+        });
+    };
     MyApp.prototype.initializeApp = function () {
         var _this = this;
         this.platform.ready().then(function () {
