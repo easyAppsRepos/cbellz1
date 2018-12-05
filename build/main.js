@@ -1606,26 +1606,26 @@ var MyApp = (function () {
         this.initializeApp();
         this.presentLoading();
         this.loading2 = this.loadingCtrl.create({ content: "Ingresando" });
-        events.subscribe('userCreated', function (user) {
+        this.events.subscribe('userCreated', function (user) {
             _this.zone.run(function () {
                 _this.userDataProfile = user;
                 _this.menuActivo = true;
                 _this.porcenBarra = (((_this.userDataProfile.exp % 1500) / (_this.userDataProfile.appexp)) * 100) + '%';
             });
         });
-        events.subscribe('loginRemoto', function (data) {
+        this.events.subscribe('loginRemoto', function (data) {
             data.username = data.email;
             console.log(data);
             _this.doLogin(data);
         });
-        events.subscribe('userLogout', function () {
+        this.events.subscribe('userLogout', function () {
             _this.userDataProfile = false;
             _this.storage.set("usr_tok_by", false);
             _this.menuActivo = false;
             _this.nav.setRoot('InicioPage');
             //console.log(user);
         });
-        events.subscribe('userCH', function () {
+        this.events.subscribe('userCH', function () {
             _this.apiProvider.verificarLogin()
                 .then(function (data) {
                 if (data) {
@@ -1779,22 +1779,6 @@ var MyApp = (function () {
     };
     MyApp.prototype.onSubmit = function (data) {
         console.log(data);
-    };
-    MyApp.prototype.ionViewDidEnter = function () {
-        var _this = this;
-        this.apiProvider.verificarLogin()
-            .then(function (data) {
-            console.log(data);
-            if (data) {
-                _this.userDataProfile = data;
-                _this.porcenBarra = (((_this.userDataProfile.exp % 1500) / (_this.userDataProfile.appexp)) * 100) + '%';
-                console.log(_this.porcenBarra);
-                _this.menuActivo = true;
-            }
-            else {
-                _this.menuActivo = false;
-            }
-        });
     };
     MyApp.prototype.initializeApp = function () {
         var _this = this;
