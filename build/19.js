@@ -148,7 +148,7 @@ var MapaPage = (function () {
                 var button = frame.getElementsByTagName("DIV")[0];
                 button.addEventListener("click", function () {
                     _this.ngZone.run(function () {
-                        _this.navCtrl.push('PerfilCentroPage', { 'idCentro': element.idCentro, 'idServicioSeleccionado': 0 });
+                        _this.navCtrl.push('PerfilCentroPage', { 'idCentro': element.idCentro, 'idServicioSeleccionado': _this.idCategoriaS });
                     });
                 });
                 htmlInfoWindow.setContent(frame, {
@@ -159,7 +159,6 @@ var MapaPage = (function () {
                     'position': { lng: element.longitud, lat: element.latitud },
                     'icon': _this.pathToImg + 'imgs/mdactive.png'
                 }, function (marker) {
-                    var _this = this;
                     marker.on(plugin.google.maps.event.MARKER_CLICK, function () {
                         marker.setIcon(_this.pathToImg + 'imgs/mactive.png');
                         htmlInfoWindow.open(marker);
@@ -241,7 +240,7 @@ var MapaPage = (function () {
                         var button = frame.getElementsByTagName("DIV")[0];
                         button.addEventListener("click", function () {
                             _this.ngZone.run(function () {
-                                _this.navCtrl.push('PerfilCentroPage', { 'idCentro': element.idCentro, 'idServicioSeleccionado': 0 });
+                                _this.navCtrl.push('PerfilCentroPage', { 'idCentro': element.idCentro, 'idServicioSeleccionado': _this.idCategoriaS });
                             });
                         });
                         htmlInfoWindow.setContent(frame, {
@@ -252,7 +251,6 @@ var MapaPage = (function () {
                             'position': { lng: element.longitud, lat: element.latitud },
                             'icon': _this.pathToImg + 'imgs/mdactive.png'
                         }, function (marker) {
-                            var _this = this;
                             marker.on(plugin.google.maps.event.MARKER_CLICK, function () {
                                 marker.setIcon(_this.pathToImg + 'imgs/mactive.png');
                                 htmlInfoWindow.open(marker);
@@ -357,7 +355,7 @@ var MapaPage = (function () {
                 var button = frame.getElementsByTagName("DIV")[0];
                 button.addEventListener("click", function () {
                     _this.ngZone.run(function () {
-                        _this.navCtrl.push('PerfilCentroPage', { 'idCentro': element.idCentro, 'idServicioSeleccionado': 0 });
+                        _this.navCtrl.push('PerfilCentroPage', { 'idCentro': element.idCentro, 'idServicioSeleccionado': _this.idCategoriaS });
                     });
                 });
                 htmlInfoWindow.setContent(frame, {
@@ -368,7 +366,6 @@ var MapaPage = (function () {
                     'position': { lng: element.longitud, lat: element.latitud },
                     'icon': _this.pathToImg + 'imgs/mdactive.png'
                 }, function (marker) {
-                    var _this = this;
                     marker.on(plugin.google.maps.event.MARKER_CLICK, function () {
                         marker.setIcon(_this.pathToImg + 'imgs/mactive.png');
                         htmlInfoWindow.open(marker);
