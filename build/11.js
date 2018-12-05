@@ -105,7 +105,7 @@ var InicioPage = (function () {
             var valorInc = (puntosActual * 100) / 1500;
             var tiempo = 3000 / (puntos / 1);
             console.log(tiempo);
-            var mensaje = "<div class=\"meter\">\n      <span class='porcenCrec' style=\"width:" + valorInc + "%;\"><span class=\"progress\"></span></span>\n      </div>\n\n<div class=\" itemCa\">\n \n</div>\n\n<div class=\"floating itemFlo\">\n  + " + puntos + " exp\n</div>\n\n      <div class=\"leyendaAlert\">\n\n      <img  style='display: flex;' src=\"assets/imgs/complete.png\">\n\n      <span style='display: flex;'>\n      Tu cita fue completada con exito, has ganado " + puntos + " de experiencia\n      </span>\n\n      </div>";
+            var mensaje = "<div class=\"meter\">\n      <span class='porcenCrec' style=\"width:" + valorInc + "% ;\"><span class=\"progress2\"></span></span>\n      </div>\n\n<div class=\" itemCa\">\n \n</div>\n\n<div class=\"floating itemFlo\">\n  + " + puntos + " exp\n</div>\n\n      <div class=\"leyendaAlert\">\n\n      <img  style='display: flex;' src=\"assets/imgs/complete.png\">\n\n      <span style='display: flex;'>\n      Tu cita fue completada con exito, has ganado " + puntos + " de experiencia\n      </span>\n\n      </div>";
             var alert = _this.alertCtrl.create({
                 subTitle: _this.sanitizer.bypassSecurityTrustHtml(mensaje)
             });
@@ -117,6 +117,7 @@ var InicioPage = (function () {
                 exp2Cont++;
                 //this.zone.run(()=>{   valorInc = parseInt(((puntosActual+exp2Cont)%1500)*100/1500) });
                 valorInc = parseInt(((puntosActual + exp2Cont) % 1500) * 100 / 1500);
+                //console.log(valorInc.toString());
                 _this.setLoadingText(expUserM.toString(), totall.toString(), valorInc.toString());
                 if (puntos <= 0) {
                     clearInterval(interval);
