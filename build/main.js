@@ -1441,7 +1441,7 @@ var MyApp = (function () {
             var valorInc = (puntosActual * 100) / 1500;
             var tiempo = 3000 / (puntos / 1);
             console.log(tiempo);
-            _this.presentAlert2("\n      <div class=\"meter\">\n      <span class='porcenCrec' style=\"width:" + valorInc + "%;\"><span class=\"progress\"></span></span>\n      </div>\n\n<div class=\" itemCa\">\n \n</div>\n\n<div class=\"floating itemFlo\">\n  + " + puntos + " exp\n</div>\n\n      <div class=\"leyendaAlert\">\n\n      <img  style='display: flex;' src=\"assets/imgs/complete.png\">\n\n      <span style='display: flex;'>\n      Gracias por compartir! Has ganado 15 " + puntos + " de experiencia\n      </span>\n\n      </div>");
+            _this.presentAlert2("\n      <div class=\"meter\">\n      <span class='porcenCrec' style=\"width:" + valorInc + "%;\"><span class=\"progress2\"></span></span>\n      </div>\n\n<div class=\" itemCa\">\n \n</div>\n\n<div class=\"floating itemFlo\">\n  + " + puntos + " exp\n</div>\n\n      <div class=\"leyendaAlert\">\n\n      <img  style='display: flex;' src=\"assets/imgs/complete.png\">\n\n      <span style='display: flex;'>\n      Gracias por compartir! Has ganado " + puntos + " de experiencia\n      </span>\n\n      </div>");
             var interval = setInterval(function () {
                 puntos -= 1;
                 //expUserM+=1;
@@ -1607,16 +1607,20 @@ var MyApp = (function () {
         this.presentLoading();
         this.loading2 = this.loadingCtrl.create({ content: "Ingresando" });
         this.events.subscribe('userCreated', function (user) {
-            _this.zone.run(function () {
-                _this.userDataProfile = user;
-                _this.menuActivo = true;
-                _this.porcenBarra = (((_this.userDataProfile.exp % 1500) / (_this.userDataProfile.appexp)) * 100) + '%';
-            });
+            setTimeout(function () {
+                _this.zone.run(function () {
+                    _this.userDataProfile = user;
+                    _this.menuActivo = true;
+                    _this.porcenBarra = (((_this.userDataProfile.exp % 1500) / (_this.userDataProfile.appexp)) * 100) + '%';
+                });
+            }, 500);
         });
         this.events.subscribe('loginRemoto', function (data) {
-            data.username = data.email;
-            console.log(data);
-            _this.doLogin(data);
+            setTimeout(function () {
+                data.username = data.email;
+                console.log(data);
+                _this.doLogin(data);
+            }, 100);
         });
         this.events.subscribe('userLogout', function () {
             _this.userDataProfile = false;

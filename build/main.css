@@ -31511,6 +31511,10 @@ ion-title {
   background-color: #25b580 !important;
 }
 
+.progress2 {
+  background-color: #2FD99B;
+}
+
 .botonVerdeFulls {
   width: 100%;
   padding-top: 15px;
@@ -31938,6 +31942,10 @@ page-buscar-modal .checkbox-ios .checkbox-icon {
 page-buscar-modal .checkbox-ios .checkbox-icon {
   width: 26px;
   height: 26px;
+}
+
+page-calificar .progress2 {
+  background-color: #2FD99B;
 }
 
 page-calificar .rat {
@@ -32899,7 +32907,7 @@ page-inicio .imagenCategoria {
   animation-name: fallsway1;
   -webkit-animation-delay: 0.2s;
   animation-delay: 0.2s;
-  background-color: #5ceab8;
+  background-color: #e33248;
 }
 
 .confetti:nth-child(2) {
@@ -32908,7 +32916,7 @@ page-inicio .imagenCategoria {
   animation-name: fallsway2;
   -webkit-animation-delay: 0.4s;
   animation-delay: 0.4s;
-  background-color: #6a4992;
+  background-color: #0d557c;
 }
 
 .confetti:nth-child(3) {
@@ -32917,7 +32925,7 @@ page-inicio .imagenCategoria {
   animation-name: fallsway3;
   -webkit-animation-delay: 0.6s;
   animation-delay: 0.6s;
-  background-color: #aaf933;
+  background-color: #6fae23;
 }
 
 .confetti:nth-child(4) {
@@ -32926,7 +32934,7 @@ page-inicio .imagenCategoria {
   animation-name: fallsway4;
   -webkit-animation-delay: 0.8s;
   animation-delay: 0.8s;
-  background-color: #6238d6;
+  background-color: #2dbb37;
 }
 
 .confetti:nth-child(5) {
@@ -32935,7 +32943,7 @@ page-inicio .imagenCategoria {
   animation-name: fallsway5;
   -webkit-animation-delay: 1s;
   animation-delay: 1s;
-  background-color: #a3e5b4;
+  background-color: #8b62fd;
 }
 
 .confetti:nth-child(6) {
@@ -32944,7 +32952,7 @@ page-inicio .imagenCategoria {
   animation-name: fallsway6;
   -webkit-animation-delay: 1.2s;
   animation-delay: 1.2s;
-  background-color: #153493;
+  background-color: #9436d6;
 }
 
 .confetti:nth-child(7) {
@@ -32953,7 +32961,7 @@ page-inicio .imagenCategoria {
   animation-name: fallsway7;
   -webkit-animation-delay: 1.4s;
   animation-delay: 1.4s;
-  background-color: #502f3f;
+  background-color: #8750ab;
 }
 
 .confetti:nth-child(8) {
@@ -32962,7 +32970,7 @@ page-inicio .imagenCategoria {
   animation-name: fallsway8;
   -webkit-animation-delay: 1.6s;
   animation-delay: 1.6s;
-  background-color: #ee1e9e;
+  background-color: #a5131c;
 }
 
 .confetti:nth-child(9) {
@@ -32971,7 +32979,7 @@ page-inicio .imagenCategoria {
   animation-name: fallsway9;
   -webkit-animation-delay: 1.8s;
   animation-delay: 1.8s;
-  background-color: #b86dd4;
+  background-color: #5a564c;
 }
 
 .confetti:nth-child(10) {
@@ -32980,7 +32988,7 @@ page-inicio .imagenCategoria {
   animation-name: fallsway10;
   -webkit-animation-delay: 2s;
   animation-delay: 2s;
-  background-color: #82a31b;
+  background-color: #102a6a;
 }
 
 .confetti:nth-child(11) {
@@ -32989,7 +32997,7 @@ page-inicio .imagenCategoria {
   animation-name: fallsway11;
   -webkit-animation-delay: 2.2s;
   animation-delay: 2.2s;
-  background-color: #ae4fca;
+  background-color: #a3b48d;
 }
 
 .confetti:nth-child(12) {
@@ -32998,7 +33006,7 @@ page-inicio .imagenCategoria {
   animation-name: fallsway12;
   -webkit-animation-delay: 2.4s;
   animation-delay: 2.4s;
-  background-color: #771d34;
+  background-color: #3bbcfc;
 }
 
 .confetti:nth-child(13) {
@@ -33007,7 +33015,7 @@ page-inicio .imagenCategoria {
   animation-name: fallsway13;
   -webkit-animation-delay: 2.6s;
   animation-delay: 2.6s;
-  background-color: #9f7b39;
+  background-color: #9c4019;
 }
 
 .confetti:nth-child(14) {
@@ -33016,7 +33024,7 @@ page-inicio .imagenCategoria {
   animation-name: fallsway14;
   -webkit-animation-delay: 2.8s;
   animation-delay: 2.8s;
-  background-color: #c07095;
+  background-color: #a33b55;
 }
 
 .confetti:nth-child(15) {
@@ -33025,7 +33033,7 @@ page-inicio .imagenCategoria {
   animation-name: fallsway15;
   -webkit-animation-delay: 3s;
   animation-delay: 3s;
-  background-color: #b69d6a;
+  background-color: #4130f5;
 }
 
 .confetti:nth-child(16) {
@@ -33034,7 +33042,7 @@ page-inicio .imagenCategoria {
   animation-name: fallsway16;
   -webkit-animation-delay: 3.2s;
   animation-delay: 3.2s;
-  background-color: #bbb504;
+  background-color: #6f5993;
 }
 
 .confetti:nth-child(17) {
@@ -33043,7 +33051,7 @@ page-inicio .imagenCategoria {
   animation-name: fallsway17;
   -webkit-animation-delay: 3.4s;
   animation-delay: 3.4s;
-  background-color: #adad5a;
+  background-color: #f6f739;
 }
 
 .confetti:nth-child(18) {
@@ -33052,7 +33060,7 @@ page-inicio .imagenCategoria {
   animation-name: fallsway18;
   -webkit-animation-delay: 3.6s;
   animation-delay: 3.6s;
-  background-color: #a013aa;
+  background-color: #d21711;
 }
 
 .confetti:nth-child(19) {
@@ -33061,7 +33069,7 @@ page-inicio .imagenCategoria {
   animation-name: fallsway19;
   -webkit-animation-delay: 3.8s;
   animation-delay: 3.8s;
-  background-color: #339366;
+  background-color: #ac02b5;
 }
 
 .confetti:nth-child(20) {
@@ -33070,13 +33078,13 @@ page-inicio .imagenCategoria {
   animation-name: fallsway20;
   -webkit-animation-delay: 4s;
   animation-delay: 4s;
-  background-color: #913e20;
+  background-color: #6fcebe;
 }
 
 @-webkit-keyframes fallsway1 {
   0% {
     top: -5%;
-    left: 46%;
+    left: 91%;
     opacity: 1.0;
     -webkit-transform: skew(-30deg);
     transform: skew(-30deg);
@@ -33087,7 +33095,7 @@ page-inicio .imagenCategoria {
     transform: skew(30deg);
   }
   50% {
-    left: 18%;
+    left: 55%;
     -webkit-transform: skew(-30deg);
     transform: skew(-30deg);
   }
@@ -33098,7 +33106,7 @@ page-inicio .imagenCategoria {
   }
   100% {
     top: 100%;
-    left: 91%;
+    left: 65%;
     opacity: 1.0;
     -webkit-transform: skew(-30deg);
     transform: skew(-30deg);
@@ -33108,7 +33116,7 @@ page-inicio .imagenCategoria {
 @keyframes fallsway1 {
   0% {
     top: -5%;
-    left: 46%;
+    left: 91%;
     opacity: 1.0;
     -webkit-transform: skew(-30deg);
     transform: skew(-30deg);
@@ -33119,7 +33127,7 @@ page-inicio .imagenCategoria {
     transform: skew(30deg);
   }
   50% {
-    left: 18%;
+    left: 55%;
     -webkit-transform: skew(-30deg);
     transform: skew(-30deg);
   }
@@ -33130,7 +33138,7 @@ page-inicio .imagenCategoria {
   }
   100% {
     top: 100%;
-    left: 91%;
+    left: 65%;
     opacity: 1.0;
     -webkit-transform: skew(-30deg);
     transform: skew(-30deg);
@@ -33140,7 +33148,7 @@ page-inicio .imagenCategoria {
 @-webkit-keyframes fallsway2 {
   0% {
     top: -5%;
-    left: 19%;
+    left: 71%;
     opacity: 1.0;
     -webkit-transform: skew(-30deg);
     transform: skew(-30deg);
@@ -33151,7 +33159,7 @@ page-inicio .imagenCategoria {
     transform: skew(30deg);
   }
   50% {
-    left: 57%;
+    left: 58%;
     -webkit-transform: skew(-30deg);
     transform: skew(-30deg);
   }
@@ -33162,7 +33170,7 @@ page-inicio .imagenCategoria {
   }
   100% {
     top: 100%;
-    left: 52%;
+    left: 16%;
     opacity: 1.0;
     -webkit-transform: skew(-30deg);
     transform: skew(-30deg);
@@ -33172,7 +33180,7 @@ page-inicio .imagenCategoria {
 @keyframes fallsway2 {
   0% {
     top: -5%;
-    left: 19%;
+    left: 71%;
     opacity: 1.0;
     -webkit-transform: skew(-30deg);
     transform: skew(-30deg);
@@ -33183,7 +33191,7 @@ page-inicio .imagenCategoria {
     transform: skew(30deg);
   }
   50% {
-    left: 57%;
+    left: 58%;
     -webkit-transform: skew(-30deg);
     transform: skew(-30deg);
   }
@@ -33194,7 +33202,7 @@ page-inicio .imagenCategoria {
   }
   100% {
     top: 100%;
-    left: 52%;
+    left: 16%;
     opacity: 1.0;
     -webkit-transform: skew(-30deg);
     transform: skew(-30deg);
@@ -33204,7 +33212,7 @@ page-inicio .imagenCategoria {
 @-webkit-keyframes fallsway3 {
   0% {
     top: -5%;
-    left: 14%;
+    left: 75%;
     opacity: 1.0;
     -webkit-transform: skew(-30deg);
     transform: skew(-30deg);
@@ -33215,7 +33223,7 @@ page-inicio .imagenCategoria {
     transform: skew(30deg);
   }
   50% {
-    left: 48%;
+    left: 82%;
     -webkit-transform: skew(-30deg);
     transform: skew(-30deg);
   }
@@ -33226,7 +33234,7 @@ page-inicio .imagenCategoria {
   }
   100% {
     top: 100%;
-    left: 12%;
+    left: 29%;
     opacity: 1.0;
     -webkit-transform: skew(-30deg);
     transform: skew(-30deg);
@@ -33236,7 +33244,7 @@ page-inicio .imagenCategoria {
 @keyframes fallsway3 {
   0% {
     top: -5%;
-    left: 14%;
+    left: 75%;
     opacity: 1.0;
     -webkit-transform: skew(-30deg);
     transform: skew(-30deg);
@@ -33247,7 +33255,7 @@ page-inicio .imagenCategoria {
     transform: skew(30deg);
   }
   50% {
-    left: 48%;
+    left: 82%;
     -webkit-transform: skew(-30deg);
     transform: skew(-30deg);
   }
@@ -33258,7 +33266,7 @@ page-inicio .imagenCategoria {
   }
   100% {
     top: 100%;
-    left: 12%;
+    left: 29%;
     opacity: 1.0;
     -webkit-transform: skew(-30deg);
     transform: skew(-30deg);
@@ -33268,7 +33276,7 @@ page-inicio .imagenCategoria {
 @-webkit-keyframes fallsway4 {
   0% {
     top: -5%;
-    left: 83%;
+    left: 32%;
     opacity: 1.0;
     -webkit-transform: skew(-30deg);
     transform: skew(-30deg);
@@ -33279,7 +33287,7 @@ page-inicio .imagenCategoria {
     transform: skew(30deg);
   }
   50% {
-    left: 52%;
+    left: 93%;
     -webkit-transform: skew(-30deg);
     transform: skew(-30deg);
   }
@@ -33290,7 +33298,7 @@ page-inicio .imagenCategoria {
   }
   100% {
     top: 100%;
-    left: 13%;
+    left: 71%;
     opacity: 1.0;
     -webkit-transform: skew(-30deg);
     transform: skew(-30deg);
@@ -33300,7 +33308,7 @@ page-inicio .imagenCategoria {
 @keyframes fallsway4 {
   0% {
     top: -5%;
-    left: 83%;
+    left: 32%;
     opacity: 1.0;
     -webkit-transform: skew(-30deg);
     transform: skew(-30deg);
@@ -33311,7 +33319,7 @@ page-inicio .imagenCategoria {
     transform: skew(30deg);
   }
   50% {
-    left: 52%;
+    left: 93%;
     -webkit-transform: skew(-30deg);
     transform: skew(-30deg);
   }
@@ -33322,7 +33330,7 @@ page-inicio .imagenCategoria {
   }
   100% {
     top: 100%;
-    left: 13%;
+    left: 71%;
     opacity: 1.0;
     -webkit-transform: skew(-30deg);
     transform: skew(-30deg);
@@ -33332,7 +33340,7 @@ page-inicio .imagenCategoria {
 @-webkit-keyframes fallsway5 {
   0% {
     top: -5%;
-    left: 32%;
+    left: 87%;
     opacity: 1.0;
     -webkit-transform: skew(-30deg);
     transform: skew(-30deg);
@@ -33343,7 +33351,7 @@ page-inicio .imagenCategoria {
     transform: skew(30deg);
   }
   50% {
-    left: 22%;
+    left: 33%;
     -webkit-transform: skew(-30deg);
     transform: skew(-30deg);
   }
@@ -33354,7 +33362,7 @@ page-inicio .imagenCategoria {
   }
   100% {
     top: 100%;
-    left: 80%;
+    left: 4%;
     opacity: 1.0;
     -webkit-transform: skew(-30deg);
     transform: skew(-30deg);
@@ -33364,7 +33372,7 @@ page-inicio .imagenCategoria {
 @keyframes fallsway5 {
   0% {
     top: -5%;
-    left: 32%;
+    left: 87%;
     opacity: 1.0;
     -webkit-transform: skew(-30deg);
     transform: skew(-30deg);
@@ -33375,7 +33383,7 @@ page-inicio .imagenCategoria {
     transform: skew(30deg);
   }
   50% {
-    left: 22%;
+    left: 33%;
     -webkit-transform: skew(-30deg);
     transform: skew(-30deg);
   }
@@ -33386,7 +33394,7 @@ page-inicio .imagenCategoria {
   }
   100% {
     top: 100%;
-    left: 80%;
+    left: 4%;
     opacity: 1.0;
     -webkit-transform: skew(-30deg);
     transform: skew(-30deg);
@@ -33396,7 +33404,7 @@ page-inicio .imagenCategoria {
 @-webkit-keyframes fallsway6 {
   0% {
     top: -5%;
-    left: 90%;
+    left: 69%;
     opacity: 1.0;
     -webkit-transform: skew(-30deg);
     transform: skew(-30deg);
@@ -33407,7 +33415,7 @@ page-inicio .imagenCategoria {
     transform: skew(30deg);
   }
   50% {
-    left: 37%;
+    left: 44%;
     -webkit-transform: skew(-30deg);
     transform: skew(-30deg);
   }
@@ -33418,7 +33426,7 @@ page-inicio .imagenCategoria {
   }
   100% {
     top: 100%;
-    left: 80%;
+    left: 10%;
     opacity: 1.0;
     -webkit-transform: skew(-30deg);
     transform: skew(-30deg);
@@ -33428,7 +33436,7 @@ page-inicio .imagenCategoria {
 @keyframes fallsway6 {
   0% {
     top: -5%;
-    left: 90%;
+    left: 69%;
     opacity: 1.0;
     -webkit-transform: skew(-30deg);
     transform: skew(-30deg);
@@ -33439,7 +33447,7 @@ page-inicio .imagenCategoria {
     transform: skew(30deg);
   }
   50% {
-    left: 37%;
+    left: 44%;
     -webkit-transform: skew(-30deg);
     transform: skew(-30deg);
   }
@@ -33450,7 +33458,7 @@ page-inicio .imagenCategoria {
   }
   100% {
     top: 100%;
-    left: 80%;
+    left: 10%;
     opacity: 1.0;
     -webkit-transform: skew(-30deg);
     transform: skew(-30deg);
@@ -33460,7 +33468,7 @@ page-inicio .imagenCategoria {
 @-webkit-keyframes fallsway7 {
   0% {
     top: -5%;
-    left: 48%;
+    left: 1%;
     opacity: 1.0;
     -webkit-transform: skew(-30deg);
     transform: skew(-30deg);
@@ -33471,7 +33479,7 @@ page-inicio .imagenCategoria {
     transform: skew(30deg);
   }
   50% {
-    left: 82%;
+    left: 49%;
     -webkit-transform: skew(-30deg);
     transform: skew(-30deg);
   }
@@ -33482,7 +33490,7 @@ page-inicio .imagenCategoria {
   }
   100% {
     top: 100%;
-    left: 30%;
+    left: 64%;
     opacity: 1.0;
     -webkit-transform: skew(-30deg);
     transform: skew(-30deg);
@@ -33492,7 +33500,7 @@ page-inicio .imagenCategoria {
 @keyframes fallsway7 {
   0% {
     top: -5%;
-    left: 48%;
+    left: 1%;
     opacity: 1.0;
     -webkit-transform: skew(-30deg);
     transform: skew(-30deg);
@@ -33503,7 +33511,7 @@ page-inicio .imagenCategoria {
     transform: skew(30deg);
   }
   50% {
-    left: 82%;
+    left: 49%;
     -webkit-transform: skew(-30deg);
     transform: skew(-30deg);
   }
@@ -33514,7 +33522,7 @@ page-inicio .imagenCategoria {
   }
   100% {
     top: 100%;
-    left: 30%;
+    left: 64%;
     opacity: 1.0;
     -webkit-transform: skew(-30deg);
     transform: skew(-30deg);
@@ -33524,7 +33532,7 @@ page-inicio .imagenCategoria {
 @-webkit-keyframes fallsway8 {
   0% {
     top: -5%;
-    left: 10%;
+    left: 59%;
     opacity: 1.0;
     -webkit-transform: skew(-30deg);
     transform: skew(-30deg);
@@ -33535,7 +33543,7 @@ page-inicio .imagenCategoria {
     transform: skew(30deg);
   }
   50% {
-    left: 49%;
+    left: 74%;
     -webkit-transform: skew(-30deg);
     transform: skew(-30deg);
   }
@@ -33546,7 +33554,7 @@ page-inicio .imagenCategoria {
   }
   100% {
     top: 100%;
-    left: 81%;
+    left: 8%;
     opacity: 1.0;
     -webkit-transform: skew(-30deg);
     transform: skew(-30deg);
@@ -33556,7 +33564,7 @@ page-inicio .imagenCategoria {
 @keyframes fallsway8 {
   0% {
     top: -5%;
-    left: 10%;
+    left: 59%;
     opacity: 1.0;
     -webkit-transform: skew(-30deg);
     transform: skew(-30deg);
@@ -33567,7 +33575,7 @@ page-inicio .imagenCategoria {
     transform: skew(30deg);
   }
   50% {
-    left: 49%;
+    left: 74%;
     -webkit-transform: skew(-30deg);
     transform: skew(-30deg);
   }
@@ -33578,7 +33586,7 @@ page-inicio .imagenCategoria {
   }
   100% {
     top: 100%;
-    left: 81%;
+    left: 8%;
     opacity: 1.0;
     -webkit-transform: skew(-30deg);
     transform: skew(-30deg);
@@ -33588,7 +33596,7 @@ page-inicio .imagenCategoria {
 @-webkit-keyframes fallsway9 {
   0% {
     top: -5%;
-    left: 49%;
+    left: 93%;
     opacity: 1.0;
     -webkit-transform: skew(-30deg);
     transform: skew(-30deg);
@@ -33599,7 +33607,7 @@ page-inicio .imagenCategoria {
     transform: skew(30deg);
   }
   50% {
-    left: 2%;
+    left: 73%;
     -webkit-transform: skew(-30deg);
     transform: skew(-30deg);
   }
@@ -33610,7 +33618,7 @@ page-inicio .imagenCategoria {
   }
   100% {
     top: 100%;
-    left: 77%;
+    left: 60%;
     opacity: 1.0;
     -webkit-transform: skew(-30deg);
     transform: skew(-30deg);
@@ -33620,7 +33628,7 @@ page-inicio .imagenCategoria {
 @keyframes fallsway9 {
   0% {
     top: -5%;
-    left: 49%;
+    left: 93%;
     opacity: 1.0;
     -webkit-transform: skew(-30deg);
     transform: skew(-30deg);
@@ -33631,7 +33639,7 @@ page-inicio .imagenCategoria {
     transform: skew(30deg);
   }
   50% {
-    left: 2%;
+    left: 73%;
     -webkit-transform: skew(-30deg);
     transform: skew(-30deg);
   }
@@ -33642,7 +33650,7 @@ page-inicio .imagenCategoria {
   }
   100% {
     top: 100%;
-    left: 77%;
+    left: 60%;
     opacity: 1.0;
     -webkit-transform: skew(-30deg);
     transform: skew(-30deg);
@@ -33652,7 +33660,7 @@ page-inicio .imagenCategoria {
 @-webkit-keyframes fallsway10 {
   0% {
     top: -5%;
-    left: 17%;
+    left: 27%;
     opacity: 1.0;
     -webkit-transform: skew(-30deg);
     transform: skew(-30deg);
@@ -33663,7 +33671,7 @@ page-inicio .imagenCategoria {
     transform: skew(30deg);
   }
   50% {
-    left: 54%;
+    left: 63%;
     -webkit-transform: skew(-30deg);
     transform: skew(-30deg);
   }
@@ -33674,7 +33682,7 @@ page-inicio .imagenCategoria {
   }
   100% {
     top: 100%;
-    left: 9%;
+    left: 93%;
     opacity: 1.0;
     -webkit-transform: skew(-30deg);
     transform: skew(-30deg);
@@ -33684,6 +33692,102 @@ page-inicio .imagenCategoria {
 @keyframes fallsway10 {
   0% {
     top: -5%;
+    left: 27%;
+    opacity: 1.0;
+    -webkit-transform: skew(-30deg);
+    transform: skew(-30deg);
+  }
+  25% {
+    left: 100% -random(105);
+    -webkit-transform: skew(30deg);
+    transform: skew(30deg);
+  }
+  50% {
+    left: 63%;
+    -webkit-transform: skew(-30deg);
+    transform: skew(-30deg);
+  }
+  75% {
+    left: 100% -random(105);
+    -webkit-transform: skew(30deg);
+    transform: skew(30deg);
+  }
+  100% {
+    top: 100%;
+    left: 93%;
+    opacity: 1.0;
+    -webkit-transform: skew(-30deg);
+    transform: skew(-30deg);
+  }
+}
+
+@-webkit-keyframes fallsway11 {
+  0% {
+    top: -5%;
+    left: 79%;
+    opacity: 1.0;
+    -webkit-transform: skew(-30deg);
+    transform: skew(-30deg);
+  }
+  25% {
+    left: 100% -random(105);
+    -webkit-transform: skew(30deg);
+    transform: skew(30deg);
+  }
+  50% {
+    left: 53%;
+    -webkit-transform: skew(-30deg);
+    transform: skew(-30deg);
+  }
+  75% {
+    left: 100% -random(105);
+    -webkit-transform: skew(30deg);
+    transform: skew(30deg);
+  }
+  100% {
+    top: 100%;
+    left: 24%;
+    opacity: 1.0;
+    -webkit-transform: skew(-30deg);
+    transform: skew(-30deg);
+  }
+}
+
+@keyframes fallsway11 {
+  0% {
+    top: -5%;
+    left: 79%;
+    opacity: 1.0;
+    -webkit-transform: skew(-30deg);
+    transform: skew(-30deg);
+  }
+  25% {
+    left: 100% -random(105);
+    -webkit-transform: skew(30deg);
+    transform: skew(30deg);
+  }
+  50% {
+    left: 53%;
+    -webkit-transform: skew(-30deg);
+    transform: skew(-30deg);
+  }
+  75% {
+    left: 100% -random(105);
+    -webkit-transform: skew(30deg);
+    transform: skew(30deg);
+  }
+  100% {
+    top: 100%;
+    left: 24%;
+    opacity: 1.0;
+    -webkit-transform: skew(-30deg);
+    transform: skew(-30deg);
+  }
+}
+
+@-webkit-keyframes fallsway12 {
+  0% {
+    top: -5%;
     left: 17%;
     opacity: 1.0;
     -webkit-transform: skew(-30deg);
@@ -33695,7 +33799,7 @@ page-inicio .imagenCategoria {
     transform: skew(30deg);
   }
   50% {
-    left: 54%;
+    left: 59%;
     -webkit-transform: skew(-30deg);
     transform: skew(-30deg);
   }
@@ -33706,103 +33810,7 @@ page-inicio .imagenCategoria {
   }
   100% {
     top: 100%;
-    left: 9%;
-    opacity: 1.0;
-    -webkit-transform: skew(-30deg);
-    transform: skew(-30deg);
-  }
-}
-
-@-webkit-keyframes fallsway11 {
-  0% {
-    top: -5%;
-    left: 3%;
-    opacity: 1.0;
-    -webkit-transform: skew(-30deg);
-    transform: skew(-30deg);
-  }
-  25% {
-    left: 100% -random(105);
-    -webkit-transform: skew(30deg);
-    transform: skew(30deg);
-  }
-  50% {
-    left: 89%;
-    -webkit-transform: skew(-30deg);
-    transform: skew(-30deg);
-  }
-  75% {
-    left: 100% -random(105);
-    -webkit-transform: skew(30deg);
-    transform: skew(30deg);
-  }
-  100% {
-    top: 100%;
-    left: 9%;
-    opacity: 1.0;
-    -webkit-transform: skew(-30deg);
-    transform: skew(-30deg);
-  }
-}
-
-@keyframes fallsway11 {
-  0% {
-    top: -5%;
-    left: 3%;
-    opacity: 1.0;
-    -webkit-transform: skew(-30deg);
-    transform: skew(-30deg);
-  }
-  25% {
-    left: 100% -random(105);
-    -webkit-transform: skew(30deg);
-    transform: skew(30deg);
-  }
-  50% {
-    left: 89%;
-    -webkit-transform: skew(-30deg);
-    transform: skew(-30deg);
-  }
-  75% {
-    left: 100% -random(105);
-    -webkit-transform: skew(30deg);
-    transform: skew(30deg);
-  }
-  100% {
-    top: 100%;
-    left: 9%;
-    opacity: 1.0;
-    -webkit-transform: skew(-30deg);
-    transform: skew(-30deg);
-  }
-}
-
-@-webkit-keyframes fallsway12 {
-  0% {
-    top: -5%;
-    left: 75%;
-    opacity: 1.0;
-    -webkit-transform: skew(-30deg);
-    transform: skew(-30deg);
-  }
-  25% {
-    left: 100% -random(105);
-    -webkit-transform: skew(30deg);
-    transform: skew(30deg);
-  }
-  50% {
-    left: 5%;
-    -webkit-transform: skew(-30deg);
-    transform: skew(-30deg);
-  }
-  75% {
-    left: 100% -random(105);
-    -webkit-transform: skew(30deg);
-    transform: skew(30deg);
-  }
-  100% {
-    top: 100%;
-    left: 47%;
+    left: 31%;
     opacity: 1.0;
     -webkit-transform: skew(-30deg);
     transform: skew(-30deg);
@@ -33812,7 +33820,7 @@ page-inicio .imagenCategoria {
 @keyframes fallsway12 {
   0% {
     top: -5%;
-    left: 75%;
+    left: 17%;
     opacity: 1.0;
     -webkit-transform: skew(-30deg);
     transform: skew(-30deg);
@@ -33823,7 +33831,7 @@ page-inicio .imagenCategoria {
     transform: skew(30deg);
   }
   50% {
-    left: 5%;
+    left: 59%;
     -webkit-transform: skew(-30deg);
     transform: skew(-30deg);
   }
@@ -33834,7 +33842,7 @@ page-inicio .imagenCategoria {
   }
   100% {
     top: 100%;
-    left: 47%;
+    left: 31%;
     opacity: 1.0;
     -webkit-transform: skew(-30deg);
     transform: skew(-30deg);
@@ -33844,7 +33852,7 @@ page-inicio .imagenCategoria {
 @-webkit-keyframes fallsway13 {
   0% {
     top: -5%;
-    left: 12%;
+    left: 5%;
     opacity: 1.0;
     -webkit-transform: skew(-30deg);
     transform: skew(-30deg);
@@ -33855,7 +33863,7 @@ page-inicio .imagenCategoria {
     transform: skew(30deg);
   }
   50% {
-    left: 87%;
+    left: 10%;
     -webkit-transform: skew(-30deg);
     transform: skew(-30deg);
   }
@@ -33866,7 +33874,7 @@ page-inicio .imagenCategoria {
   }
   100% {
     top: 100%;
-    left: 36%;
+    left: 93%;
     opacity: 1.0;
     -webkit-transform: skew(-30deg);
     transform: skew(-30deg);
@@ -33876,7 +33884,7 @@ page-inicio .imagenCategoria {
 @keyframes fallsway13 {
   0% {
     top: -5%;
-    left: 12%;
+    left: 5%;
     opacity: 1.0;
     -webkit-transform: skew(-30deg);
     transform: skew(-30deg);
@@ -33887,7 +33895,7 @@ page-inicio .imagenCategoria {
     transform: skew(30deg);
   }
   50% {
-    left: 87%;
+    left: 10%;
     -webkit-transform: skew(-30deg);
     transform: skew(-30deg);
   }
@@ -33898,7 +33906,7 @@ page-inicio .imagenCategoria {
   }
   100% {
     top: 100%;
-    left: 36%;
+    left: 93%;
     opacity: 1.0;
     -webkit-transform: skew(-30deg);
     transform: skew(-30deg);
@@ -33908,7 +33916,7 @@ page-inicio .imagenCategoria {
 @-webkit-keyframes fallsway14 {
   0% {
     top: -5%;
-    left: 66%;
+    left: 8%;
     opacity: 1.0;
     -webkit-transform: skew(-30deg);
     transform: skew(-30deg);
@@ -33919,7 +33927,7 @@ page-inicio .imagenCategoria {
     transform: skew(30deg);
   }
   50% {
-    left: 89%;
+    left: 23%;
     -webkit-transform: skew(-30deg);
     transform: skew(-30deg);
   }
@@ -33930,7 +33938,7 @@ page-inicio .imagenCategoria {
   }
   100% {
     top: 100%;
-    left: 45%;
+    left: 4%;
     opacity: 1.0;
     -webkit-transform: skew(-30deg);
     transform: skew(-30deg);
@@ -33940,7 +33948,7 @@ page-inicio .imagenCategoria {
 @keyframes fallsway14 {
   0% {
     top: -5%;
-    left: 66%;
+    left: 8%;
     opacity: 1.0;
     -webkit-transform: skew(-30deg);
     transform: skew(-30deg);
@@ -33951,7 +33959,7 @@ page-inicio .imagenCategoria {
     transform: skew(30deg);
   }
   50% {
-    left: 89%;
+    left: 23%;
     -webkit-transform: skew(-30deg);
     transform: skew(-30deg);
   }
@@ -33962,7 +33970,7 @@ page-inicio .imagenCategoria {
   }
   100% {
     top: 100%;
-    left: 45%;
+    left: 4%;
     opacity: 1.0;
     -webkit-transform: skew(-30deg);
     transform: skew(-30deg);
@@ -33972,7 +33980,7 @@ page-inicio .imagenCategoria {
 @-webkit-keyframes fallsway15 {
   0% {
     top: -5%;
-    left: 60%;
+    left: 85%;
     opacity: 1.0;
     -webkit-transform: skew(-30deg);
     transform: skew(-30deg);
@@ -33994,7 +34002,7 @@ page-inicio .imagenCategoria {
   }
   100% {
     top: 100%;
-    left: 29%;
+    left: 56%;
     opacity: 1.0;
     -webkit-transform: skew(-30deg);
     transform: skew(-30deg);
@@ -34004,7 +34012,7 @@ page-inicio .imagenCategoria {
 @keyframes fallsway15 {
   0% {
     top: -5%;
-    left: 60%;
+    left: 85%;
     opacity: 1.0;
     -webkit-transform: skew(-30deg);
     transform: skew(-30deg);
@@ -34026,7 +34034,7 @@ page-inicio .imagenCategoria {
   }
   100% {
     top: 100%;
-    left: 29%;
+    left: 56%;
     opacity: 1.0;
     -webkit-transform: skew(-30deg);
     transform: skew(-30deg);
@@ -34036,7 +34044,7 @@ page-inicio .imagenCategoria {
 @-webkit-keyframes fallsway16 {
   0% {
     top: -5%;
-    left: 38%;
+    left: 59%;
     opacity: 1.0;
     -webkit-transform: skew(-30deg);
     transform: skew(-30deg);
@@ -34047,7 +34055,7 @@ page-inicio .imagenCategoria {
     transform: skew(30deg);
   }
   50% {
-    left: 37%;
+    left: 10%;
     -webkit-transform: skew(-30deg);
     transform: skew(-30deg);
   }
@@ -34058,7 +34066,7 @@ page-inicio .imagenCategoria {
   }
   100% {
     top: 100%;
-    left: 89%;
+    left: 49%;
     opacity: 1.0;
     -webkit-transform: skew(-30deg);
     transform: skew(-30deg);
@@ -34068,7 +34076,7 @@ page-inicio .imagenCategoria {
 @keyframes fallsway16 {
   0% {
     top: -5%;
-    left: 38%;
+    left: 59%;
     opacity: 1.0;
     -webkit-transform: skew(-30deg);
     transform: skew(-30deg);
@@ -34079,7 +34087,7 @@ page-inicio .imagenCategoria {
     transform: skew(30deg);
   }
   50% {
-    left: 37%;
+    left: 10%;
     -webkit-transform: skew(-30deg);
     transform: skew(-30deg);
   }
@@ -34090,7 +34098,7 @@ page-inicio .imagenCategoria {
   }
   100% {
     top: 100%;
-    left: 89%;
+    left: 49%;
     opacity: 1.0;
     -webkit-transform: skew(-30deg);
     transform: skew(-30deg);
@@ -34100,7 +34108,7 @@ page-inicio .imagenCategoria {
 @-webkit-keyframes fallsway17 {
   0% {
     top: -5%;
-    left: 5%;
+    left: 36%;
     opacity: 1.0;
     -webkit-transform: skew(-30deg);
     transform: skew(-30deg);
@@ -34111,7 +34119,7 @@ page-inicio .imagenCategoria {
     transform: skew(30deg);
   }
   50% {
-    left: 19%;
+    left: 34%;
     -webkit-transform: skew(-30deg);
     transform: skew(-30deg);
   }
@@ -34122,7 +34130,7 @@ page-inicio .imagenCategoria {
   }
   100% {
     top: 100%;
-    left: 49%;
+    left: 23%;
     opacity: 1.0;
     -webkit-transform: skew(-30deg);
     transform: skew(-30deg);
@@ -34132,7 +34140,7 @@ page-inicio .imagenCategoria {
 @keyframes fallsway17 {
   0% {
     top: -5%;
-    left: 5%;
+    left: 36%;
     opacity: 1.0;
     -webkit-transform: skew(-30deg);
     transform: skew(-30deg);
@@ -34143,7 +34151,7 @@ page-inicio .imagenCategoria {
     transform: skew(30deg);
   }
   50% {
-    left: 19%;
+    left: 34%;
     -webkit-transform: skew(-30deg);
     transform: skew(-30deg);
   }
@@ -34154,7 +34162,7 @@ page-inicio .imagenCategoria {
   }
   100% {
     top: 100%;
-    left: 49%;
+    left: 23%;
     opacity: 1.0;
     -webkit-transform: skew(-30deg);
     transform: skew(-30deg);
@@ -34164,7 +34172,7 @@ page-inicio .imagenCategoria {
 @-webkit-keyframes fallsway18 {
   0% {
     top: -5%;
-    left: 62%;
+    left: 27%;
     opacity: 1.0;
     -webkit-transform: skew(-30deg);
     transform: skew(-30deg);
@@ -34175,7 +34183,7 @@ page-inicio .imagenCategoria {
     transform: skew(30deg);
   }
   50% {
-    left: 92%;
+    left: 59%;
     -webkit-transform: skew(-30deg);
     transform: skew(-30deg);
   }
@@ -34186,7 +34194,7 @@ page-inicio .imagenCategoria {
   }
   100% {
     top: 100%;
-    left: 15%;
+    left: 18%;
     opacity: 1.0;
     -webkit-transform: skew(-30deg);
     transform: skew(-30deg);
@@ -34196,7 +34204,7 @@ page-inicio .imagenCategoria {
 @keyframes fallsway18 {
   0% {
     top: -5%;
-    left: 62%;
+    left: 27%;
     opacity: 1.0;
     -webkit-transform: skew(-30deg);
     transform: skew(-30deg);
@@ -34207,7 +34215,7 @@ page-inicio .imagenCategoria {
     transform: skew(30deg);
   }
   50% {
-    left: 92%;
+    left: 59%;
     -webkit-transform: skew(-30deg);
     transform: skew(-30deg);
   }
@@ -34218,7 +34226,7 @@ page-inicio .imagenCategoria {
   }
   100% {
     top: 100%;
-    left: 15%;
+    left: 18%;
     opacity: 1.0;
     -webkit-transform: skew(-30deg);
     transform: skew(-30deg);
@@ -34228,7 +34236,7 @@ page-inicio .imagenCategoria {
 @-webkit-keyframes fallsway19 {
   0% {
     top: -5%;
-    left: 30%;
+    left: 52%;
     opacity: 1.0;
     -webkit-transform: skew(-30deg);
     transform: skew(-30deg);
@@ -34239,7 +34247,7 @@ page-inicio .imagenCategoria {
     transform: skew(30deg);
   }
   50% {
-    left: 7%;
+    left: 69%;
     -webkit-transform: skew(-30deg);
     transform: skew(-30deg);
   }
@@ -34250,7 +34258,7 @@ page-inicio .imagenCategoria {
   }
   100% {
     top: 100%;
-    left: 57%;
+    left: 76%;
     opacity: 1.0;
     -webkit-transform: skew(-30deg);
     transform: skew(-30deg);
@@ -34260,7 +34268,7 @@ page-inicio .imagenCategoria {
 @keyframes fallsway19 {
   0% {
     top: -5%;
-    left: 30%;
+    left: 52%;
     opacity: 1.0;
     -webkit-transform: skew(-30deg);
     transform: skew(-30deg);
@@ -34271,7 +34279,7 @@ page-inicio .imagenCategoria {
     transform: skew(30deg);
   }
   50% {
-    left: 7%;
+    left: 69%;
     -webkit-transform: skew(-30deg);
     transform: skew(-30deg);
   }
@@ -34282,7 +34290,7 @@ page-inicio .imagenCategoria {
   }
   100% {
     top: 100%;
-    left: 57%;
+    left: 76%;
     opacity: 1.0;
     -webkit-transform: skew(-30deg);
     transform: skew(-30deg);
@@ -34292,7 +34300,7 @@ page-inicio .imagenCategoria {
 @-webkit-keyframes fallsway20 {
   0% {
     top: -5%;
-    left: 19%;
+    left: 74%;
     opacity: 1.0;
     -webkit-transform: skew(-30deg);
     transform: skew(-30deg);
@@ -34303,7 +34311,7 @@ page-inicio .imagenCategoria {
     transform: skew(30deg);
   }
   50% {
-    left: 91%;
+    left: 31%;
     -webkit-transform: skew(-30deg);
     transform: skew(-30deg);
   }
@@ -34314,7 +34322,7 @@ page-inicio .imagenCategoria {
   }
   100% {
     top: 100%;
-    left: 71%;
+    left: 58%;
     opacity: 1.0;
     -webkit-transform: skew(-30deg);
     transform: skew(-30deg);
@@ -34324,7 +34332,7 @@ page-inicio .imagenCategoria {
 @keyframes fallsway20 {
   0% {
     top: -5%;
-    left: 19%;
+    left: 74%;
     opacity: 1.0;
     -webkit-transform: skew(-30deg);
     transform: skew(-30deg);
@@ -34335,7 +34343,7 @@ page-inicio .imagenCategoria {
     transform: skew(30deg);
   }
   50% {
-    left: 91%;
+    left: 31%;
     -webkit-transform: skew(-30deg);
     transform: skew(-30deg);
   }
@@ -34346,7 +34354,7 @@ page-inicio .imagenCategoria {
   }
   100% {
     top: 100%;
-    left: 71%;
+    left: 58%;
     opacity: 1.0;
     -webkit-transform: skew(-30deg);
     transform: skew(-30deg);
@@ -34356,21 +34364,21 @@ page-inicio .imagenCategoria {
 @-webkit-keyframes fallsway {
   0% {
     top: -10%;
-    left: 15%;
+    left: 12%;
     opacity: 1.0;
   }
   25% {
-    left: 64%;
+    left: 54%;
   }
   50% {
-    left: 28%;
+    left: 39%;
   }
   75% {
-    left: 9%;
+    left: 75%;
   }
   100% {
     top: 110%;
-    left: 40%;
+    left: 42%;
     opacity: 1.0;
   }
 }
@@ -34378,21 +34386,21 @@ page-inicio .imagenCategoria {
 @keyframes fallsway {
   0% {
     top: -10%;
-    left: 15%;
+    left: 12%;
     opacity: 1.0;
   }
   25% {
-    left: 64%;
+    left: 54%;
   }
   50% {
-    left: 28%;
+    left: 39%;
   }
   75% {
-    left: 9%;
+    left: 75%;
   }
   100% {
     top: 110%;
-    left: 40%;
+    left: 42%;
     opacity: 1.0;
   }
 }
