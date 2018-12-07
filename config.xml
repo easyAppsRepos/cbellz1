@@ -127,8 +127,11 @@
 
  <plugin name="phonegap-plugin-push" version="2.2.3" source="npm">
     <param name="SENDER_ID" value="187646798187" />
+     <variable name="FCM_VERSION" value="15.0.0" />
  
 </plugin>
+
+
 
 <gap:plugin name="cordova-plugin-x-socialsharing" source="npm" />
 
