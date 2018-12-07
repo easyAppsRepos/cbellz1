@@ -168,12 +168,12 @@
   </plugin>
 
  -->
-    <plugin name="cordova-plugin-googlemaps" source="npm" version="2.2.9" >
+    <plugin name="cordova-plugin-googlemaps" source="npm" version="2.4.5" >
 
       <variable name="API_KEY_FOR_ANDROID" value="AIzaSyAT-tTbOja69paXaiAgAtNi9nGHRh75bzk" />
     <variable name="API_KEY_FOR_IOS" value="AIzaSyDjyHD9s5AzGciXjVHuney4MzKtduyHIPc" />
-        <variable name="PLAY_SERVICES_VERSION" value="15+" />
-    <variable name="ANDROID_SUPPORT_V4_VERSION" value="24.1.0" />
+<!--         <variable name="PLAY_SERVICES_VERSION" value="15+" />
+    <variable name="ANDROID_SUPPORT_V4_VERSION" value="24.1.0" /> -->
 
 
 
