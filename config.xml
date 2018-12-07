@@ -39,7 +39,7 @@
 
 
   <preference name="android-minSdkVersion" value="19"/>
-      <preference name="android-targetSdkVersion"   value="23" />     
+      <preference name="android-targetSdkVersion"   value="26" />     
 
 
   <preference name="BackupWebStorage" value="none"/>
@@ -51,6 +51,20 @@
 <edit-config file="*-Info.plist" mode="merge" target="UIViewControllerBasedStatusBarAppearance">
     <false />
 </edit-config>
+
+
+
+<edit-config file="*-Info.plist" target="NSCameraUsageDescription"  mode="overwrite">
+    <string>Para cargar imagenes de perfil</string>
+</edit-config>
+
+
+
+<edit-config file="*-Info.plist" target="NSPhotoLibraryUsageDescription"  mode="overwrite">
+    <string>Para cargar imagenes de perfil</string>
+</edit-config>
+
+
 
 
 <!--     <feature name="StatusBar">
@@ -104,8 +118,14 @@
 <plugin name="uk.co.workingedge.phonegap.plugin.launchnavigator" source="npm" />
 
 
+<platform name="android">
+  <resource-file src="google-services.json" target="app/google-services.json" />
+</platform>
+<platform name="ios">
+  
+</platform>
 
- <plugin name="phonegap-plugin-push" version="1.11.1" source="npm">
+ <plugin name="phonegap-plugin-push" version="2.2.3" source="npm">
     <param name="SENDER_ID" value="187646798187" />
  
 </plugin>
@@ -114,20 +134,20 @@
 
   <plugin name="cordova-plugin-ionic-keyboard"  source="npm" />
     <plugin name="cordova-plugin-ionic-webview"  source="npm" />
-
+<!--
 <platform name="ios" />
 
 <platform name="android">
-<!--     <config-file parent="/resources" target="./res/values/strings.xml">
+     <config-file parent="/resources" target="./res/values/strings.xml">
         <string name="fb_app_id">1983888255255595</string>
         <string name="fb_app_name">BeYou</string>
-    </config-file> -->
+    </config-file>
 
   </platform>
-  
+   -->
     <plugin name="cordova-plugin-facebook4" source="npm" spec="1.7.4">
             <param name="APP_ID" value="1983888255255595" />
-            <param name="APP_NAME" value="BeYou" />
+            <param name="APP_NAME" value="Yourbeauty" />
 </plugin>
 
 
@@ -159,6 +179,7 @@
 
   </plugin>
 
+<preference name="AndroidPersistentFileLocation" value="Compatibility" />
 
   <plugin name="cordova-plugin-request-location-accuracy" source="npm" />
   <plugin name="cordova.plugins.diagnostic" source="npm" />
