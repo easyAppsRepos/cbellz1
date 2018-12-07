@@ -196,18 +196,22 @@ var InicioPage = (function () {
         this.categorias = [];
         this.expUser = 254;
         events.subscribe('loginOK', function () {
-            // user and time are the same arguments passed in `events.publish(user, time)`
-            _this.apiProvider.verificarLogin()
-                .then(function (data) {
-                console.log(data);
-                if (data) {
-                    _this.inicioSesion = false;
-                    _this.userDataProfile = data;
-                }
-                else {
-                    _this.inicioSesion = true;
-                }
-            });
+            setTimeout(function () {
+                _this.zone.run(function () {
+                    // user and time are the same arguments passed in `events.publish(user, time)`
+                    _this.apiProvider.verificarLogin()
+                        .then(function (data) {
+                        console.log(data);
+                        if (data) {
+                            _this.inicioSesion = false;
+                            _this.userDataProfile = data;
+                        }
+                        else {
+                            _this.inicioSesion = true;
+                        }
+                    });
+                });
+            }, 500);
         });
         this.selectOptions = {
             title: 'Selecciona una Subcategoria',
