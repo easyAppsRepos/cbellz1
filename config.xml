@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <widget id          =     "com.ionicframework.beyou"
-        version     =    "1.0.0"
+        version     =    "1.1.0"
         xmlns       =    "http://www.w3.org/ns/widgets"
         xmlns:gap   =    "http://phonegap.com/ns/1.0"
-        versionCode =   "1">
+        versionCode =   "2">
   <name>Yourbeauty</name>
   <description>
         Yourbeauty
     </description>
-  <author email="you@example.com" href="http://example.com.com/">
+  <author email="easyappsinfo@gmail.com" href="http://example.com.com/">
       Yourbeauty
     </author>
       <access origin="*"/>
@@ -65,7 +65,7 @@
 </edit-config>
 
 <edit-config file="*-Info.plist" target="NSLocationWhenInUseUsageDescription"  mode="merge">
-    <string>Necesitamos acceder a tu ubicacion para encontrar los centros cercanos</string>
+    <string>Necesitamos acceder a tu ubicacion para encontrar los centros de belleza cercanos</string>
 </edit-config>
 
 
