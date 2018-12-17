@@ -121,8 +121,9 @@ var FiltrofavPipe = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(11);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_api_api__ = __webpack_require__(105);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_moment__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_moment___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_moment__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_platform_browser__ = __webpack_require__(27);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_moment__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_moment___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_moment__);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -139,6 +140,8 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
+
 /**
  * Generated class for the MisReservasPage page.
  *
@@ -146,10 +149,12 @@ var __metadata = (this && this.__metadata) || function (k, v) {
  * Ionic pages and navigation.
  */
 var MisReservasPage = (function () {
-    function MisReservasPage(navCtrl, navParams, modalCtrl, loadingCtrl, events, apiProvider) {
+    function MisReservasPage(navCtrl, DomSanitizer, navParams, modalCtrl, alertCtrl, loadingCtrl, events, apiProvider) {
         this.navCtrl = navCtrl;
+        this.DomSanitizer = DomSanitizer;
         this.navParams = navParams;
         this.modalCtrl = modalCtrl;
+        this.alertCtrl = alertCtrl;
         this.loadingCtrl = loadingCtrl;
         this.events = events;
         this.apiProvider = apiProvider;
@@ -201,7 +206,7 @@ var MisReservasPage = (function () {
     };
     MisReservasPage.prototype.getDattt = function (str) {
         if (str) {
-            return __WEBPACK_IMPORTED_MODULE_3_moment__["utc"](str).format('h:mm a');
+            return __WEBPACK_IMPORTED_MODULE_4_moment__["utc"](str).format('h:mm a');
         }
         else {
             return ' ';
@@ -228,15 +233,33 @@ var MisReservasPage = (function () {
             }
             else {
                 console.log('Ha ocurrido un error');
+                _this.reintentarAlert(_this.ionViewDidEnter.bind(_this));
             }
             loading.dismiss();
         });
+    };
+    MisReservasPage.prototype.reintentarAlert = function (funcionEnviar) {
+        var mensaje = "<div>  \n                      <p>No hemos podido conectar. \n                      Verifica tu conexi\u00F3n a Internet para continuar</p>\n                      \n                   <div>";
+        var alert = this.alertCtrl.create({
+            title: 'Error de conexión',
+            subTitle: this.DomSanitizer.bypassSecurityTrustHtml(mensaje),
+            buttons: [
+                {
+                    text: 'Reintentar',
+                    handler: function () {
+                        funcionEnviar();
+                    }
+                },
+            ],
+            enableBackdropDismiss: false
+        });
+        alert.present();
     };
     MisReservasPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'page-mis-reservas',template:/*ion-inline-start:"/Users/jose/Documents/beyouApp/beYou/src/pages/mis-reservas/mis-reservas.html"*/'<!--\n  Generated template for the MisReservasPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar>\n\n\n      <ion-buttons start>\n    <button ion-button menuToggle>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n    </ion-buttons>\n\n    \n    <ion-title>Mis Reservaciones</ion-title>\n  </ion-navbar>\n\n\n<ion-segment mode="md" [(ngModel)]="section">\n    <ion-segment-button   style=\'font-size: 15px;text-transform: none !important;\' value="one" >\n	       <span> \n	       <img  *ngIf=\'section=="one"\' style=\'vertical-align: middle;margin-right: 10px;\' src="assets/imgs/calendarBlanco.png">\n	       <img  *ngIf=\'!(section=="one")\' style=\'vertical-align: middle;margin-right: 10px;\' src="assets/imgs/calendarGris.png">\n	        Activas</span>\n	    </ion-segment-button>\n\n\n\n	    <ion-segment-button  value="two" style=\'\n    	font-size: 15px;text-transform: none !important;\' >\n    	<span>\n	      <img  *ngIf=\'section=="two"\' style=\'vertical-align: middle;margin-right: 10px;\' src="assets/imgs/equisBlanca.png"> \n	      <img  *ngIf=\'!(section=="two")\'  style=\'vertical-align: middle;margin-right: 10px;\' src="assets/imgs/equisGris.png"> \n\n	      \n\n	      Inactivas\n	       </span>\n	    </ion-segment-button>\n</ion-segment>\n\n\n\n</ion-header>\n\n\n<ion-content >\n\n\n\n\n\n\n<div [ngSwitch]="section">\n    <ion-list mode="md" *ngSwitchCase="\'one\'">\n\n    	<div  style=\'    margin: 30px;\n    text-align: center;\n    font-size: 16px;\n    color: darkgray;\' *ngIf="(reservas | filtrofav: filterFav).length == 0" >No hay reservas en esta seccion\n\n\n    	</div>\n		<div class=\'cardReserva\' *ngFor="let n of reservas | filtrofav: filterFav" (click)=\'goDetalle(n.idCita)\'>\n\n		<div>\n				<div style="display: inline-block;    width: 100%;">\n				<div  class="fechaItem" \n				[ngClass]="{\'citaE3sb3\':n.estado == 3,\'citaE4sb3\':n.estado == 4 || n.estado == 7, \'citaE2sb3\': n.estado == 5, \'citaE1sb3\':n.estado == 2, \'citaE0sb3\':n.estado == 1}">\n						<span style="display: block; text-transform: uppercase;">{{getMes(n.horaInicio)}}</span>\n						<span style="display: block;font-size: 27px;font-weight: 800">{{getDia(n.horaInicio)}}</span>\n						<span *ngIf=\'n.horaInicio\' style="display: block;">{{getDattt(n.horaInicio)}}</span>\n				</div>\n				<div style="    display: inline-block;vertical-align: middle;    max-width: 58%;">\n				<span *ngIf=\'n.estado==1\' class=\'estadoReservas\' style="color: #efd801;">\n				PENDIENTE CONFIRMAR\n				</span>\n				<span *ngIf=\'n.estado==2\'  class=\'estadoReservas\' style="color:#5072C0 ">\n				CONFIRMADA\n				</span>\n				<span *ngIf=\'n.estado==3\'  class=\'estadoReservas\' style="color: #2FD99B;">\n				COMPLETA\n				</span>\n				<span *ngIf=\'n.estado==5\'  class=\'estadoReservas\' style="color: #FFC859">\n				REPROGRAMADA - PENDIENTE</span>\n				<span *ngIf=\'n.estado==4\' class=\'estadoReservas\' style="color: #f75669;">\n				DECLINADA\n				</span>\n\n						<span *ngIf=\'n.estado==7\' class=\'estadoReservas\' style="color: #f75669;">\n				CANCELADA\n				</span>\n\n\n				<span style="font-size: 15px;\n    color: #8a8888;    font-weight: 500;">\n				{{n.nombreCentro}}\n				</span>\n				<span  class=\'estadoReservas2\' style="color: #999;">\n				{{n.servicioMain}} <span *ngIf=\'n.cantServicios>1\'> y {{getNumMen(n.cantServicios)}} más </span> \n				</span>\n				</div>\n				<ion-icon class=\'iconR\' name="arrow-forward"></ion-icon>\n				</div>\n\n		</div>\n		</div>\n\n\n		\n\n\n    </ion-list>\n\n    <ion-list  mode="md" *ngSwitchCase="\'two\'">\n\n\n    	<div  style=\'    margin: 30px;\n    text-align: center;\n    font-size: 16px;\n    color: darkgray;\' *ngIf="(reservas | filtrofav: filterFav2).length == 0" >No hay reservas en esta seccion\n\n    \n    	</div>\n\n    	\n\n			<div class=\'cardReserva\' *ngFor="let n of reservas.slice().reverse() | filtrofav: filterFav2" (click)=\'goDetalle(n.idCita)\'>\n\n		<div>\n				<div style="display: inline-block;    width: 100%;">\n				<div  class="fechaItem">\n						<span style="display: block; text-transform: uppercase;">{{getMes(n.horaInicio)}}</span>\n						<span style="display: block;font-size: 27px;font-weight: 800">{{getDia(n.horaInicio)}}</span>\n						<span *ngIf=\'n.horaInicio\' style="display: block;">{{getDattt(n.horaInicio)}}</span>\n				</div>\n				<div style="    display: inline-block;vertical-align: middle;    max-width: 58%;">\n				<span *ngIf=\'n.estado==1\' class=\'estadoReservas\' style="color: rgb(250,195,0);">\n				PENDIENTE CONFIRMAR\n				</span>\n				<span *ngIf=\'n.estado==2\'  class=\'estadoReservas\' style="color: #2FD99B;">\n				CONFIRMADA\n				</span>\n				<span *ngIf=\'n.estado==3\'  class=\'estadoReservas\' style="color: #2FD99B;">\n				COMPLETA\n				</span>\n				<span *ngIf=\'n.estado==5\'  class=\'estadoReservas\' style="color: #2FD99B;">\n				REPROGRAMADA - PENDIENTE</span>\n							<span *ngIf=\'n.estado==4\' class=\'estadoReservas\' style="color: #EC527E;">\n				DECLINADA\n				</span>\n				<span *ngIf=\'n.estado==7\' class=\'estadoReservas\' style="color: #EC527E;">\n				CANCELADA\n				</span>\n				<span style="font-size: 15px;\n    color: #8a8888;">\n				{{n.nombreCentro}}\n				</span>\n				<span  class=\'estadoReservas2\' style="color: #999;">\n				{{n.servicioMain}} \n				<span *ngIf=\'n.cantServicios>1\'> y {{getNumMen(n.cantServicios)}} más </span> \n				con {{n.nombreEmpleado}}\n				</span>\n				</div>\n				<ion-icon class=\'iconR\' name="arrow-forward"></ion-icon>\n				</div>\n\n		</div>\n\n\n		</div>\n\n\n\n\n\n\n    </ion-list>\n\n</div>\n\n\n\n</ion-content>\n'/*ion-inline-end:"/Users/jose/Documents/beyouApp/beYou/src/pages/mis-reservas/mis-reservas.html"*/,
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["NavController"], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["NavParams"], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["ModalController"], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["LoadingController"], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["Events"], __WEBPACK_IMPORTED_MODULE_2__providers_api_api__["a" /* ApiProvider */]])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["NavController"], __WEBPACK_IMPORTED_MODULE_3__angular_platform_browser__["c" /* DomSanitizer */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["NavParams"], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["ModalController"], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["AlertController"], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["LoadingController"], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["Events"], __WEBPACK_IMPORTED_MODULE_2__providers_api_api__["a" /* ApiProvider */]])
     ], MisReservasPage);
     return MisReservasPage;
 }());

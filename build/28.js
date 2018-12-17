@@ -1,6 +1,6 @@
 webpackJsonp([28],{
 
-/***/ 433:
+/***/ 431:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -8,7 +8,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CentrocuponesPageModule", function() { return CentrocuponesPageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(11);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__centrocupones__ = __webpack_require__(472);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__centrocupones__ = __webpack_require__(470);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -38,14 +38,15 @@ var CentrocuponesPageModule = (function () {
 
 /***/ }),
 
-/***/ 472:
+/***/ 470:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CentrocuponesPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(11);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_api_api__ = __webpack_require__(105);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_platform_browser__ = __webpack_require__(27);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_api_api__ = __webpack_require__(105);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -62,9 +63,11 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 var CentrocuponesPage = (function () {
-    function CentrocuponesPage(navCtrl, navParams, modalCtrl, loadingCtrl, events, apiProvider, alertCtrl) {
+    function CentrocuponesPage(navCtrl, DomSanitizer, navParams, modalCtrl, loadingCtrl, events, apiProvider, alertCtrl) {
         this.navCtrl = navCtrl;
+        this.DomSanitizer = DomSanitizer;
         this.navParams = navParams;
         this.modalCtrl = modalCtrl;
         this.loadingCtrl = loadingCtrl;
@@ -97,7 +100,7 @@ var CentrocuponesPage = (function () {
            this.longitudePerson = -84.2307427;
        */
         var _this = this;
-        var loading = this.loadingCtrl.create({ content: "Obteniendo ubicacion", enableBackdropDismiss: true });
+        var loading = this.loadingCtrl.create({ content: "Obteniendo ubicacion", enableBackdropDismiss: false });
         loading.present();
         console.log('gps');
         navigator.geolocation.getCurrentPosition(function (pos) {
@@ -123,8 +126,26 @@ var CentrocuponesPage = (function () {
             }
             else {
                 console.log('Ha ocurrido un error');
+                _this.reintentarAlert(_this.getCC.bind(_this));
             }
         });
+    };
+    CentrocuponesPage.prototype.reintentarAlert = function (funcionEnviar) {
+        var mensaje = "<div>  \n                      <p>No hemos podido conectar. \n                      Verifica tu conexi\u00F3n a Internet para continuar</p>\n                      \n                   <div>";
+        var alert = this.alertCtrl.create({
+            title: 'Error de conexión',
+            subTitle: this.DomSanitizer.bypassSecurityTrustHtml(mensaje),
+            buttons: [
+                {
+                    text: 'Reintentar',
+                    handler: function () {
+                        funcionEnviar();
+                    }
+                },
+            ],
+            enableBackdropDismiss: false
+        });
+        alert.present();
     };
     CentrocuponesPage.prototype.filtroCategoria = function () {
         //console.log('ionViewDidLoad FavoritosPage');
@@ -197,7 +218,7 @@ var CentrocuponesPage = (function () {
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'page-centrocupones',template:/*ion-inline-start:"/Users/jose/Documents/beyouApp/beYou/src/pages/centrocupones/centrocupones.html"*/'<ion-header>\n  <ion-navbar  color="headerColor">\n\n    <ion-buttons start>\n    <button ion-button menuToggle>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n    </ion-buttons>\n\n    <ion-title>\nUsar Cupon\n\n\n    </ion-title>\n\n          <ion-buttons end>\n\n       \n\n      </ion-buttons>\n\n\n\n  </ion-navbar>\n\n\n   \n\n\n</ion-header>\n\n<ion-content >\n  <div class=\'alertaCupon\' style="background-color:#EC527E">\n\n  		<span *ngIf=\'favoritos[0]?.tipo=="1"\'> \n  			\n  			 <span  *ngIf=\'favoritos[0]?.tipoDescuento=="1"\'> \n  				Algunos servicios con {{favoritos[0]?.porcentajeDescuento}}% de descuento\n  			</span>\n  			<span  *ngIf=\'favoritos[0]?.tipoDescuento=="2"\'>\n  				Algunos servicios con ${{favoritos[0]?.porcentajeDescuento}} de descuento\n  			</span>\n\n  		</span>\n\n  		<span *ngIf=\'favoritos[0]?.tipo=="2"\'>\n\n  			<span  *ngIf=\'favoritos[0]?.tipoDescuento=="1"\'> \n  				Todos los servicios con {{favoritos[0]?.porcentajeDescuento}}% de descuento\n  			</span>\n  			<span  *ngIf=\'favoritos[0]?.tipoDescuento=="2"\'>\n  				Todos los servicios con ${{favoritos[0]?.porcentajeDescuento}} de descuento\n  			</span>\n  			\n\n  		</span>\n\n\n	  	\n\n	  </div>\n	\n\n    <ion-list mode="md" >\n\n\n        <div class=\'noResultado\' *ngIf="(favoritos)?.length === 0" >\n\n       <!--  No has marcado ningun negocio como favorito \n\n       	PONER ESPINER !!!!\n\n       -->\n\n    	</div> \n\n		<ion-card *ngFor="let n of favoritos" (click)=\'goCentro(n.idCentro)\' >\n		<ion-card-content>\n				<div style="\n				display: inline-block;    width: 100%;\n				">\n				<img src="http://50.116.17.150:3000/{{n.idFoto}}" \n        onError="this.src=\'assets/imgs/fotoComercio.png\';" style="\n				display: inline-block;\n				height: 90px;\n				width: 90px !important;\n				vertical-align: top;\n				">\n				<div style="    display: inline-block;\n    width: calc(100% - 105px);\n    margin-left: 10px;\n				">\n				<span style="margin: 2px 0px 0px 0px;\n				font-size: 19px;\n				color: #333;">{{n.nombreCentro}}</span>\n				<span style="    display: block;\n    font-size: 16px;\n    margin: 10px 0px;\n    font-weight: 800;\n    color: #EC527E;">${{n.pMin}} <span [hidden]=\'n.pMin == n.pMax\'>- ${{n.pMax}}</span></span>\n\n				<span class="itemComercio" >\n\n					<span style="  margin-right: 21px;  color: #888;\n    font-size: 15px;"><ion-icon [ngClass]="{\'colorGris\': n.cantRate==0}"  style=\'    margin-right: 8px;\n    color: rgb(249,199,53);\n    font-size: 21px;\n    vertical-align: middle;\' name="md-star"></ion-icon>{{n.rate  | number:\'1.1-2\'}} ({{n.cantRate\n}})</span>\n\n<!-- 					<span style="     color: #888;\n    font-size: 15px;  "><ion-icon style=\'  margin-right: 8px;      vertical-align: middle;   font-size: 21px;color:#2FD99B;\' name="ios-pin"></ion-icon>{{n.distance | number:\'1.1-2\'}} Km</span> -->\n\n				</span>\n\n				</div>\n				</div>\n\n		</ion-card-content>\n		</ion-card>\n\n\n\n\n\n\n\n\n\n    </ion-list>\n\n\n</ion-content>\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n'/*ion-inline-end:"/Users/jose/Documents/beyouApp/beYou/src/pages/centrocupones/centrocupones.html"*/,
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["NavController"], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["NavParams"], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["ModalController"], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["LoadingController"], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["Events"], __WEBPACK_IMPORTED_MODULE_2__providers_api_api__["a" /* ApiProvider */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["AlertController"]])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["NavController"], __WEBPACK_IMPORTED_MODULE_2__angular_platform_browser__["c" /* DomSanitizer */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["NavParams"], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["ModalController"], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["LoadingController"], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["Events"], __WEBPACK_IMPORTED_MODULE_3__providers_api_api__["a" /* ApiProvider */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["AlertController"]])
     ], CentrocuponesPage);
     return CentrocuponesPage;
 }());

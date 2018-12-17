@@ -179,13 +179,14 @@ var CuentaPage = (function () {
                 _this.apiProvider.getUserInfo({ idCliente: data.idCliente })
                     .then(function (datas) {
                     console.log(datas);
-                    if (datas[0].idCliente == data.idCliente) {
+                    if (datas && datas[0].idCliente == data.idCliente) {
                         _this.dataUserInput = JSON.parse(JSON.stringify(datas[0]));
                         _this.dataUser = datas[0];
                         _this.porcenBarra = (((_this.dataUser.exp % 1500) / (_this.dataUser.appexp)) * 100) + '%';
                     }
                     else {
                         console.log('Ha ocurrido un error');
+                        _this.reintentarAlert(_this.ionViewDidLoad.bind(_this));
                     }
                     loading_1.dismiss();
                 });
@@ -195,6 +196,23 @@ var CuentaPage = (function () {
                 // this.menuActivo = false;
             }
         });
+    };
+    CuentaPage.prototype.reintentarAlert = function (funcionEnviar) {
+        var mensaje = "<div>  \n                      <p>No hemos podido conectar. \n                      Verifica tu conexi\u00F3n a Internet para continuar</p>\n                      \n                   <div>";
+        var alert = this.alertCtrl.create({
+            title: 'Error de conexión',
+            subTitle: this.DomSanitizer.bypassSecurityTrustHtml(mensaje),
+            buttons: [
+                {
+                    text: 'Reintentar',
+                    handler: function () {
+                        funcionEnviar();
+                    }
+                },
+            ],
+            enableBackdropDismiss: false
+        });
+        alert.present();
     };
     CuentaPage.prototype.agregadoOk = function () {
         var alert = this.alertCtrl.create({
@@ -238,7 +256,7 @@ var CuentaPage = (function () {
                 .then(function (data) {
                 loading_2.dismiss();
                 console.log(data);
-                if (data.affectedRows > 0) {
+                if (data && data.affectedRows > 0) {
                     //this.storage.set(`usr_tok_by`, this.dataUser);
                     _this.storage.get('usr_tok_by').then(function (value) {
                         // console.log(value);
@@ -259,6 +277,7 @@ var CuentaPage = (function () {
                 }
                 else {
                     console.log('Ha ocurrido un error');
+                    _this.reintentarAlert(_this.guardarCambios.bind(_this));
                 }
             });
         }

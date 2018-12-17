@@ -47,6 +47,7 @@ var MapaPageModule = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(11);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_api_api__ = __webpack_require__(105);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_storage__ = __webpack_require__(53);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_platform_browser__ = __webpack_require__(27);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -65,6 +66,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 /**
  * Generated class for the MapaPage page.
  *
@@ -72,9 +74,10 @@ var __metadata = (this && this.__metadata) || function (k, v) {
  * Ionic pages and navigation.
  */
 var MapaPage = (function () {
-    function MapaPage(navCtrl, navParams, modalCtrl, loadingCtrl, events, apiProvider, alertCtrl, storage, plt, ngZone) {
+    function MapaPage(navCtrl, DomSanitizer, navParams, modalCtrl, loadingCtrl, events, apiProvider, alertCtrl, storage, plt, ngZone) {
         var _this = this;
         this.navCtrl = navCtrl;
+        this.DomSanitizer = DomSanitizer;
         this.navParams = navParams;
         this.modalCtrl = modalCtrl;
         this.loadingCtrl = loadingCtrl;
@@ -228,40 +231,46 @@ var MapaPage = (function () {
                 console.log(dda);
                 _this.apiProvider.getCentrosMapa(dda)
                     .then(function (data) {
-                    console.log(data);
-                    _this.dataMarcas = data;
-                    data.forEach(function (element, index) {
-                        var imagenLink = _this.pathToImg + 'imgs/mdactive.png';
-                        var htmlInfoWindow = new plugin.google.maps.HtmlInfoWindow();
-                        var frame = document.createElement('div');
-                        frame.className = 'centradoTexto';
-                        frame.innerHTML = ["<ion-card><ion-card-content><div style=\"padding:10px 0px;display:inline-block;width: 100%;\">\n                <img src=\"http://50.116.17.150:3000/" + element.idFoto + "\" \n        onError=\"this.src='assets/imgs/fotoComercio.png';\"\n        style=\"display: inline-block;height: 50px;margin-right:5px; width: 50px !important;vertical-align: top;\">\n    <div style=\"display: inline-block;    width: 150px;\n    white-space: nowrap;\n    overflow: overlay;\n    text-overflow: ellipsis;\">\n     <span style=\"margin: 2px 0px 0px 0px;font-size: 15px;color: #333;\">" + element.nombre + "</span><br>\n <span class=\"itemComercio\">\n <span style=\"color:#888;font-size: 14px;\">\n\n <ion-icon style='font-size:16px' name='md-star' role='img' class='icon icon-ios ion-md-star ratingStar'> </ion-icon>" + (element.rate || 0) + "  (" + element.cantRate + ")</span>\n\n\n\n        <span style=\"    display: block;font-size: 14px;font-weight: 800;\n    color: #EC527E;\">$" + element.pMin + "<span [hidden]='" + element.pMin + " == " + element.pMax + "'>- $" + element.pMax + "</span></span>\n</span>\n    </div></div></ion-card-content></ion-card>"].join("");
-                        console.log(frame.getElementsByTagName("DIV"));
-                        var button = frame.getElementsByTagName("DIV")[0];
-                        button.addEventListener("click", function () {
-                            _this.ngZone.run(function () {
-                                _this.navCtrl.push('PerfilCentroPage', { 'idCentro': element.idCentro, 'idServicioSeleccionado': _this.idCategoriaS });
+                    if (data) {
+                        console.log(data);
+                        _this.dataMarcas = data;
+                        data.forEach(function (element, index) {
+                            var imagenLink = _this.pathToImg + 'imgs/mdactive.png';
+                            var htmlInfoWindow = new plugin.google.maps.HtmlInfoWindow();
+                            var frame = document.createElement('div');
+                            frame.className = 'centradoTexto';
+                            frame.innerHTML = ["<ion-card><ion-card-content><div style=\"padding:10px 0px;display:inline-block;width: 100%;\">\n                <img src=\"http://50.116.17.150:3000/" + element.idFoto + "\" \n        onError=\"this.src='assets/imgs/fotoComercio.png';\"\n        style=\"display: inline-block;height: 50px;margin-right:5px; width: 50px !important;vertical-align: top;\">\n    <div style=\"display: inline-block;    width: 150px;\n    white-space: nowrap;\n    overflow: overlay;\n    text-overflow: ellipsis;\">\n     <span style=\"margin: 2px 0px 0px 0px;font-size: 15px;color: #333;\">" + element.nombre + "</span><br>\n <span class=\"itemComercio\">\n <span style=\"color:#888;font-size: 14px;\">\n\n <ion-icon style='font-size:16px' name='md-star' role='img' class='icon icon-ios ion-md-star ratingStar'> </ion-icon>" + (element.rate || 0) + "  (" + element.cantRate + ")</span>\n\n\n\n        <span style=\"    display: block;font-size: 14px;font-weight: 800;\n    color: #EC527E;\">$" + element.pMin + "<span [hidden]='" + element.pMin + " == " + element.pMax + "'>- $" + element.pMax + "</span></span>\n</span>\n    </div></div></ion-card-content></ion-card>"].join("");
+                            console.log(frame.getElementsByTagName("DIV"));
+                            var button = frame.getElementsByTagName("DIV")[0];
+                            button.addEventListener("click", function () {
+                                _this.ngZone.run(function () {
+                                    _this.navCtrl.push('PerfilCentroPage', { 'idCentro': element.idCentro, 'idServicioSeleccionado': _this.idCategoriaS });
+                                });
+                            });
+                            htmlInfoWindow.setContent(frame, {
+                                width: "230px",
+                                height: "100px"
+                            });
+                            _this.map.addMarker({
+                                'position': { lng: element.longitud, lat: element.latitud },
+                                'icon': _this.pathToImg + 'imgs/mdactive.png'
+                            }, function (marker) {
+                                marker.on(plugin.google.maps.event.MARKER_CLICK, function () {
+                                    marker.setIcon(_this.pathToImg + 'imgs/mactive.png');
+                                    htmlInfoWindow.open(marker);
+                                });
+                                marker.on(plugin.google.maps.event.INFO_CLOSE, function () {
+                                    marker.setIcon(_this.pathToImg + 'imgs/mdactive.png');
+                                });
+                                //marker.trigger(plugin.google.maps.event.MARKER_CLICK);
                             });
                         });
-                        htmlInfoWindow.setContent(frame, {
-                            width: "230px",
-                            height: "100px"
-                        });
-                        _this.map.addMarker({
-                            'position': { lng: element.longitud, lat: element.latitud },
-                            'icon': _this.pathToImg + 'imgs/mdactive.png'
-                        }, function (marker) {
-                            marker.on(plugin.google.maps.event.MARKER_CLICK, function () {
-                                marker.setIcon(_this.pathToImg + 'imgs/mactive.png');
-                                htmlInfoWindow.open(marker);
-                            });
-                            marker.on(plugin.google.maps.event.INFO_CLOSE, function () {
-                                marker.setIcon(_this.pathToImg + 'imgs/mdactive.png');
-                            });
-                            //marker.trigger(plugin.google.maps.event.MARKER_CLICK);
-                        });
-                    });
-                    _this.loading.dismiss();
+                        _this.loading.dismiss();
+                    }
+                    else {
+                        _this.loading.dismiss();
+                        _this.reintentarAlert(_this.ionViewDidLoad.bind(_this));
+                    }
                 });
             });
         };
@@ -314,6 +323,23 @@ var MapaPage = (function () {
             }
         });
     };
+    MapaPage.prototype.reintentarAlert = function (funcionEnviar) {
+        var mensaje = "<div>  \n                      <p>No hemos podido conectar. \n                      Verifica tu conexi\u00F3n a Internet para continuar</p>\n                      \n                   <div>";
+        var alert = this.alertCtrl.create({
+            title: 'Error de conexión',
+            subTitle: this.DomSanitizer.bypassSecurityTrustHtml(mensaje),
+            buttons: [
+                {
+                    text: 'Reintentar',
+                    handler: function () {
+                        funcionEnviar();
+                    }
+                },
+            ],
+            enableBackdropDismiss: false
+        });
+        alert.present();
+    };
     MapaPage.prototype.getSCateg = function () {
         var _this = this;
         this.apiProvider.getSubcategorias({ idCategoria: this.idCategoriaS })
@@ -329,7 +355,9 @@ var MapaPage = (function () {
                 //this.buscarServicios(ddata,true,0);
             }
             else {
+                _this.loading.dismiss();
                 console.log('Ha ocurrido un error');
+                _this.reintentarAlert(_this.ionViewDidLoad.bind(_this));
             }
         });
     };
@@ -562,7 +590,7 @@ var MapaPage = (function () {
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'page-mapa',template:/*ion-inline-start:"/Users/jose/Documents/beyouApp/beYou/src/pages/mapa/mapa.html"*/'<!--\n  Generated template for the MapaPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n  <ion-navbar >\n<!--   	    <ion-buttons start>\n    <button ion-button style="    width: 33px;" (click)=\'regresawe()\'>\n      <ion-icon name="arrow-back"  ></ion-icon>\n    </button><ion-icon ios="ios-list" md="md-list"></ion-icon>\n    </ion-buttons> -->\n\n\n    <ion-title style=\'padding: 0px;\'>\n      <div style="    font-size: 14px;\n    font-weight: normal;\n    margin-top: 14px;">{{nombreCategoriaTitulo}}</div>\n    \n<ion-item style=\'background-color: transparent !important;    margin: auto;\n    width: 55%;\'>\n  \n  <ion-label style=\'display:none\'>Sub Categorias</ion-label>\n\n      <ion-select style=\'  \n        text-align: center;\n    color: white !important;\n    margin: 0px auto;\n    height: 25px;\n    padding: 0px;\' [(ngModel)]="subCategoriaSeleccionada2" (ionChange)="buscarServicios()" multiple="true" okText="Buscar"  cancelText="Cerrar">\n <ion-option  *ngFor="let n of sscategorias; let idx = index"   [value]="n.idSubcategoria" \n      >{{n.nombre}}</ion-option>\n\n  </ion-select>\n</ion-item>\n  </ion-title>\n\n\n          <ion-buttons end>\n\n        <button  (click)=\'goLista()\'   ion-button icon-only>\n        <ion-icon name="ios-list" style=\'font-color:white;color:white\'></ion-icon>\n      </button>\n      </ion-buttons>\n\n  </ion-navbar>\n</ion-header>\n\n<ion-content>\n\n<!--     <ion-grid>\n  <ion-row>\n\n    <ion-col col-6>\n      <ion-select  #select1 placeholder="Categoria" style=\'    -webkit-box-shadow: 0 2px 9px rgba(0, 0, 0, 0.3) !important;\n    box-shadow: 0 2px 9px rgba(0, 0, 0, 0.3) !important;\n\n    width: 100%;\n    max-width: 100%;\' [(ngModel)]="categoriaSeleccionada" (ionChange)="subcategorias=[];getSubCat($event,true)" multiple="false" okText="Filtrar"  cancelText="Cerrar">\n\n <ion-option   [value]="0" \n      >Todas</ion-option>\n\n\n <ion-option  *ngFor="let n of categorias; let idx = index" [selected]=\'true\'  [value]="n.idCategoria" \n      >{{n.nombre}}</ion-option>\n  </ion-select>\n\n    </ion-col>\n    <ion-col col-6>\n\n      <ion-select   placeholder="Sub Categoria" [disabled]=\'subcategorias?.length<1\' style=\'    -webkit-box-shadow: 0 2px 9px rgba(0, 0, 0, 0.3) !important;\n    box-shadow: 0 2px 9px rgba(0, 0, 0, 0.3) !important;\n\n    width: 100%;\n    max-width: 100%;\' [(ngModel)]="subCategoriaSeleccionada" (ionChange)="filtrarSubCategorias($event,true)" multiple="true" okText="Filtrar"  cancelText="Cerrar">\n\n\n\n <ion-option  *ngFor="let n of subcategorias; let idx = index" [selected]=\'true\'  [value]="n.idSubcategoria" \n      >{{n.nombre}}</ion-option>\n  </ion-select>\n\n    </ion-col>\n\n  </ion-row>\n</ion-grid>\n -->\n\n\n  <div id="map" ></div>  \n</ion-content>'/*ion-inline-end:"/Users/jose/Documents/beyouApp/beYou/src/pages/mapa/mapa.html"*/,
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["NavController"], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["NavParams"], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["ModalController"], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["LoadingController"], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["Events"], __WEBPACK_IMPORTED_MODULE_2__providers_api_api__["a" /* ApiProvider */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["AlertController"], __WEBPACK_IMPORTED_MODULE_3__ionic_storage__["b" /* Storage */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["Platform"], __WEBPACK_IMPORTED_MODULE_0__angular_core__["NgZone"]])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["NavController"], __WEBPACK_IMPORTED_MODULE_4__angular_platform_browser__["c" /* DomSanitizer */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["NavParams"], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["ModalController"], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["LoadingController"], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["Events"], __WEBPACK_IMPORTED_MODULE_2__providers_api_api__["a" /* ApiProvider */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["AlertController"], __WEBPACK_IMPORTED_MODULE_3__ionic_storage__["b" /* Storage */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["Platform"], __WEBPACK_IMPORTED_MODULE_0__angular_core__["NgZone"]])
     ], MapaPage);
     return MapaPage;
 }());

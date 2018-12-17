@@ -252,6 +252,7 @@ var InicioPage = (function () {
             }
             else {
                 console.log('Ha ocurrido un error');
+                _this.reintentarAlert(_this.ionViewDidLoad.bind(_this));
             }
         });
         this.apiProvider.verificarLogin()
@@ -311,6 +312,23 @@ var InicioPage = (function () {
                 _this.inicioSesion = true;
             }
         });
+    };
+    InicioPage.prototype.reintentarAlert = function (funcionEnviar) {
+        var mensaje = "<div>  \n                      <p>No hemos podido conectar. \n                      Verifica tu conexi\u00F3n a Internet para continuar</p>\n                      \n                   <div>";
+        var alert = this.alertCtrl.create({
+            title: 'Error de conexión',
+            subTitle: this.sanitizer.bypassSecurityTrustHtml(mensaje),
+            buttons: [
+                {
+                    text: 'Reintentar',
+                    handler: function () {
+                        funcionEnviar();
+                    }
+                },
+            ],
+            enableBackdropDismiss: false
+        });
+        alert.present();
     };
     /*
     <div class=" itemCa">

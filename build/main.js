@@ -205,6 +205,7 @@ var ApiProvider = (function () {
                 resolve(data);
             }, function (err) {
                 console.log(err);
+                resolve(false);
             });
         });
     };
@@ -225,6 +226,7 @@ var ApiProvider = (function () {
                 resolve(data);
             }, function (err) {
                 console.log(err);
+                resolve(false);
             });
         });
     };
@@ -245,6 +247,7 @@ var ApiProvider = (function () {
                 resolve(data);
             }, function (err) {
                 console.log(err);
+                resolve(false);
             });
         });
     };
@@ -305,6 +308,7 @@ var ApiProvider = (function () {
                 resolve(data);
             }, function (err) {
                 console.log(err);
+                resolve(false);
             });
         });
     };
@@ -315,6 +319,7 @@ var ApiProvider = (function () {
                 resolve(data);
             }, function (err) {
                 console.log(err);
+                resolve(false);
             });
         });
     };
@@ -325,6 +330,7 @@ var ApiProvider = (function () {
                 resolve(data);
             }, function (err) {
                 console.log(err);
+                resolve(false);
             });
         });
     };
@@ -335,6 +341,7 @@ var ApiProvider = (function () {
                 resolve(data);
             }, function (err) {
                 console.log(err);
+                resolve(false);
             });
         });
     };
@@ -345,13 +352,14 @@ var ApiProvider = (function () {
                 resolve(data);
             }, function (err) {
                 console.log(err);
+                resolve(false);
             });
         });
     };
     ApiProvider.prototype.getServiciosCategoria = function (credenciales) {
         var _this = this;
         return new Promise(function (resolve) {
-            _this.http.post(_this.api2 + '/getServiciosCategoria', JSON.stringify(credenciales), { headers: { 'Content-Type': 'application/json' } }).subscribe(function (data) {
+            _this.http.post(_this.api2 + '/getServiciosCategoria22', JSON.stringify(credenciales), { headers: { 'Content-Type': 'application/json' } }).subscribe(function (data) {
                 resolve(data);
             }, function (err) {
                 console.log(err);
@@ -375,6 +383,7 @@ var ApiProvider = (function () {
                 resolve(data);
             }, function (err) {
                 console.log(err);
+                resolve(false);
             });
         });
     };
@@ -415,10 +424,11 @@ var ApiProvider = (function () {
     ApiProvider.prototype.getCentroInfo = function (data) {
         var _this = this;
         return new Promise(function (resolve) {
-            _this.http.post(_this.api2 + '/getCentroInfo', JSON.stringify(data), { headers: { 'Content-Type': 'application/json' } }).subscribe(function (data) {
+            _this.http.post(_this.api2 + '/getCentroInfoFix', JSON.stringify(data), { headers: { 'Content-Type': 'application/json' } }).subscribe(function (data) {
                 resolve(data);
             }, function (err) {
                 console.log(err);
+                resolve(false);
             });
         });
     };
@@ -439,6 +449,7 @@ var ApiProvider = (function () {
                 resolve(data);
             }, function (err) {
                 console.log(err);
+                resolve(false);
             });
         });
     };
@@ -449,6 +460,7 @@ var ApiProvider = (function () {
                 resolve(data);
             }, function (err) {
                 console.log(err);
+                resolve(false);
             });
         });
     };
@@ -479,16 +491,18 @@ var ApiProvider = (function () {
                 resolve(data);
             }, function (err) {
                 console.log(err);
+                resolve(false);
             });
         });
     };
     ApiProvider.prototype.paquetesActivos = function (data) {
         var _this = this;
         return new Promise(function (resolve) {
-            _this.http.post(_this.api2 + '/paquetesActivos', JSON.stringify(data), { headers: { 'Content-Type': 'application/json' } }).subscribe(function (data) {
+            _this.http.post(_this.api2 + '/paquetesActivos22', JSON.stringify(data), { headers: { 'Content-Type': 'application/json' } }).subscribe(function (data) {
                 resolve(data);
             }, function (err) {
                 console.log(err);
+                resolve(false);
             });
         });
     };
@@ -499,6 +513,7 @@ var ApiProvider = (function () {
                 resolve(data);
             }, function (err) {
                 console.log(err);
+                resolve(false);
             });
         });
     };
@@ -509,6 +524,7 @@ var ApiProvider = (function () {
                 resolve(data);
             }, function (err) {
                 console.log(err);
+                resolve(false);
             });
         });
     };
@@ -529,6 +545,7 @@ var ApiProvider = (function () {
                 resolve(data);
             }, function (err) {
                 console.log(err);
+                resolve(false);
             });
         });
     };
@@ -539,6 +556,7 @@ var ApiProvider = (function () {
                 resolve(data);
             }, function (err) {
                 console.log(err);
+                resolve(false);
             });
         });
     };
@@ -620,6 +638,7 @@ var ApiProvider = (function () {
                 resolve(data);
             }, function (err) {
                 console.log(err);
+                resolve(false);
             });
         });
     };
@@ -660,6 +679,7 @@ var ApiProvider = (function () {
                 resolve(data);
             }, function (err) {
                 console.log(err);
+                resolve(false);
             });
         });
     };
@@ -705,19 +725,19 @@ var map = {
 		31
 	],
 	"../pages/ayuda/ayuda.module": [
-		429,
+		432,
 		30
 	],
 	"../pages/buscar-modal/buscar-modal.module": [
-		430,
+		429,
 		29
 	],
 	"../pages/calificar/calificar.module": [
-		431,
+		430,
 		12
 	],
 	"../pages/centrocupones/centrocupones.module": [
-		433,
+		431,
 		28
 	],
 	"../pages/confirmacionpaquete/confirmacionpaquete.module": [
@@ -725,7 +745,7 @@ var map = {
 		27
 	],
 	"../pages/confirmar-reserva/confirmar-reserva.module": [
-		432,
+		433,
 		26
 	],
 	"../pages/congrats/congrats.module": [
@@ -737,19 +757,19 @@ var map = {
 		24
 	],
 	"../pages/cupones/cupones.module": [
-		438,
+		437,
 		8
 	],
 	"../pages/demo/demo.module": [
-		437,
+		438,
 		23
 	],
 	"../pages/detalle-reserva/detalle-reserva.module": [
-		439,
+		440,
 		22
 	],
 	"../pages/favoritos/favoritos.module": [
-		440,
+		439,
 		7
 	],
 	"../pages/inicio/inicio.module": [
@@ -761,11 +781,11 @@ var map = {
 		6
 	],
 	"../pages/login/login.module": [
-		443,
+		442,
 		21
 	],
 	"../pages/logind/logind.module": [
-		442,
+		443,
 		20
 	],
 	"../pages/mapa/mapa.module": [
@@ -777,19 +797,19 @@ var map = {
 		5
 	],
 	"../pages/modal-services/modal-services.module": [
-		446,
+		448,
 		10
 	],
 	"../pages/negocioregistro/negocioregistro.module": [
-		447,
+		446,
 		18
 	],
 	"../pages/nosotros/nosotros.module": [
-		450,
+		447,
 		17
 	],
 	"../pages/ofertas/ofertas.module": [
-		448,
+		450,
 		4
 	],
 	"../pages/opiniones/opiniones.module": [
@@ -797,7 +817,7 @@ var map = {
 		2
 	],
 	"../pages/paquetes/paquetes.module": [
-		455,
+		452,
 		3
 	],
 	"../pages/perfil-centro/perfil-centro.module": [
@@ -809,19 +829,19 @@ var map = {
 		16
 	],
 	"../pages/reserva-hecha/reserva-hecha.module": [
-		452,
+		454,
 		15
 	],
 	"../pages/reserva/reserva.module": [
-		454,
+		455,
 		1
 	],
 	"../pages/reservapaquete/reservapaquete.module": [
-		456,
+		457,
 		0
 	],
 	"../pages/resultados/resultados.module": [
-		457,
+		456,
 		14
 	],
 	"../pages/verificacion/verificacion.module": [
@@ -1025,36 +1045,36 @@ var AppModule = (function () {
                     links: [
                         { loadChildren: '../pages/addservicios/addservicios.module#AddserviciosPageModule', name: 'AddserviciosPage', segment: 'addservicios', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/ajustes/ajustes.module#AjustesPageModule', name: 'AjustesPage', segment: 'ajustes', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/ayuda/ayuda.module#AyudaPageModule', name: 'AyudaPage', segment: 'ayuda', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/buscar-modal/buscar-modal.module#BuscarModalPageModule', name: 'BuscarModalPage', segment: 'buscar-modal', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/calificar/calificar.module#CalificarPageModule', name: 'CalificarPage', segment: 'calificar', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/confirmar-reserva/confirmar-reserva.module#ConfirmarReservaPageModule', name: 'ConfirmarReservaPage', segment: 'confirmar-reserva', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/centrocupones/centrocupones.module#CentrocuponesPageModule', name: 'CentrocuponesPage', segment: 'centrocupones', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/ayuda/ayuda.module#AyudaPageModule', name: 'AyudaPage', segment: 'ayuda', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/confirmar-reserva/confirmar-reserva.module#ConfirmarReservaPageModule', name: 'ConfirmarReservaPage', segment: 'confirmar-reserva', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/confirmacionpaquete/confirmacionpaquete.module#ConfirmacionpaquetePageModule', name: 'ConfirmacionpaquetePage', segment: 'confirmacionpaquete', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/cuenta/cuenta.module#CuentaPageModule', name: 'CuentaPage', segment: 'cuenta', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/congrats/congrats.module#CongratsPageModule', name: 'CongratsPage', segment: 'congrats', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/demo/demo.module#DemoPageModule', name: 'DemoPage', segment: 'demo', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/cupones/cupones.module#CuponesPageModule', name: 'CuponesPage', segment: 'cupones', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/detalle-reserva/detalle-reserva.module#DetalleReservaPageModule', name: 'DetalleReservaPage', segment: 'detalle-reserva', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/demo/demo.module#DemoPageModule', name: 'DemoPage', segment: 'demo', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/favoritos/favoritos.module#FavoritosPageModule', name: 'FavoritosPage', segment: 'favoritos', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/inicio/inicio.module#InicioPageModule', name: 'InicioPage', segment: 'inicio', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/detalle-reserva/detalle-reserva.module#DetalleReservaPageModule', name: 'DetalleReservaPage', segment: 'detalle-reserva', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/lista-servicios/lista-servicios.module#ListaServiciosPageModule', name: 'ListaServiciosPage', segment: 'lista-servicios', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/logind/logind.module#LogindPageModule', name: 'LogindPage', segment: 'logind', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/inicio/inicio.module#InicioPageModule', name: 'InicioPage', segment: 'inicio', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/login/login.module#LoginPageModule', name: 'LoginPage', segment: 'login', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/logind/logind.module#LogindPageModule', name: 'LogindPage', segment: 'logind', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/mis-reservas/mis-reservas.module#MisReservasPageModule', name: 'MisReservasPage', segment: 'mis-reservas', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/mapa/mapa.module#MapaPageModule', name: 'MapaPage', segment: 'mapa', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/modal-services/modal-services.module#ModalServicesPageModule', name: 'ModalServicesPage', segment: 'modal-services', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/negocioregistro/negocioregistro.module#NegocioregistroPageModule', name: 'NegocioregistroPage', segment: 'negocioregistro', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/ofertas/ofertas.module#OfertasPageModule', name: 'OfertasPage', segment: 'ofertas', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/opiniones/opiniones.module#OpinionesPageModule', name: 'OpinionesPage', segment: 'opiniones', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/nosotros/nosotros.module#NosotrosPageModule', name: 'NosotrosPage', segment: 'nosotros', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/modal-services/modal-services.module#ModalServicesPageModule', name: 'ModalServicesPage', segment: 'modal-services', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/opiniones/opiniones.module#OpinionesPageModule', name: 'OpinionesPage', segment: 'opiniones', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/ofertas/ofertas.module#OfertasPageModule', name: 'OfertasPage', segment: 'ofertas', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/perfil-centro/perfil-centro.module#PerfilCentroPageModule', name: 'PerfilCentroPage', segment: 'perfil-centro', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/reserva-hecha/reserva-hecha.module#ReservaHechaPageModule', name: 'ReservaHechaPage', segment: 'reserva-hecha', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/recuperar/recuperar.module#RecuperarPageModule', name: 'RecuperarPage', segment: 'recuperar', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/reserva/reserva.module#ReservaPageModule', name: 'ReservaPage', segment: 'reserva', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/paquetes/paquetes.module#PaquetesPageModule', name: 'PaquetesPage', segment: 'paquetes', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/reservapaquete/reservapaquete.module#ReservapaquetePageModule', name: 'ReservapaquetePage', segment: 'reservapaquete', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/recuperar/recuperar.module#RecuperarPageModule', name: 'RecuperarPage', segment: 'recuperar', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/reserva-hecha/reserva-hecha.module#ReservaHechaPageModule', name: 'ReservaHechaPage', segment: 'reserva-hecha', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/reserva/reserva.module#ReservaPageModule', name: 'ReservaPage', segment: 'reserva', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/resultados/resultados.module#ResultadosPageModule', name: 'ResultadosPage', segment: 'resultados', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/reservapaquete/reservapaquete.module#ReservapaquetePageModule', name: 'ReservapaquetePage', segment: 'reservapaquete', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/verificacion/verificacion.module#VerificacionPageModule', name: 'VerificacionPage', segment: 'verificacion', priority: 'low', defaultHistory: [] }
                     ]
                 }),
@@ -1836,7 +1856,7 @@ var MyApp = (function () {
             });
             // if(this.platform.is('android') || this.platform.is('ios')){
             if (_this.platform.is('android') || _this.platform.is('ios')) {
-                // if(false){
+                //if(false){
                 console.log('amhere1');
                 //PUSH FUNCIONANDO
                 var push = PushNotification.init({
@@ -1884,6 +1904,11 @@ var MyApp = (function () {
                     if (data.additionalData.tipoNoti == "1" || data.additionalData.tipoNoti == 1) {
                         var id = Number(data.additionalData.idCita);
                         _this.nav.push('DetalleReservaPage', { idCita: id });
+                        _this.presentAlert(data.title, data.message);
+                    }
+                    if (data.additionalData.tipoNoti == "3" || data.additionalData.tipoNoti == 3) {
+                        var id = Number(data.additionalData.idCupon);
+                        _this.nav.push('CuponesPage');
                         _this.presentAlert(data.title, data.message);
                     }
                     console.log(data);
