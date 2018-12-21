@@ -241,6 +241,8 @@
     <icon gap:platform="ios" height="1024" src="assets/icon/ios/1024.png" width="1024" />
    <icon gap:platform="ios" height="120" src="assets/icon/ios/120.png" width="120" />
 
+   <icon gap:platform="ios" height="167" src="assets/icon/ios/167.png" width="167" />
+
 
 
 
