@@ -54,6 +54,11 @@
 
 
 
+<edit-config file="*-Info.plist" target="UILaunchStoryboardName"  mode="merge">
+    <string>CDVLaunchScreen</string>
+</edit-config>
+
+
 <edit-config file="*-Info.plist" target="NSCameraUsageDescription"  mode="overwrite">
     <string>Para cargar imagenes de perfil</string>
 </edit-config>
