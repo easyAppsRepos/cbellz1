@@ -1811,7 +1811,7 @@ var MyApp = (function () {
         this.platform.ready().then(function () {
             navigator.splashscreen.hide();
             //Keyboard.hideFormAccessoryBar(true);
-            ////navigator.splashscreen.hide();
+            //navigator.splashscreen.hide();
             // Okay, so the platform is ready and our plugins are available.
             // Here you can do any higher level native things you might need.
             _this.statusBar.styleDefault();
