@@ -41,7 +41,7 @@ var InicioPageModule = (function () {
 
 /***/ }),
 
-/***/ 457:
+/***/ 454:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -49,7 +49,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ReservapaquetePageModule", function() { return ReservapaquetePageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(11);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__reservapaquete__ = __webpack_require__(496);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__reservapaquete__ = __webpack_require__(493);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__pipes_pipes_module__ = __webpack_require__(459);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_ion2_calendar__ = __webpack_require__(334);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_ion2_calendar___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_ion2_calendar__);
@@ -952,7 +952,7 @@ var SelectAlertless = (function (_super) {
 
 /***/ }),
 
-/***/ 496:
+/***/ 493:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
